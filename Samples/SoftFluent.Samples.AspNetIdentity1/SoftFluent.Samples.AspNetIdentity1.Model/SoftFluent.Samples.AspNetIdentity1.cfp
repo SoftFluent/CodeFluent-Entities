@@ -1,0 +1,45 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.AspNetIdentity1" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cfsps="http://www.softfluent.com/codefluent/producers.sqlpivotscript/2013/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.AspNetIdentity1" cfx:targetProject="..\SoftFluent.Samples.AspNetIdentity1\SoftFluent.Samples.AspNetIdentity1.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.AspNetIdentity1\Persistence\SQL Server" cfx:targetProject="..\SoftFluent.Samples.AspNetIdentity1\SoftFluent.Samples.AspNetIdentity1.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+  <cf:entity name="User" namespace="SoftFluent.Samples.AspNetIdentity1" categoryPath="/SoftFluent.Samples.AspNetIdentity1">
+    <cf:property name="Id" key="true" typeName="string" collectionKey="false">
+      <cf:rule typeName="OnCreate" expression="System.Guid.NewGuid().ToString()" />
+    </cf:property>
+    <cf:property name="Password" collectionKey="false" />
+    <cf:property name="UserName" collectionKey="true" />
+    <cf:property name="SecurityStamp" />
+    <cf:property name="Roles" typeName="{0}.RoleCollection" relationPropertyName="Users" />
+    <cf:property name="ExternalLogins" cascadeDelete="Before" typeName="{0}.ExternalLoginCollection" relationPropertyName="User" />
+    <cf:property name="Claims" typeName="{0}.UserClaimCollection" relationPropertyName="User" />
+    <cf:rule typeName="Implements" interfaceTypeName="Microsoft.AspNet.Identity.IUser" />
+    <cf:method name="LoadByProviderKey" body="LOADONE(string providerKey) WHERE ExternalLogins.ProviderKey = @providerKey" />
+  </cf:entity>
+  <cf:entity name="Role" namespace="SoftFluent.Samples.AspNetIdentity1" categoryPath="/SoftFluent.Samples.AspNetIdentity1">
+    <cf:property name="Id" key="true" typeName="string">
+      <cf:rule typeName="OnCreate" expression="System.Guid.NewGuid().ToString()" />
+    </cf:property>
+    <cf:property name="Name" collectionKey="true" />
+    <cf:property name="Users" typeName="{0}.UserCollection" relationPropertyName="Roles" collectionKey="false" />
+    <cf:rule typeName="Implements" interfaceTypeName="Microsoft.AspNet.Identity.IRole" />
+  </cf:entity>
+  <cf:entity name="ExternalLogin" namespace="SoftFluent.Samples.AspNetIdentity1" categoryPath="/SoftFluent.Samples.AspNetIdentity1">
+    <cf:property name="ProviderKey" key="true" typeName="string" />
+    <cf:property name="ProviderName" />
+    <cf:property name="User" nullable="false" typeName="{0}.User" relationPropertyName="ExternalLogins" />
+  </cf:entity>
+  <cf:entity name="UserClaim" namespace="SoftFluent.Samples.AspNetIdentity1" categoryPath="/SoftFluent.Samples.AspNetIdentity1">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Type" nullable="false" />
+    <cf:property name="Value" />
+    <cf:property name="User" nullable="false" cascadeDelete="Before" typeName="{0}.User" relationPropertyName="Claims" />
+    <cf:method name="DeleteByTypeAndValue" body="DELETE(User, Type, Value) WHERE User = @User AND Type = @Type AND Value = @Value" />
+  </cf:entity>
+  <cf:producer name="SQL Server Pivot Script" typeName="CodeFluent.Producers.SqlServer.SqlPivotScriptProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration targetDirectory="..\SoftFluent.Samples.AspNetIdentity1.Web\SQL Server Pivot Script" cfx:targetProject="..\SoftFluent.Samples.AspNetIdentity1.Web\SoftFluent.Samples.AspNetIdentity1.Web.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+</cf:project>

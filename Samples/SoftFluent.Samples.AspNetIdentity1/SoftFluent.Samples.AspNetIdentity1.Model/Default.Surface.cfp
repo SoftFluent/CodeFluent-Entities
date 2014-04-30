@@ -1,0 +1,10 @@
+﻿<cf:project defaultNamespace="Default" partType="Surface" xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+  <cf:surface name="Default">
+    <cf:selector name="_all" expression="//*" />
+    <shape _type="Namespace" _key="SoftFluent.Samples.AspNetIdentity1" Position="20,20" />
+    <shape _type="Entity" _key="SoftFluent.Samples.AspNetIdentity1.User" Position="10,28" />
+    <shape _type="Entity" _key="SoftFluent.Samples.AspNetIdentity1.Role" Position="355.763333333333,28" />
+    <shape _type="Entity" _key="SoftFluent.Samples.AspNetIdentity1.ExternalLogin" Position="10,385.583333333333" />
+    <shape _type="Entity" _key="SoftFluent.Samples.AspNetIdentity1.UserClaim" Position="357.09,385.583333333333" />
+  </cf:surface>
+</cf:project>
