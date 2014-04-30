@@ -1,9 +1,6 @@
-SoftFluent.Samples.Syncfusion
-=============================
-
 To build the solution you need the two following components :
-* CodeFluent Entities : http://www.softfluent.com/products/codefluent-entities
-* Syncfusion WPF components : http://www.syncfusion.com/products/wpf
+CodeFluent Entities : http://www.softfluent.com/products/codefluent-entities
+Syncfusion WPF components : http://www.syncfusion.com/products/wpf
 
 Before opening the solution, just copy the Syncfusion producer :
 
