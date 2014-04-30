@@ -1,0 +1,934 @@
+<pivot defaultNamespace="SoftFluent.Samples.AspNetIdentity2" name="SoftFluent_Samples_AspNetIdentity2" productVersion="10.50.2550.0" productName="Microsoft SQL Server" productInformation="SQL Server Windows NT - 64 Bit" version="1.0">
+  <tables>
+    <table name="Login" schema="dbo">
+      <column name="Login_Id" type="uniqueidentifier" />
+      <column name="Login_ProviderName" type="nvarchar" size="256" />
+      <column name="Login_ProviderKey" type="nvarchar" size="256" />
+      <column name="Login_User_Id" type="uniqueidentifier" />
+      <column name="_trackLastWriteTime" type="datetime" defaultName="DF_Log__tc" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackCreationTime" type="datetime" defaultName="DF_Log__tk" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackLastWriteUser" type="nvarchar" size="64" />
+      <column name="_trackCreationUser" type="nvarchar" size="64" />
+      <column name="_rowVersion" type="timestamp" />
+    </table>
+    <table name="Role" schema="dbo">
+      <column name="Role_Id" type="uniqueidentifier" />
+      <column name="Role_Name" type="nvarchar" size="256" />
+      <column name="_trackLastWriteTime" type="datetime" defaultName="DF_Rol__tc" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackCreationTime" type="datetime" defaultName="DF_Rol__tk" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackLastWriteUser" type="nvarchar" size="64" />
+      <column name="_trackCreationUser" type="nvarchar" size="64" />
+      <column name="_rowVersion" type="timestamp" />
+    </table>
+    <table name="Role_Users_User_Roles" schema="dbo">
+      <column name="Role_Id" type="uniqueidentifier" />
+      <column name="User_Id" type="uniqueidentifier" />
+    </table>
+    <table name="User" schema="dbo">
+      <column name="User_Id" type="uniqueidentifier" />
+      <column name="User_UserName" type="nvarchar" size="256" />
+      <column name="User_CreationDateUTC" type="datetime" />
+      <column name="User_Email" type="nvarchar" nullable="true" size="256" />
+      <column name="User_EmailConfirmed" type="bit" />
+      <column name="User_PhoneNumber" type="nvarchar" nullable="true" size="256" />
+      <column name="User_PhoneNumberConfirmed" type="bit" />
+      <column name="User_Password" type="nvarchar" nullable="true" size="256" />
+      <column name="User_LastPasswordChangeDate" type="datetime" nullable="true" />
+      <column name="User_FailedPasswordAttemptCount" type="int" />
+      <column name="User_FailedPasswordAttemptWindowStart" type="datetime" nullable="true" />
+      <column name="User_LockoutEnabled" type="bit" />
+      <column name="User_LockoutEndDateUtc" type="datetime" nullable="true" />
+      <column name="User_LastProfileUpdateDate" type="datetime" nullable="true" />
+      <column name="User_SecurityStamp" type="nvarchar" size="256" />
+      <column name="User_TwoFactorEnabled" type="bit" />
+      <column name="_trackLastWriteTime" type="datetime" defaultName="DF_Use__tc" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackCreationTime" type="datetime" defaultName="DF_Use__tk" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackLastWriteUser" type="nvarchar" size="64" />
+      <column name="_trackCreationUser" type="nvarchar" size="64" />
+      <column name="_rowVersion" type="timestamp" />
+    </table>
+    <table name="UserClaim" schema="dbo">
+      <column name="UserClaim_Id" type="uniqueidentifier" />
+      <column name="UserClaim_Type" type="nvarchar" size="256" />
+      <column name="UserClaim_Value" type="nvarchar" nullable="true" size="256" />
+      <column name="UserClaim_ValueType" type="nvarchar" nullable="true" size="256" />
+      <column name="UserClaim_Issuer" type="nvarchar" nullable="true" size="256" />
+      <column name="UserClaim_OriginalIssuer" type="nvarchar" nullable="true" size="256" />
+      <column name="UserClaim_User_Id" type="uniqueidentifier" />
+      <column name="_trackLastWriteTime" type="datetime" defaultName="DF_Usr__tc" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackCreationTime" type="datetime" defaultName="DF_Usr__tk" defaultValue="(GETDATE())" defaultValueIsFormula="true" />
+      <column name="_trackLastWriteUser" type="nvarchar" size="64" />
+      <column name="_trackCreationUser" type="nvarchar" size="64" />
+      <column name="_rowVersion" type="timestamp" />
+    </table>
+  </tables>
+  <constraints>
+    <constraint name="PK_Log_Log_Log" parentName="Login" parentSchema="dbo" type="PrimaryKey">
+      <column name="Login_Id" />
+    </constraint>
+    <constraint name="FK_Log_Lo__Use_Use" parentName="Login" parentSchema="dbo" type="ForeignKey" refName="User" refSchema="dbo">
+      <column name="Login_User_Id" />
+    </constraint>
+    <constraint name="PK_Rol_Rol_Rol" parentName="Role" parentSchema="dbo" type="PrimaryKey">
+      <column name="Role_Id" />
+    </constraint>
+    <constraint name="IX_Rol_Roe_Rol" parentName="Role" parentSchema="dbo" type="Unique">
+      <column name="Role_Name" />
+    </constraint>
+    <constraint name="PK_Roe_Rol_Use_Roe" parentName="Role_Users_User_Roles" parentSchema="dbo" type="PrimaryKey">
+      <column name="Role_Id" />
+      <column name="User_Id" />
+    </constraint>
+    <constraint name="FK_Roe_Rol_Rol_Rol" parentName="Role_Users_User_Roles" parentSchema="dbo" type="ForeignKey" refName="Role" refSchema="dbo">
+      <column name="Role_Id" />
+    </constraint>
+    <constraint name="FK_Roe_Use_Use_Use" parentName="Role_Users_User_Roles" parentSchema="dbo" type="ForeignKey" refName="User" refSchema="dbo">
+      <column name="User_Id" />
+    </constraint>
+    <constraint name="PK_Use_Use_Use" parentName="User" parentSchema="dbo" type="PrimaryKey">
+      <column name="User_Id" />
+    </constraint>
+    <constraint name="IX_Use_Usr_Use" parentName="User" parentSchema="dbo" type="Unique">
+      <column name="User_UserName" />
+    </constraint>
+    <constraint name="PK_Usr_Use_Usr" parentName="UserClaim" parentSchema="dbo" type="PrimaryKey">
+      <column name="UserClaim_Id" />
+    </constraint>
+    <constraint name="FK_Usr_Usm_Use_Use" parentName="UserClaim" parentSchema="dbo" type="ForeignKey" refName="User" refSchema="dbo">
+      <column name="UserClaim_User_Id" />
+    </constraint>
+  </constraints>
+  <views>
+    <view name="vLogin" schema="dbo">CREATE VIEW [dbo].[vLogin]
+AS
+SELECT [Login].[Login_Id], [Login].[Login_ProviderName], [Login].[Login_ProviderKey], [Login].[Login_User_Id], [Login].[_rowVersion], [Login].[_trackCreationTime], [Login].[_trackLastWriteTime], [Login].[_trackCreationUser], [Login].[_trackLastWriteUser] 
+    FROM [Login]</view>
+    <view name="vRole" schema="dbo">CREATE VIEW [dbo].[vRole]
+AS
+SELECT [Role].[Role_Id], [Role].[Role_Name], [Role].[_rowVersion], [Role].[_trackCreationTime], [Role].[_trackLastWriteTime], [Role].[_trackCreationUser], [Role].[_trackLastWriteUser] 
+    FROM [Role]</view>
+    <view name="vUser" schema="dbo">CREATE VIEW [dbo].[vUser]
+AS
+SELECT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_rowVersion], [User].[_trackCreationTime], [User].[_trackLastWriteTime], [User].[_trackCreationUser], [User].[_trackLastWriteUser] 
+    FROM [User]</view>
+    <view name="vUserClaim" schema="dbo">CREATE VIEW [dbo].[vUserClaim]
+AS
+SELECT [UserClaim].[UserClaim_Id], [UserClaim].[UserClaim_Type], [UserClaim].[UserClaim_Value], [UserClaim].[UserClaim_ValueType], [UserClaim].[UserClaim_Issuer], [UserClaim].[UserClaim_OriginalIssuer], [UserClaim].[UserClaim_User_Id], [UserClaim].[_rowVersion], [UserClaim].[_trackCreationTime], [UserClaim].[_trackLastWriteTime], [UserClaim].[_trackCreationUser], [UserClaim].[_trackLastWriteUser] 
+    FROM [UserClaim]</view>
+  </views>
+  <instances />
+  <procedures>
+    <procedure name="Login_Delete" schema="dbo">CREATE PROCEDURE [dbo].[Login_Delete]
+(
+ @Login_Id [uniqueidentifier],
+ @_rowVersion [rowversion]
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+DELETE FROM [Login]
+    WHERE (([Login].[Login_Id] = @Login_Id) AND ([Login].[_rowVersion] = @_rowVersion))
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+IF(@rowcount = 0)
+BEGIN
+    IF @tran = 1 ROLLBACK TRANSACTION
+    RAISERROR (50001, 16, 1, 'Login_Delete')
+    RETURN
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="Login_DeleteByUserAndProviderKey" schema="dbo">CREATE PROCEDURE [dbo].[Login_DeleteByUserAndProviderKey]
+(
+ @UserId [uniqueidentifier],
+ @ProviderKey [nvarchar] (256)
+)
+AS
+SET NOCOUNT ON
+DECLARE @deletedcount int
+DELETE FROM [Login]
+    WHERE (([Login].[Login_User_Id] = @UserId) AND ([Login].[Login_ProviderKey] = @ProviderKey))
+SELECT @deletedcount = @@ROWCOUNT
+
+SELECT @deletedcount 
+RETURN</procedure>
+    <procedure name="Login_Load" schema="dbo">CREATE PROCEDURE [dbo].[Login_Load]
+(
+ @Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Login].[Login_Id], [Login].[Login_ProviderName], [Login].[Login_ProviderKey], [Login].[Login_User_Id], [Login].[_trackLastWriteTime], [Login].[_trackCreationTime], [Login].[_trackLastWriteUser], [Login].[_trackCreationUser], [Login].[_rowVersion] 
+    FROM [Login]
+    WHERE ([Login].[Login_Id] = @Id)
+
+RETURN</procedure>
+    <procedure name="Login_LoadAll" schema="dbo">CREATE PROCEDURE [dbo].[Login_LoadAll]
+(
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Login].[Login_Id], [Login].[Login_ProviderName], [Login].[Login_ProviderKey], [Login].[Login_User_Id], [Login].[_trackLastWriteTime], [Login].[_trackCreationTime], [Login].[_trackLastWriteUser], [Login].[_trackCreationUser], [Login].[_rowVersion] 
+    FROM [Login]
+
+RETURN</procedure>
+    <procedure name="Login_LoadById" schema="dbo">CREATE PROCEDURE [dbo].[Login_LoadById]
+(
+ @Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Login].[Login_Id], [Login].[Login_ProviderName], [Login].[Login_ProviderKey], [Login].[Login_User_Id], [Login].[_trackLastWriteTime], [Login].[_trackCreationTime], [Login].[_trackLastWriteUser], [Login].[_trackCreationUser], [Login].[_rowVersion] 
+    FROM [Login]
+    WHERE ([Login].[Login_Id] = @Id)
+
+RETURN</procedure>
+    <procedure name="Login_LoadByUser" schema="dbo">CREATE PROCEDURE [dbo].[Login_LoadByUser]
+(
+ @UserId [uniqueidentifier],
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Login].[Login_Id], [Login].[Login_ProviderName], [Login].[Login_ProviderKey], [Login].[Login_User_Id], [Login].[_trackLastWriteTime], [Login].[_trackCreationTime], [Login].[_trackLastWriteUser], [Login].[_trackCreationUser], [Login].[_rowVersion] 
+    FROM [Login]
+    WHERE ([Login].[Login_User_Id] = @UserId)
+
+RETURN</procedure>
+    <procedure name="Login_Save" schema="dbo">CREATE PROCEDURE [dbo].[Login_Save]
+(
+ @Login_Id [uniqueidentifier],
+ @Login_ProviderName [nvarchar] (256),
+ @Login_ProviderKey [nvarchar] (256),
+ @Login_User_Id [uniqueidentifier],
+ @_trackLastWriteUser [nvarchar] (64) = NULL,
+ @_rowVersion [rowversion] = NULL
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+IF(@_trackLastWriteUser IS NULL)
+BEGIN
+    SELECT DISTINCT @_trackLastWriteUser = SYSTEM_USER 
+END
+IF(@_rowVersion IS NOT NULL)
+BEGIN
+    UPDATE [Login] SET
+     [Login].[Login_ProviderName] = @Login_ProviderName,
+     [Login].[Login_ProviderKey] = @Login_ProviderKey,
+     [Login].[Login_User_Id] = @Login_User_Id,
+     [Login].[_trackLastWriteUser] = @_trackLastWriteUser,
+     [Login].[_trackLastWriteTime] = GETDATE()
+        WHERE (([Login].[Login_Id] = @Login_Id) AND ([Login].[_rowVersion] = @_rowVersion))
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    IF(@rowcount = 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RAISERROR (50001, 16, 1, 'Login_Save')
+        RETURN
+    END
+    SELECT DISTINCT [Login].[_rowVersion] 
+        FROM [Login]
+        WHERE ([Login].[Login_Id] = @Login_Id)
+END
+ELSE
+BEGIN
+    INSERT INTO [Login] (
+        [Login].[Login_Id],
+        [Login].[Login_ProviderName],
+        [Login].[Login_ProviderKey],
+        [Login].[Login_User_Id],
+        [Login].[_trackCreationUser],
+        [Login].[_trackLastWriteUser])
+    VALUES (
+        @Login_Id,
+        @Login_ProviderName,
+        @Login_ProviderKey,
+        @Login_User_Id,
+        @_trackLastWriteUser,
+        @_trackLastWriteUser)
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    SELECT DISTINCT [Login].[_rowVersion] 
+        FROM [Login]
+        WHERE ([Login].[Login_Id] = @Login_Id)
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="Role_Delete" schema="dbo">CREATE PROCEDURE [dbo].[Role_Delete]
+(
+ @Role_Id [uniqueidentifier],
+ @_rowVersion [rowversion]
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+DELETE FROM [Role_Users_User_Roles]
+    WHERE ([Role_Users_User_Roles].[Role_Id] = @Role_Id)
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+DELETE FROM [Role]
+    WHERE (([Role].[Role_Id] = @Role_Id) AND ([Role].[_rowVersion] = @_rowVersion))
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+IF(@rowcount = 0)
+BEGIN
+    IF @tran = 1 ROLLBACK TRANSACTION
+    RAISERROR (50001, 16, 1, 'Role_Delete')
+    RETURN
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="Role_Load" schema="dbo">CREATE PROCEDURE [dbo].[Role_Load]
+(
+ @Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Role].[Role_Id], [Role].[Role_Name], [Role].[_trackLastWriteTime], [Role].[_trackCreationTime], [Role].[_trackLastWriteUser], [Role].[_trackCreationUser], [Role].[_rowVersion] 
+    FROM [Role]
+    WHERE ([Role].[Role_Id] = @Id)
+
+RETURN</procedure>
+    <procedure name="Role_LoadAll" schema="dbo">CREATE PROCEDURE [dbo].[Role_LoadAll]
+(
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Role].[Role_Id], [Role].[Role_Name], [Role].[_trackLastWriteTime], [Role].[_trackCreationTime], [Role].[_trackLastWriteUser], [Role].[_trackCreationUser], [Role].[_rowVersion] 
+    FROM [Role]
+
+RETURN</procedure>
+    <procedure name="Role_LoadByName" schema="dbo">CREATE PROCEDURE [dbo].[Role_LoadByName]
+(
+ @Name [nvarchar] (256)
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Role].[Role_Id], [Role].[Role_Name], [Role].[_trackLastWriteTime], [Role].[_trackCreationTime], [Role].[_trackLastWriteUser], [Role].[_trackCreationUser], [Role].[_rowVersion] 
+    FROM [Role]
+    WHERE ([Role].[Role_Name] = @Name)
+
+RETURN</procedure>
+    <procedure name="Role_LoadRolesUsersByUser" schema="dbo">CREATE PROCEDURE [dbo].[Role_LoadRolesUsersByUser]
+(
+ @UserId [uniqueidentifier],
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [Role].[Role_Id], [Role].[Role_Name], [Role].[_trackLastWriteTime], [Role].[_trackCreationTime], [Role].[_trackLastWriteUser], [Role].[_trackCreationUser], [Role].[_rowVersion] 
+    FROM [Role]
+        LEFT OUTER JOIN [Role_Users_User_Roles] ON ([Role].[Role_Id] = [Role_Users_User_Roles].[Role_Id])
+                LEFT OUTER JOIN [User] ON ([Role_Users_User_Roles].[User_Id] = [User].[User_Id])
+    WHERE ([Role_Users_User_Roles].[User_Id] = @UserId)
+
+RETURN</procedure>
+    <procedure name="Role_Save" schema="dbo">CREATE PROCEDURE [dbo].[Role_Save]
+(
+ @Role_Id [uniqueidentifier],
+ @Role_Name [nvarchar] (256),
+ @_trackLastWriteUser [nvarchar] (64) = NULL,
+ @_rowVersion [rowversion] = NULL
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+IF(@_trackLastWriteUser IS NULL)
+BEGIN
+    SELECT DISTINCT @_trackLastWriteUser = SYSTEM_USER 
+END
+IF(@_rowVersion IS NOT NULL)
+BEGIN
+    UPDATE [Role] SET
+     [Role].[Role_Name] = @Role_Name,
+     [Role].[_trackLastWriteUser] = @_trackLastWriteUser,
+     [Role].[_trackLastWriteTime] = GETDATE()
+        WHERE (([Role].[Role_Id] = @Role_Id) AND ([Role].[_rowVersion] = @_rowVersion))
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    IF(@rowcount = 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RAISERROR (50001, 16, 1, 'Role_Save')
+        RETURN
+    END
+    SELECT DISTINCT [Role].[_rowVersion] 
+        FROM [Role]
+        WHERE ([Role].[Role_Id] = @Role_Id)
+END
+ELSE
+BEGIN
+    INSERT INTO [Role] (
+        [Role].[Role_Id],
+        [Role].[Role_Name],
+        [Role].[_trackCreationUser],
+        [Role].[_trackLastWriteUser])
+    VALUES (
+        @Role_Id,
+        @Role_Name,
+        @_trackLastWriteUser,
+        @_trackLastWriteUser)
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    SELECT DISTINCT [Role].[_rowVersion] 
+        FROM [Role]
+        WHERE ([Role].[Role_Id] = @Role_Id)
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="User_Delete" schema="dbo">CREATE PROCEDURE [dbo].[User_Delete]
+(
+ @User_Id [uniqueidentifier],
+ @_rowVersion [rowversion]
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+DELETE FROM [Role_Users_User_Roles]
+    WHERE ([Role_Users_User_Roles].[User_Id] = @User_Id)
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+DELETE [UserClaim] FROM [UserClaim]
+    INNER JOIN [User] ON ([UserClaim].[UserClaim_User_Id] = [User].[User_Id])
+            LEFT OUTER JOIN [UserClaim] [UserClaim$1] ON ([User].[User_Id] = [UserClaim$1].[UserClaim_User_Id])
+    WHERE ([User].[User_Id] = @User_Id)
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+DELETE [Login] FROM [Login]
+    INNER JOIN [User] ON ([Login].[Login_User_Id] = [User].[User_Id])
+    WHERE ([User].[User_Id] = @User_Id)
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+DELETE FROM [User]
+    WHERE (([User].[User_Id] = @User_Id) AND ([User].[_rowVersion] = @_rowVersion))
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+IF(@rowcount = 0)
+BEGIN
+    IF @tran = 1 ROLLBACK TRANSACTION
+    RAISERROR (50001, 16, 1, 'User_Delete')
+    RETURN
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="User_DeleteRoleUsers" schema="dbo">CREATE PROCEDURE [dbo].[User_DeleteRoleUsers]
+(
+ @Role_Id [uniqueidentifier] = NULL,
+ @User_Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+DELETE FROM [Role_Users_User_Roles]
+    WHERE (([Role_Users_User_Roles].[User_Id] = @User_Id) AND ([Role_Users_User_Roles].[Role_Id] = @Role_Id))
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="User_Load" schema="dbo">CREATE PROCEDURE [dbo].[User_Load]
+(
+ @Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_trackLastWriteTime], [User].[_trackCreationTime], [User].[_trackLastWriteUser], [User].[_trackCreationUser], [User].[_rowVersion] 
+    FROM [User]
+    WHERE ([User].[User_Id] = @Id)
+
+RETURN</procedure>
+    <procedure name="User_LoadAll" schema="dbo">CREATE PROCEDURE [dbo].[User_LoadAll]
+(
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_trackLastWriteTime], [User].[_trackCreationTime], [User].[_trackLastWriteUser], [User].[_trackCreationUser], [User].[_rowVersion] 
+    FROM [User]
+
+RETURN</procedure>
+    <procedure name="User_LoadByEmail" schema="dbo">CREATE PROCEDURE [dbo].[User_LoadByEmail]
+(
+ @Email [nvarchar] (256)
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_trackLastWriteTime], [User].[_trackCreationTime], [User].[_trackLastWriteUser], [User].[_trackCreationUser], [User].[_rowVersion] 
+    FROM [User]
+    WHERE ([User].[User_Email] = @Email)
+
+RETURN</procedure>
+    <procedure name="User_LoadByProviderKey" schema="dbo">CREATE PROCEDURE [dbo].[User_LoadByProviderKey]
+(
+ @providerKey [nvarchar] (256)
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_trackLastWriteTime], [User].[_trackCreationTime], [User].[_trackLastWriteUser], [User].[_trackCreationUser], [User].[_rowVersion] 
+    FROM [User]
+        LEFT OUTER JOIN [Login] ON ([User].[User_Id] = [Login].[Login_User_Id])
+    WHERE ([Login].[Login_ProviderKey] = @providerKey)
+
+RETURN</procedure>
+    <procedure name="User_LoadByUserName" schema="dbo">CREATE PROCEDURE [dbo].[User_LoadByUserName]
+(
+ @UserName [nvarchar] (256)
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_trackLastWriteTime], [User].[_trackCreationTime], [User].[_trackLastWriteUser], [User].[_trackCreationUser], [User].[_rowVersion] 
+    FROM [User]
+    WHERE ([User].[User_UserName] = @UserName)
+
+RETURN</procedure>
+    <procedure name="User_LoadUsersRolesByRole" schema="dbo">CREATE PROCEDURE [dbo].[User_LoadUsersRolesByRole]
+(
+ @RoleId [uniqueidentifier],
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [User].[User_Id], [User].[User_UserName], [User].[User_CreationDateUTC], [User].[User_Email], [User].[User_EmailConfirmed], [User].[User_PhoneNumber], [User].[User_PhoneNumberConfirmed], [User].[User_Password], [User].[User_LastPasswordChangeDate], [User].[User_FailedPasswordAttemptCount], [User].[User_FailedPasswordAttemptWindowStart], [User].[User_LockoutEnabled], [User].[User_LockoutEndDateUtc], [User].[User_LastProfileUpdateDate], [User].[User_SecurityStamp], [User].[User_TwoFactorEnabled], [User].[_trackLastWriteTime], [User].[_trackCreationTime], [User].[_trackLastWriteUser], [User].[_trackCreationUser], [User].[_rowVersion] 
+    FROM [User]
+        LEFT OUTER JOIN [Role_Users_User_Roles] ON ([User].[User_Id] = [Role_Users_User_Roles].[User_Id])
+                LEFT OUTER JOIN [Role] ON ([Role_Users_User_Roles].[Role_Id] = [Role].[Role_Id])
+    WHERE ([Role_Users_User_Roles].[Role_Id] = @RoleId)
+
+RETURN</procedure>
+    <procedure name="User_Save" schema="dbo">CREATE PROCEDURE [dbo].[User_Save]
+(
+ @User_Id [uniqueidentifier],
+ @User_UserName [nvarchar] (256),
+ @User_CreationDateUTC [datetime],
+ @User_Email [nvarchar] (256) = NULL,
+ @User_EmailConfirmed [bit],
+ @User_PhoneNumber [nvarchar] (256) = NULL,
+ @User_PhoneNumberConfirmed [bit],
+ @User_Password [nvarchar] (256) = NULL,
+ @User_LastPasswordChangeDate [datetime] = NULL,
+ @User_FailedPasswordAttemptCount [int],
+ @User_FailedPasswordAttemptWindowStart [datetime] = NULL,
+ @User_LockoutEnabled [bit],
+ @User_LockoutEndDateUtc [datetime] = NULL,
+ @User_LastProfileUpdateDate [datetime] = NULL,
+ @User_SecurityStamp [nvarchar] (256),
+ @User_TwoFactorEnabled [bit],
+ @_trackLastWriteUser [nvarchar] (64) = NULL,
+ @_rowVersion [rowversion] = NULL
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+IF(@_trackLastWriteUser IS NULL)
+BEGIN
+    SELECT DISTINCT @_trackLastWriteUser = SYSTEM_USER 
+END
+IF(@_rowVersion IS NOT NULL)
+BEGIN
+    UPDATE [User] SET
+     [User].[User_UserName] = @User_UserName,
+     [User].[User_CreationDateUTC] = @User_CreationDateUTC,
+     [User].[User_Email] = @User_Email,
+     [User].[User_EmailConfirmed] = @User_EmailConfirmed,
+     [User].[User_PhoneNumber] = @User_PhoneNumber,
+     [User].[User_PhoneNumberConfirmed] = @User_PhoneNumberConfirmed,
+     [User].[User_Password] = @User_Password,
+     [User].[User_LastPasswordChangeDate] = @User_LastPasswordChangeDate,
+     [User].[User_FailedPasswordAttemptCount] = @User_FailedPasswordAttemptCount,
+     [User].[User_FailedPasswordAttemptWindowStart] = @User_FailedPasswordAttemptWindowStart,
+     [User].[User_LockoutEnabled] = @User_LockoutEnabled,
+     [User].[User_LockoutEndDateUtc] = @User_LockoutEndDateUtc,
+     [User].[User_LastProfileUpdateDate] = @User_LastProfileUpdateDate,
+     [User].[User_SecurityStamp] = @User_SecurityStamp,
+     [User].[User_TwoFactorEnabled] = @User_TwoFactorEnabled,
+     [User].[_trackLastWriteUser] = @_trackLastWriteUser,
+     [User].[_trackLastWriteTime] = GETDATE()
+        WHERE (([User].[User_Id] = @User_Id) AND ([User].[_rowVersion] = @_rowVersion))
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    IF(@rowcount = 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RAISERROR (50001, 16, 1, 'User_Save')
+        RETURN
+    END
+    SELECT DISTINCT [User].[_rowVersion] 
+        FROM [User]
+        WHERE ([User].[User_Id] = @User_Id)
+END
+ELSE
+BEGIN
+    INSERT INTO [User] (
+        [User].[User_Id],
+        [User].[User_UserName],
+        [User].[User_CreationDateUTC],
+        [User].[User_Email],
+        [User].[User_EmailConfirmed],
+        [User].[User_PhoneNumber],
+        [User].[User_PhoneNumberConfirmed],
+        [User].[User_Password],
+        [User].[User_LastPasswordChangeDate],
+        [User].[User_FailedPasswordAttemptCount],
+        [User].[User_FailedPasswordAttemptWindowStart],
+        [User].[User_LockoutEnabled],
+        [User].[User_LockoutEndDateUtc],
+        [User].[User_LastProfileUpdateDate],
+        [User].[User_SecurityStamp],
+        [User].[User_TwoFactorEnabled],
+        [User].[_trackCreationUser],
+        [User].[_trackLastWriteUser])
+    VALUES (
+        @User_Id,
+        @User_UserName,
+        @User_CreationDateUTC,
+        @User_Email,
+        @User_EmailConfirmed,
+        @User_PhoneNumber,
+        @User_PhoneNumberConfirmed,
+        @User_Password,
+        @User_LastPasswordChangeDate,
+        @User_FailedPasswordAttemptCount,
+        @User_FailedPasswordAttemptWindowStart,
+        @User_LockoutEnabled,
+        @User_LockoutEndDateUtc,
+        @User_LastProfileUpdateDate,
+        @User_SecurityStamp,
+        @User_TwoFactorEnabled,
+        @_trackLastWriteUser,
+        @_trackLastWriteUser)
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    SELECT DISTINCT [User].[_rowVersion] 
+        FROM [User]
+        WHERE ([User].[User_Id] = @User_Id)
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="User_SaveRoleUsers" schema="dbo">CREATE PROCEDURE [dbo].[User_SaveRoleUsers]
+(
+ @Role_Id [uniqueidentifier],
+ @User_Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+SELECT DISTINCT TOP 1 [Role_Users_User_Roles].[Role_Id] 
+    FROM [Role_Users_User_Roles]
+    WHERE (([Role_Users_User_Roles].[User_Id] = @User_Id) AND ([Role_Users_User_Roles].[Role_Id] = @Role_Id))
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+IF(@error != 0)
+BEGIN
+    IF @tran = 1 ROLLBACK TRANSACTION
+    RETURN
+END
+IF(@rowcount = 0)
+BEGIN
+    INSERT INTO [Role_Users_User_Roles] (
+        [Role_Users_User_Roles].[Role_Id],
+        [Role_Users_User_Roles].[User_Id])
+    VALUES (
+        @Role_Id,
+        @User_Id)
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="UserClaim_Delete" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_Delete]
+(
+ @UserClaim_Id [uniqueidentifier],
+ @_rowVersion [rowversion]
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+DELETE FROM [UserClaim]
+    WHERE (([UserClaim].[UserClaim_Id] = @UserClaim_Id) AND ([UserClaim].[_rowVersion] = @_rowVersion))
+SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+IF(@rowcount = 0)
+BEGIN
+    IF @tran = 1 ROLLBACK TRANSACTION
+    RAISERROR (50001, 16, 1, 'UserClaim_Delete')
+    RETURN
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+    <procedure name="UserClaim_DeleteByTypeAndValue" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_DeleteByTypeAndValue]
+(
+ @Type [nvarchar] (256),
+ @Value [nvarchar] (256)
+)
+AS
+SET NOCOUNT ON
+DECLARE @deletedcount int
+DELETE FROM [UserClaim]
+    WHERE (([UserClaim].[UserClaim_Type] = @Type) AND ([UserClaim].[UserClaim_Value] = @Value))
+SELECT @deletedcount = @@ROWCOUNT
+
+SELECT @deletedcount 
+RETURN</procedure>
+    <procedure name="UserClaim_Load" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_Load]
+(
+ @Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [UserClaim].[UserClaim_Id], [UserClaim].[UserClaim_Type], [UserClaim].[UserClaim_Value], [UserClaim].[UserClaim_ValueType], [UserClaim].[UserClaim_Issuer], [UserClaim].[UserClaim_OriginalIssuer], [UserClaim].[UserClaim_User_Id], [UserClaim].[_trackLastWriteTime], [UserClaim].[_trackCreationTime], [UserClaim].[_trackLastWriteUser], [UserClaim].[_trackCreationUser], [UserClaim].[_rowVersion] 
+    FROM [UserClaim]
+    WHERE ([UserClaim].[UserClaim_Id] = @Id)
+
+RETURN</procedure>
+    <procedure name="UserClaim_LoadAll" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_LoadAll]
+(
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [UserClaim].[UserClaim_Id], [UserClaim].[UserClaim_Type], [UserClaim].[UserClaim_Value], [UserClaim].[UserClaim_ValueType], [UserClaim].[UserClaim_Issuer], [UserClaim].[UserClaim_OriginalIssuer], [UserClaim].[UserClaim_User_Id], [UserClaim].[_trackLastWriteTime], [UserClaim].[_trackCreationTime], [UserClaim].[_trackLastWriteUser], [UserClaim].[_trackCreationUser], [UserClaim].[_rowVersion] 
+    FROM [UserClaim]
+
+RETURN</procedure>
+    <procedure name="UserClaim_LoadById" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_LoadById]
+(
+ @Id [uniqueidentifier]
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [UserClaim].[UserClaim_Id], [UserClaim].[UserClaim_Type], [UserClaim].[UserClaim_Value], [UserClaim].[UserClaim_ValueType], [UserClaim].[UserClaim_Issuer], [UserClaim].[UserClaim_OriginalIssuer], [UserClaim].[UserClaim_User_Id], [UserClaim].[_trackLastWriteTime], [UserClaim].[_trackCreationTime], [UserClaim].[_trackLastWriteUser], [UserClaim].[_trackCreationUser], [UserClaim].[_rowVersion] 
+    FROM [UserClaim]
+    WHERE ([UserClaim].[UserClaim_Id] = @Id)
+
+RETURN</procedure>
+    <procedure name="UserClaim_LoadByUser" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_LoadByUser]
+(
+ @UserId [uniqueidentifier],
+ @_orderBy0 [nvarchar] (64) = NULL,
+ @_orderByDirection0 [bit] = 0
+)
+AS
+SET NOCOUNT ON
+SELECT DISTINCT [UserClaim].[UserClaim_Id], [UserClaim].[UserClaim_Type], [UserClaim].[UserClaim_Value], [UserClaim].[UserClaim_ValueType], [UserClaim].[UserClaim_Issuer], [UserClaim].[UserClaim_OriginalIssuer], [UserClaim].[UserClaim_User_Id], [UserClaim].[_trackLastWriteTime], [UserClaim].[_trackCreationTime], [UserClaim].[_trackLastWriteUser], [UserClaim].[_trackCreationUser], [UserClaim].[_rowVersion] 
+    FROM [UserClaim]
+    WHERE ([UserClaim].[UserClaim_User_Id] = @UserId)
+
+RETURN</procedure>
+    <procedure name="UserClaim_Save" schema="dbo">CREATE PROCEDURE [dbo].[UserClaim_Save]
+(
+ @UserClaim_Id [uniqueidentifier],
+ @UserClaim_Type [nvarchar] (256),
+ @UserClaim_Value [nvarchar] (256) = NULL,
+ @UserClaim_ValueType [nvarchar] (256) = NULL,
+ @UserClaim_Issuer [nvarchar] (256) = NULL,
+ @UserClaim_OriginalIssuer [nvarchar] (256) = NULL,
+ @UserClaim_User_Id [uniqueidentifier],
+ @_trackLastWriteUser [nvarchar] (64) = NULL,
+ @_rowVersion [rowversion] = NULL
+)
+AS
+SET NOCOUNT ON
+DECLARE @error int, @rowcount int
+DECLARE @tran bit; SELECT @tran = 0
+IF @@TRANCOUNT = 0
+BEGIN
+ SELECT @tran = 1
+ BEGIN TRANSACTION
+END
+IF(@_trackLastWriteUser IS NULL)
+BEGIN
+    SELECT DISTINCT @_trackLastWriteUser = SYSTEM_USER 
+END
+IF(@_rowVersion IS NOT NULL)
+BEGIN
+    UPDATE [UserClaim] SET
+     [UserClaim].[UserClaim_Type] = @UserClaim_Type,
+     [UserClaim].[UserClaim_Value] = @UserClaim_Value,
+     [UserClaim].[UserClaim_ValueType] = @UserClaim_ValueType,
+     [UserClaim].[UserClaim_Issuer] = @UserClaim_Issuer,
+     [UserClaim].[UserClaim_OriginalIssuer] = @UserClaim_OriginalIssuer,
+     [UserClaim].[UserClaim_User_Id] = @UserClaim_User_Id,
+     [UserClaim].[_trackLastWriteUser] = @_trackLastWriteUser,
+     [UserClaim].[_trackLastWriteTime] = GETDATE()
+        WHERE (([UserClaim].[UserClaim_Id] = @UserClaim_Id) AND ([UserClaim].[_rowVersion] = @_rowVersion))
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    IF(@rowcount = 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RAISERROR (50001, 16, 1, 'UserClaim_Save')
+        RETURN
+    END
+    SELECT DISTINCT [UserClaim].[_rowVersion] 
+        FROM [UserClaim]
+        WHERE ([UserClaim].[UserClaim_Id] = @UserClaim_Id)
+END
+ELSE
+BEGIN
+    INSERT INTO [UserClaim] (
+        [UserClaim].[UserClaim_Id],
+        [UserClaim].[UserClaim_Type],
+        [UserClaim].[UserClaim_Value],
+        [UserClaim].[UserClaim_ValueType],
+        [UserClaim].[UserClaim_Issuer],
+        [UserClaim].[UserClaim_OriginalIssuer],
+        [UserClaim].[UserClaim_User_Id],
+        [UserClaim].[_trackCreationUser],
+        [UserClaim].[_trackLastWriteUser])
+    VALUES (
+        @UserClaim_Id,
+        @UserClaim_Type,
+        @UserClaim_Value,
+        @UserClaim_ValueType,
+        @UserClaim_Issuer,
+        @UserClaim_OriginalIssuer,
+        @UserClaim_User_Id,
+        @_trackLastWriteUser,
+        @_trackLastWriteUser)
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    SELECT DISTINCT [UserClaim].[_rowVersion] 
+        FROM [UserClaim]
+        WHERE ([UserClaim].[UserClaim_Id] = @UserClaim_Id)
+END
+IF @tran = 1 COMMIT TRANSACTION
+
+RETURN</procedure>
+  </procedures>
+  <functions>
+    <function name="cf_modelVersion" schema="dbo">CREATE FUNCTION [dbo].[cf_modelVersion]() RETURNS int AS
+BEGIN
+  RETURN -1321109511
+END</function>
+    <function name="cf_SplitString" schema="dbo">CREATE FUNCTION [dbo].[cf_SplitString](@s nvarchar(max), @c nchar) RETURNS @t TABLE (Item nvarchar(max)) AS
+BEGIN
+  IF @s IS NULL RETURN
+  DECLARE @p int, @current int
+  SET @current = 1
+  WHILE (1 = 1)
+  BEGIN
+      SET @p = charindex(@c, @s, @current)
+      IF (@p = 0)
+      BEGIN
+          IF ((LEN(@s) - @current + 1) &gt; 0)
+          BEGIN
+              INSERT INTO @t VALUES(substring(@s, @current, LEN(@s) - @current + 1))
+          END
+          RETURN
+      END
+      ELSE
+      BEGIN
+          INSERT INTO @t VALUES(substring(@s, @current, @p - @current))
+          SET @current = @p + 1
+      END
+  END
+  RETURN
+END</function>
+    <function name="cf_quotename" schema="dbo">CREATE FUNCTION [dbo].[cf_quotename](@s nvarchar(max)) RETURNS nvarchar(max) AS
+BEGIN
+  DECLARE @r nvarchar(max), @c  char(1)
+  SELECT @c = ''''
+  SELECT @r = replace(@s, @c, @c + @c)
+  RETURN (@c + @r + @c)
+END</function>
+  </functions>
+</pivot>

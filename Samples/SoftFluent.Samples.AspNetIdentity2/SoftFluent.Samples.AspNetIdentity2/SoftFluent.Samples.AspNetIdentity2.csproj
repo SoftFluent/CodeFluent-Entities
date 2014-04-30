@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{047ACE49-0397-423B-AF9B-4B2F5D132A85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoftFluent.Samples.AspNetIdentity2</RootNamespace>
+    <AssemblyName>SoftFluent.Samples.AspNetIdentity2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>..\..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Login.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="LoginCollection.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Role.partial.cs" />
+    <Compile Include="RoleCollection.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="User.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="User.partial.cs" />
+    <Compile Include="UserClaim.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="UserClaimCollection.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="UserCollection.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\BitsServer.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.cs" />
+    <Compile Include="Web\Security\RoleStore.cs" />
+    <Compile Include="Web\Security\UserStore.cs" />
+    <Compile Include="_cf_rt.cs">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="SoftFluent.Samples.AspNetIdentity2.ResX">
+      <CodeFluentProducer>a2d6752565a63c6766ab9cdd0babf48e</CodeFluentProducer>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Persistence\Sql Server\SoftFluent.Samples.AspNetIdentity2_runtime.sql">
+      <CodeFluentProducer>80c84858a0ffe1efbfb6450592b18993</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\Sql Server\SoftFluent.Samples.AspNetIdentity2_tables.sql">
+      <CodeFluentProducer>80c84858a0ffe1efbfb6450592b18993</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\Sql Server\SoftFluent.Samples.AspNetIdentity2_views.sql">
+      <CodeFluentProducer>80c84858a0ffe1efbfb6450592b18993</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\Sql Server\SoftFluent.Samples.AspNetIdentity2_procedures.sql">
+      <CodeFluentProducer>80c84858a0ffe1efbfb6450592b18993</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\Sql Server\SoftFluent.Samples.AspNetIdentity2_relations_drop.sql">
+      <CodeFluentProducer>80c84858a0ffe1efbfb6450592b18993</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\Sql Server\SoftFluent.Samples.AspNetIdentity2_relations_add.sql">
+      <CodeFluentProducer>80c84858a0ffe1efbfb6450592b18993</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
