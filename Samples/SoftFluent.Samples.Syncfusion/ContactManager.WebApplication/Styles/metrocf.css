@@ -1,0 +1,444 @@
+body {  
+    margin: 0 auto;  
+    font: 23px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    background: #f0f0f0
+}  
+
+p {  
+    padding-bottom: 22px;  
+}  
+
+a {
+	text-decoration: none;
+}
+
+a:link {color:#8EBDED;}
+a:visited {color:#8EBDED;}
+a:hover {color:#FFFFFF;}
+a:active {color:#8EBDED;}
+
+.error a:link {color:#FFFFFF;}
+.error a:visited {color:#FFFFFF;}
+.error a:hover {color:#505050;}
+.error a:active {color:#FFFFFF;}
+
+.contentgrid {
+	padding-right:20px;
+}
+
+.widthgrid {
+	box-shadow: 3px 3px 7px #777; 
+}
+
+.grid {
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    white-space:nowrap;
+    width:100%;
+	background: #454556;
+	color:yellow;
+}
+
+.grid table {
+	border-collapse:collapse;
+}
+
+.grid a {
+	color:White;
+}
+
+.grid td {
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    white-space:nowrap;
+	background: #454556;
+	color:yellow;
+}
+
+.grid td {
+	text-align:left;
+    border-top:solid #f0f0f0 1px;
+}
+
+.grid th {
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	height:31px;
+	background: #0075CF;
+	color:white;
+	text-align:left;
+}
+
+.gridpager td {
+	border-top:0px;
+}
+
+.grid input {
+    font: 14px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	background:#8EBDED;
+	padding:5px;
+	border:0px;
+}
+
+.grid input:hover {
+	background:#0075CF;
+	color:White;
+}
+
+.grid input[type="checkbox"] {
+	background:transparent;
+}
+
+.dialogtitle {
+	padding:10px;
+	color:White;
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	background: #0075CF;
+}
+
+.dialogviews
+{
+	float:right;
+	text-align:right;
+}
+
+.dialogviews select
+{
+	margin-left:10px;
+	vertical-align:15%;
+}
+
+.dialogcontent {
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    bottom:60px;
+    top:41px;
+    left:0px;
+    right:0px;
+    padding-top:10px;
+    padding-left:20px;
+    overflow:auto;
+    position:fixed;
+}
+
+.dialogbuttons 
+{
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	text-align:right;
+}
+
+.dialogbuttons input {
+    font: 14px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	background:#8EBDED;
+	padding:5px;
+	border:0px;
+	width:100px;
+}
+
+.dialogbuttons input:hover {
+	background:#0075CF;
+	color:White;
+}
+
+.errordlg1 {
+	padding:5px;
+    position: fixed;
+	bottom:10px;
+	left:10px;
+	background:red;
+	color:white;
+    font: 14px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    width:400px;
+	box-shadow: 3px 3px 7px #777; 
+	z-index:-999;
+}
+
+.errordlg2 {
+	padding:5px;
+	position:fixed;
+	left:10px;
+	bottom:40px;
+    font: 12px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    width:400px;
+	background:white;
+	color:red;
+	z-index:-999;
+}
+
+.error1 {
+    position: fixed;
+	top:80px;
+	left:50%;
+	width:700px;
+	margin-left:-350px;
+	padding:10px;
+	background:#C0C0C0;
+	box-shadow: 3px 3px 7px #777; 
+}
+
+.errortitle {
+    position: fixed;
+	top:40px;
+	left:50%;
+	width:700px;
+	margin-left:-350px;
+	padding:10px;
+	background:red;
+	color:white;
+}
+
+.error2 {
+	overflow:auto;
+	padding-top:20px;
+	color:black;
+	white-space:pre;
+    font: 14px 'Lucida Console', 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.box {
+	margin-left:20px;
+	padding:5px;
+	background: #252526;
+	color:#8EBDED;
+	width:200px;
+	top:20px;
+	position:fixed;
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	box-shadow: 3px 3px 7px #777; 
+}
+
+.box ul {
+	padding-left:20px;
+}
+
+.header {
+	background: #0075CF;
+	color:white;
+	padding-left:20px;
+	padding-top:10px;
+	top:20px;
+	left:250px;
+	height:31px;
+	width:10000px;
+	position:fixed;
+    font: 16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	box-shadow: 3px 3px 7px #777; 
+}
+
+.lefticon {
+	border:0px;
+	vertical-align:-15%;
+	padding-right:5px;
+}
+
+.cfe {
+	padding:10px;
+	margin:-5px;
+	background:#0075CF;
+	color:white;
+}
+
+.cfeimg
+{
+	margin:-5px;
+	background:#0075CF;
+	float:right;
+}
+
+.login {
+	position:absolute;
+	top:0px;
+	right:5px;
+	text-align:right;
+	font:14px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.cfe2 {
+	margin:-10px;
+	padding:10px;
+	padding-bottom:20px;
+	background:#0075CF;
+	color:white;
+	font:30px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif
+}
+
+.cfeimg2
+{
+	padding-right:10px;vertical-align:-15%;
+}
+
+.cfetd
+{
+	border-right:solid #0075CF 4px;
+	border-bottom:solid #0075CF 4px;
+}
+
+.cfetdl
+{
+	border-right:0px;
+	border-bottom:solid #0075CF 4px;
+}
+
+.headerhide {
+	left:250px;
+	top:0px;
+	height:80px;
+	width:10000px;
+	position:fixed;
+    background: #f0f0f0;  
+}
+
+.content {
+	margin-left:250px;
+	margin-top:80px;
+	font:16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.content td {
+	vertical-align:top;
+}
+
+.content p {
+	padding-bottom:0px;
+}
+
+.content img {
+	margin-top:-20px;
+}
+
+.contentgrid {
+	margin-left:250px;
+	margin-top:20px;
+}
+
+.footerleft {
+	position:fixed;
+	bottom:0px;
+	left:50%;
+	color:#0075CF;
+	margin-left:-400px;
+	font:12px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.footerright {
+	position:fixed;
+	bottom:0px;
+	right:50%;
+	color:#0075CF;
+	margin-right:-420px;
+	text-align:right;
+	font:12px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.ns {
+	font:20px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	color:white;
+}
+
+hr {
+	background:blue;
+	border:solid #0075CF 0.5px;
+	margin-left:-10px;
+	margin-right:-10px;
+}
+
+.entities {
+	font:16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.entities img 
+{
+	padding-right:10px;
+	vertical-align:-15%;
+}
+
+.enumerations 
+{
+	color:#168CD3;
+	font:16px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+}
+
+.enumerations img 
+{
+	padding-right:10px;
+	vertical-align:-15%;
+}
+
+.tabs ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.tabs li {
+	margin: 0 2px 0 0;
+	list-style-type: none;
+	float: left;
+}
+
+.tablink {
+	display: block;
+	text-decoration: none;
+	padding: 5px;
+	background: #e8e8e8;
+	border: #C0C0C0 solid;
+	border-width: 1px 1px 0 1px;
+}
+
+.tabs li a {
+	color:#0075CF;
+}
+
+.tabs li a:hover {
+	color:black;
+}
+
+.tablinka {
+	display: block;
+	text-decoration: none;
+	padding: 5px;
+	background: #e0e0e0;
+	border: #808080 solid;
+	border-width: 1px 1px 0 1px;
+}
+
+.tabcontent {
+	display: none;
+}
+
+.tabcontenta {
+	display: block;
+	clear: both;
+	background: #f0f0f0;
+	border: 1px #dedede solid;
+	padding: 10px;
+	margin-right:20px;
+}
+
+.tabcontenta td {
+	vertical-align:top;
+}
+
+.association {
+	border: 1px #dedede solid;
+	max-height:200px;
+	overflow:auto;
+}
+
+.fields td {
+	vertical-align:top;
+}
+
+#dialog {
+    position: fixed;
+	top:20px;
+	left:50%;
+	bottom:30px;
+	overflow:auto;
+	width:800px;
+	margin-left:-400px;
+	background:#252526;
+	color:#8EBDED;
+	padding:10px;
+	text-align:justify;
+    font: 13.7px 'Segoe UI Light','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+	box-shadow: 3px 3px 7px #777; 
+}

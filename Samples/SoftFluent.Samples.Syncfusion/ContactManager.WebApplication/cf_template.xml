@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<template base="AspNet" browsable="true" displayName="ASP.NET WebForms" description="An ASP.NET template that demonstrates a classic WebForms site." fontsAndColorsSetName="Modern Style">
+	<supportedProducer typeName="CodeFluent.Producers.UI.AspNetProducer" />
+</template>

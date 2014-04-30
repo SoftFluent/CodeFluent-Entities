@@ -1,0 +1,2244 @@
+<build startDate="2014-02-13T19:31:50.1152+01:00" commandLine="&quot;C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe&quot; &quot;D:\Workspaces\ContactManager\ContactManager.Model\ContactManager.cfp&quot; /Log:&quot;D:\Workspaces\ContactManager\ContactManager.Model\ContactManager.build.xml&quot; /Results:&quot;C:\Users\ADI\AppData\Local\Temp\ContactManager.cfp.oop&quot; /DoNotCreateReportsOnException /DoNotShowReportsOnException /NoFlashOnError " machineName="SF080" osVersion="Microsoft Windows NT 6.2.9200.0" currentDirectory="D:\Workspaces\ContactManager\ContactManager.Model" user="SFINTERNAL\adi" clrVersion="4.0.30319.34011" licenseUsage="Build Expirable [Date:31/12/2099 00:00:00][Licensee:adi@softfluent.com][Maximum Entities:999999]" processorCount="8" workingSet="25088000 bytes" bitness="32bits" wow64="True" optionsFlags="None" parentProcess="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe" endDate="2014-02-13T19:32:06.3550+01:00" totalElapsedTime="00:00:16.2708122" numberOfEntities="4" numberOfEnumerations="1" numberOfRelations="6">
+  <assemblies>
+    <assembly fullName="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll" location="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" buildVersion="4.0.30319.34011" fileVersion="4.0.30319.34011 built by: FX45W81RTMGDR" productVersion="4.0.30319.34011" />
+    <assembly fullName="CodeFluent.Build4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Build4.exe" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="CodeFluent.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="CodeFluent.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll" buildVersion="4.0.30319.34003" fileVersion="4.0.30319.34003 built by: FX45W81RTMGDR" productVersion="4.0.30319.34003" />
+    <assembly fullName="CodeFluent.Model.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.Common.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Data/v4.0_4.0.0.0__b77a5c561934e089/System.Data.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Producers.CodeDom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.CodeDom.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="SoftFluent.License, Version=1.0.0.0, Culture=neutral, PublicKeyToken=330d9b6ea5e30055" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/SoftFluent.License.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\SoftFluent.License.dll" buildVersion="1.0.0.0" fileVersion="2.0.0.5" productVersion="1.0.0.0" />
+    <assembly fullName="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Management/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Management.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll" buildVersion="4.0.30319.34009" fileVersion="4.0.30319.34009 built by: FX45W81RTMGDR" productVersion="4.0.30319.34009" />
+    <assembly fullName="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Producers.SqlServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.SqlServer.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.SqlServer.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="CodeFluent.Runtime.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Database.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Database.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="CodeFluent.Producers.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.UI.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.UI.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="CodeFluent.Modeler, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Modeler.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Modeler.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="ContactManager.SyncfusionProducer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/ContactManager.SyncfusionProducer.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\ContactManager.SyncfusionProducer.dll" fileVersion="1.0.0.0" productVersion="1.0.0.0" />
+    <assembly fullName="CodeFluent.Producers.ServiceModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.ServiceModel.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.ServiceModel.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Runtime.Serialization/v4.0_4.0.0.0__b77a5c561934e089/System.Runtime.Serialization.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Serialization\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Serialization.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel\v4.0_4.0.0.0__b77a5c561934e089\System.ServiceModel.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Transactions/v4.0_4.0.0.0__b77a5c561934e089/System.Transactions.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Transactions\v4.0_4.0.0.0__b77a5c561934e089\System.Transactions.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/WindowsBase/v4.0_4.0.0.0__31bf3856ad364e35/WindowsBase.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll" buildVersion="4.0.30319.34004" fileVersion="4.0.30319.34004 built by: FX45W81RTMGDR" productVersion="4.0.30319.34004" />
+    <assembly fullName="System.ServiceProcess, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceProcess/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.ServiceProcess.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceProcess\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.ServiceProcess.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Runtime.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Web.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll" buildVersion="1.0.61214.0762" fileVersion="1.0.61214.0762" productVersion="1.0.61214.0762" />
+    <assembly fullName="CF_25311015811463814236.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.EnterpriseServices/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.EnterpriseServices.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Numerics/v4.0_4.0.0.0__b77a5c561934e089/System.Numerics.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Numerics\v4.0_4.0.0.0__b77a5c561934e089\System.Numerics.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CF_34074255062030297482.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_22732374863794532875.xtf, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_03234592267341973640.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_02153890111357371483.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_34078140103119925373.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_32696093502536452643.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_07410872042706876408.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_32520365592546899890.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_30263135333263527614.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_17557380492508555977.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_03024614913143771369.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_30721320682847074501.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_16375552773121314487.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_00429598874221958845.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_09658095662446166012.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/PresentationFramework/v4.0_4.0.0.0__31bf3856ad364e35/PresentationFramework.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\PresentationFramework\v4.0_4.0.0.0__31bf3856ad364e35\PresentationFramework.dll" buildVersion="4.0.30319.34004" fileVersion="4.0.30319.34004" productVersion="4.0.30319.34004" />
+    <assembly fullName="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/PresentationCore/v4.0_4.0.0.0__31bf3856ad364e35/PresentationCore.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\PresentationCore\v4.0_4.0.0.0__31bf3856ad364e35\PresentationCore.dll" buildVersion="4.0.30319.34004" fileVersion="4.0.30319.34004 built by: FX45W81RTMGDR" productVersion="4.0.30319.34004" />
+    <assembly fullName="System.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xaml/v4.0_4.0.0.0__b77a5c561934e089/System.Xaml.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xaml\v4.0_4.0.0.0__b77a5c561934e089\System.Xaml.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="Microsoft.GeneratedCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <assembly fullName="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Design/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Design.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Design\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Design.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="Microsoft.GeneratedCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <assembly fullName="UIAutomationTypes, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/UIAutomationTypes/v4.0_4.0.0.0__31bf3856ad364e35/UIAutomationTypes.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\UIAutomationTypes\v4.0_4.0.0.0__31bf3856ad364e35\UIAutomationTypes.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="PresentationFramework.Aero2, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/PresentationFramework.Aero2/v4.0_4.0.0.0__31bf3856ad364e35/PresentationFramework.Aero2.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\PresentationFramework.Aero2\v4.0_4.0.0.0__31bf3856ad364e35\PresentationFramework.Aero2.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="UIAutomationProvider, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/UIAutomationProvider/v4.0_4.0.0.0__31bf3856ad364e35/UIAutomationProvider.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\UIAutomationProvider\v4.0_4.0.0.0__31bf3856ad364e35\UIAutomationProvider.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.DirectoryServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.DirectoryServices/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.DirectoryServices.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.DirectoryServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.DirectoryServices.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Web.Services/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.Services.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.Services\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CF_09056665142064887193.config, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_04125960148694443031.config, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_20501415312723827052.cmd, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_29588588563782766016.cmd, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_12478495792518446904.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_17934180771534490005.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_04209039975147206048.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+    <assembly fullName="CF_00414297891533890738.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="" />
+  </assemblies>
+  <variables>
+    <variable name="CF_TEMPLATES_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates" />
+    <variable name="CF_PATTERNS_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Patterns" />
+    <variable name="CF_CURRENT_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler" />
+    <variable name="CF_BUILD_NUMBER" value="70762" />
+    <variable name="CF_BUILD_CONFIGURATION" value="RELEASE" />
+  </variables>
+  <generatedFiles>
+    <producer name="Business Object Model (BOM)" generatedFilesCount="23">
+      <subProducer name="ServiceProducer" generatedFilesCount="19" />
+    </producer>
+    <producer name="SQL Server" generatedFilesCount="8" />
+    <producer name="ASP.NET Web Site V2" generatedFilesCount="124" />
+    <producer name="Service Host" generatedFilesCount="4" />
+    <producer name="Syncfusion WPF" generatedFilesCount="42" />
+  </generatedFiles>
+  <project>
+    <imports>
+      <cf:import path="Default.Surface.cfp" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" />
+    </imports>
+    <parts>
+      <part filePath="D:\Workspaces\ContactManager\ContactManager.Model\ContactManager.cfp" isRootModel="true" relativePath="ContactManager.cfp" />
+      <part filePath="D:\Workspaces\ContactManager\ContactManager.Model\Default.Surface.cfp" relativePath="Default.Surface.cfp" />
+    </parts>
+  </project>
+  <producer name="Business Object Model (BOM)">
+    <event type="ProducerStart" elapsedTime="00:00:00.0004133">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="D:\Workspaces\ContactManager\ContactManager" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="Default, Overwrite" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="ContactManager" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AssemblyCompileDefaultFileExcludeFilter" value="AssemblyInfo.cs, assemblyversion.cs" />
+    <event type="ParameterValue" name="CodeDomProviderOptions" />
+    <event type="ParameterValue" name="FileExtension" value=".cs" />
+    <event type="ParameterValue" name="LanguageCode" value="CSharp" valueType="CodeFluent.Model.Code.LanguageCode" />
+    <event type="ParameterValue" name="MustAddDebugInfo" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCompile" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDelaySign" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustIncludeDebugInformation" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustTreatWarningAsErrors" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="WarningLevel" value="-1" valueType="System.Int32" />
+    <event type="ParameterValue" name="TargetProductionOptions" value="Default" valueType="CodeFluent.Producers.CodeDom.TargetProductionOptions" />
+    <event type="ParameterValue" name="VisualStudioProjectPath" />
+    <event type="ParameterValue" name="IsAssemblyClsCompliant" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDebuggerDisplayAttribute" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDictionaryMethods" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeDesignAttributes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeResourceCheck" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAppendSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustEmbedModelInRuntimeResource" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceResourcesFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebBasicAuthenticationModule" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebHandler" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipUser" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebProfileProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebRoleProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceBitsServer" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebTypes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ResourceFileFormat" value="ResX" valueType="CodeFluent.Producers.CodeDom.ResourceFileFormat" />
+    <event type="ParameterValue" name="RuntimePrefix" value="_cf_rt" />
+    <event type="ParameterValue" name="RuntimeResourceBaseName" value="ContactManager.ContactManager" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="D:\Workspaces\ContactManager\ContactManager" />
+    <event type="SubProducerProduce" elapsedTime="00:00:00.5608046">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.Address</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.1623290">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.AddressCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0709822">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.Contact</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0189467">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.ContactCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0212068">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.ContactSource</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0038573">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.ContactSourceCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0046965">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.Status</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0572348">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.User</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0216901">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.UserCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0257192">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>ContactManager.Resources.Manager, ContactManager.Resources.ValueValidationFailureHandler, ContactManager.Constants</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0032858">
+      <path>D:\Workspaces\ContactManager\ContactManager\_cf_rt.cs</path>
+      <fileType>RuntimeCode</fileType>
+      <size>8905</size>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0473755">
+      <path>D:\Workspaces\ContactManager\ContactManager\_cf_rt.cs</path>
+      <size>8905</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0204297">
+      <path>D:\Workspaces\ContactManager\ContactManager\_cf_rt.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0075547">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactManager.fr-FR.ResX</path>
+      <fileType>Resource for French (France) culture</fileType>
+      <size>6076</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0191321">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactManager.fr-FR.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0014883">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactManager.en-US.ResX</path>
+      <fileType>Resource for English (United States) culture</fileType>
+      <size>6079</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0007272">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactManager.en-US.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008344">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactManager.ResX</path>
+      <fileType>Embedded resource for Invariant Language (Invariant Country) culture</fileType>
+      <size>5911</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009843">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactManager.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.4148531">
+      <path>D:\Workspaces\ContactManager\ContactManager\Address.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.Address'</fileType>
+      <size>41074</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010086">
+      <path>D:\Workspaces\ContactManager\ContactManager\Address.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0092646">
+      <path>D:\Workspaces\ContactManager\ContactManager\AddressCollection.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.AddressCollection'</fileType>
+      <size>32300</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009049">
+      <path>D:\Workspaces\ContactManager\ContactManager\AddressCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0114245">
+      <path>D:\Workspaces\ContactManager\ContactManager\Contact.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.Contact'</fileType>
+      <size>49090</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010109">
+      <path>D:\Workspaces\ContactManager\ContactManager\Contact.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0129520">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactCollection.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.ContactCollection'</fileType>
+      <size>53893</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012182">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0084573">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactSource.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.ContactSource'</fileType>
+      <size>31207</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009541">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactSource.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0111474">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactSourceCollection.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.ContactSourceCollection'</fileType>
+      <size>38909</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010814">
+      <path>D:\Workspaces\ContactManager\ContactManager\ContactSourceCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0045704">
+      <path>D:\Workspaces\ContactManager\ContactManager\Status.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.Status'</fileType>
+      <size>894</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010453">
+      <path>D:\Workspaces\ContactManager\ContactManager\Status.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0142271">
+      <path>D:\Workspaces\ContactManager\ContactManager\User.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.User'</fileType>
+      <size>41071</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014184">
+      <path>D:\Workspaces\ContactManager\ContactManager\User.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0290435">
+      <path>D:\Workspaces\ContactManager\ContactManager\UserCollection.cs</path>
+      <fileType>BaseTypeFile for 'ContactManager.UserCollection'</fileType>
+      <size>43868</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013337">
+      <path>D:\Workspaces\ContactManager\ContactManager\UserCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0180998">
+      <path>D:\Workspaces\ContactManager\ContactManager\Web\HttpHandler.cs</path>
+      <size>2321</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0034534">
+      <path>D:\Workspaces\ContactManager\ContactManager\Web\HttpHandler.cs</path>
+    </event>
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.MembershipProviderProducer: No directoryUser entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.RoleProviderProducer: No directoryRole entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.ProfileProviderProducer: No directoryUser entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.BasicAuthenticationModuleProducer: No directoryUser entity. Skip production." />
+    <event type="FileWrite" elapsedTime="00:00:00.3144133">
+      <path>D:\Workspaces\ContactManager\ContactManager\Web\BitsServer.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.BitsServerProducer</fileType>
+      <size>5407</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011821">
+      <path>D:\Workspaces\ContactManager\ContactManager\Web\BitsServer.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0159517">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Constants.cs</path>
+      <fileType>ProxyRuntimeCode</fileType>
+      <size>1618</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0056228">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Constants.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0042654">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IAddressService.cs</path>
+      <fileType>Interface</fileType>
+      <size>2396</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0034948">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IAddressService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0046634">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IAddressService.cs</path>
+      <fileType>Interface</fileType>
+      <size>2453</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012176">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IAddressService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0113677">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Address.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.Address'</fileType>
+      <size>36766</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012603">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Address.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0069844">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\AddressCollection.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.AddressCollection'</fileType>
+      <size>7124</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011851">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\AddressCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0051123">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IContactService.cs</path>
+      <fileType>Interface</fileType>
+      <size>3299</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009659">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IContactService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0041931">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IContactService.cs</path>
+      <fileType>Interface</fileType>
+      <size>3386</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011092">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IContactService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0094286">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Contact.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.Contact'</fileType>
+      <size>43189</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012040">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Contact.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0060948">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\ContactCollection.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.ContactCollection'</fileType>
+      <size>12601</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009878">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\ContactCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0039698">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IContactSourceService.cs</path>
+      <fileType>Interface</fileType>
+      <size>2480</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010938">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IContactSourceService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0041635">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IContactSourceService.cs</path>
+      <fileType>Interface</fileType>
+      <size>2537</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011187">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IContactSourceService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0079516">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\ContactSource.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.ContactSource'</fileType>
+      <size>28752</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014563">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\ContactSource.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0049411">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\ContactSourceCollection.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.ContactSourceCollection'</fileType>
+      <size>7540</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011430">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\ContactSourceCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0039752">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IUserService.cs</path>
+      <fileType>Interface</fileType>
+      <size>2770</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009961">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\IUserService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0155993">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IUserService.cs</path>
+      <fileType>Interface</fileType>
+      <size>2839</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013384">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\IUserService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0236913">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\User.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.User'</fileType>
+      <size>36880</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013698">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\User.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0052207">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\UserCollection.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.UserCollection'</fileType>
+      <size>8461</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010938">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\UserCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0042381">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\AddressService.cs</path>
+      <fileType>Interface</fileType>
+      <size>3798</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010950">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\AddressService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0047463">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\ContactService.cs</path>
+      <fileType>Interface</fileType>
+      <size>6100</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010352">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\ContactService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0040966">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\ContactSourceService.cs</path>
+      <fileType>Interface</fileType>
+      <size>4092</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011069">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\ContactSourceService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0047593">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\UserService.cs</path>
+      <fileType>Interface</fileType>
+      <size>6982</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012532">
+      <path>D:\Workspaces\ContactManager\ContactManager\Services\UserService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0035085">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Status.cs</path>
+      <fileType>ProxyBaseTypeFile for 'ContactManager.Status'</fileType>
+      <size>764</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012099">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Status.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0051579">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Resources\Manager.cs</path>
+      <fileType>ProxyRuntimeCode</fileType>
+      <size>6869</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0033403">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Resources\Manager.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0043406">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Resources\ValueValidationFailureHandler.cs</path>
+      <fileType>Unknown</fileType>
+      <size>1901</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014338">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\Proxy\Resources\ValueValidationFailureHandler.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0055233">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\ContactManager.Proxy.fr-FR.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0033817">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\ContactManager.Proxy.fr-FR.ResX</path>
+      <fileType>Resource for French (France) culture</fileType>
+      <size>6082</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014895">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\ContactManager.Proxy.en-US.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0032402">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\ContactManager.Proxy.en-US.ResX</path>
+      <fileType>Resource for English (United States) culture</fileType>
+      <size>6085</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010388">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\ContactManager.Proxy.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008368">
+      <path>D:\Workspaces\ContactManager\ContactManager.Syncfusion\ContactManager.Proxy.ResX</path>
+      <fileType>Embedded resource for Invariant Language (Invariant Country) culture</fileType>
+      <size>5911</size>
+    </event>
+  </producer>
+  <producer name="SQL Server">
+    <event type="ProducerStart" elapsedTime="00:00:00.0055227">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowSelectDistinct" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AppendSchemaToProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="CommandTimeout" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="ConnectionString" value="Application Name=ContactManager;server=127.0.0.1;database=ContactManager;Integrated Security=true" />
+    <event type="ParameterValue" name="CurrentCulture" value="fr-FR" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="CurrentUICulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="DecimalPrecision" value="28" valueType="System.Int32" />
+    <event type="ParameterValue" name="DecimalScale" value="13" valueType="System.Int32" />
+    <event type="ParameterValue" name="DefaultUnicodeInstancePrefix" value="N" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="D:\Workspaces\ContactManager\ContactManager\Persistence" />
+    <event type="ParameterValue" name="IdentityIncrement" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentitySeed" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentityTempColumnName" value="_cf_id_temp" />
+    <event type="ParameterValue" name="InstanceProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MaxColumnSize" value="2147483647" valueType="System.Int32" />
+    <event type="ParameterValue" name="MaximumColumnsPerConstraint" value="16" valueType="System.Int32" />
+    <event type="ParameterValue" name="MustCreateBackups" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDiffs" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDropUnusedColumns" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceColumnAlter" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceViews" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceSchemas" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveBlobInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipCrossStoreRelations" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateRuntime" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceUpdateViews" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLocalTransactions" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyBlobChunkMode" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProcedureProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="ProductionFlags" value="None" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionOptionsFlags" value="None" valueType="CodeFluent.Model.ProductionOptionsFlags" />
+    <event type="ParameterValue" name="SaveUserName" value="SYSTEM_USER" />
+    <event type="ParameterValue" name="StoreName" />
+    <event type="ParameterValue" name="TargetVersion" value="Sql2012" valueType="CodeFluent.Producers.SqlServer.TargetVersion" />
+    <event type="FileCopy" elapsedTime="00:00:00.0437509">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_runtime.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_runtime.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0009677">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1964</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000456">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_runtime.sql</path>
+    </event>
+    <event type="ParameterValue" name="SqlServerVersion" value="11.0.3128.0" />
+    <event type="FileCopy" elapsedTime="00:00:03.3336853">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_tables.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_tables.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008889">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_tables.sql</path>
+      <fileType>TablesScript</fileType>
+      <size>9086</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000639">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_tables.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0238388">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_views.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_views.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011400">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>3111</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000633">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_views.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.4263292">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_table_diffs.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_table_diffs.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008990">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_table_diffs.sql</path>
+      <fileType>TablesDiffsScript</fileType>
+      <size>5246</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000704">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_table_diffs.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.1823395">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_procedures.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_procedures.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008457">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>32956</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_procedures.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0713784">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_drop.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_drop.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0007610">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>1906</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000722">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_drop.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0069228">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_add.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_add.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0007444">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>1143</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000769">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_add.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0299875">
+      <target>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_instances.sql</target>
+      <source>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_instances.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0009985">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>2225</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000764">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_instances.sql</path>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0012804">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1964</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.3142665">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>1906</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0443438">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_table_diffs.sql</path>
+      <fileType>TablesDiffScript</fileType>
+      <size>5246</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0976608">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>3111</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0821308">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>1143</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0211363">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>32956</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.2978687">
+      <path>D:\Workspaces\ContactManager\ContactManager\Persistence\ContactManager_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>2225</size>
+    </event>
+  </producer>
+  <producer name="ASP.NET Web Site V2">
+    <event type="ProducerStart" elapsedTime="00:00:00.0543013">
+      <name>ASP.NET Web Site V2</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="D:\Workspaces\ContactManager\ContactManager.WebApplication" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="None" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="ContactManager" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="FontsAndColorsSetName" value="Class Designer Style" />
+    <event type="ParameterValue" name="PropertyNameFormat" value="{Name} : {DisplayTypeName}" />
+    <event type="ParameterValue" name="ResolutionLogFormat" />
+    <event type="ParameterValue" name="RenderSingleColumn" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="RenderSingleTab" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="SourceDirectories" />
+    <event type="ParameterValue" name="TreeViewRenderOptions" value="Default, DontShowMessages, DontShowParameters" valueType="CodeFluent.Modeler.Controls.ModelTreeViewRenderOptions" />
+    <event type="ParameterValue" name="TypeImagesPathFormat" value="Images\{0:ClrFullTypeName}.png" />
+    <event type="ParameterValue" name="CategoryPath" value="UI\AspNetWebForms" />
+    <event type="ParameterValue" name="Actions" value="Default" valueType="CodeFluent.Producers.UI.AspNetProducerActions" />
+    <event type="ParameterValue" name="BinaryLargeObjectContentDisposition" value="Inline" valueType="CodeFluent.Producers.UI.ContentDisposition" />
+    <event type="ParameterValue" name="WebAssemblyNamespace" value="ContactManager.Web" />
+    <event type="FileCopy" elapsedTime="00:00:00.1504632">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\favicon.ico</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNet\favicon.ico</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0031762">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\favicon.ico</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0051703">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Global.asax</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0005342">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNet\Global.asax</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Global.asax</fileType>
+      <size>101</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0043690">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Global.asax.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001978">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNet\Global.asax.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Global.asax.cs</fileType>
+      <size>1224</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0094026">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\App_GlobalResources\WebResources.fr.resx</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002321">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNet\App_GlobalResources\WebResources.fr.resx</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\App_GlobalResources\WebResources.fr.resx</fileType>
+      <size>12504</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0098118">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\App_GlobalResources\WebResources.resx</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002161">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNet\App_GlobalResources\WebResources.resx</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\App_GlobalResources\WebResources.resx</fileType>
+      <size>12719</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0036636">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Default.aspx.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001705">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Default.aspx.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Default.aspx.cs</fileType>
+      <size>339</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0029192">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Default.aspx.designer.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001723">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Default.aspx.designer.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Default.aspx.designer.cs</fileType>
+      <size>457</size>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.4021599">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Default.aspx</path>
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Default.aspx.tpl</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0107186">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Default.aspx</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0353036">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Dialog.Master</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002374">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Dialog.Master</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Dialog.Master</fileType>
+      <size>1588</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0042529">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Dialog.Master.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002167">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Dialog.Master.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Dialog.Master.cs</fileType>
+      <size>346</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0034024">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Dialog.Master.designer.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002398">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Dialog.Master.designer.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Dialog.Master.designer.cs</fileType>
+      <size>1451</size>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0002979">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\favicon.ico</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\favicon.ico</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0205743">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Site.Master</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002262">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Site.Master</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Site.Master</fileType>
+      <size>1746</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0043317">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Site.Master.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001770">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Site.Master.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Site.Master.cs</fileType>
+      <size>344</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0033717">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Site.Master.designer.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002013">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Site.Master.designer.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Site.Master.designer.cs</fileType>
+      <size>1449</size>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.3429209">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Code\Utilities.cs</path>
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Code\Utilities.cs.tpl</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008386">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Code\Utilities.cs</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0014664">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\add16.png</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Images\add16.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013710">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\add16.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0029731">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\cfmetrowhite32.png</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Images\cfmetrowhite32.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014196">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\cfmetrowhite32.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0003553">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\entity.png</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Images\entity.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013894">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\entity.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0003328">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\enumeration.png</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Images\enumeration.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013414">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\enumeration.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0003346">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\next16.png</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Images\next16.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013491">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\next16.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0003251">
+      <target>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\view16.png</target>
+      <source>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Images\view16.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013124">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\view16.png</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1665601">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\Entity.aspx.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0044389">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Address.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:44</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:45</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000716">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Address.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002937">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Contact.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:53</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:54</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000562">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Contact.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002700">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSource.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:02</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:03</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSource.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002860">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\User.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000562">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\User.aspx.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0003263">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Entity.aspx.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1716677">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\Entity.aspx.designer.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0015771">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Address.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:45</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:46</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000846">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Address.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002955">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Contact.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:53</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:54</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000592">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Contact.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002671">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSource.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:02</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:03</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000580">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSource.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002854">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\User.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\User.aspx.designer.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000977">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Entity.aspx.designer.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1745520">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\Entity.aspx.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0034469">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Address.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:44</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:45</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000811">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Address.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003790">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Contact.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:53</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:54</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000775">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Contact.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003695">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSource.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:01</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:02</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000793">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSource.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003636">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\User.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000793">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\User.aspx</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001237">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\Entity.aspx</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1691500">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\EntityForm.aspx.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0024270">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:46</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:47</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000698">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003310">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:54</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:55</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000592">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003245">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:03</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:04</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000758">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003364">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000746">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserForm.aspx.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001208">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\EntityForm.aspx.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1596503">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\EntityForm.aspx.designer.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0020557">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:46</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:47</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000829">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003772">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:54</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:55</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000775">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003500">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:03</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:04</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000787">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003435">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000764">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserForm.aspx.designer.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001261">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\EntityForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.2496409">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\EntityForm.aspx.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0032366">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:45</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:46</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000900">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004921">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:53</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:54</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000929">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004003">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:02</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:03</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001095">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004406">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000935">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserForm.aspx</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001273">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\EntityForm.aspx</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1709700">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\EntityList.aspx.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0032254">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressList.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:47</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:48</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000912">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressList.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004293">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactList.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:55</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:56</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000852">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactList.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004056">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceList.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:04</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:05</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001243">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceList.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0005188">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserList.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001202">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserList.aspx.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001978">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\EntityList.aspx.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1902272">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\EntityList.aspx.designer.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0017027">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressList.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:48</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:49</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000645">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressList.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002854">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactList.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:55</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:56</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000615">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactList.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003778">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceList.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:05</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:06</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000870">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceList.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003837">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserList.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000864">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserList.aspx.designer.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001362">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\EntityList.aspx.designer.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1878777">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\EntityList.aspx.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0049743">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressList.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:47</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:48</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000900">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressList.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004317">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactList.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:54</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:55</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000758">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactList.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003837">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceList.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:04</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:05</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000764">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceList.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003944">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserList.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000989">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserList.aspx</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001539">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\EntityList.aspx</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1804040">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\MethodForm.aspx.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0051834">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:52</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:53</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000953">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004560">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadAllDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:49</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:50</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000841">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadAllDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004009">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadByContactDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:50</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:51</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000829">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadByContactDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004489">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:01</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:02</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000823">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003991">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByEmailDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:59</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:00</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000823">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByEmailDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003974">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadAllDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:56</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:57</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000811">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadAllDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004015">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByContactSourceDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:58</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:59</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000852">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByContactSourceDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004009">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByAddressDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:57</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:58</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000823">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByAddressDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003962">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByUserDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:00</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:01</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000817">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByUserDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004216">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:09</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:10</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000823">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003985">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadByIdDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:08</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:09</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000829">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadByIdDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003974">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadAllDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:05</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:06</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000870">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadAllDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004163">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000835">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003926">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadByEmailDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000817">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadByEmailDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003879">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadAllDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000817">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadAllDefaultForm.aspx.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003914">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserSearchDefaultForm.aspx.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000805">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserSearchDefaultForm.aspx.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0006437">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\MethodForm.aspx.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1721356">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\MethodForm.aspx.designer.cs.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0016814">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:52</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:53</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001243">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004021">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadAllDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:49</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:50</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000793">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadAllDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004086">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadByContactDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:51</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:52</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000900">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadByContactDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004779">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:01</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:02</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000817">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004062">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByEmailDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:59</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:00</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000799">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByEmailDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003873">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadAllDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:56</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:57</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000811">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadAllDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004027">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByContactSourceDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:58</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:59</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000888">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByContactSourceDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003926">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByAddressDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:58</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:59</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000811">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByAddressDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003879">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByUserDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:00</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:01</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000971">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByUserDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004210">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:10</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:11</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000829">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003902">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadByIdDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:09</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:10</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000817">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadByIdDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003790">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadAllDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:06</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:07</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000805">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadAllDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004003">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000894">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003796">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadByEmailDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000793">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadByEmailDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003831">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadAllDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000876">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadAllDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003814">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserSearchDefaultForm.aspx.designer.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000811">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserSearchDefaultForm.aspx.designer.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001421">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\MethodForm.aspx.designer.cs</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1785775">
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Pages\MethodForm.aspx.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0020409">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:51</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:52</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000829">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004033">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadAllDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:48</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:49</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000799">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadAllDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004187">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadByContactDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:50</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:51</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\AddressLoadByContactDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004252">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:00</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:01</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004128">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByEmailDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:59</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:00</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000769">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByEmailDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004471">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadAllDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:56</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:57</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000775">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadAllDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004080">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByContactSourceDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:58</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:59</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000799">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByContactSourceDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003891">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByAddressDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:23:56</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:23:57</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000775">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByAddressDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004056">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByUserDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:00</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:01</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000775">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactLoadByUserDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004151">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:09</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:10</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000775">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003944">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadByIdDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:06</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:07</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadByIdDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003885">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadAllDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:05</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:06</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000793">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\ContactSourceLoadAllDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004110">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000764">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003855">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadByEmailDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000781">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadByEmailDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003861">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadAllDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:11</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:12</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000764">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserLoadAllDefaultForm.aspx</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003784">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserSearchDefaultForm.aspx</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:12</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:13</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000787">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\UserSearchDefaultForm.aspx</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001249">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Pages\MethodForm.aspx</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0259164">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Scripts\metrocf.js</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002671">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Scripts\metrocf.js</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Scripts\metrocf.js</fileType>
+      <size>1139</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0047830">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Styles\metrocf.css</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002712">
+      <path>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\UI\AspNetWebForms\Styles\metrocf.css</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.WebApplication\Styles\metrocf.css</fileType>
+      <size>7697</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:02.4900551">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\ContactManager.Address.png</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001824">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\ContactManager.Contact.png</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001101">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\ContactManager.ContactSource.png</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001231">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\ContactManager.Status.png</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001060">
+      <path>D:\Workspaces\ContactManager\ContactManager.WebApplication\Images\ContactManager.User.png</path>
+    </event>
+  </producer>
+  <producer name="Service Host">
+    <event type="ProducerStart" elapsedTime="00:00:00.0005952">
+      <name>Service Host</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="D:\Workspaces\ContactManager\ContactManager.ServiceHost" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="Default, Overwrite" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="ContactManager" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AssemblyCompileDefaultFileExcludeFilter" value="AssemblyInfo.cs, assemblyversion.cs" />
+    <event type="ParameterValue" name="CodeDomProviderOptions" />
+    <event type="ParameterValue" name="FileExtension" value=".cs" />
+    <event type="ParameterValue" name="LanguageCode" value="Unknown" valueType="CodeFluent.Model.Code.LanguageCode" />
+    <event type="ParameterValue" name="MustAddDebugInfo" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCompile" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDelaySign" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustIncludeDebugInformation" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustTreatWarningAsErrors" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="WarningLevel" value="-1" valueType="System.Int32" />
+    <event type="ParameterValue" name="TargetProductionOptions" value="Default" valueType="CodeFluent.Producers.CodeDom.TargetProductionOptions" />
+    <event type="ParameterValue" name="VisualStudioProjectPath" />
+    <event type="ParameterValue" name="CheckSourceDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="FullSourceDirectory" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\ServiceModel\Server" />
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.3055230">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\CodeFluent.Runtime.ServiceHost.exe.config</path>
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\ServiceModel\Server\[Template]CodeFluent.Runtime.ServiceHost.exe.config</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0042825">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\CodeFluent.Runtime.ServiceHost.exe.config</path>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.1875336">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\CodeFluent.Runtime.ServiceHost4.exe.config</path>
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\ServiceModel\Server\[Template]CodeFluent.Runtime.ServiceHost4.exe.config</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0029991">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\CodeFluent.Runtime.ServiceHost4.exe.config</path>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.1764626">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\InstallService.cmd</path>
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\ServiceModel\Server\[Template]InstallService.cmd</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012224">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\InstallService.cmd</path>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.2157954">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\UninstallService.cmd</path>
+      <templatePath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\ServiceModel\Server\[Template]UninstallService.cmd</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009594">
+      <path>D:\Workspaces\ContactManager\ContactManager.ServiceHost\UninstallService.cmd</path>
+    </event>
+  </producer>
+  <producer name="Syncfusion WPF">
+    <event type="ProducerStart" elapsedTime="00:00:00.0030927">
+      <name>Syncfusion WPF</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="D:\Workspaces\ContactManager\ContactManager.SyncFusion" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="None" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="ContactManager" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="FontsAndColorsSetName" value="Class Designer Style" />
+    <event type="ParameterValue" name="PropertyNameFormat" value="{Name} : {DisplayTypeName}" />
+    <event type="ParameterValue" name="ResolutionLogFormat" />
+    <event type="ParameterValue" name="RenderSingleColumn" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="RenderSingleTab" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="SourceDirectories" />
+    <event type="ParameterValue" name="TreeViewRenderOptions" value="Default, DontShowMessages, DontShowParameters" valueType="CodeFluent.Modeler.Controls.ModelTreeViewRenderOptions" />
+    <event type="ParameterValue" name="TypeImagesPathFormat" value="Images\{0:ClrFullTypeName}.png" />
+    <event type="ParameterValue" name="CategoryPath" value="SyncfusionWPF" />
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.1666513">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\app.config</path>
+      <templatePath>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\app.config.tpl</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0020189">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\app.config</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0080830">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\App.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002007">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\App.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\App.xaml</fileType>
+      <size>513</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012715">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\App.xaml.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001658">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\App.xaml.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\App.xaml.cs</fileType>
+      <size>1189</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0062547">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\MainWindow.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001847">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\MainWindow.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\MainWindow.xaml</fileType>
+      <size>2710</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0015286">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\MainWindow.xaml.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001806">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\MainWindow.xaml.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\MainWindow.xaml.cs</fileType>
+      <size>1749</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0073753">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Style.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001918">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Style.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Style.xaml</fileType>
+      <size>6069</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0205737">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\TileView.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001599">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\TileView.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\TileView.xaml</fileType>
+      <size>1683</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013313">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\TileView.xaml.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001563">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\TileView.xaml.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\TileView.xaml.cs</fileType>
+      <size>1085</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0034421">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Behaviors\RestoreBehavior.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002019">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Behaviors\RestoreBehavior.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Behaviors\RestoreBehavior.cs</fileType>
+      <size>1578</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014237">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Behaviors\StateChangeBehavior.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001456">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Behaviors\StateChangeBehavior.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Behaviors\StateChangeBehavior.cs</fileType>
+      <size>2221</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013864">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Models\ApplicationTile.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001575">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Models\ApplicationTile.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Models\ApplicationTile.cs</fileType>
+      <size>1040</size>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0006271">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\add.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\add.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0016233">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\add.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0002333">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\Arrow Left.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\Arrow Left.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012336">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\Arrow Left.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0005484">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\arrow_refresh.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\arrow_refresh.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0013082">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\arrow_refresh.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0004252">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\bullet_purple.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\bullet_purple.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012887">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\bullet_purple.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0004518">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\cancel.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\cancel.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014835">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\cancel.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0004453">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\cf.ico</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\cf.ico</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0037282">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\cf.ico</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0004844">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\folder.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\folder.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012508">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\folder.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0002327">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\SmartClientLogo.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\SmartClientLogo.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011886">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\SmartClientLogo.png</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0004850">
+      <target>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\table_multiple.png</target>
+      <source>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Resources\table_multiple.png</source>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014071">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Resources\table_multiple.png</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0016612">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\BinaryObjectEditControl.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001593">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\BinaryObjectEditControl.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\BinaryObjectEditControl.cs</fileType>
+      <size>1785</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0038449">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\BinaryObjectEditControl.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001480">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\BinaryObjectEditControl.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\BinaryObjectEditControl.xaml</fileType>
+      <size>634</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0025603">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExceptionWindow.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001516">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\ExceptionWindow.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExceptionWindow.cs</fileType>
+      <size>845</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0039230">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExceptionWindow.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001528">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\ExceptionWindow.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExceptionWindow.xaml</fileType>
+      <size>851</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014048">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExternalLinkReadControl.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0014143">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\ExternalLinkReadControl.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExternalLinkReadControl.cs</fileType>
+      <size>2253</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0048333">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExternalLinkReadControl.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0002037">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\ExternalLinkReadControl.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\ExternalLinkReadControl.xaml</fileType>
+      <size>582</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012295">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\IEntityView.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001587">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\IEntityView.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\IEntityView.cs</fileType>
+      <size>574</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0035772">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\RelationEditorWindow.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0003600">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\RelationEditorWindow.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\RelationEditorWindow.cs</fileType>
+      <size>1507</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0047871">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\RelationEditorWindow.xaml</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001800">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\RelationEditorWindow.xaml</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\RelationEditorWindow.xaml</fileType>
+      <size>1282</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0016150">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\TileLoadedAction.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001616">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\TileLoadedAction.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\TileLoadedAction.cs</fileType>
+      <size>2753</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0042772">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\Utilities.cs</path>
+    </event>
+    <event type="FileTransform" elapsedTime="00:00:00.0001841">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\Runtime\Utilities.cs</path>
+      <fileType>D:\Workspaces\ContactManager\ContactManager.SyncFusion\Runtime\Utilities.cs</fileType>
+      <size>2198</size>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1374408">
+      <templatePath>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\UserControls\EntityView.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0024933">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\AddressView.xaml.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:26</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:27</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001060">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\AddressView.xaml.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003784">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactView.xaml.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:26</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:27</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000829">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactView.xaml.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003458">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactSourceView.xaml.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:26</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:27</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000858">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactSourceView.xaml.cs</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003529">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\UserView.xaml.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:26</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:27</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000769">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\UserView.xaml.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001297">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\EntityView</path>
+    </event>
+    <event type="FileTemplateRun" elapsedTime="00:00:00.1407130">
+      <templatePath>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\UserControls\EntityView.xaml.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0018330">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\AddressView.xaml</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:16</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:17</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000923">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\AddressView.xaml</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0003038">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactView.xaml</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:17</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:18</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000681">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactView.xaml</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0004376">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactSourceView.xaml</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:17</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:18</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001066">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\ContactSourceView.xaml</path>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0002682">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\UserView.xaml</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>12/02/2014 14:24:17</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>12/02/2014 14:24:18</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000651">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\UserView.xaml</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000965">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\UserControls\EntityView.xaml</path>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.1386188">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\ViewModels\HomeViewModel.cs</path>
+      <templatePath>D:\Workspaces\ContactManager\ContactManager.SyncfusionTemplate\SyncfusionWPF\ViewModels\HomeViewModel.cs.tpl</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0018709">
+      <path>D:\Workspaces\ContactManager\ContactManager.SyncFusion\ViewModels\HomeViewModel.cs</path>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0048393">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="SubProducerTerminate" elapsedTime="00:00:00.0007385">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0001646">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0001486">
+      <name>ASP.NET Web Site V2</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0001605">
+      <name>Service Host</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0001036">
+      <name>Syncfusion WPF</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+  </producer>
+</build>

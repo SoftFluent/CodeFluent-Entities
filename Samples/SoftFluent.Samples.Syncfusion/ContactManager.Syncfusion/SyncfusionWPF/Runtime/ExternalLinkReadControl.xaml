@@ -1,0 +1,12 @@
+<UserControl x:Class="ContactManager.WPFSyncfusion.Runtime.ExternalLinkReadControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Name="myUcName">
+    <Grid>
+        <TextBlock x:Name="txt" Width="Auto">
+            <Hyperlink x:Name="lnk" Click="Hyperlink_Click" Foreground="{DynamicResource TreeNodeSelectedColor}">
+                <TextBlock x:Name="txtsecond" Text="{Binding ElementName=myUcName, Path=NavigateUri}"/>
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</UserControl>

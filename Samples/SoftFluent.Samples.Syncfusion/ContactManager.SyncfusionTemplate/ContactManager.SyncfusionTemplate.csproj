@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{59137430-9335-494B-A9CD-647B75B124BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ContactManager.SyncfusionTemplate</RootNamespace>
+    <AssemblyName>ContactManager.SyncfusionTemplate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyncfusionWPF\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncfusionWPF\Behaviors\RestoreBehavior.cs" />
+    <Compile Include="SyncfusionWPF\Behaviors\StateChangeBehavior.cs" />
+    <Compile Include="SyncfusionWPF\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncfusionWPF\Models\ApplicationTile.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\BinaryObjectEditControl.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\ExceptionWindow.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\ExternalLinkReadControl.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\IEntityView.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\RelationEditorWindow.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\TileLoadedAction.cs" />
+    <Compile Include="SyncfusionWPF\Runtime\Utilities.cs" />
+    <Compile Include="SyncfusionWPF\TileView.xaml.cs">
+      <DependentUpon>TileView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SyncfusionWPF\app.config.tpl" />
+    <None Include="SyncfusionWPF\UserControls\EntityView.tpl" />
+    <None Include="SyncfusionWPF\UserControls\EntityView.xaml.tpl" />
+    <None Include="SyncfusionWPF\ViewModels\HomeViewModel.cs.tpl" />
+    <None Include="SyncfusionWPF_Renderers\Renderer.Image.tpl" />
+    <None Include="SyncfusionWPF_Renderers\Renderer.Text.tpl" />
+    <None Include="SyncfusionWPF_Renderers\Renderer.tpl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="SyncfusionWPF\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\Runtime\BinaryObjectEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\Runtime\ExceptionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\Runtime\ExternalLinkReadControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\Runtime\RelationEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SyncfusionWPF\TileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SyncfusionWPF\Resources\add.png" />
+    <Content Include="SyncfusionWPF\Resources\Arrow Left.png" />
+    <Content Include="SyncfusionWPF\Resources\arrow_refresh.png" />
+    <Content Include="SyncfusionWPF\Resources\bullet_purple.png" />
+    <Content Include="SyncfusionWPF\Resources\cancel.png" />
+    <Content Include="SyncfusionWPF\Resources\cf.ico" />
+    <Content Include="SyncfusionWPF\Resources\folder.png" />
+    <Content Include="SyncfusionWPF\Resources\SmartClientLogo.png" />
+    <Content Include="SyncfusionWPF\Resources\table_multiple.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

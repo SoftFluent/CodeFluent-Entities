@@ -1,0 +1,26 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dialog.master.cs" Inherits="ContactManager.Web.DialogMaster" %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=System.Threading.Thread.CurrentThread.CurrentUICulture%>">
+<head runat="server">
+	<title>CodeFluent Entities - ContactManager.Web</title> 
+    <meta name="keywords" content="codefluent entities, ContactManager.Web" />
+    <meta name="description" content="This is the generated site for the ContactManager.Web project" />
+    <meta name="author" content="CodeFluent Entities" />
+    <meta http-equiv="Content-Language" content="en" />
+    <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/metrocf.js")%>"></script>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/Styles/metrocf.css" runat="server" />
+    <base target="_self" /> 
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <asp:ContentPlaceHolder ID="Header" runat="server"></asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="Footer" runat="server"></asp:ContentPlaceHolder>
+    </form>
+	<div class="errordlg1" runat="server" ID="Error" Visible="false">
+		<div class="errordlgtitle">A server error has occured.</div>
+		<div class="errordlg2" runat="server" ID="ErrorText"></div>
+	</div>
+</body>
+</html>

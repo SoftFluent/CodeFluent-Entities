@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="ChooseForm" xml:space="preserve">
+    <value>Choose Form</value>
+  </data>
+  <data name="ProvidedBy" xml:space="preserve">
+    <value>Provided By</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>all rights reserved</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="SelectView" xml:space="preserve">
+    <value>Select View ...</value>
+  </data>
+  <data name="SelectForm" xml:space="preserve">
+    <value>Choose Form</value>
+  </data>
+	<data name="MethodResults" xml:space="preserve">
+    <value>Method Results</value>
+  </data>
+  <data name="CFEGenerated" xml:space="preserve">
+    <value>This site was generated with CodeFluent Entities on {0:F}.</value>
+  </data>
+  <data name="CFEGenerated2" xml:space="preserve">
+    <value>Generated on {0:F}.</value>
+  </data>
+  <data name="CFEPowered" xml:space="preserve">
+    <value>Powered by CodeFluent Entities.</value>
+  </data>
+	<data name="ReturnToPreviousPage" xml:space="preserve">
+    <value>Return To Previous Page</value>
+  </data>
+  <data name="ChooseAFileToUpload" xml:space="preserve">
+    <value>Choose a File To Upload</value>
+  </data>
+  <data name="ExistingBlobPreview" xml:space="preserve">
+    <value>Existing blob preview:</value>
+  </data>
+  <data name="NewBlobPreview" xml:space="preserve">
+    <value>Blob has been uploaded. New preview:</value>
+  </data>
+  <data name="BlobUpload" xml:space="preserve">
+    <value>Blob Upload</value>
+  </data>
+  <data name="BlobUploadError" xml:space="preserve">
+    <value>An error has occured trying to upload the file.</value>
+  </data>
+  <data name="BlobDownloadError" xml:space="preserve">
+    <value>An error has occured trying to download the file.</value>
+  </data>
+	<data name="NamespaceEntities" xml:space="preserve">
+    <value>This namespace contains the following entities</value>
+  </data>
+  <data name="EntityLayout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="ManagementPage" xml:space="preserve">
+    <value> - Management Page</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="EntityPresentation" xml:space="preserve">
+    <value>						&lt;p&gt;
+							This page allows an end user to create a new instance of the &lt;i&gt;{0}&lt;/i&gt; type, or browse the database for already saved instances:
+						&lt;/p&gt;
+						&lt;ul&gt;
+							&lt;li&gt;&lt;b&gt;Create a new &lt;i&gt;{0}&lt;/i&gt; instance&lt;/b&gt;: Using the first hyperlink visible to the left side of this page, you
+								can create a new instance of the {0} entity.
+								&lt;/li&gt;
+							&lt;li&gt;&lt;b&gt;Load existing &lt;i&gt;{0}&lt;/i&gt; instances&lt;/b&gt;: Using one of the hyperlinks to the left side of this page, you
+								can load instances of the {0} entity. Some methods have parameters, other are parameterless.
+								&lt;/li&gt;
+							&lt;li&gt;&lt;b&gt;Delete existing &lt;i&gt;{0}&lt;/i&gt; instances&lt;/b&gt;: Once an instance has been loaded from the database using one of the
+								methods on the left side of this page, the end user will be able to delete it, if it is authorized.
+								&lt;/li&gt;
+							&lt;li&gt;&lt;b&gt;Call custom methods on the &lt;i&gt;{0}&lt;/i&gt; type&lt;/b&gt;: Any type of method can be defined on an entity,
+								not only load, save or delete methods.
+								&lt;/li&gt;
+						&lt;/ul>
+	</value>
+  </data>
+  <data name="EntityPresentation2" xml:space="preserve">
+    <value>&lt;table cellspacing="0" cellpadding="0" class="type_design"&gt;
+							&lt;tr&gt;
+							&lt;td&gt;&lt;img alt="{0} Type" class="type_design" src="{1}" /&gt;&lt;/td&gt;
+							&lt;td style="padding-left:20px"&gt;Here are some of the concepts used to build an entity such as the &lt;i&gt;{0}&lt;/i&gt; type:&lt;ul&gt;
+								&lt;li&gt;&lt;b&gt;Properties&lt;/b&gt;: Each entity is defined by a set of properties. By default, properties are persistent but you can declare computed properties whose values are dynamically computed using custom code.
+									&lt;/li&gt;
+								&lt;li&gt;&lt;b&gt;Relations&lt;/b&gt;: Relations are defined as properties. Several relationship types between entities are possible, such as inheritance, association and composition, one-to-many, one-to-one, many-to-one and many-to-many.
+									&lt;/li&gt;
+								&lt;li&gt;&lt;b&gt;Instances&lt;/b&gt;: Instances can be defined for each entity in the model. An instance is a collection of values, each value corresponding to a property.
+										This feature is very useful when developers want to initialize specific tables with data.
+
+									&lt;/li&gt;
+								&lt;li&gt;&lt;b&gt;Methods&lt;/b&gt;: CodeFluent Entities - through this method concept - allows to go way further than CRUD methods.
+								It allows architects and developers to define methods that will be available in all generated layers. Defining them in the model results in adding platform independent methods to the meta-model, which then will be interpreted by each producer to produce platform specific and optimized code.
+								Note: the entity layout image on the left only presents user-defined methods. Methods automatically inferred at production time are not represented.
+									&lt;/li&gt;
+								&lt;li&gt;&lt;b&gt;Rules&lt;/b&gt;: The rule concept in CodeFluent Entities embraces a broad set of automatic behavior implementations.
+								There are lifecycle rules, transaction rules, validation rules, custom (written by the developer), and rules implemented in external engines. Rules can apply on various concepts such as entities, properties, methods, or the whole project.
+									&lt;/li&gt;
+								&lt;li&gt;&lt;b&gt;Views&lt;/b&gt;: The view concept in CodeFluent Entities englobes two distinct concepts: a global modeling concept, and a persistence oriented concept.
+								From a view, persistence layer producers will produce an SQL view, whereas graphic user interface producers will define for example the list of columns when displaying instances of an entity in a grid control.
+
+									&lt;/li&gt;
+							&lt;/ul&gt;&lt;/td&gt;
+							&lt;/tr&gt;
+						&lt;/table&gt;
+	</value>
+  </data>
+</root>

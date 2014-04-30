@@ -1,0 +1,150 @@
+﻿<cf:project defaultNamespace="ContactManager" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cfasp="http://www.softfluent.com/codefluent/producers.aspnet/2011/1" xmlns:cfsc="http://www.softfluent.com/codefluent/producers.smartclient/2008/1" xmlns:cftp="http://www.softfluent.com/codefluent/producers.template/2007/1" defaultKeyPropertyTypeName="int" createDefaultMethodForms="true" createDefaultApplication="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:store name="ContactManager" />
+  <User namespace="ContactManager" categoryPath="/ContactManager">
+    <Id />
+    <Email typeName="email" collectionKey="true">
+      <cf:rule typeName="EmailValidate" />
+    </Email>
+    <FirstName />
+    <LastName />
+    <FullName computed="true" />
+    <Photo typeName="image" />
+    <Contacts typeName="{0}.ContactCollection" />
+    <cf:method name="Search" body="search(*)" autoStartsWith="true" />
+    <cf:instance>
+      <Id>1</Id>
+      <Email>example@mail.com</Email>
+      <FirstName>John</FirstName>
+      <LastName>Doe</LastName>
+    </cf:instance>
+    <cf:snippet name="OnGetFullNameCS" language="CSharp"><![CDATA[
+    private void OnGetFullName()
+      {
+        _fullName = FirstName + " " + LastName;
+      }
+]]></cf:snippet>
+    <cf:snippet name="OnGetFullNameVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetFullName()
+        _fullName = FirstName + " " + LastName
+      End Sub
+]]></cf:snippet>
+  </User>
+  <Contact namespace="ContactManager" categoryPath="/ContactManager">
+    <Id uiEnabled="false" uIEnabled="false" />
+    <Email typeName="email" collectionKey="true">
+      <cf:rule typeName="EmailValidate">
+        <cf:message cultureName="fr-FR" name="RegexFailed">L'adresse email n'est pas conforme.</cf:message>
+        <cf:message cultureName="en-US" name="RegexFailed">This email address has a wrong format.</cf:message>
+      </cf:rule>
+    </Email>
+    <FirstName />
+    <LastName />
+    <ContactSource typeName="{0}.ContactSource" />
+    <Status typeName="{0}.Status" />
+    <Address typeName="{0}.Address" />
+    <User typeName="{0}.User" />
+    <Description typeName="richstring" />
+    <cf:view name="MyView">
+      <FirstName />
+      <LastName />
+      <City expression="Address.City" />
+    </cf:view>
+    <cf:instance>
+      <Id>1</Id>
+      <Email>john.lenado@contoso.com</Email>
+      <FirstName>John</FirstName>
+      <LastName>Lenado</LastName>
+      <Status>Valid</Status>
+      <ContactSource>1</ContactSource>
+      <User>1</User>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Email>sarah.bennett@mycorp.com</Email>
+      <FirstName>Sarah</FirstName>
+      <LastName>Bennett</LastName>
+      <Status>Valid</Status>
+      <ContactSource>1</ContactSource>
+      <User>1</User>
+    </cf:instance>
+  </Contact>
+  <ContactSource namespace="ContactManager" categoryPath="/ContactManager">
+    <Id />
+    <Name />
+    <cf:instance>
+      <Id>1</Id>
+      <Name>Direct Call</Name>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Name>Network</Name>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Name>Event</Name>
+    </cf:instance>
+  </ContactSource>
+  <Address setType="List" namespace="ContactManager" categoryPath="/ContactManager">
+    <Id />
+    <Line1 />
+    <Line2 />
+    <City />
+    <Zip />
+    <Country />
+    <Contact typeName="{0}.Contact" />
+    <GoogleMapUrl computed="true" typeName="url" />
+    <LiveMapUrl computed="true" typeName="url" />
+    <cf:snippet language="CSharp"><![CDATA[
+    private void OnGetGoogleMapUrl()
+        {
+          if (_googleMapUrl != null) return;
+          _googleMapUrl = "http://maps.google.com/maps?q=" + System.Web.HttpUtility.UrlEncode(string.Format("ContactManager,{1} {2},{3:EnglishName}", Line1, Zip, City, Country), System.Text.Encoding.UTF8);
+        }
+]]></cf:snippet>
+    <cf:snippet language="VisualBasic"><![CDATA[
+    Private Sub OnGetGoogleMapUrl()
+          If Not _googleMapUrl Is Nothing
+			Return
+		  End If
+          _googleMapUrl = "http://maps.google.com/maps?q=" + System.Web.HttpUtility.UrlEncode(string.Format("ContactManager,{1} {2},{3:EnglishName}", Line1, Zip, City, Country), System.Text.Encoding.UTF8)
+		End Sub
+]]></cf:snippet>
+    <cf:snippet language="CSharp"><![CDATA[
+    private void OnGetLiveMapUrl()
+        {
+          if (_liveMapUrl != null) return;
+          _liveMapUrl = "http://maps.live.com/default.aspx?where1=" + System.Web.HttpUtility.UrlEncode(string.Format("ContactManager,{1},{2:EnglishName}", Line1, City, Country), System.Text.Encoding.UTF8) + "&v=2";
+        }
+]]></cf:snippet>
+    <cf:snippet language="VisualBasic"><![CDATA[
+    Private Sub OnGetLiveMapUrl()
+		  If Not _liveMapUrl Is Nothing
+			Return
+		  End If
+		  _liveMapUrl = "http://maps.live.com/default.aspx?where1=" + System.Web.HttpUtility.UrlEncode(string.Format("ContactManager,{1},{2:EnglishName}", Line1, City, Country), System.Text.Encoding.UTF8) + "&v=2"
+        End Sub
+]]></cf:snippet>
+  </Address>
+  <StatusEnum namespace="ContactManager" categoryPath="/ContactManager">
+    <Valid />
+    <Invalid />
+  </StatusEnum>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\ContactManager" cfx:targetProject="..\ContactManager\ContactManager.csproj" cfx:targetProjectLayout="Update">
+      <subProducer typeName="CodeFluent.Producers.ServiceModel.ServiceProducer, CodeFluent.Producers.ServiceModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\ContactManager.Syncfusion" silverlightTargetVersion="Unspecified" cfx:targetProject="..\ContactManager\ContactManager.csproj" cfx:targetProjectLayout="Update" />
+    </cf:configuration>
+  </cf:producer>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\ContactManager\Persistence" cfx:targetProject="..\ContactManager\ContactManager.csproj" cfx:targetProjectLayout="Update, DontRemove" targetVersion="Sql2012" />
+  </cf:producer>
+  <cf:producer name="ASP.NET Web Site V2" typeName="CodeFluent.Producers.UI.AspNetProducer, CodeFluent.Producers.UI">
+    <cf:configuration categoryPath="UI\AspNetWebForms" targetDirectory="..\ContactManager.WebApplication" cfx:targetProject="..\ContactManager.WebApplication\ContactManager.WebApplication.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="Service Host" typeName="CodeFluent.Producers.CodeDom.TemplateProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" sourceDirectory="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates\ServiceModel\Server" codeDomProviderTypeName="Unknown" targetDirectory="..\ContactManager.ServiceHost" cfx:targetProject="..\ContactManager\ContactManager.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="Syncfusion WPF" typeName="ContactManager.SyncfusionProducer.WPFSyncfusionProducer, ContactManager.SyncfusionProducer">
+    <cf:configuration templatesPath="..\ContactManager.SyncfusionTemplate" targetDirectory="..\ContactManager.SyncFusion" cfx:targetProject="..\ContactManager.SyncFusion\ContactManager.Syncfusion.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+</cf:project>

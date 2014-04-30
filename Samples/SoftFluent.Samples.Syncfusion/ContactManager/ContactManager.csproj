@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB817E3D-FD5B-4AA1-A75C-63EF2912F3CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ContactManager</RootNamespace>
+    <AssemblyName>ContactManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web">
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Serialization\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel\v4.0_4.0.0.0__b77a5c561934e089\System.ServiceModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="AddressCollection.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ContactCollection.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ContactSource.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ContactSourceCollection.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AddressService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\ContactService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\ContactSourceService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\IAddressService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\IContactService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\IContactSourceService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\IUserService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\UserService.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Status.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="User.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="UserCollection.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\BitsServer.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+    <Compile Include="_cf_rt.cs">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\ContactManager_instances.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_procedures.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_relations_add.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_relations_drop.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_runtime.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_tables.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_table_diffs.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+    <None Include="Persistence\ContactManager_views.sql">
+      <CodeFluentProducer>3f1813662b7b41d82891732208cc4977</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ContactManager.en-US.ResX">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactManager.fr-FR.ResX">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactManager.ResX">
+      <CodeFluentProducer>dc24e38e0de02070b41e3a2d4bba08f0</CodeFluentProducer>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /R /S /Y  $(TargetDir)*.* $(SolutionDir)$(ProjectName).ServiceHost\
+xcopy /R /S /Y "C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.ServiceHost*.exe" $(SolutionDir)$(ProjectName).ServiceHost\</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

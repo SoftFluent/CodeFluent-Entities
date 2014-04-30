@@ -1,0 +1,17 @@
+﻿<Window x:Class="$projectname$.Runtime.ExceptionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="ExceptionWindow" Height="600" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="An Unhandled exception was thrown, see details bellow" HorizontalAlignment="Center"/>
+        <ScrollViewer Grid.Row="1" MaxHeight="500" HorizontalScrollBarVisibility="Auto">
+            <TextBox Name="ExceptionContent" Height="Auto"/>
+        </ScrollViewer>
+        <Button Content="Close" Grid.Row="2" Click="CloseButtonClicked"/>
+    </Grid>
+</Window>

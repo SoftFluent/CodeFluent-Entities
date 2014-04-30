@@ -1,0 +1,11 @@
+﻿<cf:project defaultNamespace="Default" partType="Surface" xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+  <cf:surface name="Default">
+    <cf:selector name="_all" expression="//*" />
+    <shape _type="Namespace" _key="ContactManager" Position="38,12.22853" ZIndex="17" />
+    <shape _type="Enumeration" _key="ContactManager.Status" Position="236.15767,28" ZIndex="3" />
+    <shape _type="Entity" _key="ContactManager.Address" Position="351.582803333333,153.18388" ZIndex="4" />
+    <shape _type="Entity" _key="ContactManager.Contact" Position="26.0203466666668,33.31441" ZIndex="5" />
+    <shape _type="Entity" _key="ContactManager.ContactSource" Position="10,427.354803333333" />
+    <shape _type="Entity" _key="ContactManager.User" Position="303.02,454.084803333333" ZIndex="6" />
+  </cf:surface>
+</cf:project>

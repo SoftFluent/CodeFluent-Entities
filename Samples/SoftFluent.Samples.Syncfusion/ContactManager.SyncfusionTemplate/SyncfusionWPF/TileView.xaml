@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ContactManager.WPFSyncfusion.TileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:runtime="clr-namespace:ContactManager.WPFSyncfusion.Runtime"
+             mc:Ignorable="d" 
+             x:Name="TileViewUserControl"
+             xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             >
+    <interactivity:Interaction.Triggers>
+        <interactivity:EventTrigger EventName="Loaded">
+            <runtime:TileLoadedAction TargetObject="{Binding ElementName=TileViewUserControl}"/>
+        </interactivity:EventTrigger>
+    </interactivity:Interaction.Triggers>
+    <Border BorderThickness="1" BorderBrush="White">
+
+        <Grid Background="{Binding Color}">
+            <Grid  x:Name="_grid" >
+                <TextBlock Text="{Binding Header}"  Foreground="White" FontFamily="Franklin Gothic Demi Cond" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+            </Grid>
+
+            <Grid x:Name="grid" >
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+
+                    </TransformGroup>
+                </Grid.RenderTransform>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
