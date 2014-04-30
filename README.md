@@ -1,6 +1,15 @@
 [CodeFluent Entities](http://www.softfluent.com/products/codefluent-entities)
 =====================
 
+CodeFluent Entities is a unique product integrated into Visual Studio 2008 SP1 / 2010 / 2012 / 2013 which allows developers to generate database scripts (e.g. T-SQL, PL/SQL, MySQL, Pg/SQL), code (e.g. C#, VB), web services (e.g. WCF, JSON/REST) and UIs (e.g. Windows 8, ASP.NET, MVC, SharePoint, WPF).
+
+* [Get Started](http://www.softfluent.com/products/codefluent-entities/get-started/from-scratch)
+* [Technical documentation](http://www.softfluent.com/documentation/)
+* [CodeFluent Entities Blog](http://blog.codefluententities.com/)
+* [Support](http://www.softfluent.com/community-support/codefluent-entities)
+* [Forums](http://forums.softfluent.com/)
+
+
 Code generator
 ---------------
 
