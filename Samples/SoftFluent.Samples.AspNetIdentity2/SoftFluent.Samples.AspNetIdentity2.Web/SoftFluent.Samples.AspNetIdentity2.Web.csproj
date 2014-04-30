@@ -44,13 +44,13 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime.Database">
-      <HintPath>..\..\..\..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Modeler.Package10\External\CodeFluent.Runtime.Database.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Database.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime.Web">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
