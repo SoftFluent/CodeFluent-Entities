@@ -1,2 +1,2 @@
-CodeFluent-Entities-Samples
+CodeFluent-Entities
 ===========================
