@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DC2B6A84-4561-41F3-903C-0DBB6BF096E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoftFluent.AspNetIdentity</RootNamespace>
+    <AssemblyName>SoftFluent.AspNetIdentity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Model">
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Model.Common">
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Modeler">
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Modeler.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Producers.CodeDom">
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationForm.Designer.cs">
+      <DependentUpon>ConfigurationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetIdentityProducer.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="EntityType.cs" />
+    <Compile Include="IdentityClaim.cs" />
+    <Compile Include="IdentityLogin.cs" />
+    <Compile Include="IdentityRole.cs" />
+    <Compile Include="IdentityUser.cs" />
+    <Compile Include="MethodType.cs" />
+    <Compile Include="ProjectUtilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyType.cs" />
+    <Compile Include="RoleStoreProducer.cs" />
+    <Compile Include="TypeProperty.cs" />
+    <Compile Include="UserStoreProducer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConfigurationForm.resx">
+      <DependentUpon>ConfigurationForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserStore.tplcs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RoleStore.tplcs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="custom.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem xcopy "$(TargetPath)" "C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler" /Y &amp;&amp; xcopy "$(TargetDir)$(TargetName).pdb" "C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
