@@ -1,0 +1,93 @@
+<cf:project defaultNamespace="SoftFluent.Samples.GED" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.GED" cfx:targetProject="..\SoftFluent.Samples.GED\SoftFluent.Samples.GED.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.GED.Persistence" cfx:targetProject="..\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED.Persistence.sqlproj" cfx:targetProjectLayout="Update, DontRemove" targetVersion="Sql2012" />
+  </cf:producer>
+  <cf:entity name="Document" namespace="SoftFluent.Samples.GED" categoryPath="/SoftFluent.Samples.GED">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Text" maxLength="-1" />
+    <cf:property name="User" typeName="{0}.Security.User" />
+    <cf:property name="Title" />
+    <cf:property name="Directory" typeName="{0}.Directory" />
+    <cf:property name="Pages" loadMethodName="LoadByDocumentOrdered" cascadeSave="Before" cascadeDelete="Before" typeName="{0}.PageCollection" relationPropertyName="Document" />
+    <cf:property name="Reference" />
+    <cf:property name="Token" />
+    <cf:property name="IsProcessed" typeName="bool" />
+    <cf:property name="IsReady" typeName="bool" />
+    <cf:method name="LoadByUser" body="LOAD(User) FROM Document WHERE User=@User&#xD;&#xA;ORDER BY Title" />
+    <cf:method name="SearchByUser" body="SEARCH(User,string s) WHERE User=@User AND text LIKE ('%%' + @s + '%%') AND IsProcessed=1&#xD;&#xA;ORDER BY Title" />
+    <cf:method name="LoadTopByUser" body="LOAD(User) FROM Document WHERE User=@User AND IsProcessed=1" maxCount="10" />
+    <cf:method name="SearchByUserCount" body="COUNT(User,string s) WHERE User=@User AND text LIKE ('%%' + @s + '%%') AND IsProcessed=1" />
+    <cf:method name="LoadByDirectoryUserCount" body="COUNT(Directory, User) WHERE Directory=@Directory AND User=@User" />
+    <cf:method name="LoadQueueByUser" body="LOAD(User) FROM Document WHERE User=@User AND IsProcessed=0 AND IsReady=1" />
+    <cf:method name="LoadQueueByUserCount" body="COUNT(User) FROM Document WHERE User=@User AND IsProcessed=0 AND IsReady=1" />
+    <cf:method name="LoadByDirectoryUser" body="LOAD(Directory, User) WHERE Directory=@Directory AND User=@User" />
+  </cf:entity>
+  <cf:entity name="User" namespace="SoftFluent.Samples.GED.Security" categoryPath="/SoftFluent.Samples.GED" directoryEntityType="UserAndProfile">
+    <cf:property name="Id" directoryPropertyType="UserKey" key="true" />
+    <cf:property name="UserName" directoryPropertyType="RoleName" collectionKey="true" />
+    <cf:property name="Email" directoryPropertyType="Email" typeName="email" uiType="EMail" unique="true" />
+    <cf:property name="FailedPasswordAttemptCount" directoryPropertyType="FailedPasswordAttemptCount" typeName="int" />
+    <cf:property name="FailedPasswordAttemptWindowStart" directoryPropertyType="FailedPasswordAttemptWindowStart" typeName="datetime" />
+    <cf:property name="IsLockedOut" directoryPropertyType="IsLockedOut" typeName="bool" />
+    <cf:property name="LastActivityDate" directoryPropertyType="LastActivityDate" typeName="datetime" />
+    <cf:property name="LastLockoutDate" directoryPropertyType="LastLockoutDate" typeName="datetime" />
+    <cf:property name="LastLoginDate" directoryPropertyType="LastLoginDate" typeName="datetime" />
+    <cf:property name="LastPasswordChangeDate" directoryPropertyType="LastPasswordChangeDate" typeName="datetime" />
+    <cf:property name="Password" directoryPropertyType="Password" typeName="password" uiType="Password" />
+    <cf:property name="PasswordSalt" directoryPropertyType="PasswordSalt" />
+    <cf:property name="Properties" directoryPropertyType="Properties" typeName="System.Collections.Specialized.OrderedDictionary" />
+    <cf:property name="Roles" directoryPropertyType="Roles" typeName="{0}.Security.UserRoleCollection" relationPropertyName="User" uiType="Relation" />
+    <cf:property name="IsAnonymous" nullable="false" defaultValue="false" directoryPropertyType="IsAnonymous" typeName="bool" />
+    <cf:instance>
+      <cf:instanceValue name="Id">0a99e356-29ee-459a-9923-fbc7bf0b04bf</cf:instanceValue>
+      <cf:instanceValue name="UserName">test</cf:instanceValue>
+      <cf:instanceValue name="Email">test@softfluent.com</cf:instanceValue>
+      <cf:instanceValue name="Password">9dOljD3bX32KzSfKW8TEJzTmnac=</cf:instanceValue>
+      <cf:instanceValue name="PasswordSalt">OYiHvucgT2Sdp5uJbw7O4Q==</cf:instanceValue>
+    </cf:instance>
+  </cf:entity>
+  <cf:entity name="Role" namespace="SoftFluent.Samples.GED.Security" categoryPath="/SoftFluent.Samples.GED" directoryEntityType="Role">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Name" directoryPropertyType="RoleName" collectionKey="true" />
+    <cf:property name="Users" directoryPropertyType="Users" typeName="{0}.Security.UserRoleCollection" />
+  </cf:entity>
+  <cf:entity name="UserRole" setType="List" namespace="SoftFluent.Samples.GED.Security" categoryPath="/SoftFluent.Samples.GED">
+    <cf:property name="Role" directoryPropertyType="Role" key="true" typeName="{0}.Security.Role" />
+    <cf:property name="User" directoryPropertyType="User" key="true" typeName="{0}.Security.User" />
+  </cf:entity>
+  <cf:entity name="Directory" namespace="SoftFluent.Samples.GED" categoryPath="/SoftFluent.Samples.GED">
+    <cf:property name="Id" usePersistenceDefaultValue="false" key="true" collectionKey="true" />
+    <cf:property name="Title" collectionKey="false" />
+    <cf:property name="User" typeName="{0}.Security.User" collectionKey="false" />
+    <cf:property name="Parent" typeName="{0}.Directory" />
+    <cf:instance>
+      <cf:instanceValue name="Id">07e0c262-c293-4d78-9ddd-4da37823df75</cf:instanceValue>
+      <cf:instanceValue name="Title">Général</cf:instanceValue>
+    </cf:instance>
+    <cf:method name="LoadByUser" body="LOAD(User) FROM Directory WHERE (User=@User OR NOT User EXISTS)&#xD;&#xA;ORDER BY Title" />
+    <cf:method name="LoadByUserCount" body="COUNT(User) FROM Directory WHERE (User=@User OR NOT User EXISTS)" />
+    <cf:method name="LoadParentByUser" body="LOAD(User) FROM Directory WHERE (User=@User OR NOT User EXISTS) AND NOT Parent EXISTS&#xD;&#xA;ORDER BY Title" />
+  </cf:entity>
+  <cf:entity name="Page" defaultSortable="true" namespace="SoftFluent.Samples.GED" categoryPath="/SoftFluent.Samples.GED">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Document" typeName="{0}.Document" relationPropertyName="Pages" />
+    <cf:property name="Text" />
+    <cf:property name="IsProcessed" typeName="bool" />
+    <cf:property name="IsReady" typeName="bool" />
+    <cf:property name="Token" />
+    <cf:property name="Order" typeName="int" />
+    <cf:snippet name="Filename" language="CSharp"><![CDATA[
+    public string Filename {
+	      get {
+		      return this.Id.ToString() + ".jpg";
+	      }
+      }
+]]></cf:snippet>
+    <cf:method name="LoadOneToProcess" body="LOADONE FROM Page WHERE IsProcessed=0 AND IsReady=1" />
+    <cf:method name="LoadByDocumentOrdered" body="LOAD (Document) FROM Page WHERE Document=@Document&#xD;&#xA;ORDER BY [Order]" />
+  </cf:entity>
+</cf:project>

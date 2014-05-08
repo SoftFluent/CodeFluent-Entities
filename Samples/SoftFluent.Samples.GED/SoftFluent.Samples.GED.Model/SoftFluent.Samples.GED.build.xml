@@ -1,0 +1,465 @@
+<build startDate="2014-05-08T20:42:23.7959+02:00" commandLine="&quot;C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe&quot; &quot;C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Model\SoftFluent.Samples.GED.cfp&quot; /Log:&quot;C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Model\SoftFluent.Samples.GED.build.xml&quot; /Results:&quot;C:\Users\HCA\AppData\Local\Temp\SoftFluent.Samples.GED.cfp.oop&quot; /DoNotCreateReportsOnException /DoNotShowReportsOnException /NoFlashOnError " machineName="SF114" osVersion="Microsoft Windows NT 6.2.9200.0" currentDirectory="C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Model" user="SFINTERNAL\hca" clrVersion="4.0.30319.34011" licenseUsage="Unlimited [Licensee:hugocarnicelli@gmail.com][Maximum Entities:50]" processorCount="8" workingSet="23666688 bytes" bitness="32bits" wow64="True" optionsFlags="None" parentProcess="C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe" endDate="2014-05-08T20:42:26.3624+02:00" totalElapsedTime="00:00:02.5662364" numberOfEntities="6" numberOfEnumerations="0" numberOfRelations="14">
+  <assemblies>
+    <assembly fullName="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll" location="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" buildVersion="4.0.30319.34011" fileVersion="4.0.30319.34011 built by: FX45W81RTMGDR" productVersion="4.0.30319.34011" />
+    <assembly fullName="CodeFluent.Build4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Build4.exe" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="CodeFluent.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="CodeFluent.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll" buildVersion="4.0.30319.34003" fileVersion="4.0.30319.34003 built by: FX45W81RTMGDR" productVersion="4.0.30319.34003" />
+    <assembly fullName="CodeFluent.Model.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.Common.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Data/v4.0_4.0.0.0__b77a5c561934e089/System.Data.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Producers.CodeDom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.CodeDom.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="SoftFluent.License, Version=1.0.0.0, Culture=neutral, PublicKeyToken=330d9b6ea5e30055" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/SoftFluent.License.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\SoftFluent.License.dll" buildVersion="1.0.0.0" fileVersion="3.0.0.0" productVersion="1.0.0.0" />
+    <assembly fullName="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Management/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Management.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll" buildVersion="4.0.30319.34009" fileVersion="4.0.30319.34009 built by: FX45W81RTMGDR" productVersion="4.0.30319.34009" />
+    <assembly fullName="CodeFluent.Producers.SqlServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.SqlServer.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.SqlServer.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="CodeFluent.Runtime.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Database.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Database.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="System.Web.ApplicationServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Web.ApplicationServices/v4.0_4.0.0.0__31bf3856ad364e35/System.Web.ApplicationServices.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll" buildVersion="4.0.30319.34009" fileVersion="4.0.30319.34009" productVersion="4.0.30319.34009" />
+    <assembly fullName="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Transactions/v4.0_4.0.0.0__b77a5c561934e089/System.Transactions.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Transactions\v4.0_4.0.0.0__b77a5c561934e089\System.Transactions.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Runtime.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Web.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll" buildVersion="1.0.61214.0769" fileVersion="1.0.61214.0769" productVersion="1.0.61214.0769" />
+    <assembly fullName="CF_00202833531971106289.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/HCA/AppData/Local/Temp/CFTemplating.Temp4.0.30319.34011/70769/CF_00202833531971106289.tplcs.dll" location="C:\Users\HCA\AppData\Local\Temp\CFTemplating.Temp4.0.30319.34011\70769\CF_00202833531971106289.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="CF_36308892291421938801.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/HCA/AppData/Local/Temp/CFTemplating.Temp4.0.30319.34011/70769/CF_36308892291421938801.tplcs.dll" location="C:\Users\HCA\AppData\Local\Temp\CFTemplating.Temp4.0.30319.34011\70769\CF_36308892291421938801.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="CF_04038658722097042016.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/HCA/AppData/Local/Temp/CFTemplating.Temp4.0.30319.34011/70769/CF_04038658722097042016.tplcs.dll" location="C:\Users\HCA\AppData\Local\Temp\CFTemplating.Temp4.0.30319.34011\70769\CF_04038658722097042016.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="CF_21982270181030599640.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/HCA/AppData/Local/Temp/CFTemplating.Temp4.0.30319.34011/70769/CF_21982270181030599640.tplcs.dll" location="C:\Users\HCA\AppData\Local\Temp\CFTemplating.Temp4.0.30319.34011\70769\CF_21982270181030599640.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="CF_25311015811463814236.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/HCA/AppData/Local/Temp/CFTemplating.Temp4.0.30319.34011/70769/CF_25311015811463814236.tplcs.dll" location="C:\Users\HCA\AppData\Local\Temp\CFTemplating.Temp4.0.30319.34011\70769\CF_25311015811463814236.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.EnterpriseServices/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.EnterpriseServices.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Numerics/v4.0_4.0.0.0__b77a5c561934e089/System.Numerics.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Numerics\v4.0_4.0.0.0__b77a5c561934e089\System.Numerics.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+  </assemblies>
+  <variables>
+    <variable name="CF_TEMPLATES_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates" />
+    <variable name="CF_BUILD_NUMBER" value="70769" />
+    <variable name="CF_DEFAULT_PERSISTENCE_SERVER" value="SF114" />
+    <variable name="CF_PATTERNS_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Patterns" />
+    <variable name="CF_CURRENT_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler" />
+    <variable name="CF_BUILD_CONFIGURATION" value="RELEASE" />
+  </variables>
+  <generatedFiles>
+    <producer name="Business Object Model (BOM)" generatedFilesCount="20" />
+    <producer name="SQL Server" generatedFilesCount="8" />
+  </generatedFiles>
+  <project>
+    <imports>
+      <cf:import path="Default.Surface.cfp" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" />
+    </imports>
+    <parts>
+      <part filePath="C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Model\SoftFluent.Samples.GED.cfp" isRootModel="true" relativePath="SoftFluent.Samples.GED.cfp" />
+      <part filePath="C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Model\Default.Surface.cfp" relativePath="Default.Surface.cfp" />
+    </parts>
+  </project>
+  <producer name="Business Object Model (BOM)">
+    <event type="ProducerStart" elapsedTime="00:00:00.0002022">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="Default, Overwrite" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="SoftFluent.Samples.GED" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AssemblyCompileDefaultFileExcludeFilter" value="AssemblyInfo.cs, assemblyversion.cs" />
+    <event type="ParameterValue" name="CodeDomProviderOptions" />
+    <event type="ParameterValue" name="FileExtension" value=".cs" />
+    <event type="ParameterValue" name="LanguageCode" value="CSharp" valueType="CodeFluent.Model.Code.LanguageCode" />
+    <event type="ParameterValue" name="MustAddDebugInfo" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCompile" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDelaySign" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustIncludeDebugInformation" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustTreatWarningAsErrors" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="WarningLevel" value="-1" valueType="System.Int32" />
+    <event type="ParameterValue" name="TargetProductionOptions" value="Default" valueType="CodeFluent.Producers.CodeDom.TargetProductionOptions" />
+    <event type="ParameterValue" name="VisualStudioProjectPath" />
+    <event type="ParameterValue" name="IsAssemblyClsCompliant" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDebuggerDisplayAttribute" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDictionaryMethods" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeDesignAttributes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeResourceCheck" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAppendSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustEmbedModelInRuntimeResource" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceResourcesFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebBasicAuthenticationModule" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebHandler" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipUser" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebProfileProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebRoleProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceBitsServer" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebTypes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ResourceFileFormat" value="ResX" valueType="CodeFluent.Producers.CodeDom.ResourceFileFormat" />
+    <event type="ParameterValue" name="RuntimePrefix" value="_cf_rt" />
+    <event type="ParameterValue" name="RuntimeResourceBaseName" value="SoftFluent.Samples.GED.SoftFluent.Samples.GED" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED" />
+    <event type="FileWrite" elapsedTime="00:00:00.5677592">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\_cf_rt.cs</path>
+      <fileType>RuntimeCode</fileType>
+      <size>8645</size>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0047790">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\_cf_rt.cs</path>
+      <size>8645</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0114824">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\_cf_rt.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0098835">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\SoftFluent.Samples.GED.ResX</path>
+      <fileType>Embedded resource for Invariant Language (Invariant Country) culture</fileType>
+      <size>5911</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0047072">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\SoftFluent.Samples.GED.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0116998">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Directory.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Directory'</fileType>
+      <size>35463</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009948">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Directory.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0087272">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\DirectoryCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.DirectoryCollection'</fileType>
+      <size>63517</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008944">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\DirectoryCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0070557">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Document.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Document'</fileType>
+      <size>44087</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009963">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Document.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0109263">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\DocumentCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.DocumentCollection'</fileType>
+      <size>89958</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010370">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\DocumentCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0064691">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Page.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Page'</fileType>
+      <size>39289</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008264">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Page.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0077061">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\PageCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.PageCollection'</fileType>
+      <size>53692</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010035">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\PageCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0058427">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\Role.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Security.Role'</fileType>
+      <size>31158</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011252">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\Role.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0129414">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\RoleCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Security.RoleCollection'</fileType>
+      <size>39057</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008066">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\RoleCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0076320">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\User.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Security.User'</fileType>
+      <size>52657</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0007986">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\User.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0104427">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\UserCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Security.UserCollection'</fileType>
+      <size>87727</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008180">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\UserCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0062711">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\UserRole.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Security.UserRole'</fileType>
+      <size>34700</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008880">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\UserRole.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0073035">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\UserRoleCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.GED.Security.UserRoleCollection'</fileType>
+      <size>50161</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008207">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Security\UserRoleCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0114847">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\HttpHandler.cs</path>
+      <size>1564</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012084">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\HttpHandler.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0497045">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Security\MembershipProvider.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.MembershipProviderProducer</fileType>
+      <size>30509</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012403">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Security\MembershipProvider.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0113239">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Security\RoleProvider.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.RoleProviderProducer</fileType>
+      <size>10995</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0009872">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Security\RoleProvider.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0103405">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Profile\ProfileProvider.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.ProfileProviderProducer</fileType>
+      <size>11583</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011666">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Profile\ProfileProvider.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0057161">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Security\BasicAuthenticationModule.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.BasicAuthenticationModuleProducer</fileType>
+      <size>1212</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010267">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\Security\BasicAuthenticationModule.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0084242">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\BitsServer.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.BitsServerProducer</fileType>
+      <size>4086</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008716">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED\Web\BitsServer.cs</path>
+    </event>
+  </producer>
+  <producer name="SQL Server">
+    <event type="ProducerStart" elapsedTime="00:00:00.0054219">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowSelectDistinct" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AppendSchemaToProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="CommandTimeout" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="ConnectionString" value="Application Name=SoftFluent.Samples.GED;server=SF114;database=SoftFluent_Samples_GED;Integrated Security=true" />
+    <event type="ParameterValue" name="CurrentCulture" value="fr-FR" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="CurrentUICulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="DecimalPrecision" value="28" valueType="System.Int32" />
+    <event type="ParameterValue" name="DecimalScale" value="13" valueType="System.Int32" />
+    <event type="ParameterValue" name="DefaultUnicodeInstancePrefix" value="N" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence" />
+    <event type="ParameterValue" name="IdentityIncrement" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentitySeed" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentityTempColumnName" value="_cf_id_temp" />
+    <event type="ParameterValue" name="InstanceProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MaxColumnSize" value="2147483647" valueType="System.Int32" />
+    <event type="ParameterValue" name="MaximumColumnsPerConstraint" value="16" valueType="System.Int32" />
+    <event type="ParameterValue" name="MustCreateBackups" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDiffs" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDropUnusedColumns" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceColumnAlter" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceViews" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceSchemas" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveBlobInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipCrossStoreRelations" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateRuntime" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceUpdateViews" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLocalTransactions" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyBlobChunkMode" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProcedureProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="ProductionFlags" value="None" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionOptionsFlags" value="None" valueType="CodeFluent.Model.ProductionOptionsFlags" />
+    <event type="ParameterValue" name="SaveUserName" value="SYSTEM_USER" />
+    <event type="ParameterValue" name="StoreName" />
+    <event type="ParameterValue" name="TargetVersion" value="Sql2012" valueType="CodeFluent.Producers.SqlServer.TargetVersion" />
+    <event type="FileCopy" elapsedTime="00:00:00.0228158">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_runtime.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_runtime.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008138">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1958</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000292">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_runtime.sql</path>
+    </event>
+    <event type="ParameterValue" name="SqlServerVersion" value="11.0.2100.60" />
+    <event type="FileCopy" elapsedTime="00:00:00.2144363">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_tables.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_tables.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008762">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_tables.sql</path>
+      <fileType>TablesScript</fileType>
+      <size>14305</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000509">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_tables.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0127407">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_views.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_views.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0007005">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>3405</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000380">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_views.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0358310">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_table_diffs.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_table_diffs.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008009">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_table_diffs.sql</path>
+      <fileType>TablesDiffsScript</fileType>
+      <size>10174</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000589">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_table_diffs.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.1642303">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_procedures.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_procedures.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0008842">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>65400</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000437">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_procedures.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0089131">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_drop.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_drop.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0007484">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>3206</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000376">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_drop.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0049414">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_add.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_add.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0007138">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>1825</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000372">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_add.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0166648">
+      <target>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_instances.sql</target>
+      <source>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_instances.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0007636">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>1288</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000414">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_instances.sql</path>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0012871">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1958</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0223277">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>3206</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0157776">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_table_diffs.sql</path>
+      <fileType>TablesDiffScript</fileType>
+      <size>10174</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0437520">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>3405</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0334457">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>1825</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0147630">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>65400</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.2615160">
+      <path>C:\Users\HCA\Documents\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.GED\SoftFluent.Samples.GED.Persistence\SoftFluent.Samples.GED_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>1288</size>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0141103">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0002736">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+  </producer>
+</build>

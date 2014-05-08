@@ -1,0 +1,37 @@
+@{
+    Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+    User user = SoftFluent.Samples.GED.Security.User.LoadByUserName(User.Identity.Name);
+}
+@using SoftFluent.Samples.GED
+@using SoftFluent.Samples.GED.Security
+@model SoftFluent.Samples.GED.Directory
+@using (Html.BeginForm("Edit", "Directory", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.RowVersion)
+    <div class="control-group">
+        <label class="control-label" for="inputEmail">
+            Dossier</label>
+        <div class="controls">
+            @Html.EditorFor(m => m.Title)
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputEmail">
+            Parent</label>
+        <div class="controls">
+            @Html.DropDownListFor(m => m.ParentId, new SelectList(DirectoryCollection.LoadParentByUser(user), "Id", "Title"), string.Empty, null)
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn">
+                Modifier</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+    });
+</script>

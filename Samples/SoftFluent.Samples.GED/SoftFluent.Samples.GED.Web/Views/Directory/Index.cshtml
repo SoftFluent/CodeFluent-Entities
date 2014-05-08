@@ -1,0 +1,45 @@
+@using SoftFluent.Samples.GED
+@{
+    Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+}
+@model  DirectoryCollection
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Dossier
+            </th>
+            <th>
+                Parent
+            </th>
+            <th>
+                <a href="@Url.Content("~/Directory/Create")" class="btn"><i class="icon-plus-sign"></i>
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SoftFluent.Samples.GED.Directory dirModel in Model)
+        {
+            <tr>
+                <td>
+                    @dirModel.Title
+                </td>
+                <td>
+                    @(
+                    dirModel.Parent == null ? string.Empty : dirModel.Parent.Title
+                    )
+                </td>
+                <td>
+                    @if (dirModel.User != null)
+                    {
+                        <a href="@Url.Content("~/Directory/Edit/" + @dirModel.Id)" class="btn"><i class="icon-pencil">
+                        </i></a>
+                        <a href="@Url.Content("~/Directory/Delete/" + @dirModel.Id)" class="btn"><i class="icon-minus-sign">
+                        </i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

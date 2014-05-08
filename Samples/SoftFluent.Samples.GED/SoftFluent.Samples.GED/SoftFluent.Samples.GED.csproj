@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B2742AD-0FD6-4147-BD9A-7C21B86C1D74}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoftFluent.Samples.GED</RootNamespace>
+    <AssemblyName>SoftFluent.Samples.GED</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tesseract">
+      <HintPath>..\packages\Tesseract.1.0.10\lib\net451\Tesseract.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Directory.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="DirectoryCollection.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Document.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="DocumentCollection.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Page.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="PageCollection.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Role.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Security\RoleCollection.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Security\User.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Security\UserCollection.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Security\UserRole.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Security\UserRoleCollection.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\BitsServer.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\Profile\ProfileProvider.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\Security\BasicAuthenticationModule.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\Security\MembershipProvider.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\Security\RoleProvider.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+    <Compile Include="_cf_rt.cs">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SoftFluent.Samples.GED.ResX">
+      <CodeFluentProducer>a5deba75078f8ea1bb5f34ada602d6bc</CodeFluentProducer>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="External\Readme.txt" />
+    <Content Include="External\x64\CodeFluent.Runtime.Compression.dll" />
+    <Content Include="External\x86\CodeFluent.Runtime.Compression.dll" />
+    <Content Include="x64\liblept168.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\libtesseract302.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\liblept168.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\libtesseract302.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

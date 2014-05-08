@@ -1,0 +1,114 @@
+@{
+    Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+    User user = SoftFluent.Samples.GED.Security.User.LoadByUserName(User.Identity.Name);
+}
+@model SoftFluent.Samples.GED.Document
+@using SoftFluent.Samples.GED
+@using SoftFluent.Samples.GED.Security
+@using (Html.BeginForm("Update", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.RowVersion)
+    <div class="span12">
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">
+                Etat :
+            </label>
+            <div class="controls">
+                <span class="control-label" style="text-align: left;">@(Model.IsProcessed ? "Traité" : "En attente de traitement")</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">
+                @Html.LabelFor(m => m.DirectoryId, "Dossier :")
+            </label>
+            <div class="controls">
+                @Html.DropDownListFor(m => m.DirectoryId, new SelectList(DirectoryCollection.LoadByUser(user), "Id", "Title"), new { id = "dirId" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">
+                @Html.LabelFor(m => m.Title, "Titre :")
+            </label>
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Title)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">
+                @Html.LabelFor(m => m.Reference, "Référence :")
+            </label>
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Reference)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">
+                @Html.LabelFor(m => m.Text, "Texte :")
+            </label>
+            <div class="controls">
+                @Html.TextAreaFor(m => m.Text)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary">
+                    Enregistrer</button>
+            </div>
+        </div>
+    </div>
+}
+<hr style="clear: both;" />
+<div class="span6">
+    <div class="control-group">
+        <label class="control-label" for="inputEmail">
+            Fichiers</label>
+        <div class="controls">
+            <input type="file" name="file" id="selectFile" multiple />
+            <input type="submit" value="Envoyer" class="btn" style="display: none;" />
+            @*AFFICHER SUR HTML5 PAS DISPO*@ @*http://www.html5rocks.com/en/tutorials/file/dndfiles/*@
+            <a href="#" class="btn" id="addFile">Envoyer</a>
+        </div>
+    </div>
+</div>
+<div class="span3">
+    <div class="control-group">
+        <div id="dropfile" class="well">
+            Déposer des fichiers ici</div>
+    </div>
+</div>
+<hr />
+<div id="docContent">
+    <ul class="thumbnails">
+    </ul>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Fichiers en attente
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<style type="text/css">
+    #dropfile
+    {
+        width: 300px;
+        height: 50px;
+        border: 3px dashed #BBBBBB;
+        line-height: 50px;
+        text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    var getPageUrl = "@Url.Content("~/Home/GetFile/?id=")";
+    var getPagesUrl = "@Url.Content("~/Home/GetPages/?id=")";
+    var setTitleUrl = "@Url.Content("~/Home/SetTitle")";
+    var createDocUrl = "@Url.Content("~/Home/CreateTitle")";
+    var reorderUrl = "@Url.Content("~/Home/ReOrder")";
+    var deletePageUrl = "@Url.Content("~/Home/DeletePage")";
+</script>
+<script src="@Url.Content("~/Scripts/Home/Update.js")" type="text/javascript"></script>
