@@ -59,46 +59,6 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PolyChore_runtime.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_tables.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_views.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_table_diffs.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_procedures.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_relations_drop.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_relations_add.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PolyChore_instances.sql">
-      <CodeFluentProducer>15b1998fc7f95b844abf133f0f68c50b</CodeFluentProducer>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="SoftFluent.Samples.GED_runtime.sql">
       <CodeFluentProducer>6916904fd040bb4988f1946523d460bf</CodeFluentProducer>
     </None>

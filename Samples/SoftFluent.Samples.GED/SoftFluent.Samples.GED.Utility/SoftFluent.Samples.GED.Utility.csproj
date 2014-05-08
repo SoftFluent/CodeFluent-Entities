@@ -39,11 +39,9 @@
     <Reference Include="CodeFluent.Runtime">
       <HintPath>..\SoftFluent.Samples.GED.Web\bin\CodeFluent.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="CodeFluent.Runtime.Client">
-      <HintPath>..\packages\CodeFluentRuntimeClient.1.0.0.763\lib\CodeFluent.Runtime.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\..\SkyDrive\Documents\PolyChore\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp.5.5.0\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

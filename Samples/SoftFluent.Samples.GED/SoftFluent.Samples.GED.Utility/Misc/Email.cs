@@ -21,11 +21,10 @@ namespace SoftFluent.Samples.GED.Utility.Misc
                 }
             }
 
-            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("xxx.xx", 25);
-            client.Credentials = new System.Net.NetworkCredential("xxx@xx.xx", "xxxx");
-            //client.EnableSsl = true;
-            client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            client.Send(message);
+            using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient())
+            {
+                client.Send(message);
+            }
         }
 
     }

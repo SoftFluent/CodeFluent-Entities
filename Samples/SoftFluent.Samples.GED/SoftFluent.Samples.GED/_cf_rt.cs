@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttribute("1.0.61214.0769", "CodeFluent Entities generated (http://www.softfluent.com). Date: Thursday, 08 May" +
-    " 2014 20:42.", CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttributeOptions.CompiledWithVisualStudio, 3415957938u)]
+    " 2014 21:28.", CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttributeOptions.CompiledWithVisualStudio, 1731399495u)]
 
 namespace SoftFluent.Samples.GED.Resources
 {
@@ -17,7 +17,7 @@ namespace SoftFluent.Samples.GED.Resources
     using CodeFluent.Runtime.Utilities;
     
     
-    // CodeFluent Entities generated (http://www.softfluent.com). Date: Thursday, 08 May 2014 20:42.
+    // CodeFluent Entities generated (http://www.softfluent.com). Date: Thursday, 08 May 2014 21:28.
     // Build:1.0.61214.0769
     [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0769")]
     public sealed partial class Manager

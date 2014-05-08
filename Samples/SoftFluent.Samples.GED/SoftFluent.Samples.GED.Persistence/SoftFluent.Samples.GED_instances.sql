@@ -1,4 +1,4 @@
-﻿/* CodeFluent Generated Thursday, 08 May 2014 20:42. TargetVersion:Sql2012. Culture:en-US. UiCulture:en-US. Encoding:utf-8 (http://www.softfluent.com) */
+﻿/* CodeFluent Generated Thursday, 08 May 2014 21:28. TargetVersion:Sql2012. Culture:en-US. UiCulture:en-US. Encoding:utf-8 (http://www.softfluent.com) */
 set quoted_identifier OFF
 GO
 DECLARE @rv rowversion
