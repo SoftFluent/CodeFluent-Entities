@@ -11,7 +11,7 @@ using CodeFluent.Runtime.Utilities;
 
 namespace SoftFluent.AspNetIdentity
 {
-    public class AspNetIdentityProducer : BaseProducer, IDesignProducer
+    public class AspNetIdentityProducer : BaseProducer
     {
         private CodeDomProducer _codeDomProducer;
         private IdentityUser _identityUser;
@@ -68,20 +68,17 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        IEnumerable<IDesignProducerMenu> IDesignProducer.EnumerateMenus(IServiceProvider serviceProvider, IDictionary<string, object> context)
+        protected override void BuildMenus(IList<IDesignProducerMenu> menus)
         {
-            yield return new BaseDesignMenu("Create Identity Entities", true);
-            IEnumerable<IDesignProducerMenu> designProducerMenus = base.EnumerateMenus(serviceProvider, context);
-            if (designProducerMenus != null)
-            {
-                foreach (var designProducerMenu in designProducerMenus)
-                {
-                    yield return designProducerMenu;
-                }
-            }
+            base.BuildMenus(menus);
+
+            if (menus == null)
+                return;
+
+            menus.Add(new BaseDesignMenu("Create Identity Entities", true));
         }
 
-        bool IDesignProducer.ExecuteMenu(IServiceProvider serviceProvider, IDictionary<string, object> context, int index)
+        protected override bool ExecuteMenu(IServiceProvider serviceProvider, IDictionary<string, object> context, int index)
         {
             Project project = context["Project"] as Project;
             if (project == null)
@@ -95,11 +92,13 @@ namespace SoftFluent.AspNetIdentity
                     return true;
             }
 
-            return ExecuteMenu(serviceProvider, context, index);
+            return base.ExecuteMenu(serviceProvider, context, index);
         }
 
         protected override void BuildDescriptors(IList<Descriptor> descriptors)
         {
+            base.BuildDescriptors(descriptors);
+
             if (descriptors == null)
                 return;
 
@@ -126,8 +125,6 @@ namespace SoftFluent.AspNetIdentity
                 displayName: "Method Type",
                 description: "ASP.NET Identity Method Type.",
                 targets: NodeType.Method));
-
-            base.BuildDescriptors(descriptors);
         }
 
         public override void Initialize(Project project, Producer producer)

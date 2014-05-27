@@ -1,16 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.AspNetIdentity", "SoftFluent.AspNetIdentity\SoftFluent.AspNetIdentity.csproj", "{DC2B6A84-4561-41F3-903C-0DBB6BF096E5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D02299D9-C6E2-4E83-B0B7-58953CAD0963}"
-	ProjectSection(SolutionItems) = preProject
-		Configurator.png = Configurator.png
-		GeneratedEntities.png = GeneratedEntities.png
-		README.txt = README.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
