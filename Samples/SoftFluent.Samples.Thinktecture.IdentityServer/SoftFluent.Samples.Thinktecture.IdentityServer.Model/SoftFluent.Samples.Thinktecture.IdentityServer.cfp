@@ -1,0 +1,67 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.Thinktecture.IdentityServer" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:producer name="AspIdentity" typeName="CodeFluent.Producers.AspNetIdentity.AspNetIdentityProducer, CodeFluent.Producers.AspNetIdentity">
+    <cf:configuration targetDirectory="..\SoftFluent.Samples.Thinktecture.IdentityServer" cfx:targetProject="..\SoftFluent.Samples.Thinktecture.IdentityServer\SoftFluent.Samples.Thinktecture.IdentityServer.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.Thinktecture.IdentityServer" cfx:targetProject="..\SoftFluent.Samples.Thinktecture.IdentityServer\SoftFluent.Samples.Thinktecture.IdentityServer.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:entity name="User" d2p1:entityType="User" xmlns:d2p1="http://www.softfluent.com/codefluent/producers.aspNetIdentityProducer/2014/1" namespace="SoftFluent.Samples.Thinktecture.IdentityServer" categoryPath="/SoftFluent.Samples.Thinktecture.IdentityServer">
+    <cf:property name="Id" d2p1:propertyType="UserKey" key="true" collectionKey="false" />
+    <cf:property name="UserName" d2p1:propertyType="UserName" collectionKey="true" />
+    <cf:property name="CreationDateUTC" d2p1:propertyType="CreationDate" usePersistenceDefaultValue="false" nullable="false" typeName="datetime" />
+    <cf:property name="Email" d2p1:propertyType="Email" typeName="email" uiType="EMail" unique="false" />
+    <cf:property name="EmailConfirmed" d2p1:propertyType="EmailConfirmed" nullable="false" typeName="bool" />
+    <cf:property name="PhoneNumber" d2p1:propertyType="PhoneNumber" unique="false" />
+    <cf:property name="PhoneNumberConfirmed" d2p1:propertyType="PhoneNumberConfirmed" nullable="false" typeName="bool" />
+    <cf:property name="Password" d2p1:propertyType="Password" typeName="password" uiType="Password" />
+    <cf:property name="LastPasswordChangeDate" d2p1:propertyType="LastPasswordChangeDate" typeName="datetime" />
+    <cf:property name="FailedPasswordAttemptCount" d2p1:propertyType="FailedPasswordAttemptCount" usePersistenceDefaultValue="false" nullable="false" typeName="int" />
+    <cf:property name="FailedPasswordAttemptWindowStart" d2p1:propertyType="FailedPasswordAttemptWindowStart" typeName="datetime" />
+    <cf:property name="LockoutEnabled" d2p1:propertyType="LockoutEnabled" nullable="false" typeName="bool" />
+    <cf:property name="LockoutEndDateUtc" d2p1:propertyType="LockoutEndDate" serializationNullable="true" modelNullable="true" typeName="datetime" />
+    <cf:property name="LastProfileUpdateDate" d2p1:propertyType="LastProfileUpdateDate" typeName="datetime" />
+    <cf:property name="SecurityStamp" d2p1:propertyType="SecurityStamp" nullable="false" />
+    <cf:property name="TwoFactorEnabled" d2p1:propertyType="TwoFactorEnabled" nullable="false" typeName="bool" />
+    <cf:property name="Roles" d2p1:propertyType="Roles" typeName="{0}.RoleCollection" relationPropertyName="Users" />
+    <cf:property name="Claims" d2p1:propertyType="Claims" cascadeDelete="Before" typeName="{0}.UserClaimCollection" relationPropertyName="User" />
+    <cf:property name="Logins" d2p1:propertyType="Logins" cascadeDelete="Before" typeName="{0}.LoginCollection" relationPropertyName="User" />
+    <cf:method name="LoadByProviderKey" body="LOADONE(string providerKey) WHERE Logins.ProviderKey = @providerKey" d2p1:methodType="LoadUserByProviderKey">
+      <cf:parameter typeName="string" name="providerKey" modelNullable="False" />
+    </cf:method>
+    <cf:method name="LoadByEmail" body="LOADONE(Email) WHERE Email = @Email" d2p1:methodType="LoadUserByEmail">
+      <cf:parameter name="Email" modelNullable="False" />
+    </cf:method>
+  </cf:entity>
+  <cf:entity name="Role" d2p1:entityType="Role" xmlns:d2p1="http://www.softfluent.com/codefluent/producers.aspNetIdentityProducer/2014/1" namespace="SoftFluent.Samples.Thinktecture.IdentityServer" categoryPath="/SoftFluent.Samples.Thinktecture.IdentityServer">
+    <cf:property name="Id" d2p1:propertyType="RoleKey" key="true" collectionKey="false" />
+    <cf:property name="Name" d2p1:propertyType="RoleName" collectionKey="true" />
+    <cf:property name="Users" d2p1:propertyType="Users" typeName="{0}.UserCollection" relationPropertyName="Roles" />
+  </cf:entity>
+  <cf:entity name="UserClaim" d2p1:entityType="Claim" xmlns:d2p1="http://www.softfluent.com/codefluent/producers.aspNetIdentityProducer/2014/1" namespace="SoftFluent.Samples.Thinktecture.IdentityServer" categoryPath="/SoftFluent.Samples.Thinktecture.IdentityServer">
+    <cf:property name="Id" d2p1:propertyType="ClaimsKey" key="true" />
+    <cf:property name="Type" d2p1:propertyType="ClaimsType" nullable="false" />
+    <cf:property name="Value" d2p1:propertyType="ClaimsValue" />
+    <cf:property name="ValueType" d2p1:propertyType="ClaimsValueType" />
+    <cf:property name="Issuer" d2p1:propertyType="ClaimsIssuer" />
+    <cf:property name="OriginalIssuer" d2p1:propertyType="ClaimsOriginalIssuer" />
+    <cf:property name="User" d2p1:propertyType="User" nullable="false" typeName="{0}.User" relationPropertyName="Claims" />
+    <cf:method name="DeleteByTypeAndValue" body="DELETE(Type, Value) WHERE Type = @Type AND Value = @Value" d2p1:methodType="DeleteClaim">
+      <cf:parameter name="Type" modelNullable="False" />
+      <cf:parameter name="Value" modelNullable="False" />
+    </cf:method>
+  </cf:entity>
+  <cf:entity name="Login" d2p1:entityType="Login" xmlns:d2p1="http://www.softfluent.com/codefluent/producers.aspNetIdentityProducer/2014/1" namespace="SoftFluent.Samples.Thinktecture.IdentityServer" categoryPath="/SoftFluent.Samples.Thinktecture.IdentityServer">
+    <cf:property name="Id" d2p1:propertyType="LoginKey" />
+    <cf:property name="ProviderName" d2p1:propertyType="LoginProviderName" nullable="false" />
+    <cf:property name="ProviderKey" d2p1:propertyType="LoginProviderKey" nullable="false" />
+    <cf:property name="User" d2p1:propertyType="User" nullable="false" typeName="{0}.User" relationPropertyName="Logins" />
+    <cf:method name="DeleteByUserAndProviderKey" body="DELETE(User, ProviderKey) WHERE User = @User AND ProviderKey = @ProviderKey" d2p1:methodType="DeleteLogin">
+      <cf:parameter name="User" modelNullable="False" />
+      <cf:parameter name="ProviderKey" modelNullable="False" />
+    </cf:method>
+  </cf:entity>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.Thinktecture.IdentityServer\Persistence" cfx:targetProject="..\SoftFluent.Samples.Thinktecture.IdentityServer\SoftFluent.Samples.Thinktecture.IdentityServer.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+</cf:project>

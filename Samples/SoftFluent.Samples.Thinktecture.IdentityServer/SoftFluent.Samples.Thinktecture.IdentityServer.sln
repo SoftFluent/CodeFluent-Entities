@@ -1,0 +1,96 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.Thinktecture.IdentityServer.Host", "SoftFluent.Samples.Thinktecture.IdentityServer.Host\SoftFluent.Samples.Thinktecture.IdentityServer.Host.csproj", "{C41ECC23-BB27-4BDD-990E-4908B872F12C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.Thinktecture.IdentityServer.AspNetIdentityUserService", "SoftFluent.Samples.Thinktecture.IdentityServer.AspNetIdentityUserService\SoftFluent.Samples.Thinktecture.IdentityServer.AspNetIdentityUserService.csproj", "{409B7496-B359-40EB-B92B-733F0B1F0088}"
+EndProject
+Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.Thinktecture.IdentityServer.Model", "SoftFluent.Samples.Thinktecture.IdentityServer.Model\SoftFluent.Samples.Thinktecture.IdentityServer.Model.cfxproj", "{F3EEA017-C35B-4617-A3F4-2719038AEA72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.Thinktecture.IdentityServer", "SoftFluent.Samples.Thinktecture.IdentityServer\SoftFluent.Samples.Thinktecture.IdentityServer.csproj", "{2A91C396-2861-4F61-8EBB-4045A726BB25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{05FADB3E-7799-4AF9-86BB-2C5AAB7824C0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AzureWebSites|.NET = AzureWebSites|.NET
+		AzureWebSites|Any CPU = AzureWebSites|Any CPU
+		AzureWebSites|Mixed Platforms = AzureWebSites|Mixed Platforms
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.AzureWebSites|.NET.ActiveCfg = AzureWebSites|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.AzureWebSites|Any CPU.ActiveCfg = AzureWebSites|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.AzureWebSites|Any CPU.Build.0 = AzureWebSites|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.AzureWebSites|Mixed Platforms.ActiveCfg = AzureWebSites|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.AzureWebSites|Mixed Platforms.Build.0 = AzureWebSites|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Release|.NET.ActiveCfg = Release|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C41ECC23-BB27-4BDD-990E-4908B872F12C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.AzureWebSites|.NET.ActiveCfg = AzureWebSites|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.AzureWebSites|Any CPU.ActiveCfg = AzureWebSites|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.AzureWebSites|Any CPU.Build.0 = AzureWebSites|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.AzureWebSites|Mixed Platforms.ActiveCfg = AzureWebSites|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.AzureWebSites|Mixed Platforms.Build.0 = AzureWebSites|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Release|.NET.ActiveCfg = Release|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{409B7496-B359-40EB-B92B-733F0B1F0088}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.AzureWebSites|.NET.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.AzureWebSites|.NET.Build.0 = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.AzureWebSites|Any CPU.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.AzureWebSites|Mixed Platforms.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.AzureWebSites|Mixed Platforms.Build.0 = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Debug|.NET.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Debug|.NET.Build.0 = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Debug|Any CPU.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Debug|Mixed Platforms.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Debug|Mixed Platforms.Build.0 = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Release|.NET.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Release|.NET.Build.0 = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Release|Any CPU.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Release|Mixed Platforms.ActiveCfg = Release|.NET
+		{F3EEA017-C35B-4617-A3F4-2719038AEA72}.Release|Mixed Platforms.Build.0 = Release|.NET
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.AzureWebSites|.NET.ActiveCfg = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.AzureWebSites|Any CPU.ActiveCfg = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.AzureWebSites|Any CPU.Build.0 = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.AzureWebSites|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.AzureWebSites|Mixed Platforms.Build.0 = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Release|.NET.ActiveCfg = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2A91C396-2861-4F61-8EBB-4045A726BB25}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

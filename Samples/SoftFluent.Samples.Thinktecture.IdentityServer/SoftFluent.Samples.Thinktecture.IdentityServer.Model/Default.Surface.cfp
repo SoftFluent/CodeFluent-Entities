@@ -1,0 +1,5 @@
+﻿<cf:project defaultNamespace="Default" partType="Surface" xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+  <cf:surface name="Default">
+    <cf:selector name="_all" expression="//*" />
+  </cf:surface>
+</cf:project>
