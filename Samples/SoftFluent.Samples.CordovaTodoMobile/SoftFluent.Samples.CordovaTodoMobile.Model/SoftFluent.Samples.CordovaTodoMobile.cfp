@@ -1,0 +1,11 @@
+<cf:project defaultNamespace="SoftFluent.Samples.CordovaTodoMobile" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cftp="http://www.softfluent.com/codefluent/producers.template/2007/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:import path="Template\[Template]SoftFluent.IndexedDB.js" overwrite="false" />
+  <cf:entity name="Task" namespace="SoftFluent.Samples.CordovaTodoMobile" categoryPath="/SoftFluent.Samples.CordovaTodoMobile">
+    <cf:property name="Id" key="true" typeName="int" />
+    <cf:property name="Description" />
+  </cf:entity>
+  <cf:producer name="Template" typeName="CodeFluent.Producers.CodeDom.TemplateProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" sourceDirectory="Template" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.CordovaTodoMobile\js\bom" cfx:targetProject="..\SoftFluent.Samples.CordovaTodoMobile\SoftFluent.Samples.CordovaTodoMobile.jsproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+</cf:project>

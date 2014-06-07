@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <title>SoftFluent.Samples.CordovaTodoMobile</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+
+    <style type="text/css">
+        .done-true {
+            text-decoration: line-through;
+            color: grey;
+        }
+    </style>
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/IndexedDBShim.js"></script>
+    <script type="text/javascript" src="js/bom/SoftFluent.IndexedDB.js"></script>
+    <script type="text/javascript" src="js/todo.js"></script>
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="well col-md-3 col-md-offset-5">
+                <h2>Todo</h2>
+                <div ng-controller="TodoCtrl">
+                    <span>{{remaining()}} of {{todos.length}} remaining</span>
+                    [ <a href="" ng-click="archive()">archive</a> ]
+                    <ul class="unstyled text-left">
+                        <li ng-repeat="todo in todos">
+                            <input type="checkbox" id="todo-{{todo.id}}" ng-model="todo.done" value=""/>
+                            <label for="todo-{{todo.id}}" class="done-{{todo.done}}">{{todo.text}}</label>
+                        </li>
+                    </ul>
+                    <form ng-submit="addTodo()">
+                        <input type="text" ng-model="todoText" size="20"
+                               placeholder="add new todo here">
+                        <input class="btn btn-primary" type="submit" value="add">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
