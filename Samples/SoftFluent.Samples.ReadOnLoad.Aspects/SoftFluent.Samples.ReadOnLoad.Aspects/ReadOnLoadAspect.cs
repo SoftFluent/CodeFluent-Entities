@@ -39,6 +39,7 @@ namespace SoftFluent.Samples.ReadOnLoad
             // the dictionary contains at least these two entries
             Project = (Project)context["Project"];
 
+            // Edit save procedures
             foreach (var procedure in Project.Database.Procedures.Where(procedure => procedure.ProcedureType == CodeFluent.Model.Persistence.ProcedureType.SaveEntity))
             {
                 UpdateProcedure(procedure);
@@ -54,6 +55,8 @@ namespace SoftFluent.Samples.ReadOnLoad
             if (procedure.Table == null || procedure.Table.Entity == null)
                 return;
 
+            // Find columns to add to SELECT
+            // RowVersion and Identity columns are already part of the SELECT
             var columns = procedure.Table.Entity.Properties
                 .Where(property => property.MustReadOnSave && !property.IsPersistenceIdentity)
                 .SelectMany(property => property.Columns)
@@ -63,8 +66,44 @@ namespace SoftFluent.Samples.ReadOnLoad
             if (columns.Count == 0)
                 return;
 
+            // Visit the body of the procedure
             procedure.Body.Visit<ProcedureStatement>(statement =>
             {
+                // We need to find a block statement (a list of statements) that looks like
+                // INSERT OR UPDATE statement
+                // statement (generally IfStatement)
+                // SELECT ...
+                
+                /*
+    -- Statement 1 : ProcedureBlockStatement which contains UPDATE & if(@error)
+    UPDATE [Login] SET
+     [Login].[Login_ProviderName] = @Login_ProviderName,
+     [Login].[_trackLastWriteTime] = GETDATE()
+        WHERE (([Login].[Login_Id] = @Login_Id) AND ([Login].[_rowVersion] = @_rowVersion))
+    
+    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+    IF(@error != 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RETURN
+    END
+    
+    -- Statement 2 : ProcedureIfStatement
+    IF(@rowcount = 0)
+    BEGIN
+        IF @tran = 1 ROLLBACK TRANSACTION
+        RAISERROR (50001, 16, 1, 'Login_Save')
+        RETURN
+    END
+    
+    -- Statement 3 : ProcedureSelectStatement
+    SELECT DISTINCT [Login].[_rowVersion] 
+        FROM [Login]
+        WHERE ([Login].[Login_Id] = @Login_Id)
+                
+                */
+                
+
                 var blockStatement = statement as ProcedureBlockStatement;
                 if (blockStatement == null)
                     return;
@@ -79,7 +118,7 @@ namespace SoftFluent.Samples.ReadOnLoad
                     }
 
                     var selectStatement = s as ProcedureSelectStatement;
-                    if (insertOrUpdate && selectStatement != null)
+                    if (insertOrUpdate && selectStatement != null) // SELECT statement after INSERT or UPDATE statement
                     {
                         foreach (var column in columns)
                         {
