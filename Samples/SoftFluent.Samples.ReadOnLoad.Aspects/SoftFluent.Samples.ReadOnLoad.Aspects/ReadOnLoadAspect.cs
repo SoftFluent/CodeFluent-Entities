@@ -13,8 +13,7 @@ namespace SoftFluent.Samples.ReadOnLoad
     public class ReadOnLoadAspect : IProjectTemplate
     {
         public static readonly XmlDocument Descriptor;
-        public const string Namespace = "http://www.softfluent.com/aspects/samples/read-on-load"; // this is my custom XML namespace
-        private const string PassPhraseToken = "PassPhrase";
+        public const string Namespace = "http://www.softfluent.com/aspects/samples/read-on-load";
         public Project Project { get; set; }
 
         static ReadOnLoadAspect()
@@ -24,6 +23,12 @@ namespace SoftFluent.Samples.ReadOnLoad
 @"<cf:project xmlns:cf='http://www.softfluent.com/codefluent/2005/1' defaultNamespace='ReadOnLoadAspect'>
     <cf:pattern name='Read On Load Aspect' namespaceUri='" + Namespace + @"' preferredPrefix='ca' step='Categories'>
        <cf:message class='_doc'> CodeFluent Sample ReadOnLoad Aspect Version 1.0.0.0 - 2014/06/18 This aspect modifies Save procedures in order to select read on load columns after inserting or updating.</cf:message>
+       <cf:descriptor name='expression'
+            typeName='string'
+            category='Read on load Aspect'
+            targets='Property'
+            defaultValue=''
+            displayName='Expression' />
     </cf:pattern>
   </cf:project>");
         }
@@ -32,7 +37,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             if (context == null || !context.Contains("Project"))
             {
-                // we are probably called for meta data inspection, so we send back the descriptor xml<br />
+                // we are probably called for meta data inspection, so we send back the descriptor xml
                 return Descriptor;
             }
 
@@ -50,6 +55,11 @@ namespace SoftFluent.Samples.ReadOnLoad
             return Descriptor;
         }
 
+        private string GetSelectExpression(Property property)
+        {
+            return property.GetAttributeValue("expression", Namespace, (string)null) ?? property.PersistenceName;
+        }
+
         private void UpdateProcedure(CodeFluent.Model.Persistence.Procedure procedure)
         {
             if (procedure.Table == null || procedure.Table.Entity == null)
@@ -63,7 +73,11 @@ namespace SoftFluent.Samples.ReadOnLoad
                 .Where(column => column != null && !column.IsRowVersion)
                 .ToList();
 
-            if (columns.Count == 0)
+            var properties = procedure.Table.Entity.Properties
+                .Where(property => property.MustReadOnSave && !property.IsPersistenceIdentity && property.Columns.Count == 0)
+                .ToList();
+
+            if (columns.Count == 0 && properties.Count == 0)
                 return;
 
             // Visit the body of the procedure
@@ -123,6 +137,13 @@ namespace SoftFluent.Samples.ReadOnLoad
                         foreach (var column in columns)
                         {
                             var setStatment = new ProcedureSetStatement(selectStatement, new TableRefColumn(column));
+                            selectStatement.Set.Add(setStatment);
+                        }
+
+                        foreach (var property in properties) // not persistent : select expression AS 'persistent name'
+                        {
+                            ProcedureExpressionStatement literalExpression = new ProcedureExpressionStatement(selectStatement, ProcedureExpressionStatement.CreateLiteral(GetSelectExpression(property)));
+                            var setStatment = new ProcedureSetStatement(selectStatement, literalExpression, (ProcedureExpressionStatement)null, new ProcedureExpressionStatement(selectStatement, property.PersistenceName));
                             selectStatement.Set.Add(setStatment);
                         }
                     }

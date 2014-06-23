@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -43,10 +43,10 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime">
-      <HintPath>..\..\..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Runtime\bin\Debug\CodeFluent.Runtime.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime.Web">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -72,66 +72,65 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </Compile>
     <Compile Include="CustomerCollection.cs">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ReadOnLoadAspect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\BitsServer.cs">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </Compile>
     <Compile Include="Web\HttpHandler.cs">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </Compile>
     <Compile Include="_cf_rt.cs">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_runtime.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_tables.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_views.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_table_diffs.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_procedures.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_relations_drop.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\SoftFluent.Samples.ReadOnLoad_relations_add.sql">
-      <CodeFluentProducer>828802235c9dedec8cd771e17ed4c73d</CodeFluentProducer>
+      <CodeFluentProducer>6e9e8577c7520cbe3d5167226b852818</CodeFluentProducer>
     </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SoftFluent.Samples.ReadOnLoad.fr-FR.ResX">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </EmbeddedResource>
     <EmbeddedResource Include="SoftFluent.Samples.ReadOnLoad.ResX">
-      <CodeFluentProducer>1858cc5074462690715c08a09b691a46</CodeFluentProducer>
+      <CodeFluentProducer>2b54664ccb9bd10c78c8680e8591342a</CodeFluentProducer>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

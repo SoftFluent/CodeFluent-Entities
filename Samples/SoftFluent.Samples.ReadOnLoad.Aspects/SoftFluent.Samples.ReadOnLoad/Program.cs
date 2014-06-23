@@ -13,6 +13,8 @@ namespace SoftFluent.Samples.ReadOnLoad
             Customer customer = new Customer();
             customer.Name = "John Doe";
             customer.Save();
+
+            Console.WriteLine(customer.Trace());
         }
     }
 }
