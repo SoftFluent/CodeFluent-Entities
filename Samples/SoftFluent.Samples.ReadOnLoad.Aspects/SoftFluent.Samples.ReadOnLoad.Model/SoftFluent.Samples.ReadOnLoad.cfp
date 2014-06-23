@@ -8,7 +8,7 @@
   <cf:entity name="Customer" namespace="SoftFluent.Samples.ReadOnLoad" categoryPath="/SoftFluent.Samples.ReadOnLoad">
     <cf:property name="Id" key="true" />
     <cf:property name="Name" readOnSave="true" />
-    <cf:property name="CreationTime" ca:expression="_trackLastWriteTime" persistent="false" readOnSave="true" readOnLoad="true" typeName="datetime" persistenceName="_trackCreationTime" />
+    <cf:property name="CreationTime" ca:expression="_trackCreationTime" persistent="false" readOnSave="true" readOnLoad="true" typeName="datetime" persistenceName="CreationTime" />
   </cf:entity>
   <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
     <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.ReadOnLoad" cfx:targetProject="..\SoftFluent.Samples.ReadOnLoad\SoftFluent.Samples.ReadOnLoad.csproj" cfx:targetProjectLayout="Update" />
