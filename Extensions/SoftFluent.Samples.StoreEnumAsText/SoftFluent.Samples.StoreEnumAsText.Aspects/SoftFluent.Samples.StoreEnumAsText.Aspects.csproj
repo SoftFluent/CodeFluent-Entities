@@ -31,16 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeFluent.Model">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Model.Common">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Producers.CodeDom">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime">
-      <HintPath>..\..\..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Runtime\bin\Debug\CodeFluent.Runtime.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
