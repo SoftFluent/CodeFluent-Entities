@@ -1,0 +1,30 @@
+<cf:project defaultNamespace="SoftFluent.Samples.StoreEnumAsText" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:enat="http://www.softfluent.com/aspects/samples/StoreEnumAsText" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:pattern typeName="SoftFluent.Samples.StoreEnumAsText.Aspects.StoreEnumerationAsTextAspect, SoftFluent.Samples.StoreEnumAsText.Aspects" step="Methods" />
+  <cf:reference name="SoftFluent.Samples.StoreEnumAsText.Aspects.dll" path="..\SoftFluent.Samples.StoreEnumAsText.Aspects\bin\Debug\SoftFluent.Samples.StoreEnumAsText.Aspects.dll" />
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.StoreEnumAsText\sql" cfx:targetProject="..\SoftFluent.Samples.StoreEnumAsText\SoftFluent.Samples.StoreEnumAsText.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.StoreEnumAsText" cfx:targetProject="..\SoftFluent.Samples.StoreEnumAsText\SoftFluent.Samples.StoreEnumAsText.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:entity name="Sample" namespace="SoftFluent.Samples.StoreEnumAsText" categoryPath="/SoftFluent.Samples.StoreEnumAsText">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Gender" typeName="{0}.Gender" />
+    <cf:property name="Day" enat:storeAsText="true" typeName="{0}.Day" />
+  </cf:entity>
+  <cf:enumeration name="Gender" enat:defaultStoreAsText="true" namespace="SoftFluent.Samples.StoreEnumAsText" categoryPath="/SoftFluent.Samples.StoreEnumAsText">
+    <cf:enumerationValue name="Male" />
+    <cf:enumerationValue name="Female" />
+  </cf:enumeration>
+  <cf:enumeration name="Day" enat:defaultStoreAsText="true" multivalue="true" namespace="SoftFluent.Samples.StoreEnumAsText" categoryPath="/SoftFluent.Samples.StoreEnumAsText">
+    <cf:enumerationValue name="None" />
+    <cf:enumerationValue name="Sunday" />
+    <cf:enumerationValue name="Monday" />
+    <cf:enumerationValue name="Tuesday" />
+    <cf:enumerationValue name="Wednesday" />
+    <cf:enumerationValue name="Thursday" />
+    <cf:enumerationValue name="Friday" />
+    <cf:enumerationValue name="Saturday" />
+  </cf:enumeration>
+</cf:project>
