@@ -7,21 +7,21 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-// CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 23 June 2014 17:39. Build: 1.0.61214.0770
-namespace SoftFluent.Samples.ReadOnLoad.Web
+// CodeFluent Entities generated (http://www.softfluent.com). Date: Tuesday, 08 July 2014 10:52. Build: 1.0.61214.0772
+namespace SoftFluent.Samples.ReadOnSave.Web
 {
 	
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
-    public partial class SoftFluent_Samples_ReadOnLoadBitsServer: CodeFluent.Runtime.BinaryServices.BitsServer
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
+    public partial class SoftFluent_Samples_ReadOnSaveBitsServer: CodeFluent.Runtime.BinaryServices.BitsServer
     {
-		private static SoftFluent_Samples_ReadOnLoadBitsServer _current;
+		private static SoftFluent_Samples_ReadOnSaveBitsServer _current;
 
-		public SoftFluent_Samples_ReadOnLoadBitsServer()
-			:this(CodeFluent.Runtime.CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName))
+		public SoftFluent_Samples_ReadOnSaveBitsServer()
+			:this(CodeFluent.Runtime.CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName))
 		{
 		}
 		
-		public SoftFluent_Samples_ReadOnLoadBitsServer(CodeFluent.Runtime.CodeFluentContext context)
+		public SoftFluent_Samples_ReadOnSaveBitsServer(CodeFluent.Runtime.CodeFluentContext context)
 			:base(context)
 		{
 		}
@@ -37,7 +37,7 @@ namespace SoftFluent.Samples.ReadOnLoad.Web
 			string entityKey;
 			ParseUri(context.Request.Url, out entityTypeName, out propertyName, out entityKey);
 			
-			throw new System.InvalidOperationException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetStringWithDefault("bitsServerInvalidUrl", "Invalid url '{0}'.", new object[]{context.Request.Url}));
+			throw new System.InvalidOperationException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetStringWithDefault("bitsServerInvalidUrl", "Invalid url '{0}'.", new object[]{context.Request.Url}));
         }
 
         protected override long OnDownload(object ctx, long start, long end)
@@ -51,7 +51,7 @@ namespace SoftFluent.Samples.ReadOnLoad.Web
 			string entityKey;
 			ParseUri(context.Request.Url, out entityTypeName, out propertyName, out entityKey);
 			
-			throw new System.InvalidOperationException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetStringWithDefault("bitsServerInvalidUrl", "Invalid url '{0}'.", new object[]{context.Request.Url}));
+			throw new System.InvalidOperationException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetStringWithDefault("bitsServerInvalidUrl", "Invalid url '{0}'.", new object[]{context.Request.Url}));
         }
 		
 		protected override void OnSessionClose(object ctx, CodeFluent.Runtime.BinaryServices.Session session)
@@ -78,16 +78,16 @@ namespace SoftFluent.Samples.ReadOnLoad.Web
         protected virtual void OnSessionClose(System.Net.HttpListenerContext context, CodeFluent.Runtime.BinaryServices.Session session, string entityTypeName, string propertyName, string entityKey)
         {
 			
-			throw new System.InvalidOperationException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetStringWithDefault("bitsServerInvalidUrl", "Invalid url '{0}'.", new object[]{context.Request.Url}));
+			throw new System.InvalidOperationException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetStringWithDefault("bitsServerInvalidUrl", "Invalid url '{0}'.", new object[]{context.Request.Url}));
         }
 
-		public static SoftFluent_Samples_ReadOnLoadBitsServer Current
+		public static SoftFluent_Samples_ReadOnSaveBitsServer Current
 		{
 			get
 			{
 				if (_current == null)
 				{
-					_current = new SoftFluent_Samples_ReadOnLoadBitsServer();
+					_current = new SoftFluent_Samples_ReadOnSaveBitsServer();
 				}
 				return _current;
 			}

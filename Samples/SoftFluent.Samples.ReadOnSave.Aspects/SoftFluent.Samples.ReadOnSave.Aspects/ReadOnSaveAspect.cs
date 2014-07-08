@@ -8,24 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace SoftFluent.Samples.ReadOnLoad
+namespace SoftFluent.Samples.ReadOnSave
 {
-    public class ReadOnLoadAspect : IProjectTemplate
+    public class ReadOnSaveAspect : IProjectTemplate
     {
         public static readonly XmlDocument Descriptor;
-        public const string Namespace = "http://www.softfluent.com/aspects/samples/read-on-load";
+        public const string Namespace = "http://www.softfluent.com/aspects/samples/read-on-save";
         public Project Project { get; set; }
 
-        static ReadOnLoadAspect()
+        static ReadOnSaveAspect()
         {
             Descriptor = new XmlDocument();
             Descriptor.LoadXml(
-@"<cf:project xmlns:cf='http://www.softfluent.com/codefluent/2005/1' defaultNamespace='ReadOnLoadAspect'>
-    <cf:pattern name='Read On Load Aspect' namespaceUri='" + Namespace + @"' preferredPrefix='ca' step='Categories'>
-       <cf:message class='_doc'> CodeFluent Sample ReadOnLoad Aspect Version 1.0.0.0 - 2014/06/18 This aspect modifies Save procedures in order to select read on load columns after inserting or updating.</cf:message>
+@"<cf:project xmlns:cf='http://www.softfluent.com/codefluent/2005/1' defaultNamespace='ReadOnSaveAspect'>
+    <cf:pattern name='Read On Save Aspect' namespaceUri='" + Namespace + @"' preferredPrefix='ca' step='Categories'>
+       <cf:message class='_doc'> CodeFluent Sample ReadOnSave Aspect Version 1.0.0.0 - 2014/06/18 This aspect modifies Save procedures in order to select ReadOnSave columns after inserting or updating.</cf:message>
        <cf:descriptor name='expression'
             typeName='string'
-            category='Read on load Aspect'
+            category='Read on Save Aspect'
             targets='Property'
             defaultValue=''
             displayName='Expression' />

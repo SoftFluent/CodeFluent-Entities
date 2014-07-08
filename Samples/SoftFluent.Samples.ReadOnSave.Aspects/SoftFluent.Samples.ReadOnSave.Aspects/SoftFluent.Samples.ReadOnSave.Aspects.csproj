@@ -7,8 +7,8 @@
     <ProjectGuid>{C1662FC9-D5EB-4D27-98BF-E35191FAFD9D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftFluent.Samples.ReadOnLoad.Aspects</RootNamespace>
-    <AssemblyName>SoftFluent.Samples.ReadOnLoad.Aspects</AssemblyName>
+    <RootNamespace>SoftFluent.Samples.ReadOnSave.Aspects</RootNamespace>
+    <AssemblyName>SoftFluent.Samples.ReadOnSave.Aspects</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadOnLoadAspect.cs" />
+    <Compile Include="ReadOnSaveAspect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

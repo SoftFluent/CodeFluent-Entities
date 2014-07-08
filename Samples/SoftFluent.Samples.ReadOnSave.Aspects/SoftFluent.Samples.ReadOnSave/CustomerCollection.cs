@@ -8,20 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SoftFluent.Samples.ReadOnLoad
+namespace SoftFluent.Samples.ReadOnSave
 {
     using CodeFluent.Runtime;
     using CodeFluent.Runtime.Utilities;
     
     
-    // CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 23 June 2014 17:39.
-    // Build:1.0.61214.0770
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
+    // CodeFluent Entities generated (http://www.softfluent.com). Date: Tuesday, 08 July 2014 10:52.
+    // Build:1.0.61214.0772
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DataObjectAttribute()]
     [System.Diagnostics.DebuggerDisplayAttribute("Count={Count}")]
     [System.ComponentModel.TypeConverterAttribute(typeof(CodeFluent.Runtime.Design.CollectionTypeConverter))]
-    public partial class CustomerCollection : System.Collections.IList, System.Collections.ICollection, CodeFluent.Runtime.ICodeFluentSet, System.Collections.Generic.IList<SoftFluent.Samples.ReadOnLoad.Customer>, System.Collections.Generic.ICollection<SoftFluent.Samples.ReadOnLoad.Customer>, System.ComponentModel.IRaiseItemChangedEvents, System.ICloneable, System.ComponentModel.INotifyPropertyChanged, System.Collections.Specialized.INotifyCollectionChanged, System.ComponentModel.IBindingList, System.ComponentModel.ICancelAddNew
+    public partial class CustomerCollection : System.Collections.IList, System.Collections.ICollection, CodeFluent.Runtime.ICodeFluentSet, System.Collections.Generic.IList<SoftFluent.Samples.ReadOnSave.Customer>, System.Collections.Generic.ICollection<SoftFluent.Samples.ReadOnSave.Customer>, System.ComponentModel.IRaiseItemChangedEvents, System.ICloneable, System.ComponentModel.INotifyPropertyChanged, System.Collections.Specialized.INotifyCollectionChanged, System.ComponentModel.IBindingList, System.ComponentModel.ICancelAddNew
     {
         
         private bool _raisePropertyChangedEvents = true;
@@ -29,10 +29,10 @@ namespace SoftFluent.Samples.ReadOnLoad
         private bool _raiseCollectionChangedEvents = true;
         
         [System.NonSerializedAttribute()]
-        private System.Collections.Generic.List<SoftFluent.Samples.ReadOnLoad.Customer> _baseList = new System.Collections.Generic.List<SoftFluent.Samples.ReadOnLoad.Customer>();
+        private System.Collections.Generic.List<SoftFluent.Samples.ReadOnSave.Customer> _baseList = new System.Collections.Generic.List<SoftFluent.Samples.ReadOnSave.Customer>();
         
         [System.NonSerializedAttribute()]
-        private System.Collections.Generic.Dictionary<System.Guid, SoftFluent.Samples.ReadOnLoad.Customer> _baseTable = new System.Collections.Generic.Dictionary<System.Guid, SoftFluent.Samples.ReadOnLoad.Customer>();
+        private System.Collections.Generic.Dictionary<System.Guid, SoftFluent.Samples.ReadOnSave.Customer> _baseTable = new System.Collections.Generic.Dictionary<System.Guid, SoftFluent.Samples.ReadOnSave.Customer>();
         
         [System.NonSerializedAttribute()]
         private System.Collections.Hashtable _relations = new System.Collections.Hashtable();
@@ -43,7 +43,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         private int _addNewPos = -1;
         
         [System.NonSerializedAttribute()]
-        private CodeFluent.Runtime.Utilities.BindingListManager<SoftFluent.Samples.ReadOnLoad.Customer> _blm2462787788;
+        private CodeFluent.Runtime.Utilities.BindingListManager<SoftFluent.Samples.ReadOnSave.Customer> _blm2524530710;
         
         private bool _raiseListChangedEvents = true;
         
@@ -53,7 +53,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         public CustomerCollection()
         {
-            this._blm2462787788 = new CodeFluent.Runtime.Utilities.BindingListManager<SoftFluent.Samples.ReadOnLoad.Customer>(this);
+            this._blm2524530710 = new CodeFluent.Runtime.Utilities.BindingListManager<SoftFluent.Samples.ReadOnSave.Customer>(this);
         }
         
         [System.ComponentModel.BrowsableAttribute(false)]
@@ -83,7 +83,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        protected System.Collections.Generic.List<SoftFluent.Samples.ReadOnLoad.Customer> BaseList
+        protected System.Collections.Generic.List<SoftFluent.Samples.ReadOnSave.Customer> BaseList
         {
             get
             {
@@ -92,7 +92,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        protected System.Collections.Generic.Dictionary<System.Guid, SoftFluent.Samples.ReadOnLoad.Customer> BaseTable
+        protected System.Collections.Generic.Dictionary<System.Guid, SoftFluent.Samples.ReadOnSave.Customer> BaseTable
         {
             get
             {
@@ -122,11 +122,11 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
         }
         
-        public SoftFluent.Samples.ReadOnLoad.Customer this[int index]
+        public SoftFluent.Samples.ReadOnSave.Customer this[int index]
         {
             get
             {
-                return ((SoftFluent.Samples.ReadOnLoad.Customer)(this.BaseList[index]));
+                return ((SoftFluent.Samples.ReadOnSave.Customer)(this.BaseList[index]));
             }
             set
             {
@@ -143,11 +143,11 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
             set
             {
-                this.BaseList[index] = ((SoftFluent.Samples.ReadOnLoad.Customer)(value));
+                this.BaseList[index] = ((SoftFluent.Samples.ReadOnSave.Customer)(value));
             }
         }
         
-        public SoftFluent.Samples.ReadOnLoad.Customer this[System.Guid id]
+        public SoftFluent.Samples.ReadOnSave.Customer this[System.Guid id]
         {
             get
             {
@@ -155,7 +155,7 @@ namespace SoftFluent.Samples.ReadOnLoad
                 {
                     throw new System.ArgumentNullException("id");
                 }
-                SoftFluent.Samples.ReadOnLoad.Customer i = this.TryGetValue(id);
+                SoftFluent.Samples.ReadOnSave.Customer i = this.TryGetValue(id);
                 return i;
             }
             set
@@ -166,14 +166,14 @@ namespace SoftFluent.Samples.ReadOnLoad
                 }
                 if ((value == null))
                 {
-                    SoftFluent.Samples.ReadOnLoad.Customer customer = this.TryGetValue(id);
+                    SoftFluent.Samples.ReadOnSave.Customer customer = this.TryGetValue(id);
                     if ((customer != null))
                     {
                         this.Remove(customer);
                     }
                     return;
                 }
-                SoftFluent.Samples.ReadOnLoad.Customer existing = this.TryGetValue(value.Id);
+                SoftFluent.Samples.ReadOnSave.Customer existing = this.TryGetValue(value.Id);
                 if ((existing != null))
                 {
                     this.Remove(existing);
@@ -243,7 +243,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.AllowEdit;
+                return this._blm2524530710.AllowEdit;
             }
         }
         
@@ -251,7 +251,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.AllowNew;
+                return this._blm2524530710.AllowNew;
             }
         }
         
@@ -259,7 +259,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.AllowRemove;
+                return this._blm2524530710.AllowRemove;
             }
         }
         
@@ -267,7 +267,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.IsSorted;
+                return this._blm2524530710.IsSorted;
             }
         }
         
@@ -275,7 +275,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.SortDirection;
+                return this._blm2524530710.SortDirection;
             }
         }
         
@@ -283,7 +283,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.SortProperty;
+                return this._blm2524530710.SortProperty;
             }
         }
         
@@ -299,7 +299,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.SupportsSearching;
+                return this._blm2524530710.SupportsSearching;
             }
         }
         
@@ -307,7 +307,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         {
             get
             {
-                return this._blm2462787788.SupportsSorting;
+                return this._blm2524530710.SupportsSorting;
             }
         }
         
@@ -358,19 +358,19 @@ namespace SoftFluent.Samples.ReadOnLoad
             this.OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Item[]"));
         }
         
-        protected virtual void Relate(SoftFluent.Samples.ReadOnLoad.Customer item, CodeFluent.Runtime.CodeFluentRelationType relationType)
+        protected virtual void Relate(SoftFluent.Samples.ReadOnSave.Customer item, CodeFluent.Runtime.CodeFluentRelationType relationType)
         {
             ((CodeFluent.Runtime.ICodeFluentSet)(this)).Relations[item] = relationType;
         }
         
-        public int Add(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public int Add(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             int localAdd = this.BaseList.Count;
             this.BaseAdd(customer);
             return localAdd;
         }
         
-        protected virtual int BaseAdd(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        protected virtual int BaseAdd(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -378,7 +378,7 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
             if ((customer.Id.Equals(CodeFluentPersistence.DefaultGuidValue) == true))
             {
-                CodeFluent.Runtime.CodeFluentRuntimeException.Throw("invalidEntityKey", "Id", "customer", "SoftFluent.Samples.ReadOnLoad.Customer");
+                CodeFluent.Runtime.CodeFluentRuntimeException.Throw("invalidEntityKey", "Id", "customer", "SoftFluent.Samples.ReadOnSave.Customer");
             }
             try
             {
@@ -386,11 +386,11 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
             catch (System.ArgumentNullException ane)
             {
-                throw new System.ArgumentNullException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.VoidCollectionKey, "SoftFluent.Samples.ReadOnLoad.CustomerCollection", customer.EntityKey), ane);
+                throw new System.ArgumentNullException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.VoidCollectionKey, "SoftFluent.Samples.ReadOnSave.CustomerCollection", customer.EntityKey), ane);
             }
             catch (System.ArgumentException ae)
             {
-                throw new System.ArgumentException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.ItemAlreadyAdded, "SoftFluent.Samples.ReadOnLoad.CustomerCollection", customer.Id), ae);
+                throw new System.ArgumentException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.ItemAlreadyAdded, "SoftFluent.Samples.ReadOnSave.CustomerCollection", customer.Id), ae);
             }
             customer.KeyChanged += new System.EventHandler<CodeFluent.Runtime.Utilities.KeyChangedEventArgs<System.Guid>>(this.OnItemKeyChanged);
             int localAdd = this.BaseList.Count;
@@ -402,10 +402,10 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         int System.Collections.IList.Add(object value)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer = null;
+            SoftFluent.Samples.ReadOnSave.Customer customer = null;
             try
             {
-                customer = ((SoftFluent.Samples.ReadOnLoad.Customer)(value));
+                customer = ((SoftFluent.Samples.ReadOnSave.Customer)(value));
             }
             catch (System.InvalidCastException )
             {
@@ -436,14 +436,14 @@ namespace SoftFluent.Samples.ReadOnLoad
             return localAdd;
         }
         
-        void System.Collections.Generic.ICollection<SoftFluent.Samples.ReadOnLoad.Customer>.Add(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        void System.Collections.Generic.ICollection<SoftFluent.Samples.ReadOnSave.Customer>.Add(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             this.BaseAdd(customer);
         }
         
-        public virtual SoftFluent.Samples.ReadOnLoad.Customer AddByEntityKey(string key)
+        public virtual SoftFluent.Samples.ReadOnSave.Customer AddByEntityKey(string key)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer = SoftFluent.Samples.ReadOnLoad.Customer.LoadByEntityKey(key);
+            SoftFluent.Samples.ReadOnSave.Customer customer = SoftFluent.Samples.ReadOnSave.Customer.LoadByEntityKey(key);
             if (((customer != null) 
                         && (this.Contains(customer) == false)))
             {
@@ -457,17 +457,17 @@ namespace SoftFluent.Samples.ReadOnLoad
             this.Sort(null);
         }
         
-        public virtual void Sort(System.Collections.Generic.IComparer<SoftFluent.Samples.ReadOnLoad.Customer> comparer)
+        public virtual void Sort(System.Collections.Generic.IComparer<SoftFluent.Samples.ReadOnSave.Customer> comparer)
         {
             this.BaseList.Sort(comparer);
         }
         
-        public void CopyTo(SoftFluent.Samples.ReadOnLoad.Customer[] array, int index)
+        public void CopyTo(SoftFluent.Samples.ReadOnSave.Customer[] array, int index)
         {
             this.BaseCopyTo(array, index);
         }
         
-        protected virtual void BaseCopyTo(SoftFluent.Samples.ReadOnLoad.Customer[] array, int index)
+        protected virtual void BaseCopyTo(SoftFluent.Samples.ReadOnSave.Customer[] array, int index)
         {
             this.BaseList.CopyTo(array, index);
         }
@@ -477,13 +477,13 @@ namespace SoftFluent.Samples.ReadOnLoad
             CodeFluent.Runtime.Utilities.ConvertUtilities.CopyTo(this, array, index);
         }
         
-        public bool Contains(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public bool Contains(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             bool localContains = this.BaseContains(customer);
             return localContains;
         }
         
-        protected virtual bool BaseContains(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        protected virtual bool BaseContains(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -495,18 +495,18 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         bool System.Collections.IList.Contains(object value)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer;
-			customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer;
+			customer = value as SoftFluent.Samples.ReadOnSave.Customer;
             return this.Contains(customer);
         }
         
-        public int IndexOf(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public int IndexOf(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             int localIndexOf = this.BaseIndexOf(customer);
             return localIndexOf;
         }
         
-        protected virtual int BaseIndexOf(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        protected virtual int BaseIndexOf(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -518,17 +518,17 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         int System.Collections.IList.IndexOf(object value)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer;
-			customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer;
+			customer = value as SoftFluent.Samples.ReadOnSave.Customer;
             return this.IndexOf(customer);
         }
         
-        public void Insert(int index, SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public void Insert(int index, SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             this.BaseInsert(index, customer);
         }
         
-        protected virtual void BaseInsert(int index, SoftFluent.Samples.ReadOnLoad.Customer customer)
+        protected virtual void BaseInsert(int index, SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -540,11 +540,11 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
             catch (System.ArgumentNullException ane)
             {
-                throw new System.ArgumentNullException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.VoidCollectionKey, "SoftFluent.Samples.ReadOnLoad.CustomerCollection", customer.EntityKey), ane);
+                throw new System.ArgumentNullException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.VoidCollectionKey, "SoftFluent.Samples.ReadOnSave.CustomerCollection", customer.EntityKey), ane);
             }
             catch (System.ArgumentException ae)
             {
-                throw new System.ArgumentException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.ItemAlreadyAdded, "SoftFluent.Samples.ReadOnLoad.CustomerCollection", customer.Id), ae);
+                throw new System.ArgumentException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.ItemAlreadyAdded, "SoftFluent.Samples.ReadOnSave.CustomerCollection", customer.Id), ae);
             }
             this.BaseList.Insert(index, customer);
             this.OnCollectionChanged(new CodeFluent.Runtime.Utilities.IndexedCollectionChangeEventArgs(System.ComponentModel.CollectionChangeAction.Add, customer, index));
@@ -553,8 +553,8 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         void System.Collections.IList.Insert(int index, object value)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer;
-			customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer;
+			customer = value as SoftFluent.Samples.ReadOnSave.Customer;
             this.Insert(index, customer);
         }
         
@@ -564,26 +564,26 @@ namespace SoftFluent.Samples.ReadOnLoad
             int count = this.Count;
             for (index = 0; (index < count); index = (index + 1))
             {
-                SoftFluent.Samples.ReadOnLoad.Customer Customer = this[0];
+                SoftFluent.Samples.ReadOnSave.Customer Customer = this[0];
                 this.BaseRemove(Customer);
             }
             this.OnCollectionChanged(new CodeFluent.Runtime.Utilities.IndexedCollectionChangeEventArgs(System.ComponentModel.CollectionChangeAction.Refresh, null));
             this.OnListChanged(new System.ComponentModel.ListChangedEventArgs(System.ComponentModel.ListChangedType.Reset, -1));
         }
         
-        public bool Remove(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public bool Remove(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             return this.BaseRemove(customer);
         }
         
-        protected virtual bool BaseRemove(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        protected virtual bool BaseRemove(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
                 throw new System.ArgumentNullException("customer");
             }
             int index = this.IndexOf(customer);
-            this.OnListChanged(new System.ComponentModel.ListChangedEventArgs(((System.ComponentModel.ListChangedType)(CodeFluent.Runtime.Utilities.SortableBindingList<SoftFluent.Samples.ReadOnLoad.Customer>.ListChangedTypeDeleting)), index));
+            this.OnListChanged(new System.ComponentModel.ListChangedEventArgs(((System.ComponentModel.ListChangedType)(CodeFluent.Runtime.Utilities.SortableBindingList<SoftFluent.Samples.ReadOnSave.Customer>.ListChangedTypeDeleting)), index));
             bool ret;
             ret = this.BaseList.Remove(customer);
             customer.KeyChanged -= new System.EventHandler<CodeFluent.Runtime.Utilities.KeyChangedEventArgs<System.Guid>>(this.OnItemKeyChanged);
@@ -595,15 +595,15 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         void System.Collections.IList.Remove(object value)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer;
-			customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer;
+			customer = value as SoftFluent.Samples.ReadOnSave.Customer;
             this.Remove(customer);
         }
         
         public virtual void RemoveAt(int index)
         {
-            this.OnListChanged(new System.ComponentModel.ListChangedEventArgs(((System.ComponentModel.ListChangedType)(CodeFluent.Runtime.Utilities.SortableBindingList<SoftFluent.Samples.ReadOnLoad.Customer>.ListChangedTypeDeleting)), index));
-            SoftFluent.Samples.ReadOnLoad.Customer customer = this.BaseList[index];
+            this.OnListChanged(new System.ComponentModel.ListChangedEventArgs(((System.ComponentModel.ListChangedType)(CodeFluent.Runtime.Utilities.SortableBindingList<SoftFluent.Samples.ReadOnSave.Customer>.ListChangedTypeDeleting)), index));
+            SoftFluent.Samples.ReadOnSave.Customer customer = this.BaseList[index];
             if ((customer != null))
             {
                 customer.KeyChanged -= new System.EventHandler<CodeFluent.Runtime.Utilities.KeyChangedEventArgs<System.Guid>>(this.OnItemKeyChanged);
@@ -614,9 +614,9 @@ namespace SoftFluent.Samples.ReadOnLoad
             this.OnListChanged(new System.ComponentModel.ListChangedEventArgs(System.ComponentModel.ListChangedType.ItemDeleted, index));
         }
         
-        public virtual System.Collections.Generic.IEnumerator<SoftFluent.Samples.ReadOnLoad.Customer> GetEnumerator()
+        public virtual System.Collections.Generic.IEnumerator<SoftFluent.Samples.ReadOnSave.Customer> GetEnumerator()
         {
-            System.Collections.Generic.IEnumerator<SoftFluent.Samples.ReadOnLoad.Customer> e = this.BaseList.GetEnumerator();
+            System.Collections.Generic.IEnumerator<SoftFluent.Samples.ReadOnSave.Customer> e = this.BaseList.GetEnumerator();
             return e;
         }
         
@@ -625,9 +625,9 @@ namespace SoftFluent.Samples.ReadOnLoad
             return this.BaseList.GetEnumerator();
         }
         
-        private SoftFluent.Samples.ReadOnLoad.Customer TryGetValue(System.Guid key)
+        private SoftFluent.Samples.ReadOnSave.Customer TryGetValue(System.Guid key)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer;
             if ((this.BaseTable.TryGetValue(key, out customer) == true))
             {
                 return customer;
@@ -640,7 +640,7 @@ namespace SoftFluent.Samples.ReadOnLoad
             int index;
             for (index = (this.Count - 1); (index >= 0); index = (index - 1))
             {
-                SoftFluent.Samples.ReadOnLoad.Customer customer = this[index];
+                SoftFluent.Samples.ReadOnSave.Customer customer = this[index];
                 customer.Save();
                 if ((customer.EntityState == CodeFluent.Runtime.CodeFluentEntityState.Deleted))
                 {
@@ -682,7 +682,7 @@ namespace SoftFluent.Samples.ReadOnLoad
                 readCount = (readCount + 1);
                 if ((CodeFluent.Runtime.CodeFluentPersistence.CanAddEntity(pageIndex, pageSize, pageOptions, readCount) == true))
                 {
-                    SoftFluent.Samples.ReadOnLoad.Customer customer = new SoftFluent.Samples.ReadOnLoad.Customer();
+                    SoftFluent.Samples.ReadOnSave.Customer customer = new SoftFluent.Samples.ReadOnSave.Customer();
                     ((CodeFluent.Runtime.ICodeFluentEntity)(customer)).ReadRecord(reader);
                     if ((this.BaseContains(customer) == false))
                     {
@@ -695,7 +695,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, true)]
-        public static SoftFluent.Samples.ReadOnLoad.CustomerCollection PageLoadAll(int pageIndex, int pageSize, CodeFluent.Runtime.PageOptions pageOptions)
+        public static SoftFluent.Samples.ReadOnSave.CustomerCollection PageLoadAll(int pageIndex, int pageSize, CodeFluent.Runtime.PageOptions pageOptions)
         {
             if ((pageIndex < 0))
             {
@@ -712,11 +712,11 @@ namespace SoftFluent.Samples.ReadOnLoad
                     pageSize = int.MaxValue;
                 }
             }
-            SoftFluent.Samples.ReadOnLoad.CustomerCollection ret = new SoftFluent.Samples.ReadOnLoad.CustomerCollection();
+            SoftFluent.Samples.ReadOnSave.CustomerCollection ret = new SoftFluent.Samples.ReadOnSave.CustomerCollection();
             System.Data.IDataReader reader = null;
             try
             {
-                reader = SoftFluent.Samples.ReadOnLoad.CustomerCollection.PageDataLoadAll(pageOptions);
+                reader = SoftFluent.Samples.ReadOnSave.CustomerCollection.PageDataLoadAll(pageOptions);
                 if ((reader == null))
                 {
                     return ret;
@@ -729,21 +729,21 @@ namespace SoftFluent.Samples.ReadOnLoad
                 {
                     reader.Dispose();
                 }
-                CodeFluent.Runtime.CodeFluentPersistence.CompleteCommand(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName);
+                CodeFluent.Runtime.CodeFluentPersistence.CompleteCommand(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName);
             }
             return ret;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, true)]
-        public static SoftFluent.Samples.ReadOnLoad.CustomerCollection LoadAll()
+        public static SoftFluent.Samples.ReadOnSave.CustomerCollection LoadAll()
         {
-            SoftFluent.Samples.ReadOnLoad.CustomerCollection ret = SoftFluent.Samples.ReadOnLoad.CustomerCollection.PageLoadAll(int.MinValue, int.MaxValue, null);
+            SoftFluent.Samples.ReadOnSave.CustomerCollection ret = SoftFluent.Samples.ReadOnSave.CustomerCollection.PageLoadAll(int.MinValue, int.MaxValue, null);
             return ret;
         }
         
         public static System.Data.IDataReader PageDataLoadAll(CodeFluent.Runtime.PageOptions pageOptions)
         {
-            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence;
+            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence;
             persistence.CreateStoredProcedureCommand(null, "Customer", "LoadAll");
             if ((pageOptions != null))
             {
@@ -758,13 +758,13 @@ namespace SoftFluent.Samples.ReadOnLoad
                     index = (index + 1);
                 }
             }
-            System.Data.IDataReader reader = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence.ExecuteReader();
+            System.Data.IDataReader reader = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence.ExecuteReader();
             return reader;
         }
         
         public static System.Data.IDataReader DataLoadAll()
         {
-            System.Data.IDataReader reader = SoftFluent.Samples.ReadOnLoad.CustomerCollection.PageDataLoadAll(null);
+            System.Data.IDataReader reader = SoftFluent.Samples.ReadOnSave.CustomerCollection.PageDataLoadAll(null);
             return reader;
         }
         
@@ -793,19 +793,19 @@ namespace SoftFluent.Samples.ReadOnLoad
             this.BaseTrace(writer);
         }
         
-        public virtual void CopyTo(SoftFluent.Samples.ReadOnLoad.CustomerCollection collection, bool deep)
+        public virtual void CopyTo(SoftFluent.Samples.ReadOnSave.CustomerCollection collection, bool deep)
         {
-            if ((typeof(System.ICloneable).IsAssignableFrom(typeof(SoftFluent.Samples.ReadOnLoad.Customer)) == false))
+            if ((typeof(System.ICloneable).IsAssignableFrom(typeof(SoftFluent.Samples.ReadOnSave.Customer)) == false))
             {
                 deep = false;
             }
-            System.Collections.Generic.IEnumerator<SoftFluent.Samples.ReadOnLoad.Customer> enumerator = this.GetEnumerator();
+            System.Collections.Generic.IEnumerator<SoftFluent.Samples.ReadOnSave.Customer> enumerator = this.GetEnumerator();
             bool b;
             for (b = enumerator.MoveNext(); b; b = enumerator.MoveNext())
             {
                 if ((deep == true))
                 {
-                    collection.Add(((SoftFluent.Samples.ReadOnLoad.Customer)(((System.ICloneable)(enumerator.Current)).Clone())));
+                    collection.Add(((SoftFluent.Samples.ReadOnSave.Customer)(((System.ICloneable)(enumerator.Current)).Clone())));
                 }
                 else
                 {
@@ -814,9 +814,9 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
         }
         
-        public virtual SoftFluent.Samples.ReadOnLoad.CustomerCollection Clone(bool deep)
+        public virtual SoftFluent.Samples.ReadOnSave.CustomerCollection Clone(bool deep)
         {
-            SoftFluent.Samples.ReadOnLoad.CustomerCollection ret = new SoftFluent.Samples.ReadOnLoad.CustomerCollection();
+            SoftFluent.Samples.ReadOnSave.CustomerCollection ret = new SoftFluent.Samples.ReadOnSave.CustomerCollection();
             this.CopyTo(ret, deep);
             return ret;
         }
@@ -847,7 +847,7 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         void System.ComponentModel.IBindingList.AddIndex(System.ComponentModel.PropertyDescriptor property)
         {
-            this._blm2462787788.AddIndex(property);
+            this._blm2524530710.AddIndex(property);
         }
         
         protected virtual void OnAddingNew(System.ComponentModel.AddingNewEventArgs e)
@@ -860,13 +860,13 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         object System.ComponentModel.IBindingList.AddNew()
         {
-            SoftFluent.Samples.ReadOnLoad.Customer add = new SoftFluent.Samples.ReadOnLoad.Customer();
+            SoftFluent.Samples.ReadOnSave.Customer add = new SoftFluent.Samples.ReadOnSave.Customer();
             System.ComponentModel.AddingNewEventArgs e = new System.ComponentModel.AddingNewEventArgs(add);
             this.OnAddingNew(e);
-            add = ((SoftFluent.Samples.ReadOnLoad.Customer)(e.NewObject));
+            add = ((SoftFluent.Samples.ReadOnSave.Customer)(e.NewObject));
             if ((add == null))
             {
-                add = new SoftFluent.Samples.ReadOnLoad.Customer();
+                add = new SoftFluent.Samples.ReadOnSave.Customer();
             }
             add.Id = System.Guid.NewGuid();
             this._addNewPos = this.Add(add);
@@ -875,22 +875,22 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         void System.ComponentModel.IBindingList.ApplySort(System.ComponentModel.PropertyDescriptor property, System.ComponentModel.ListSortDirection direction)
         {
-            this._blm2462787788.ApplySort(property, direction);
+            this._blm2524530710.ApplySort(property, direction);
         }
         
         int System.ComponentModel.IBindingList.Find(System.ComponentModel.PropertyDescriptor property, object key)
         {
-            return this._blm2462787788.Find(property, key);
+            return this._blm2524530710.Find(property, key);
         }
         
         void System.ComponentModel.IBindingList.RemoveIndex(System.ComponentModel.PropertyDescriptor property)
         {
-            this._blm2462787788.RemoveIndex(property);
+            this._blm2524530710.RemoveIndex(property);
         }
         
         void System.ComponentModel.IBindingList.RemoveSort()
         {
-            this._blm2462787788.RemoveSort();
+            this._blm2524530710.RemoveSort();
         }
         
         protected virtual void OnListChanged(System.ComponentModel.ListChangedEventArgs e)
@@ -915,7 +915,7 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
         }
         
-        public void AddRange(System.Collections.Generic.IEnumerable<SoftFluent.Samples.ReadOnLoad.Customer> collection)
+        public void AddRange(System.Collections.Generic.IEnumerable<SoftFluent.Samples.ReadOnSave.Customer> collection)
         {
             CodeFluent.Runtime.Utilities.ConvertUtilities.AddRange(this, collection);
         }
@@ -926,7 +926,7 @@ namespace SoftFluent.Samples.ReadOnLoad
             {
                 throw new System.ArgumentNullException("e");
             }
-            SoftFluent.Samples.ReadOnLoad.Customer existing;
+            SoftFluent.Samples.ReadOnSave.Customer existing;
             if ((this.BaseTable.TryGetValue(e.OldKey, out existing) == false))
             {
                 return;
@@ -941,24 +941,24 @@ namespace SoftFluent.Samples.ReadOnLoad
                 }
                 catch (System.ArgumentNullException ane)
                 {
-                    throw new System.ArgumentNullException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.VoidCollectionKey, "SoftFluent.Samples.ReadOnLoad.CustomerCollection", ((CodeFluent.Runtime.ICodeFluentEntity)(item)).EntityKey), ane);
+                    throw new System.ArgumentNullException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.VoidCollectionKey, "SoftFluent.Samples.ReadOnSave.CustomerCollection", ((CodeFluent.Runtime.ICodeFluentEntity)(item)).EntityKey), ane);
                 }
                 catch (System.ArgumentException ae)
                 {
-                    throw new System.ArgumentException(SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.ItemAlreadyAdded, "SoftFluent.Samples.ReadOnLoad.CustomerCollection", item.Key), ae);
+                    throw new System.ArgumentException(SoftFluent.Samples.ReadOnSave.Resources.Manager.GetUserMessage(null, CodeFluent.Runtime.UserExceptionType.ItemAlreadyAdded, "SoftFluent.Samples.ReadOnSave.CustomerCollection", item.Key), ae);
                 }
                 this.BaseTable.Remove(e.OldKey);
             }
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, true)]
-        public static SoftFluent.Samples.ReadOnLoad.CustomerCollection PageLoadAll(int pageIndex, int pageSize)
+        public static SoftFluent.Samples.ReadOnSave.CustomerCollection PageLoadAll(int pageIndex, int pageSize)
         {
-            return SoftFluent.Samples.ReadOnLoad.CustomerCollection.PageLoadAll(pageIndex, pageSize, null);
+            return SoftFluent.Samples.ReadOnSave.CustomerCollection.PageLoadAll(pageIndex, pageSize, null);
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, true)]
-        public static bool Save(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public static bool Save(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -969,14 +969,14 @@ namespace SoftFluent.Samples.ReadOnLoad
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public static bool Insert(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public static bool Insert(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
-            bool ret = SoftFluent.Samples.ReadOnLoad.Customer.Save(customer);
+            bool ret = SoftFluent.Samples.ReadOnSave.Customer.Save(customer);
             return ret;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public static bool Delete(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public static bool Delete(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {

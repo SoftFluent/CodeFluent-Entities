@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.ReadOnLoad.Model", "SoftFluent.Samples.ReadOnLoad.Model\SoftFluent.Samples.ReadOnLoad.Model.cfxproj", "{52165C52-DF85-417C-872A-B1091E331689}"
+Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.ReadOnSave.Model", "SoftFluent.Samples.ReadOnSave.Model\SoftFluent.Samples.ReadOnSave.Model.cfxproj", "{52165C52-DF85-417C-872A-B1091E331689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.ReadOnLoad", "SoftFluent.Samples.ReadOnLoad\SoftFluent.Samples.ReadOnLoad.csproj", "{BFDD7AA2-D71C-45C2-B0C1-C3B75DF22E31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.ReadOnSave", "SoftFluent.Samples.ReadOnSave\SoftFluent.Samples.ReadOnSave.csproj", "{BFDD7AA2-D71C-45C2-B0C1-C3B75DF22E31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.ReadOnLoad.Aspects", "SoftFluent.Samples.ReadOnLoad.Aspects\SoftFluent.Samples.ReadOnLoad.Aspects.csproj", "{C1662FC9-D5EB-4D27-98BF-E35191FAFD9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.ReadOnSave.Aspects", "SoftFluent.Samples.ReadOnSave.Aspects\SoftFluent.Samples.ReadOnSave.Aspects.csproj", "{C1662FC9-D5EB-4D27-98BF-E35191FAFD9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

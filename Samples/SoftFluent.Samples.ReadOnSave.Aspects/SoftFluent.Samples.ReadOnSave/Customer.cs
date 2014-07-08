@@ -8,20 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SoftFluent.Samples.ReadOnLoad
+namespace SoftFluent.Samples.ReadOnSave
 {
     using CodeFluent.Runtime;
     using CodeFluent.Runtime.Utilities;
     
     
-    // CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 23 June 2014 17:39.
-    // Build:1.0.61214.0770
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
+    // CodeFluent Entities generated (http://www.softfluent.com). Date: Tuesday, 08 July 2014 10:52.
+    // Build:1.0.61214.0772
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DataObjectAttribute()]
     [System.Diagnostics.DebuggerDisplayAttribute("EK={EntityKey}, Name={Name}, Id={Id}")]
     [System.ComponentModel.TypeConverterAttribute(typeof(CodeFluent.Runtime.Design.NameTypeConverter))]
-    public partial class Customer : System.ICloneable, System.IComparable, System.IComparable<SoftFluent.Samples.ReadOnLoad.Customer>, CodeFluent.Runtime.ICodeFluentCollectionEntity<System.Guid>, System.ComponentModel.IDataErrorInfo, CodeFluent.Runtime.ICodeFluentMemberValidator, CodeFluent.Runtime.ICodeFluentSummaryValidator, System.IEquatable<SoftFluent.Samples.ReadOnLoad.Customer>
+    public partial class Customer : System.ICloneable, System.IComparable, System.IComparable<SoftFluent.Samples.ReadOnSave.Customer>, CodeFluent.Runtime.ICodeFluentCollectionEntity<System.Guid>, System.ComponentModel.IDataErrorInfo, CodeFluent.Runtime.ICodeFluentMemberValidator, CodeFluent.Runtime.ICodeFluentSummaryValidator, System.IEquatable<SoftFluent.Samples.ReadOnSave.Customer>
     {
         
         private bool _raisePropertyChangedEvents = true;
@@ -246,7 +246,7 @@ namespace SoftFluent.Samples.ReadOnLoad
             }
         }
         
-        public virtual bool Equals(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public virtual bool Equals(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -266,15 +266,15 @@ namespace SoftFluent.Samples.ReadOnLoad
         
         public override bool Equals(object obj)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer = null;
-			customer = obj as SoftFluent.Samples.ReadOnLoad.Customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer = null;
+			customer = obj as SoftFluent.Samples.ReadOnSave.Customer;
             return this.Equals(customer);
         }
         
         int System.IComparable.CompareTo(object value)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer = null;
-customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer = null;
+customer = value as SoftFluent.Samples.ReadOnSave.Customer;
             if ((customer == null))
             {
                 throw new System.ArgumentException("value");
@@ -283,7 +283,7 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
             return localCompareTo;
         }
         
-        public virtual int CompareTo(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public virtual int CompareTo(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -312,15 +312,15 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
                 }
                 else
                 {
-                    externalValidate = SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetStringWithDefault(culture, "SoftFluent.Samples.ReadOnLoad.Customer.ExternalValidate", "Type \'SoftFluent.Samples.ReadOnLoad.Customer\' cannot be validated.", null);
+                    externalValidate = SoftFluent.Samples.ReadOnSave.Resources.Manager.GetStringWithDefault(culture, "SoftFluent.Samples.ReadOnSave.Customer.ExternalValidate", "Type \'SoftFluent.Samples.ReadOnSave.Customer\' cannot be validated.", null);
                 }
                 CodeFluentPersistence.AddValidationError(results, externalValidate);
             }
             CodeFluentPersistence.ValidateMember(culture, results, this, null);
             if ((this.Id.Equals(CodeFluentPersistence.DefaultGuidValue) == true))
             {
-                string localValidate = SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetStringWithDefault(culture, "SoftFluent.Samples.ReadOnLoad.Customer.Id.NullException", "\'Id\' property cannot be set to \'00000000-0000-0000-0000-000000000000\' for type \'S" +
-                        "oftFluent.Samples.ReadOnLoad.Customer\'", null);
+                string localValidate = SoftFluent.Samples.ReadOnSave.Resources.Manager.GetStringWithDefault(culture, "SoftFluent.Samples.ReadOnSave.Customer.Id.NullException", "\'Id\' property cannot be set to \'00000000-0000-0000-0000-000000000000\' for type \'S" +
+                        "oftFluent.Samples.ReadOnSave.Customer\'", null);
                 CodeFluentPersistence.AddValidationError(results, localValidate);
             }
             this.OnEntityAction(new CodeFluent.Runtime.CodeFluentEntityActionEventArgs(this, CodeFluent.Runtime.CodeFluentEntityAction.Validated, false, results));
@@ -363,7 +363,7 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
             {
                 return ret;
             }
-            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence;
+            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence;
             persistence.CreateStoredProcedureCommand(null, "Customer", "Delete");
             persistence.AddParameter("@Customer_Id", this.Id, CodeFluentPersistence.DefaultGuidValue);
             persistence.AddParameter("@_rowVersion", this.RowVersion);
@@ -420,14 +420,14 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, true)]
-        public static SoftFluent.Samples.ReadOnLoad.Customer Load(System.Guid id)
+        public static SoftFluent.Samples.ReadOnSave.Customer Load(System.Guid id)
         {
             if ((id.Equals(CodeFluentPersistence.DefaultGuidValue) == true))
             {
                 return null;
             }
-            SoftFluent.Samples.ReadOnLoad.Customer customer = new SoftFluent.Samples.ReadOnLoad.Customer();
-            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence;
+            SoftFluent.Samples.ReadOnSave.Customer customer = new SoftFluent.Samples.ReadOnSave.Customer();
+            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence;
             persistence.CreateStoredProcedureCommand(null, "Customer", "Load");
             persistence.AddParameter("@Id", id, CodeFluentPersistence.DefaultGuidValue);
             System.Data.IDataReader reader = null;
@@ -453,14 +453,14 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, false)]
-        public static SoftFluent.Samples.ReadOnLoad.Customer LoadById(System.Guid id)
+        public static SoftFluent.Samples.ReadOnSave.Customer LoadById(System.Guid id)
         {
             if ((id.Equals(CodeFluentPersistence.DefaultGuidValue) == true))
             {
                 return null;
             }
-            SoftFluent.Samples.ReadOnLoad.Customer customer = new SoftFluent.Samples.ReadOnLoad.Customer();
-            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence;
+            SoftFluent.Samples.ReadOnSave.Customer customer = new SoftFluent.Samples.ReadOnSave.Customer();
+            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence;
             persistence.CreateStoredProcedureCommand(null, "Customer", "LoadById");
             persistence.AddParameter("@Id", id, CodeFluentPersistence.DefaultGuidValue);
             System.Data.IDataReader reader = null;
@@ -492,7 +492,7 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
             {
                 return ret;
             }
-            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence;
+            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence;
             persistence.CreateStoredProcedureCommand(null, "Customer", "Load");
             persistence.AddParameter("@Id", this.Id);
             System.Data.IDataReader reader = null;
@@ -541,7 +541,7 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
             {
                 return false;
             }
-            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName).Persistence;
+            CodeFluent.Runtime.CodeFluentPersistence persistence = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName).Persistence;
             persistence.CreateStoredProcedureCommand(null, "Customer", "Save");
             persistence.AddParameter("@Customer_Id", this.Id, CodeFluentPersistence.DefaultGuidValue);
             persistence.AddParameter("@Customer_Name", this.Name, default(string));
@@ -577,7 +577,7 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, true)]
-        public static bool Save(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public static bool Save(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -588,14 +588,14 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public static bool Insert(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public static bool Insert(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
-            bool ret = SoftFluent.Samples.ReadOnLoad.Customer.Save(customer);
+            bool ret = SoftFluent.Samples.ReadOnSave.Customer.Save(customer);
             return ret;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public static bool Delete(SoftFluent.Samples.ReadOnLoad.Customer customer)
+        public static bool Delete(SoftFluent.Samples.ReadOnSave.Customer customer)
         {
             if ((customer == null))
             {
@@ -640,15 +640,15 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
         }
         
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, true)]
-        public static SoftFluent.Samples.ReadOnLoad.Customer LoadByEntityKey(string key)
+        public static SoftFluent.Samples.ReadOnSave.Customer LoadByEntityKey(string key)
         {
             if ((key == string.Empty))
             {
                 return null;
             }
-            SoftFluent.Samples.ReadOnLoad.Customer customer;
+            SoftFluent.Samples.ReadOnSave.Customer customer;
             System.Guid var = ((System.Guid)(ConvertUtilities.ChangeType(key, typeof(System.Guid), CodeFluentPersistence.DefaultGuidValue)));
-            customer = SoftFluent.Samples.ReadOnLoad.Customer.Load(var);
+            customer = SoftFluent.Samples.ReadOnSave.Customer.Load(var);
             return customer;
         }
         
@@ -656,16 +656,16 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
         {
         }
         
-        public SoftFluent.Samples.ReadOnLoad.Customer Clone(bool deep)
+        public SoftFluent.Samples.ReadOnSave.Customer Clone(bool deep)
         {
-            SoftFluent.Samples.ReadOnLoad.Customer customer = new SoftFluent.Samples.ReadOnLoad.Customer();
+            SoftFluent.Samples.ReadOnSave.Customer customer = new SoftFluent.Samples.ReadOnSave.Customer();
             this.CopyTo(customer, deep);
             return customer;
         }
         
-        public SoftFluent.Samples.ReadOnLoad.Customer Clone()
+        public SoftFluent.Samples.ReadOnSave.Customer Clone()
         {
-            SoftFluent.Samples.ReadOnLoad.Customer localClone = this.Clone(true);
+            SoftFluent.Samples.ReadOnSave.Customer localClone = this.Clone(true);
             return localClone;
         }
         
@@ -696,7 +696,7 @@ customer = value as SoftFluent.Samples.ReadOnLoad.Customer;
             this.OnEntityAction(new CodeFluent.Runtime.CodeFluentEntityActionEventArgs(this, CodeFluent.Runtime.CodeFluentEntityAction.CopyFrom, false, dict));
         }
         
-        public virtual void CopyTo(SoftFluent.Samples.ReadOnLoad.Customer customer, bool deep)
+        public virtual void CopyTo(SoftFluent.Samples.ReadOnSave.Customer customer, bool deep)
         {
             if ((customer == null))
             {

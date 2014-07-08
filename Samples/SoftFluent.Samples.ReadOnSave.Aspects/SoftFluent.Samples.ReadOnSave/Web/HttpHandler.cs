@@ -8,14 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SoftFluent.Samples.ReadOnLoad.Web
+namespace SoftFluent.Samples.ReadOnSave.Web
 {
     using CodeFluent.Runtime;
     using CodeFluent.Runtime.Utilities;
     
     
-    // CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 23 June 2014 17:39.
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
+    // CodeFluent Entities generated (http://www.softfluent.com). Date: Tuesday, 08 July 2014 10:52.
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
     public partial class HttpHandler : CodeFluent.Runtime.Web.UI.BinaryLargeObjectHttpHandler
     {
         
@@ -27,7 +27,7 @@ namespace SoftFluent.Samples.ReadOnLoad.Web
             {
                 if ((this._context == null))
                 {
-                    this._context = CodeFluentContext.Get(SoftFluent.Samples.ReadOnLoad.Constants.SoftFluent_Samples_ReadOnLoadStoreName);
+                    this._context = CodeFluentContext.Get(SoftFluent.Samples.ReadOnSave.Constants.SoftFluent_Samples_ReadOnSaveStoreName);
                 }
                 return this._context;
             }

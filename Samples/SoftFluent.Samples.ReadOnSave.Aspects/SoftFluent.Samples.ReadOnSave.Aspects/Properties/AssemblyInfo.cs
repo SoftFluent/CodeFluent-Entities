@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SoftFluent.Samples.ReadOnLoad")]
+[assembly: AssemblyTitle("SoftFluent.Samples.ReadOnSave.Aspects")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SoftFluent.Samples.ReadOnLoad")]
+[assembly: AssemblyProduct("SoftFluent.Samples.ReadOnSave.Aspects")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7a8c5130-d7b6-4b43-a14a-9a2690ba1a44")]
+[assembly: Guid("f5aea390-b417-41da-88e6-2d44f4c1a7f5")]
 
 // Version information for an assembly consists of the following four values:
 //

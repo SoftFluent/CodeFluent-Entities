@@ -8,18 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttribute("1.0.61214.0770", "CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 23 June " +
-    "2014 17:39.", CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttributeOptions.CompiledWithVisualStudio, 1973199124u)]
+[assembly: CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttribute("1.0.61214.0772", "CodeFluent Entities generated (http://www.softfluent.com). Date: Tuesday, 08 July" +
+    " 2014 10:52.", CodeFluent.Runtime.Utilities.CodeFluentGeneratedAttributeOptions.CompiledWithVisualStudio, 1852069738u)]
 
-namespace SoftFluent.Samples.ReadOnLoad.Resources
+namespace SoftFluent.Samples.ReadOnSave.Resources
 {
     using CodeFluent.Runtime;
     using CodeFluent.Runtime.Utilities;
     
     
-    // CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 23 June 2014 17:39.
-    // Build:1.0.61214.0770
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
+    // CodeFluent Entities generated (http://www.softfluent.com). Date: Tuesday, 08 July 2014 10:52.
+    // Build:1.0.61214.0772
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
     public sealed partial class Manager
     {
         
@@ -29,7 +29,7 @@ namespace SoftFluent.Samples.ReadOnLoad.Resources
         
         private Manager()
         {
-            this._resources = new System.Resources.ResourceManager("SoftFluent.Samples.ReadOnLoad.SoftFluent.Samples.ReadOnLoad", System.Reflection.Assembly.GetExecutingAssembly());
+            this._resources = new System.Resources.ResourceManager("SoftFluent.Samples.ReadOnSave.SoftFluent.Samples.ReadOnSave", System.Reflection.Assembly.GetExecutingAssembly());
             try
             {
                 this._resources.GetString("_cf_build");
@@ -166,21 +166,21 @@ namespace SoftFluent.Samples.ReadOnLoad.Resources
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
     public sealed partial class ValueValidationFailureHandler : CodeFluent.Runtime.Rules.BaseValueValidationFailureHandler
     {
         
-        private static SoftFluent.Samples.ReadOnLoad.Resources.ValueValidationFailureHandler _current = new SoftFluent.Samples.ReadOnLoad.Resources.ValueValidationFailureHandler();
+        private static SoftFluent.Samples.ReadOnSave.Resources.ValueValidationFailureHandler _current = new SoftFluent.Samples.ReadOnSave.Resources.ValueValidationFailureHandler();
         
         public ValueValidationFailureHandler()
         {
         }
         
-        public static SoftFluent.Samples.ReadOnLoad.Resources.ValueValidationFailureHandler Current
+        public static SoftFluent.Samples.ReadOnSave.Resources.ValueValidationFailureHandler Current
         {
             get
             {
-                return SoftFluent.Samples.ReadOnLoad.Resources.ValueValidationFailureHandler._current;
+                return SoftFluent.Samples.ReadOnSave.Resources.ValueValidationFailureHandler._current;
             }
         }
         
@@ -188,7 +188,7 @@ namespace SoftFluent.Samples.ReadOnLoad.Resources
         {
             string baseMessage = base.GetMessage(culture, validator, failureCode, arguments);
             string code = this.GetCode(validator, failureCode);
-            string message = SoftFluent.Samples.ReadOnLoad.Resources.Manager.GetString(culture, code, arguments);
+            string message = SoftFluent.Samples.ReadOnSave.Resources.Manager.GetString(culture, code, arguments);
             if ((message == code))
             {
                 return baseMessage;
@@ -197,17 +197,17 @@ namespace SoftFluent.Samples.ReadOnLoad.Resources
         }
     }
 }
-namespace SoftFluent.Samples.ReadOnLoad
+namespace SoftFluent.Samples.ReadOnSave
 {
     using CodeFluent.Runtime;
     using CodeFluent.Runtime.Utilities;
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0770")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0772")]
     public sealed partial class Constants
     {
         
-        public const string SoftFluent_Samples_ReadOnLoadStoreName = "SoftFluent.Samples.ReadOnLoad";
+        public const string SoftFluent_Samples_ReadOnSaveStoreName = "SoftFluent.Samples.ReadOnSave";
         
         private Constants()
         {
