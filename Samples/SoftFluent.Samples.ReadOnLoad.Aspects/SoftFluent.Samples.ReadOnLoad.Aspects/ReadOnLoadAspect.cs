@@ -126,7 +126,7 @@ namespace SoftFluent.Samples.ReadOnLoad
 
                 foreach (var s in blockStatement.Statements)
                 {
-                    if (IsInsertOrUpdateStatement(s))
+                    if (IsInsertOrUpdateStatement(s)) // SELECT DISTINCT @Order_Id = SCOPE_IDENTITY() 
                     {
                         insertOrUpdate = true;
                     }
@@ -134,6 +134,9 @@ namespace SoftFluent.Samples.ReadOnLoad
                     var selectStatement = s as ProcedureSelectStatement;
                     if (insertOrUpdate && selectStatement != null) // SELECT statement after INSERT or UPDATE statement
                     {
+                        if (IsReadIdentityStatement(selectStatement))
+                            continue;
+
                         foreach (var column in columns)
                         {
                             var setStatment = new ProcedureSetStatement(selectStatement, new TableRefColumn(column));
@@ -149,6 +152,27 @@ namespace SoftFluent.Samples.ReadOnLoad
                     }
                 }
             });
+        }
+
+        private bool IsReadIdentityStatement(ProcedureSelectStatement selectStatement)
+        {
+            if (selectStatement == null)
+                return false;
+
+            foreach (ProcedureStatement statement in selectStatement.Set)
+            {
+                var setStatement = statement as ProcedureSetStatement;
+                if (setStatement == null)
+                    continue;
+
+                if (setStatement.RightExpression == null)
+                    continue;
+
+                if (setStatement.RightExpression.Function == ProcedureFunctionType.Identity)
+                    return true;
+            }
+
+            return false;
         }
 
         private bool IsInsertOrUpdateStatement(ProcedureStatement statement)
