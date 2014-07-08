@@ -89,31 +89,32 @@ namespace SoftFluent.Samples.ReadOnLoad
                 // SELECT ...
                 
                 /*
-    -- Statement 1 : ProcedureBlockStatement which contains UPDATE & if(@error)
-    UPDATE [Login] SET
-     [Login].[Login_ProviderName] = @Login_ProviderName,
-     [Login].[_trackLastWriteTime] = GETDATE()
-        WHERE (([Login].[Login_Id] = @Login_Id) AND ([Login].[_rowVersion] = @_rowVersion))
-    
-    SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
-    IF(@error != 0)
-    BEGIN
-        IF @tran = 1 ROLLBACK TRANSACTION
-        RETURN
-    END
-    
-    -- Statement 2 : ProcedureIfStatement
-    IF(@rowcount = 0)
-    BEGIN
-        IF @tran = 1 ROLLBACK TRANSACTION
-        RAISERROR (50001, 16, 1, 'Login_Save')
-        RETURN
-    END
-    
-    -- Statement 3 : ProcedureSelectStatement
-    SELECT DISTINCT [Login].[_rowVersion] 
-        FROM [Login]
-        WHERE ([Login].[Login_Id] = @Login_Id)
+                 * 
+                -- Statement 1 : ProcedureBlockStatement which contains UPDATE & if(@error)
+                UPDATE [Login] SET
+                 [Login].[Login_ProviderName] = @Login_ProviderName,
+                 [Login].[_trackLastWriteTime] = GETDATE()
+                    WHERE (([Login].[Login_Id] = @Login_Id) AND ([Login].[_rowVersion] = @_rowVersion))
+                
+                SELECT @error = @@ERROR, @rowcount = @@ROWCOUNT
+                IF(@error != 0)
+                BEGIN
+                    IF @tran = 1 ROLLBACK TRANSACTION
+                    RETURN
+                END
+                
+                -- Statement 2 : ProcedureIfStatement
+                IF(@rowcount = 0)
+                BEGIN
+                    IF @tran = 1 ROLLBACK TRANSACTION
+                    RAISERROR (50001, 16, 1, 'Login_Save')
+                    RETURN
+                END
+                
+                -- Statement 3 : ProcedureSelectStatement
+                SELECT DISTINCT [Login].[_rowVersion] 
+                    FROM [Login]
+                    WHERE ([Login].[Login_Id] = @Login_Id)
                 
                 */
                 
@@ -126,7 +127,7 @@ namespace SoftFluent.Samples.ReadOnLoad
 
                 foreach (var s in blockStatement.Statements)
                 {
-                    if (IsInsertOrUpdateStatement(s)) // SELECT DISTINCT @Order_Id = SCOPE_IDENTITY() 
+                    if (IsInsertOrUpdateStatement(s)) 
                     {
                         insertOrUpdate = true;
                     }
@@ -134,7 +135,7 @@ namespace SoftFluent.Samples.ReadOnLoad
                     var selectStatement = s as ProcedureSelectStatement;
                     if (insertOrUpdate && selectStatement != null) // SELECT statement after INSERT or UPDATE statement
                     {
-                        if (IsReadIdentityStatement(selectStatement))
+                        if (IsReadIdentityStatement(selectStatement)) // SELECT DISTINCT @Id = SCOPE_IDENTITY() 
                             continue;
 
                         foreach (var column in columns)
