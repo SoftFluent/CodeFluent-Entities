@@ -23,9 +23,9 @@ namespace SoftFluent.Samples.StoreEnumAsText.Aspects
             Descriptor = new XmlDocument();
             Descriptor.LoadXml(
 @"<cf:project xmlns:cf='http://www.softfluent.com/codefluent/2005/1' defaultNamespace='StoreEnumerationAsTextAspect'>
-    <cf:pattern name='Store Enumeration As String Aspect' namespaceUri='" + Namespace + @"' preferredPrefix='enat' step='Methods'>
-       <cf:message class='_doc'> CodeFluent Sample StoreEnumerationAsText Aspect Version 1.0.0.0 - 2014/06/24 
-           This aspect allows to store enum as string
+    <cf:pattern name='Store Enumeration As Text Aspect' namespaceUri='" + Namespace + @"' preferredPrefix='enat' step='Methods'>
+       <cf:message class='_doc'> CodeFluent Sample Store Enumeration As Text Aspect Version 1.0.0.0 - 2014/06/24 
+           This aspect allows to store enum as text
        </cf:message>
 
        <cf:descriptor name='storeAsText'
