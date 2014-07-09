@@ -1,0 +1,32 @@
+<cf:project defaultNamespace="SoftFluent.SqlServerInMemory" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:sim="http://www.softfluent.com/aspects/samples/sql-server-in-memory" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:pattern typeName="SoftFluent.SqlServerInMemory.Aspects.SqlServerInMemoryAspect, SoftFluent.SqlServerInMemory.Aspects" step="Start" />
+  <cf:reference name="SoftFluent.SqlServerInMemory.Aspects.dll" path="..\SoftFluent.SqlServerInMemory.Aspects\bin\Debug\SoftFluent.SqlServerInMemory.Aspects.dll" />
+  <cf:entity name="Customer" sim:enabled="true" concurrencyMode="None" namespace="SoftFluent.SqlServerInMemory" categoryPath="/SoftFluent.SqlServerInMemory">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Name" nullable="false" />
+    <cf:property name="ContactSource" typeName="{0}.ContactSource" />
+  </cf:entity>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.SqlServerInMemory\sql" targetVersion="Sql2014" connectionString="Server=SFVPA01\SQL2014;Database=SoftFluent.SqlServerInMemory;Integrated Security=true;Application Name=SoftFluent.SqlServerInMemory" cfx:targetProject="..\SoftFluent.SqlServerInMemory\SoftFluent.SqlServerInMemory.csproj" cfx:targetProjectLayout="Update, DontRemove" useLocalTransactions="true" useDateTime2="true" />
+  </cf:producer>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.SqlServerInMemory" cfx:targetProject="..\SoftFluent.SqlServerInMemory\SoftFluent.SqlServerInMemory.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <ContactSource sim:enabled="false" namespace="SoftFluent.SqlServerInMemory" categoryPath="/Demo.ContactManager1">
+    <Id key="true" typeName="int" />
+    <Name entityDisplay="true" nullable="false" />
+    <cf:instance xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+      <Id>1</Id>
+      <Name>Direct Call</Name>
+    </cf:instance>
+    <cf:instance xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+      <Id>2</Id>
+      <Name>Network</Name>
+    </cf:instance>
+    <cf:instance xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+      <Id>3</Id>
+      <Name>Event</Name>
+    </cf:instance>
+  </ContactSource>
+</cf:project>
