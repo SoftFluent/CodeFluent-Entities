@@ -1,36 +1,36 @@
 This producer allows to generate an ASP.NET Identity implementation. It will help you in creating identity entities and generating `UserStore` and `RoleStore`
 
 ## Supported ASP.NET Identity interfaces:
-- Microsoft.AspNet.Identity.IUser
-- Microsoft.AspNet.Identity.IUser<TKey>
-- Microsoft.AspNet.Identity.IRole
-- Microsoft.AspNet.Identity.IRole<TKey>
-- Microsoft.AspNet.Identity.IUserStore<TUser>
-- Microsoft.AspNet.Identity.IUserStore<TUser, TKey>
-- Microsoft.AspNet.Identity.IUserPasswordStore<TUser>,
-- Microsoft.AspNet.Identity.IUserPasswordStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserSecurityStampStore<TUser>,
-- Microsoft.AspNet.Identity.IUserSecurityStampStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserRoleStore<TUser>,
-- Microsoft.AspNet.Identity.IUserRoleStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserLoginStore<TUser>,
-- Microsoft.AspNet.Identity.IUserLoginStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserLockoutStore<TUser, string>,
-- Microsoft.AspNet.Identity.IUserLockoutStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserClaimStore<TUser>,
-- Microsoft.AspNet.Identity.IUserClaimStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserEmailStore<TUser>,
-- Microsoft.AspNet.Identity.IUserEmailStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserPhoneNumberStore<TUser>,
-- Microsoft.AspNet.Identity.IUserPhoneNumberStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IUserTwoFactorStore<TUser, string>,
-- Microsoft.AspNet.Identity.IUserTwoFactorStore<TUser, TKey>,
-- Microsoft.AspNet.Identity.IRoleStore<TRole>,
-- Microsoft.AspNet.Identity.IRoleStore<TRole, TKey>,
-- Microsoft.AspNet.Identity.IQueryableRoleStore<TRole>
-- Microsoft.AspNet.Identity.IQueryableRoleStore<TRole, TKey>
-- Microsoft.AspNet.Identity.IQueryableUserStore<TRole>
-- Microsoft.AspNet.Identity.IQueryableUserStore<TRole, TKey>
+- `Microsoft.AspNet.Identity.IUser`
+- `Microsoft.AspNet.Identity.IUser<TKey>`
+- `Microsoft.AspNet.Identity.IRole`
+- `Microsoft.AspNet.Identity.IRole<TKey>`
+- `Microsoft.AspNet.Identity.IUserStore<TUser>`
+- `Microsoft.AspNet.Identity.IUserStore<TUser, TKey>`
+- `Microsoft.AspNet.Identity.IUserPasswordStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserPasswordStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserSecurityStampStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserSecurityStampStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserRoleStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserRoleStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserLoginStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserLoginStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserLockoutStore<TUser, string>,`
+- `Microsoft.AspNet.Identity.IUserLockoutStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserClaimStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserClaimStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserEmailStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserEmailStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserPhoneNumberStore<TUser>,`
+- `Microsoft.AspNet.Identity.IUserPhoneNumberStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IUserTwoFactorStore<TUser, string>,`
+- `Microsoft.AspNet.Identity.IUserTwoFactorStore<TUser, TKey>,`
+- `Microsoft.AspNet.Identity.IRoleStore<TRole>,`
+- `Microsoft.AspNet.Identity.IRoleStore<TRole, TKey>,`
+- `Microsoft.AspNet.Identity.IQueryableRoleStore<TRole>`
+- `Microsoft.AspNet.Identity.IQueryableRoleStore<TRole, TKey>`
+- `Microsoft.AspNet.Identity.IQueryableUserStore<TRole>`
+- `Microsoft.AspNet.Identity.IQueryableUserStore<TRole, TKey>`
 
 *Note: While CodeFluent Entities does not provide an `IQueryable` data source such as some ORM, stores can implement `IQueryableRoleStore` and `IQueryableUserStore`. The implementation is very limited and simply calls `LoadAll` method.*
 
