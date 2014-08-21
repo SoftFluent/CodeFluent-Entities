@@ -37,13 +37,13 @@
   <ItemGroup>
     <Reference Include="CodeFluent.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Build\bin\Debug\CodeFluent.Model.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Model.Common">
-      <HintPath>..\..\..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Build\bin\Debug\CodeFluent.Model.Common.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime">
-      <HintPath>..\..\..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Runtime\bin\Debug\CodeFluent.Runtime.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
