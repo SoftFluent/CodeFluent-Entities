@@ -11,10 +11,17 @@
 
 namespace [%=TemplateProducer.Namespace%]
 {
-	public partial class RoleStore : [% if (TemplateProducer.CanImplementQueryableRoleStore) { %]Microsoft.AspNet.Identity.IQueryableRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]>, [% } 
-										if (TemplateProducer.CanImplementQueryableRoleStore && TemplateProducer.IdentityRole.MustImplementGenericInterface) { %]Microsoft.AspNet.Identity.IQueryableRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%], [%=TemplateProducer.IdentityRole.KeyTypeName%]>, [% } 
-										if (TemplateProducer.IdentityRole.MustImplementGenericInterface) { %]Microsoft.AspNet.Identity.IRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%], [%=TemplateProducer.IdentityRole.KeyTypeName%]>, [% } 
-                                        %]Microsoft.AspNet.Identity.IRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]>
+	public partial class RoleStore :
+		Microsoft.AspNet.Identity.IRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]>[% 
+
+        if(TemplateProducer.IdentityRole.MustImplementGenericInterface) { %],
+        Microsoft.AspNet.Identity.IRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%], [%=TemplateProducer.IdentityRole.KeyTypeName%]>[% }
+
+        if(TemplateProducer.CanImplementQueryableRoleStore) { %],
+        Microsoft.AspNet.Identity.IQueryableRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]>[% } 
+
+        if(TemplateProducer.CanImplementQueryableRoleStore && TemplateProducer.IdentityRole.MustImplementGenericInterface) { %],
+        Microsoft.AspNet.Identity.IQueryableRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%], [%=TemplateProducer.IdentityRole.KeyTypeName%]>[% } %]        
 	{
         public System.Threading.Tasks.Task CreateAsync([%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%] role)
         {
@@ -63,8 +70,7 @@ namespace [%=TemplateProducer.Namespace%]
 				return System.Linq.Queryable.AsQueryable([%=TemplateProducer.IdentityRole.LoadAllMethod.Entity.Set.ClrFullTypeName%].[%=TemplateProducer.IdentityRole.LoadAllMethod.Name%]());
 			}
 		}
-		[% } %]
-		
+		[% } %]		
         public void Dispose()
         {
         }

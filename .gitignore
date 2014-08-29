@@ -214,3 +214,6 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 Samples/SoftFluent.Samples.ReadOnLoad.Aspects/SoftFluent.Samples.ReadOnLoad.Model/SoftFluent.Samples.ReadOnLoad.build.xml
+*.chk
+*.jrs
+*.ide

@@ -51,69 +51,69 @@ Func<Method, string> CallMethod = method =>
 namespace [%=TemplateProducer.Namespace%]
 {
     public partial class UserStore : 
-        Microsoft.AspNet.Identity.IUserStore<[%=userTypeName%]>,[% 
+        Microsoft.AspNet.Identity.IUserStore<[%=userTypeName%]>[% 
 
-        if(TemplateProducer.CanImplementQueryableUserStore) { %]
-        Microsoft.AspNet.Identity.IQueryableUserStore<[%=userTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementQueryableUserStore) { %],
+        Microsoft.AspNet.Identity.IQueryableUserStore<[%=userTypeName%]>[% } 
 
-        if(TemplateProducer.CanImplementPasswordStore) { %]
-        Microsoft.AspNet.Identity.IUserPasswordStore<[%=userTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementPasswordStore) { %],
+        Microsoft.AspNet.Identity.IUserPasswordStore<[%=userTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementSecurityStampStore) { %]
-        Microsoft.AspNet.Identity.IUserSecurityStampStore<[%=userTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementSecurityStampStore) { %],
+        Microsoft.AspNet.Identity.IUserSecurityStampStore<[%=userTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementRoleStore) { %]
-        Microsoft.AspNet.Identity.IUserRoleStore<[%=userTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementRoleStore) { %],
+        Microsoft.AspNet.Identity.IUserRoleStore<[%=userTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementLoginStore) { %]
-        Microsoft.AspNet.Identity.IUserLoginStore<[%=userTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementLoginStore) { %],
+        Microsoft.AspNet.Identity.IUserLoginStore<[%=userTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementLockoutStore) { %]
-        Microsoft.AspNet.Identity.IUserLockoutStore<[%=userTypeName%], string>,[% }
+        if(TemplateProducer.CanImplementLockoutStore) { %],
+        Microsoft.AspNet.Identity.IUserLockoutStore<[%=userTypeName%], string>[% }
         
-        if(TemplateProducer.CanImplementClaimsStore) { %]
-        Microsoft.AspNet.Identity.IUserClaimStore<[%=userTypeName%]>,[% }
+        if(TemplateProducer.CanImplementClaimsStore) { %],
+        Microsoft.AspNet.Identity.IUserClaimStore<[%=userTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementEmailStore) { %]
-        Microsoft.AspNet.Identity.IUserEmailStore<[%=userTypeName%]>,[% }
+        if(TemplateProducer.CanImplementEmailStore) { %],
+        Microsoft.AspNet.Identity.IUserEmailStore<[%=userTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementPhoneNumberStore) { %]
-        Microsoft.AspNet.Identity.IUserPhoneNumberStore<[%=userTypeName%]>,[% }
+        if(TemplateProducer.CanImplementPhoneNumberStore) { %],
+        Microsoft.AspNet.Identity.IUserPhoneNumberStore<[%=userTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementTwoFactorStore) { %]
+        if(TemplateProducer.CanImplementTwoFactorStore) { %],
         Microsoft.AspNet.Identity.IUserTwoFactorStore<[%=userTypeName%], string>[% }
         
         if (TemplateProducer.IdentityUser.MustImplementGenericInterface) { %],
-        Microsoft.AspNet.Identity.IUserStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% 
+        Microsoft.AspNet.Identity.IUserStore<[%=userTypeName%], [%=userKeyTypeName%]>[% 
 
-        if(TemplateProducer.CanImplementQueryableUserStore) { %]
-        Microsoft.AspNet.Identity.IQueryableUserStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementQueryableUserStore) { %],
+        Microsoft.AspNet.Identity.IQueryableUserStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
 
-        if(TemplateProducer.CanImplementPasswordStore) { %]
-        Microsoft.AspNet.Identity.IUserPasswordStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementPasswordStore) { %],
+        Microsoft.AspNet.Identity.IUserPasswordStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementSecurityStampStore) { %]
-        Microsoft.AspNet.Identity.IUserSecurityStampStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementSecurityStampStore) { %],
+        Microsoft.AspNet.Identity.IUserSecurityStampStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementRoleStore) { %]
-        Microsoft.AspNet.Identity.IUserRoleStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementRoleStore) { %],
+        Microsoft.AspNet.Identity.IUserRoleStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementLoginStore) { %]
-        Microsoft.AspNet.Identity.IUserLoginStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% } 
+        if(TemplateProducer.CanImplementLoginStore) { %],
+        Microsoft.AspNet.Identity.IUserLoginStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
         
-        if(TemplateProducer.CanImplementLockoutStore) { %]
-        Microsoft.AspNet.Identity.IUserLockoutStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% }
+        if(TemplateProducer.CanImplementLockoutStore) { %],
+        Microsoft.AspNet.Identity.IUserLockoutStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementClaimsStore) { %]
-        Microsoft.AspNet.Identity.IUserClaimStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% }
+        if(TemplateProducer.CanImplementClaimsStore) { %],
+        Microsoft.AspNet.Identity.IUserClaimStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementEmailStore) { %]
-        Microsoft.AspNet.Identity.IUserEmailStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% }
+        if(TemplateProducer.CanImplementEmailStore) { %],
+        Microsoft.AspNet.Identity.IUserEmailStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementPhoneNumberStore) { %]
-        Microsoft.AspNet.Identity.IUserPhoneNumberStore<[%=userTypeName%], [%=userKeyTypeName%]>,[% }
+        if(TemplateProducer.CanImplementPhoneNumberStore) { %],
+        Microsoft.AspNet.Identity.IUserPhoneNumberStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
         
-        if(TemplateProducer.CanImplementTwoFactorStore) { %]
+        if(TemplateProducer.CanImplementTwoFactorStore) { %],
         Microsoft.AspNet.Identity.IUserTwoFactorStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
         } %]
     {
@@ -161,7 +161,6 @@ namespace [%=TemplateProducer.Namespace%]
         {
             return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityUser.LoadByUserNameMethod)%](userName));
         }
-
 [% if(TemplateProducer.CanImplementPasswordStore) { %]
 
         public System.Threading.Tasks.Task SetPasswordHashAsync([%=userTypeName%] user, string passwordHash)
@@ -182,7 +181,6 @@ namespace [%=TemplateProducer.Namespace%]
         {
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.PasswordProperty.Name%] != null);
         }
-
 [% } if(TemplateProducer.CanImplementSecurityStampStore) { %]
 
         public System.Threading.Tasks.Task SetSecurityStampAsync([%=userTypeName%] user, string stamp)
@@ -197,8 +195,7 @@ namespace [%=TemplateProducer.Namespace%]
         public System.Threading.Tasks.Task<string> GetSecurityStampAsync([%=userTypeName%] user)
         {
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.SecurityStampProperty.Name%]);
-        }
-        
+        }        
 [% } if(TemplateProducer.CanImplementLockoutStore) { %]
 
         public System.Threading.Tasks.Task<System.DateTimeOffset> GetLockoutEndDateAsync([%=userTypeName%] user)
@@ -214,12 +211,7 @@ namespace [%=TemplateProducer.Namespace%]
         {
             if (lockoutEnd == System.DateTimeOffset.MinValue)
             {
-                [% if(IdentityUser.LockoutEndDateProperty.IsModelNullable) { %]
-                user.[%=IdentityUser.LockoutEndDateProperty.Name%] = null;
-                [% } else { %]
-                user.[%=IdentityUser.LockoutEndDateProperty.Name%] = System.DateTime.MinValue;
-                [% } %]
-                
+                user.[%=IdentityUser.LockoutEndDateProperty.Name%] = [%= IdentityUser.LockoutEndDateProperty.IsModelNullable ? "null" : "System.DateTime.MinValue" %];
             }
             else
             {
@@ -236,8 +228,8 @@ namespace [%=TemplateProducer.Namespace%]
             {
                 user.[%=IdentityUser.FailedPasswordAttemptWindowStartProperty.Name%] = System.DateTime.UtcNow;
             }
-            [% } %]
 
+            [% } %]
             return System.Threading.Tasks.Task.FromResult(++user.[%=IdentityUser.FailedPasswordAttemptCountProperty.Name%]);
         }
 
@@ -262,7 +254,6 @@ namespace [%=TemplateProducer.Namespace%]
             user.[%=IdentityUser.LockoutEnabledProperty.Name%] = true;
             return System.Threading.Tasks.Task.FromResult(0);
         }
-
 [% } if(TemplateProducer.CanImplementEmailStore) { %]
 
         public System.Threading.Tasks.Task SetEmailAsync([%=userTypeName%] user, string email)
@@ -301,7 +292,6 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityUser.LoadByEmailMethod)%](email));
             [% } %]
         }
-
 [% } if(TemplateProducer.CanImplementPhoneNumberStore) { %]
 
         public System.Threading.Tasks.Task SetPhoneNumberAsync([%=userTypeName%] user, string phoneNumber)
@@ -331,7 +321,6 @@ namespace [%=TemplateProducer.Namespace%]
             [% } %]
             return System.Threading.Tasks.Task.FromResult(0);
         }
-
 [% } if(TemplateProducer.CanImplementTwoFactorStore) { %]
 
         public System.Threading.Tasks.Task SetTwoFactorEnabledAsync([%=userTypeName%] user, bool enabled)
@@ -344,8 +333,6 @@ namespace [%=TemplateProducer.Namespace%]
         {
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.TwoFactorEnabledProperty.Name%]);
         }
-
-
 [% } if(TemplateProducer.CanImplementRoleStore) { %]
 
         public System.Threading.Tasks.Task AddToRoleAsync([%=userTypeName%] user, string roleName)
@@ -392,7 +379,6 @@ namespace [%=TemplateProducer.Namespace%]
 
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.RolesProperty.Name%].Contains(role));
         }
-
 [% } if(TemplateProducer.CanImplementLoginStore) { %]
 
         public System.Threading.Tasks.Task AddLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo)
@@ -439,10 +425,8 @@ namespace [%=TemplateProducer.Namespace%]
             throw new System.InvalidOperationException();
             [% } else { %]
             return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityUser.LoadByProviderKeyMethod)%](login.ProviderKey));
-            [% } %]
-            
+            [% } %]            
         }
-
 [% } if(TemplateProducer.CanImplementClaimsStore) { 
     Func<string, string> ToClaimArguments = (argumentName) => 
     {
@@ -547,9 +531,8 @@ namespace [%=TemplateProducer.Namespace%]
             [%=CallDeleteClaimMethod()%];
             return System.Threading.Tasks.Task.FromResult(0);
         }
-[% } %]
+[% } if (TemplateProducer.CanImplementQueryableUserStore) { %]
 
-		[% if (TemplateProducer.CanImplementQueryableUserStore) { %]
 		public System.Linq.IQueryable<[%=userTypeName%]> Users 
 		{ 
 			get

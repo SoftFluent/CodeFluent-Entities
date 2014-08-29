@@ -47,7 +47,7 @@ namespace SoftFluent.AspNetIdentity
             }
 
             LoadByUserNameMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByUserName) ?? Entity.LoadByCollectionKeyMethod;
-            LoadByEmailMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByEmail);
+            LoadByEmailMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByEmail) ?? Entity.Methods.Find("LoadByEmail", StringComparison.OrdinalIgnoreCase) ?? Entity.LoadByCollectionKeyMethod;
             LoadByProviderKeyMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByProviderKey);
             LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAll) ?? Entity.LoadAllMethod;
         }
