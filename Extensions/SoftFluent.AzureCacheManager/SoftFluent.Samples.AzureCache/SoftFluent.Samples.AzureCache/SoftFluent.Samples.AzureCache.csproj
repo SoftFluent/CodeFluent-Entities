@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeFluent.Runtime">
-      <HintPath>..\..\..\..\..\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Runtime\bin\Debug\CodeFluent.Runtime.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="CodeFluent.Runtime.Web">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+      <HintPath>c:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.AzureClientHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.ApplicationServer.Caching.AzureClientHelper.dll</HintPath>
