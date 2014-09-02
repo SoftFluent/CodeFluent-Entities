@@ -1,0 +1,23 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.AzureCache" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:_loc="http://www.softfluent.com/codefluent/patterns/localization/2008/1" xmlns:cfpc="http://www.softfluent.com/codefluent/producers.cache/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:pattern path="%ProgramFiles(x86)%\..\Users\gba\Projects\sfdev01\CodeFluent\CodeFluent.FX2\CodeFluent.Model\Patterns\SoftFluent.Localization.xml" step="Methods" name="CodeFluent Localization Aspect" />
+  <cf:entity name="Product" cfpc:enabled="true" cfpc:setEnabled="true" cfpc:typeName="SoftFluent.Samples.AzureCache.Caching.AzureCacheManager, SoftFluent.Samples.AzureCache" namespace="SoftFluent.Samples.AzureCache" categoryPath="/SoftFluent.Samples.AzureCache">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Name" />
+    <cf:property name="Description" />
+    <cf:property name="Category" typeName="{0}.Category" relationPropertyName="Products" />
+  </cf:entity>
+  <cf:entity name="Category" cfpc:setEnabled="true" cfpc:enabled="true" cfpc:typeName="SoftFluent.Samples.AzureCache.Caching.LocaleAzureCacheManager, SoftFluent.Samples.AzureCache" namespace="SoftFluent.Samples.AzureCache" categoryPath="/SoftFluent.Samples.AzureCache">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Name" _loc:localizable="true" />
+    <cf:property name="Products" typeName="{0}.ProductCollection" relationPropertyName="Category" />
+  </cf:entity>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.AzureCache" cfx:targetProject="..\SoftFluent.Samples.AzureCache\SoftFluent.Samples.AzureCache.csproj" cfx:targetProjectLayout="Update">
+      <subProducer typeName="CodeFluent.Producers.Cache.CacheProducer, CodeFluent.Producers.Cache, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" />
+    </cf:configuration>
+  </cf:producer>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.AzureCache\SQL Server" cfx:targetProject="..\SoftFluent.Samples.AzureCache\SoftFluent.Samples.AzureCache.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+</cf:project>

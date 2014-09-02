@@ -1,0 +1,8 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+	</PropertyGroup>
+	<ItemGroup>
+		<RootModelPart Include="SoftFluent.Samples.AzureCache.cfp" />
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath)\SoftFluent\CodeFluent\2.0\CodeFluent.targets" />
+</Project>

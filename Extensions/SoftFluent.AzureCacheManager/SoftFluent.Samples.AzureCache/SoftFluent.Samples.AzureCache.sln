@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AzureCache", "SoftFluent.Samples.AzureCache\SoftFluent.Samples.AzureCache.csproj", "{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}"
+EndProject
+Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.AzureCache.Model", "SoftFluent.Samples.AzureCache.Model\SoftFluent.Samples.AzureCache.Model.cfxproj", "{21913337-FB1C-45A3-BD2B-D70D5B601379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Release|.NET.ActiveCfg = Release|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6E1F6976-C76D-4BEE-96BD-02D3FA11D0AE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Debug|.NET.ActiveCfg = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Debug|.NET.Build.0 = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Debug|Any CPU.ActiveCfg = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Debug|Mixed Platforms.ActiveCfg = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Debug|Mixed Platforms.Build.0 = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Release|.NET.ActiveCfg = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Release|.NET.Build.0 = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Release|Any CPU.ActiveCfg = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Release|Mixed Platforms.ActiveCfg = Release|.NET
+		{21913337-FB1C-45A3-BD2B-D70D5B601379}.Release|Mixed Platforms.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
