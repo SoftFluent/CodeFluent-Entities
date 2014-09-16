@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xtf="http://www.softfluent.com/codefluent.xtf" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://www.softfluent.com/Samples/CodeFluentConfiguration.xsd CodeFluentConfiguration.xsd">
+  <configSections>
+    [% foreach(Store store in Producer.Project.Stores) { %]
+    <section name="[%= store.Name %]" type="CodeFluent.Runtime.CodeFluentConfigurationSectionHandler, CodeFluent.Runtime" xtf:key="name" />[% } %]
+  </configSections>
+  
+  [% foreach(Store store in Producer.Project.Stores) { %]
+  <[%= store.Name %] 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.softfluent.com/Samples/CodeFluentConfiguration.xsd CodeFluentConfiguration.xsd" 
+    xmlns="http://www.softfluent.com/Samples/CodeFluentConfiguration.xsd"></[%= store.Name %]>
+  [% } %]
+</configuration>

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Test"
+    targetNamespace="http://www.softfluent.com/[%= Producer.Project.DefaultNamespace %]/CodeFluentConfiguration.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://www.softfluent.com/[%= Producer.Project.DefaultNamespace %]/CodeFluentConfiguration.xsd"
+    xmlns:mstns="http://www.softfluent.com/[%= Producer.Project.DefaultNamespace %]/CodeFluentConfiguration.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="CodeFluentUserIdentityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined"/>
+      <xs:enumeration value="AspNet"/>
+      <xs:enumeration value="Windows"/>
+      <xs:enumeration value="Current"/>
+      <xs:enumeration value="AspNetOrWindows"/>
+      <xs:enumeration value="CurrentOrWindows"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="AuthenticationSchemes">
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:list>
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="None"/>
+              <xs:enumeration value="Digest"/>
+              <xs:enumeration value="Negotiate"/>
+              <xs:enumeration value="Ntlm"/>
+              <xs:enumeration value="Basic"/>
+              <xs:enumeration value="Anonymous"/>
+              <xs:enumeration value="IntegratedWindowsAuthentication"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:list>
+      </xs:simpleType>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BitsServerOptions">
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:list>
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="Undefined"/>
+              <xs:enumeration value="None"/>
+              <xs:enumeration value="ArchiveSessionLogs"/>
+              <xs:enumeration value="ArchiveSessionData"/>
+              <xs:enumeration value="AsynchronousSessionClose"/>
+              <xs:enumeration value="IgnoreWriteExceptions"/>
+              <xs:enumeration value="UnsafeConnectionNtlmAuthentication"/>
+              <xs:enumeration value="UseAspNetRoles"/>
+              <xs:enumeration value="Default"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:list>
+      </xs:simpleType>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+    
+  <xs:simpleType name="ProjectEntities">
+    <xs:restriction base="xs:string">
+    [%foreach(Entity entity in Producer.Project.Entities){%]  <xs:enumeration value="[%=entity.ClrFullTypeName%]"/>
+    [%}%]</xs:restriction>
+  </xs:simpleType>
+ 
+  <xs:attributeGroup name="CodeFluentPersistence">
+    <xs:attribute name="connectionString" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the connection string for current runtime operations.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="contextTypeName" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the name of the context object type.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="persistenceTypeName" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the name of the ADO.NET connection object type.
+          The default value is System.Data.SqlClient.SqlConnection (Microsoft SQL Server).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="traceContext" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether low-level contexte must be traced.
+          This is reserved for debugging purposes and is not intended to be used by your code directly.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="clearPoolsOnException" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether connection pools must be cleared when persistence exceptions are thrown.
+          This is to avoid this kind of issues: http://stackoverflow.com/questions/2154024/sql-server-connection-pool-doesnt-detect-closed-connections
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="trackNestedCommand" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether nested persistence commands must be tracked.
+          The default is true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="useDateTime2" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether DbType.DateTime2 is used instead of DbType.DateTime.
+          The default is false.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="databaseName" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the name of the database.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="closeConnectionOnCompleteCommand" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether the underlying connection must be closed when the underlying command completes.
+          The connection is only closed if there is no underlying transaction.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="commandTimeout" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the default time (in seconds) to wait for the persistence command to execute.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pageSize" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the configured size of the page for a CodeFluent collection.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pageCount" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the configured count of pages in memory for a CodeFluent collection.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="lastPageSearchIncrementStep" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the last page search increment step.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pageWaitTimeout" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the configured page wait timeout in milliseconds for a CodeFluent collection.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ThrowOnGetOrdinalErrors" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether to throw exceptions on GetOrdinal errors.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="userIdentityType" type="CodeFluentUserIdentityType">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the type of the user identity to use.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+
+  <xs:simpleType name="StandartBinaryServiceTypeName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="azure"/>
+      <xs:enumeration value="azure2"/>
+      <xs:enumeration value="filesystem"/>
+      <xs:enumeration value="skydrive"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ExtendedBinaryServiceTypeName">
+    <xs:union memberTypes="StandartBinaryServiceTypeName xs:string"/>
+  </xs:simpleType>
+
+  <xs:attributeGroup name="AzureBinaryServices">
+    <xs:attribute name="cloudBlobReferenceFormat" type="xs:string" />
+    <xs:attribute name="cloudBlobContainer" type="xs:string" />
+    <xs:attribute name="cloudStorageAccountConfigurationSetting" type="xs:string" />
+    <xs:attribute name="cloudStorageAccountConnectionString" type="xs:string" />
+  </xs:attributeGroup>
+
+  <xs:simpleType name="SkyDriveBinaryLargeObjectOptions">
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:list>
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="None"/>
+              <xs:enumeration value="LoadMetaDataOnReadRecord"/>
+              <xs:enumeration value="ThrowOnNullAccessToken"/>
+              <xs:enumeration value="CheckQuotaBeforeUpload"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:list>
+      </xs:simpleType>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attributeGroup name="SkyDriveBinaryServices">
+    <xs:attribute name="skyDriveOptions" type="SkyDriveBinaryLargeObjectOptions" />
+    <xs:attribute name="skyDriveIdentifierSeparator" type="xs:string" />
+    <xs:attribute name="skyDriveBlobFolder" type="xs:string" />
+    <xs:attribute name="skyDriveBlobUrlFormat" type="xs:string" />
+    <xs:attribute name="skyDriveAccessTokenProviderTypeName" type="xs:string" />
+    <xs:attribute name="skyDriveApiUrl" type="xs:string" />
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="FileSystemBinaryServices">
+    <xs:attribute name="ntfsStreamName" type="xs:string" />
+    <xs:attribute name="fileSystemBlobPathFormat" type="xs:string" />
+    <xs:attribute name="fileSystemIdentifierSeparator" type="xs:string" />
+    <xs:attribute name="fileSystemBlobStorageRootPath" type="xs:string" />
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="BinaryServices">
+    <xs:attribute name="binaryServicesTypeName" type="ExtendedBinaryServiceTypeName">
+      <xs:annotation>
+        <xs:documentation>
+          sets the type name of the class deriving from the BinaryLargeObject class.
+          Based on the 'typeName' Xml attributes from the configuration file.
+          The default is SqlServerBinaryLargeObject.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="chunkSize" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the size of the blob chunk to use for streaming operations. The default is 65536.
+          Based on the 'chunkSize' Xml attributes from the configuration file.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="useHttpErrors" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether to use IIS configured HTTP errors.
+          Based on the 'useHttpErrors' Xml attributes from the configuration file.
+          The default is true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="notFoundImageDefaultWidth" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the width of the image used when a blob was not found.
+          Based on the 'notFoundImageDefaultWidth' Xml attributes from the configuration file.
+          The default is 120 (pixels).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="notFoundImageDefaultHeight" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the height of the image used when a blob was not found.
+          Based on the 'notFoundImageDefaultHeight' Xml attributes from the configuration file.
+          The default is 120 (pixels).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="waitTimeOnSharingViolation" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the wait time on sharing violation when writing to or reading from the cache.
+          Based on the 'waitTimeOnSharingViolation' Xml attributes from the configuration file.
+          The default is 100 (milliseconds).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="retryCountOnSharingViolation" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the retry count on sharing violation when writing to or reading from the cache.
+          Based on the 'retryCountOnSharingViolation' Xml attributes from the configuration file.
+          The default is 10.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="useWebMimeTypes" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether to use IIS metabase web MIME types or registry MIME types.
+          Based on the 'useWebMimeTypes' Xml attributes from the configuration file.
+          The default is true if the current context is ASP.NET; otherwise false.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="allowNonInteractiveRelativePaths" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether relative paths are allowed when environment is running as a non interactive process.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="autoLoadMetaData" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether blob meta data must be automatically loaded.
+          Based on the 'autoLoadMetaData' Xml attributes from the configuration file.
+          The default is true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="contentDisposition" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets blob content disposition when rendered to HTTP user agents.
+          Based on the 'contentDisposition' Xml attributes from the configuration file.
+          The default is null (which in general means attachment, not inline).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="iconFormat" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the icon image format.
+          Based on the 'iconFormat' Xml attributes from the configuration file.
+          The default is PNG.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="notFoundDefaultUrl" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the URL used to represent a blob that is not found in the persistence layer.
+          Based on the 'notFoundDefaultUrl' Xml attributes from the configuration file.
+          The default is null (or nothing in Visual Basic).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="bitsServerUrl" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the URL used for the BITS server
+          The default is http://+:1027/{0}/ with {0} defined as the current CodeFluent runtime context name.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="bitsServerOptions" type="BitsServerOptions">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the BITS server options.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="bitsServerTempDirectoryPath" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the temporary path used for the BITS server.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="authenticationSchemes" type="AuthenticationSchemes">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the scheme used to authenticate clients.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="cacheDirectoryPath" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the cache directory path.
+          Based on the 'cacheDirectoryPath' Xml attributes from the configuration file.
+          The default is the DefaultSubDirectory constant.
+          Argument {0} will be replaced by the current Windows logged in identity temporary directory.
+          Argument {1} will be replaced by the DefaultSubDirectory constant.
+          Argument {2} will be replaced by an auto generated string which depends on the connection string.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="cacheFilePathFormat" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the cache file path format.
+          Argument {0} will be replaced by identifiers values.
+          Argument {1} will be replaced by the property or data column name.
+          Argument {2} will be replaced by the entity CLR full type name.
+          Argument {3} will be replaced by the blob original file name.
+          Based on the 'cacheFilePathFormat' Xml attributes from the configuration file.
+          The default is '{0}{1}{2}{3}'.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="cacheSparseLevel" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the cache sparse level.
+          This indicates the number of sub directory to create before storing a cached blob content.
+          Based on the 'cacheSparseLevel' Xml attributes from the configuration file.
+          The default is 3.
+          The default is '{0}{1}{2}{3}'.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="cacheEnabled" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether blob content caching is enabled or not.
+          Based on the 'cacheEnabled' Xml attributes from the configuration file.
+          The default is true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="iconCacheEnabled" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether blob icon caching is enabled or not.
+          Based on the 'iconCacheEnabled' Xml attributes from the configuration file.
+          The default is true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="clientCacheEnabled" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>
+          Sets a value indicating whether HTTP user agent caching is enabled.
+          Based on the 'clientCacheEnabled' Xml attributes from the configuration file.
+          The default is true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="iconCacheDirectoryPath">
+      <xs:annotation>
+        <xs:documentation>
+          Sets the icon cache directory path.
+          Based on the 'iconCacheDirectoryPath' Xml attributes from the configuration file.
+          The default is the DefaultIconsSubDirectory constant.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    
+    <xs:attributeGroup ref="AzureBinaryServices" />
+    <xs:attributeGroup ref="SkyDriveBinaryServices" />
+    <xs:attributeGroup ref="FileSystemBinaryServices" />
+  </xs:attributeGroup>
+
+  [% foreach(Store store in Producer.Project.Stores) { %]
+  <xs:element name="[%= store.Name %]">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="binaryServices" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="entityFullTypeName" type="ProjectEntities" />
+            <xs:attributeGroup ref="BinaryServices"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      
+      <xs:attributeGroup ref="CodeFluentPersistence" />
+      <xs:attributeGroup ref="BinaryServices" />
+      <xs:anyAttribute namespace="##any" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+  [% } %]
+</xs:schema>
