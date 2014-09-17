@@ -1,0 +1,1 @@
+More details: http://blog.codefluententities.com/2014/09/16/intellisense-codefluent-entities-runtime-configuration/
