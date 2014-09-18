@@ -432,7 +432,6 @@
     </xs:attribute>
     
     <xs:attributeGroup ref="AzureBinaryServices" />
-    <xs:attributeGroup ref="SkyDriveBinaryServices" />
     <xs:attributeGroup ref="FileSystemBinaryServices" />
   </xs:attributeGroup>
 
