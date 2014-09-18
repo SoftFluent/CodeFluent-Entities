@@ -193,7 +193,6 @@
       <xs:enumeration value="azure"/>
       <xs:enumeration value="azure2"/>
       <xs:enumeration value="filesystem"/>
-      <xs:enumeration value="skydrive"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -206,33 +205,6 @@
     <xs:attribute name="cloudBlobContainer" type="xs:string" />
     <xs:attribute name="cloudStorageAccountConfigurationSetting" type="xs:string" />
     <xs:attribute name="cloudStorageAccountConnectionString" type="xs:string" />
-  </xs:attributeGroup>
-
-  <xs:simpleType name="SkyDriveBinaryLargeObjectOptions">
-    <xs:restriction>
-      <xs:simpleType>
-        <xs:list>
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="None"/>
-              <xs:enumeration value="LoadMetaDataOnReadRecord"/>
-              <xs:enumeration value="ThrowOnNullAccessToken"/>
-              <xs:enumeration value="CheckQuotaBeforeUpload"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:list>
-      </xs:simpleType>
-      <xs:minLength value="1"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:attributeGroup name="SkyDriveBinaryServices">
-    <xs:attribute name="skyDriveOptions" type="SkyDriveBinaryLargeObjectOptions" />
-    <xs:attribute name="skyDriveIdentifierSeparator" type="xs:string" />
-    <xs:attribute name="skyDriveBlobFolder" type="xs:string" />
-    <xs:attribute name="skyDriveBlobUrlFormat" type="xs:string" />
-    <xs:attribute name="skyDriveAccessTokenProviderTypeName" type="xs:string" />
-    <xs:attribute name="skyDriveApiUrl" type="xs:string" />
   </xs:attributeGroup>
 
   <xs:attributeGroup name="FileSystemBinaryServices">
