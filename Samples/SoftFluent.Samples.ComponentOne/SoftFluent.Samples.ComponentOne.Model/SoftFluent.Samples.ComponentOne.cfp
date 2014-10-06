@@ -1,0 +1,82 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.ComponentOne" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:import path="Penguins.jpg" overwrite="false" notModel="true" />
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.ComponentOne.Database" cfx:targetProject="..\SoftFluent.Samples.ComponentOne.Database\SoftFluent.Samples.ComponentOne.Database.sqlproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.ComponentOne" cfx:targetProject="..\SoftFluent.Samples.ComponentOne\SoftFluent.Samples.ComponentOne.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:entity name="Contact" namespace="SoftFluent.Samples.ComponentOne" categoryPath="/SoftFluent.Samples.ComponentOne">
+    <cf:property name="Id" key="true" />
+    <cf:property name="FirstName" />
+    <cf:property name="LastName" />
+    <Description typeName="richstring" />
+    <cf:property name="User" typeName="{0}.User" relationPropertyName="Contacts" />
+    <cf:instance>
+      <cf:instanceValue name="Id">5881971d-4c51-4d61-a226-8ed5aee76d0f</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Carl</cf:instanceValue>
+      <cf:instanceValue name="LastName">Anderson</cf:instanceValue>
+      <cf:instanceValue name="User">ec112046-a139-4adf-b8b9-7ab032b91074</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="1">
+      <cf:instanceValue name="Id">98b4a9bc-9776-486c-9838-90c78d32f448</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Rebecca</cf:instanceValue>
+      <cf:instanceValue name="LastName">Jefferson</cf:instanceValue>
+      <cf:instanceValue name="User">ec112046-a139-4adf-b8b9-7ab032b91074</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="2">
+      <cf:instanceValue name="Id">1cce301d-0f99-4105-8184-44829ee64845</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Gwendolyn</cf:instanceValue>
+      <cf:instanceValue name="LastName">Wheeler</cf:instanceValue>
+      <cf:instanceValue name="User">ec112046-a139-4adf-b8b9-7ab032b91074</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="3">
+      <cf:instanceValue name="Id">1f71872d-7eae-42ca-961d-0b24af6cb7ac</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Eileen</cf:instanceValue>
+      <cf:instanceValue name="LastName">Ingram</cf:instanceValue>
+      <cf:instanceValue name="User">0b53f3c2-633d-44c5-b911-aa3fae0bbb0f</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="4">
+      <cf:instanceValue name="Id">feca0e18-d621-4cd0-b7f4-a94e0338e966</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Harvey</cf:instanceValue>
+      <cf:instanceValue name="LastName">Fitzgerald</cf:instanceValue>
+      <cf:instanceValue name="User">0b53f3c2-633d-44c5-b911-aa3fae0bbb0f</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="5">
+      <cf:instanceValue name="Id">7cc35ab7-38d8-4a5b-81dd-fcecea687933</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Elena</cf:instanceValue>
+      <cf:instanceValue name="LastName">Lawson</cf:instanceValue>
+      <cf:instanceValue name="User">97472c7c-6b53-4b01-bd75-fdc1ef36d3b2</cf:instanceValue>
+    </cf:instance>
+  </cf:entity>
+  <User namespace="SoftFluent.Samples.ComponentOne" categoryPath="/Demo.ContactManager1">
+    <Id />
+    <Email typeName="email" collectionKey="true">
+      <cf:rule typeName="EmailValidate" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" />
+    </Email>
+    <FirstName />
+    <LastName />
+    <Photo typeName="image" />
+    <Contacts cascadeSave="After" cascadeDelete="Before" typeName="{0}.ContactCollection" relationPropertyName="User" />
+    <cf:instance>
+      <cf:instanceValue name="Id">ec112046-a139-4adf-b8b9-7ab032b91074</cf:instanceValue>
+      <cf:instanceValue name="Email">john.doe@softfluent.com</cf:instanceValue>
+      <cf:instanceValue name="FirstName">John</cf:instanceValue>
+      <cf:instanceValue name="LastName">Doe</cf:instanceValue>
+      <cf:instanceValue name="Photo" typeName="image">Penguins.jpg</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="1">
+      <cf:instanceValue name="Id">0b53f3c2-633d-44c5-b911-aa3fae0bbb0f</cf:instanceValue>
+      <cf:instanceValue name="Email">jane.doe@softfluent.com</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Jane</cf:instanceValue>
+      <cf:instanceValue name="LastName">Doe</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="2">
+      <cf:instanceValue name="Id">97472c7c-6b53-4b01-bd75-fdc1ef36d3b2</cf:instanceValue>
+      <cf:instanceValue name="Email">sample@softfluent.com</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Sample</cf:instanceValue>
+      <cf:instanceValue name="LastName">SoftFluent</cf:instanceValue>
+    </cf:instance>
+  </User>
+</cf:project>

@@ -1,0 +1,9 @@
+<Blobs>
+  <Blob DataColumnName="User_Photo" MetaDatasMask="All" LoadMetaDataProcedureName="Load" PackageName="User" LoadProcedureName="LoadBlobUser_Photo" SaveProcedureName="SaveBlobUser_Photo" SaveChunkProcedureName="SaveBlobChunkUser_Photo" FileNameColumnName="User_Photo_FileName" ContentTypeColumnName="User_Photo_ContentType" AttributesColumnName="User_Photo_Attributes" SizeColumnName="User_Photo_Size" LastWriteTimeUtcColumnName="User_Photo_LastWriteTimeUtc" LastAccessTimeUtcColumnName="User_Photo_LastAccessTimeUtc" CreationTimeUtcColumnName="User_Photo_CreationTimeUtc" Value="Penguins.jpg">
+    <IdentifierColumnName Name="User_Id" />
+    <LoadMetaDataParameterName Name="Id" />
+    <LoadParameterName Name="User_Id" />
+    <SaveParameterName Name="User_Id" />
+    <IdentifierValue Name="Id" Value="ec112046-a139-4adf-b8b9-7ab032b91074" Type="System.Guid" />
+  </Blob>
+</Blobs>
