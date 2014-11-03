@@ -1,0 +1,31 @@
+﻿<Window x:Class="SoftFluent.Samples.SignalR.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CodeFluent Entities Sample - SignalR Client" Height="350" Width="525" Closing="MainWindow_OnClosing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Load customers" Click="ButtonLoadCustomers_OnClick" Margin="5"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" RowEditEnding="DataGrid_RowEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding EntityKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Entity Key"/>
+                <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="First Name"/>
+                <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Last Name"/>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="Delete" Content="X" Click="ButtonDelete_OnClick" DataContext="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

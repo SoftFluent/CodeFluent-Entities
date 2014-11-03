@@ -1,0 +1,26 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.SignalR" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" defaultEntityTrackingModes="None" defaultConcurrencyMode="None" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.SignalR" cfx:targetProject="..\SoftFluent.Samples.SignalR\SoftFluent.Samples.SignalR.csproj" cfx:targetProjectLayout="Update" addRuntimeDesignAttributes="False">
+      <subProducer typeName="CodeFluent.Producers.ServiceModel.ServiceProducer, CodeFluent.Producers.ServiceModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.SignalR.Client" silverlightTargetVersion="Unspecified" cfx:targetProject="..\SoftFluent.Samples.SignalR.Client\SoftFluent.Samples.SignalR.Client.csproj" cfx:targetProjectLayout="Update" addRuntimeDesignAttributes="False" />
+    </cf:configuration>
+  </cf:producer>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.SignalR\Persistence\SQL Server" cfx:targetProject="..\SoftFluent.Samples.SignalR\SoftFluent.Samples.SignalR.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+  <cf:entity name="Customer" namespace="SoftFluent.Samples.SignalR" categoryPath="/SoftFluent.Samples.SignalR">
+    <cf:property name="Id" key="true" />
+    <cf:property name="FirstName" entityDisplay="true" />
+    <cf:property name="LastName" />
+    <cf:instance>
+      <cf:instanceValue name="Id">7bc2a129-3cbb-4c8b-9375-ae6f484886d0</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Scrooge</cf:instanceValue>
+      <cf:instanceValue name="LastName">McDuck</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="1">
+      <cf:instanceValue name="Id">94d38ad9-4309-4952-b1ab-1be674da1326</cf:instanceValue>
+      <cf:instanceValue name="FirstName">Donald</cf:instanceValue>
+      <cf:instanceValue name="LastName">Duck</cf:instanceValue>
+    </cf:instance>
+  </cf:entity>
+</cf:project>
