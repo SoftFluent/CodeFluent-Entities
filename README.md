@@ -34,7 +34,7 @@ Don’t lose development data or custom code. Generated code will compile and ru
 Visual Studio integration
 -------------------------
 
-CodeFluent Entities is a Visual Studio 2008/2010/2012/2013 integrated environment that allows you to model your business entities, and generate consistent foundation code.
+CodeFluent Entities is a Visual Studio 2008/2010/2012/2013/2015 integrated environment that allows you to model your business entities, and generate consistent foundation code.
 
 ![Visual Studio integration](http://www.softfluent.com/images/cfe-home/0C1E1B14E21E763079A91F04.png)
 
