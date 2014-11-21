@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeFluent.Runtime">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
