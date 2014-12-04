@@ -7,8 +7,8 @@
     <ProjectGuid>{518A3AA2-B73E-4D84-BF08-71963A6B5B22}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeFluent.SchemaProducer</RootNamespace>
-    <AssemblyName>CodeFluent.SchemaProducer</AssemblyName>
+    <RootNamespace>SoftFluent.MultiTenantGenerator</RootNamespace>
+    <AssemblyName>SoftFluent.MultiTenantGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,7 +49,9 @@
     <Reference Include="CodeFluent.Runtime">
       <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="CodeFluent.Runtime.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec, processorArchitecture=MSIL" />
+    <Reference Include="CodeFluent.Runtime.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Database.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
