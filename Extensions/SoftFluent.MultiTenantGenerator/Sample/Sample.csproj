@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0186A2A-FE2C-4F91-8037-9E68E6ACF2C4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sample</RootNamespace>
+    <AssemblyName>Sample</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web">
+      <HintPath>C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customer.cs">
+      <CodeFluentProducer>223f0162ef28bc04bfda60e2c7586c05</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CustomerCollection.cs">
+      <CodeFluentProducer>223f0162ef28bc04bfda60e2c7586c05</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\BitsServer.cs">
+      <CodeFluentProducer>223f0162ef28bc04bfda60e2c7586c05</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.cs">
+      <CodeFluentProducer>223f0162ef28bc04bfda60e2c7586c05</CodeFluentProducer>
+    </Compile>
+    <Compile Include="_cf_rt.cs">
+      <CodeFluentProducer>223f0162ef28bc04bfda60e2c7586c05</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sample.ResX">
+      <CodeFluentProducer>223f0162ef28bc04bfda60e2c7586c05</CodeFluentProducer>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQL Server\Sample_relations_add.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_relations_drop.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_procedures.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_table_diffs.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_schemas.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_views.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_tables.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+    <None Include="SQL Server\Sample_runtime.sql">
+      <CodeFluentProducer>9a9503bba2aa853465442521955c731c</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL Server\Contoso\Sample_procedures.sql" />
+    <Content Include="SQL Server\Contoso\Sample_relations_add.sql" />
+    <Content Include="SQL Server\Contoso\Sample_relations_drop.sql" />
+    <Content Include="SQL Server\Contoso\Sample_runtime.sql" />
+    <Content Include="SQL Server\Contoso\Sample_schemas.sql" />
+    <Content Include="SQL Server\Contoso\Sample_tables.sql" />
+    <Content Include="SQL Server\Contoso\Sample_table_diffs.sql" />
+    <Content Include="SQL Server\Contoso\Sample_views.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_procedures.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_relations_add.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_relations_drop.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_runtime.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_schemas.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_tables.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_table_diffs.sql" />
+    <Content Include="SQL Server\SoftFluent\Sample_views.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

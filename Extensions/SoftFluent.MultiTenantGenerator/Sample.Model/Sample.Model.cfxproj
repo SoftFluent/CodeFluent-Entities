@@ -1,0 +1,20 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|.NET' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|.NET' ">
+    <__node_223f0162ef28bc04bfda60e2c7586c05>True</__node_223f0162ef28bc04bfda60e2c7586c05>
+  </PropertyGroup>
+  <ItemGroup>
+    <RootModelPart Include="Sample.cfp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SoftFluent\CodeFluent\2.0\CodeFluent.targets" />
+</Project>

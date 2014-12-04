@@ -1,0 +1,368 @@
+<build startDate="2014-12-04T11:55:48.6718+01:00" commandLine="&quot;C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe&quot; &quot;C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample.Model\Sample.cfp&quot; /ena:&quot;223f0162ef28bc04bfda60e2c7586c05=1&quot; /Log:&quot;C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample.Model\Sample.build.xml&quot; /Results:&quot;C:\Users\ADI\AppData\Local\Temp\Sample.cfp.oop&quot; /DoNotCreateReportsOnException /DoNotShowReportsOnException /NoFlashOnError " machineName="SF121" osVersion="Microsoft Windows NT 6.2.9200.0" currentDirectory="C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample.Model" user="SFINTERNAL\adi" clrVersion="4.0.30319.34014" licenseUsage="Build Expirable [Date:31/12/2099 00:00:00][Licensee:adi@softfluent.com][Maximum Entities:999999]" processorCount="4" workingSet="22597632 bytes" bitness="32bits" wow64="True" optionsFlags="None" parentProcess="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe" endDate="2014-12-04T11:55:50.7182+01:00" totalElapsedTime="00:00:02.3193656" numberOfEntities="1" numberOfEnumerations="0" numberOfRelations="0">
+  <assemblies>
+    <assembly fullName="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll" location="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" buildVersion="4.0.30319.34014" fileVersion="4.0.30319.34014 built by: FX45W81RTMGDR" productVersion="4.0.30319.34014" />
+    <assembly fullName="CodeFluent.Build4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Build4.exe" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CodeFluent.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CodeFluent.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll" buildVersion="4.0.30319.34239" fileVersion="4.0.30319.34239 built by: FX452RTMGDR" productVersion="4.0.30319.34239" />
+    <assembly fullName="CodeFluent.Model.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.Common.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll" buildVersion="4.0.30319.34230" fileVersion="4.0.30319.34230 built by: FX452RTMGDR" productVersion="4.0.30319.34230" />
+    <assembly fullName="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_32/System.Data/v4.0_4.0.0.0__b77a5c561934e089/System.Data.dll" location="C:\windows\Microsoft.Net\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Producers.CodeDom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.CodeDom.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="SoftFluent.License, Version=1.0.0.0, Culture=neutral, PublicKeyToken=330d9b6ea5e30055" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/SoftFluent.License.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\SoftFluent.License.dll" buildVersion="1.0.0.0" fileVersion="3.0.0.0" productVersion="1.0.0.0" />
+    <assembly fullName="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Management/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Management.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_32/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll" location="C:\windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll" buildVersion="4.0.30319.34212" fileVersion="4.0.30319.34212 built by: FX452RTMGDR" productVersion="4.0.30319.34212" />
+    <assembly fullName="CodeFluent.Producers.SqlServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.SqlServer.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.SqlServer.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CodeFluent.Runtime.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Database.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Database.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_32/System.Transactions/v4.0_4.0.0.0__b77a5c561934e089/System.Transactions.dll" location="C:\windows\Microsoft.Net\assembly\GAC_32\System.Transactions\v4.0_4.0.0.0__b77a5c561934e089\System.Transactions.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="CodeFluent.Runtime.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Web.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CF_25311015811463814236.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/ADI/AppData/Local/Temp/CFTemplating.Temp4.0.30319.34014/70786/CF_25311015811463814236.tplcs.dll" location="C:\Users\ADI\AppData\Local\Temp\CFTemplating.Temp4.0.30319.34014\70786\CF_25311015811463814236.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_32/System.EnterpriseServices/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.EnterpriseServices.dll" location="C:\windows\Microsoft.Net\assembly\GAC_32\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/windows/Microsoft.Net/assembly/GAC_MSIL/System.Numerics/v4.0_4.0.0.0__b77a5c561934e089/System.Numerics.dll" location="C:\windows\Microsoft.Net\assembly\GAC_MSIL\System.Numerics\v4.0_4.0.0.0__b77a5c561934e089\System.Numerics.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+  </assemblies>
+  <variables>
+    <variable name="CF_CURRENT_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler" />
+    <variable name="CF_TEMPLATES_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates" />
+    <variable name="CF_DEFAULT_PERSISTENCE_SERVER" value="(local)" />
+    <variable name="CF_PATTERNS_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Patterns" />
+    <variable name="CF_BUILD_NUMBER" value="70786" />
+    <variable name="CF_BUILD_CONFIGURATION" value="RELEASE" />
+  </variables>
+  <generatedFiles>
+    <producer name="Business Object Model (BOM)" generatedFilesCount="6" />
+    <producer name="SQL Server" generatedFilesCount="9" />
+  </generatedFiles>
+  <project>
+    <imports>
+      <cf:import path="Default.Surface.cfp" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" />
+    </imports>
+    <parts>
+      <part filePath="C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample.Model\Sample.cfp" isRootModel="true" relativePath="Sample.cfp" />
+      <part filePath="C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample.Model\Default.Surface.cfp" relativePath="Default.Surface.cfp" />
+    </parts>
+  </project>
+  <producer name="Business Object Model (BOM)">
+    <event type="ProducerStart" elapsedTime="00:00:00.0002298">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="Default, Overwrite" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="Sample" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AssemblyCompileDefaultFileExcludeFilter" value="AssemblyInfo.cs, assemblyversion.cs" />
+    <event type="ParameterValue" name="CodeDomProviderOptions" />
+    <event type="ParameterValue" name="FileExtension" value=".cs" />
+    <event type="ParameterValue" name="LanguageCode" value="CSharp" valueType="CodeFluent.Model.Code.LanguageCode" />
+    <event type="ParameterValue" name="MustAddDebugInfo" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCompile" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDelaySign" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustIncludeDebugInformation" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustTreatWarningAsErrors" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="WarningLevel" value="-1" valueType="System.Int32" />
+    <event type="ParameterValue" name="TargetProductionOptions" value="Default" valueType="CodeFluent.Producers.CodeDom.TargetProductionOptions" />
+    <event type="ParameterValue" name="VisualStudioProjectPath" />
+    <event type="ParameterValue" name="IsAssemblyClsCompliant" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDebuggerDisplayAttribute" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDictionaryMethods" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeDesignAttributes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeResourceCheck" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAppendSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustEmbedModelInRuntimeResource" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceResourcesFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebBasicAuthenticationModule" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebHandler" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipUser" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebProfileProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebRoleProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceBitsServer" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebTypes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ResourceFileFormat" value="ResX" valueType="CodeFluent.Producers.CodeDom.ResourceFileFormat" />
+    <event type="ParameterValue" name="RuntimePrefix" value="_cf_rt" />
+    <event type="ParameterValue" name="RuntimeResourceBaseName" value="Sample.Sample" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample" />
+    <event type="FileWrite" elapsedTime="00:00:00.4632559">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\_cf_rt.cs</path>
+      <fileType>RuntimeCode</fileType>
+      <size>8481</size>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0153138">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\_cf_rt.cs</path>
+      <size>8481</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0137582">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\_cf_rt.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0086085">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Sample.ResX</path>
+      <fileType>Embedded resource for Invariant Language (Invariant Country) culture</fileType>
+      <size>5911</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0066852">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Sample.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0132598">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Customer.cs</path>
+      <fileType>BaseTypeFile for 'Sample.Customer'</fileType>
+      <size>28847</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0017550">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Customer.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0083934">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\CustomerCollection.cs</path>
+      <fileType>BaseTypeFile for 'Sample.CustomerCollection'</fileType>
+      <size>37311</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0015167">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\CustomerCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0155236">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Web\HttpHandler.cs</path>
+      <size>1522</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0015658">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Web\HttpHandler.cs</path>
+    </event>
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.MembershipProviderProducer: No directoryUser entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.RoleProviderProducer: No directoryRole entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.ProfileProviderProducer: No directoryUser entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.BasicAuthenticationModuleProducer: No directoryUser entity. Skip production." />
+    <event type="FileWrite" elapsedTime="00:00:00.0513064">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Web\BitsServer.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.BitsServerProducer</fileType>
+      <size>3900</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014886">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\Web\BitsServer.cs</path>
+    </event>
+  </producer>
+  <producer name="SQL Server">
+    <event type="ProducerStart" elapsedTime="00:00:00.0101092">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowSelectDistinct" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AppendSchemaToProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="CommandTimeout" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="ConnectionString" value="Application Name=Sample;server=(local);database=Sample;Integrated Security=true" />
+    <event type="ParameterValue" name="CurrentCulture" value="fr-FR" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="CurrentUICulture" value="en-GB" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="DecimalPrecision" value="28" valueType="System.Int32" />
+    <event type="ParameterValue" name="DecimalScale" value="13" valueType="System.Int32" />
+    <event type="ParameterValue" name="DefaultUnicodeInstancePrefix" value="N" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server" />
+    <event type="ParameterValue" name="IdentityIncrement" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentitySeed" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentityTempColumnName" value="_cf_id_temp" />
+    <event type="ParameterValue" name="InstanceProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MaxColumnSize" value="2147483647" valueType="System.Int32" />
+    <event type="ParameterValue" name="MaximumColumnsPerConstraint" value="16" valueType="System.Int32" />
+    <event type="ParameterValue" name="MustCreateBackups" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDiffs" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDropUnusedColumns" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceColumnAlter" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceViews" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceSchemas" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveBlobInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipCrossStoreRelations" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateRuntime" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceUpdateViews" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLocalTransactions" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyBlobChunkMode" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProcedureProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="ProductionFlags" value="None" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionOptionsFlags" value="None" valueType="CodeFluent.Model.ProductionOptionsFlags" />
+    <event type="ParameterValue" name="SaveUserName" value="SYSTEM_USER" />
+    <event type="ParameterValue" name="StoreName" />
+    <event type="ParameterValue" name="TargetVersion" value="Default" valueType="CodeFluent.Producers.SqlServer.TargetVersion" />
+    <event type="FileCopy" elapsedTime="00:00:00.0257110">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_runtime.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_runtime.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011383">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1963</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000508">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_runtime.sql</path>
+    </event>
+    <event type="ParameterValue" name="SqlServerVersion" value="12.0.2000.8" />
+    <event type="Warning" elapsedTime="00:00:00.1231688">
+      <message>Producer 'targetVersion' attribute is set to 'Default' but target database is 'Sql2014'. You may want to change the 'targetVersion' configuration attribute.</message>
+      <source>SQL Server</source>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.5580492">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_tables.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_tables.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0014467">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_tables.sql</path>
+      <fileType>TablesScript</fileType>
+      <size>1177</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000767">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_tables.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0140858">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_views.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_views.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011267">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>621</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000892">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_views.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0040871">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_schemas.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_schemas.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011133">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_schemas.sql</path>
+      <fileType>SchemasScript</fileType>
+      <size>194</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000606">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_schemas.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0075821">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_table_diffs.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_table_diffs.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0012053">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_table_diffs.sql</path>
+      <fileType>TablesDiffsScript</fileType>
+      <size>1011</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000731">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_table_diffs.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0349862">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_procedures.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_procedures.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0012231">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>4861</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000910">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_procedures.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0041121">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_drop.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_drop.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0010696">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>194</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000629">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_drop.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0026797">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_add.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_add.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011597">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>194</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000727">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_add.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0114422">
+      <target>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_instances.sql</target>
+      <source>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_instances.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0014217">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>268</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001021">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_instances.sql</path>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0022004">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1963</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.1013660">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>194</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0011852">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_schemas.sql</path>
+      <fileType>SchemasScript</fileType>
+      <size>194</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0010656">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_table_diffs.sql</path>
+      <fileType>TablesDiffScript</fileType>
+      <size>1011</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0094867">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>621</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0112677">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>194</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0007938">
+      <path>C:\Users\ADI\Documents\GitHub\CodeFluent-Entities\Extensions\SoftFluent.MultiTenantGenerator\Sample\SQL Server\Sample_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>4861</size>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0267748">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0003012">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+  </producer>
+</build>
