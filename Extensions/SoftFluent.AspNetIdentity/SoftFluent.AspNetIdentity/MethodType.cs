@@ -6,12 +6,14 @@ namespace SoftFluent.AspNetIdentity
         LoadUserByKey,
         LoadUserByUserName,
         LoadUserByEmail,
-        LoadUserByPhoneNumber,
+        LoadUserByUserLoginInfo,
         LoadRoleByKey,
         LoadRoleByName,
-        LoadUserByProviderKey,
-        DeleteClaim,
-        DeleteLogin,
-        LoadAll
+        LoadUserClaims,
+        DeleteUserClaims,
+        DeleteLoginByUserLoginInfo,
+        LoadAllRoles,
+        LoadClaimsByRole,
+        LoadAllUsers
     }
 }

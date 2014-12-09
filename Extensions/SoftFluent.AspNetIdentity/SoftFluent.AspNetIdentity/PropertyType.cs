@@ -10,74 +10,96 @@ namespace SoftFluent.AspNetIdentity
         UserKey,
         [Description("User - <Name>")]
         UserName,
+        [Description("User - NormalizedName")]
+        UserNormalizedName,
         [Description("User - CreationDate")]
-        CreationDate,
+        UserCreationDate,
         [Description("User - Email")]
-        Email,
+        UserEmail,
         [Description("User - EmailConfirmed")]
-        EmailConfirmed,
+        UserEmailConfirmed,
         [Description("User - PhoneNumber")]
-        PhoneNumber,
+        UserPhoneNumber,
         [Description("User - PhoneNumberConfirmed")]
-        PhoneNumberConfirmed,
+        UserPhoneNumberConfirmed,
         [Description("User - Password")]
-        Password,
+        UserPassword,
         [Description("User - LastPasswordChangeDate")]
-        LastPasswordChangeDate,
+        UserLastPasswordChangeDate,
         [Description("User - FailedPasswordAttemptCount")]
-        FailedPasswordAttemptCount,
+        UserFailedPasswordAttemptCount,
         [Description("User - FailedPasswordAttemptWindowStart")]
-        FailedPasswordAttemptWindowStart,
+        UserFailedPasswordAttemptWindowStart,
         [Description("User - LockoutEnabled")]
-        LockoutEnabled,
+        UserLockoutEnabled,
         [Description("User - LockoutEndDate")]
-        LockoutEndDate,
+        UserLockoutEndDate,
         [Description("User - LastProfileUpdateDate")]
-        LastProfileUpdateDate,
+        UserLastProfileUpdateDate,
         [Description("User - TwoFactorEnabled")]
-        TwoFactorEnabled,
+        UserTwoFactorEnabled,
         [Description("User - SecurityStamp")]
-        SecurityStamp,
+        UserSecurityStamp,
         [Description("User - Roles")]
-        Roles,
+        UserRoles,
         [Description("User - Claims")]
-        Claims,
+        UserClaims,
         [Description("User - Logins")]
-        Logins,
+        UserLogins,
 
         [Description("Role - <Key>")]
         RoleKey,
         [Description("Role - <Name>")]
         RoleName,
         [Description("Role - Users")]
-        Users,
+        RoleUsers,
+        [Description("Role - RoleClaims")]
+        RoleClaims,
 
-        [Description("UserRole - Role")]
-        Role,
-        [Description("UserRole - User")]
-        User,
-
-
-
+        //[Description("UserRole - Role")]
+        //Role,
+        //[Description("UserRole - User")]
+        //User,
+        
         [Description("Login - <Key>")]
         LoginKey,
         [Description("Login - ProviderKey")]
         LoginProviderKey,
         [Description("Login - ProviderName")]
         LoginProviderName,
+        [Description("Login - ProviderDisplayName")]
+        LoginProviderDisplayName,
+        [Description("Login - User")]
+        LoginUser,
 
         [Description("Claims - <Key>")]
-        ClaimsKey,
+        ClaimKey,
         [Description("Claims - Type")]
-        ClaimsType,
+        ClaimType,
         [Description("Claims - Value")]
-        ClaimsValue,
+        ClaimValue,
         [Description("Claims - ValueType")]
-        ClaimsValueType,
+        ClaimValueType,
         [Description("Claims - Issuer")]
-        ClaimsIssuer,
+        ClaimIssuer,
         [Description("Claims - OriginalIssuer")]
-        ClaimsOriginalIssuer,
+        ClaimOriginalIssuer,
+        [Description("Claims - User")]
+        ClaimUser,
 
+        [Description("RoleClaim - <Key>")]
+        RoleClaimKey,
+        [Description("RoleClaim - Role")]
+        RoleClaimRole,
+        [Description("RoleClaim - ClaimType")]
+        RoleClaimClaimType,
+        [Description("RoleClaim - ClaimValue")]
+        RoleClaimClaimValue,
+        [Description("RoleClaim - ClaimValueType")]
+        RoleClaimClaimValueType,
+        [Description("RoleClaim - ClaimIssuer")]
+        RoleClaimClaimIssuer,
+        [Description("RoleClaim - ClaimOriginalIssuer")]
+        RoleClaimClaimOriginalIssuer
     }
 }

@@ -12,15 +12,16 @@ namespace SoftFluent.AspNetIdentity
 
             Entity = entity;
 
-            KeyProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimsKey);
-            TypeProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimsType);
-            ValueProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimsValue);
-            ValueTypeProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimsValueType);
-            IssuerProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimsIssuer);
-            OriginalIssuerProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimsOriginalIssuer);
-            UserProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.User);
+            KeyProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimKey);
+            TypeProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimType);
+            ValueProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimValue);
+            ValueTypeProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimValueType);
+            IssuerProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimIssuer);
+            OriginalIssuerProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimOriginalIssuer);
+            UserProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.ClaimUser);
 
-            DeleteClaimMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.DeleteClaim);
+            DeleteClaimsMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.DeleteUserClaims);
+            LoadClaimsMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserClaims);
         }
 
         public Entity Entity { get; set; }
@@ -33,7 +34,8 @@ namespace SoftFluent.AspNetIdentity
         public Property OriginalIssuerProperty { get; private set; }
         public Property UserProperty { get; private set; }
 
-        public Method DeleteClaimMethod { get; private set; }
+        public Method DeleteClaimsMethod { get; private set; }
+        public Method LoadClaimsMethod { get; private set; }
 
      
 

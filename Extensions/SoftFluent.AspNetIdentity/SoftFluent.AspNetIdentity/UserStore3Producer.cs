@@ -8,7 +8,7 @@ using CodeFluent.Runtime.Utilities;
 
 namespace SoftFluent.AspNetIdentity
 {
-    public class UserStoreProducer : SimpleTemplateProducer
+    public class UserStore3Producer : SimpleTemplateProducer
     {
         private readonly AspNetIdentityProducer _aspNetIdentityProducer;
         private readonly IdentityUser _identityUser;
@@ -16,7 +16,7 @@ namespace SoftFluent.AspNetIdentity
         private readonly IdentityLogin _identityLogin;
         private readonly IdentityClaim _identityClaim;
 
-        public UserStoreProducer(
+        public UserStore3Producer(
             CodeDomBaseProducer codeDomBaseProducer,
             AspNetIdentityProducer aspNetIdentityProducer,
             IdentityUser identityUser,
@@ -131,7 +131,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.LockoutEndDateProperty != null;
+                return IdentityUser != null && IdentityUser.LockoutEndDateProperty != null;
             }
         }
 
@@ -139,7 +139,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.EmailProperty != null;
+                return IdentityUser != null && IdentityUser.EmailProperty != null;
             }
         }
 
@@ -147,7 +147,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.PhoneNumberProperty != null;
+                return IdentityUser != null && IdentityUser.PhoneNumberProperty != null;
             }
         }
 
@@ -155,7 +155,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.TwoFactorEnabledProperty != null;
+                return IdentityUser != null && IdentityUser.TwoFactorEnabledProperty != null;
             }
         }
 
@@ -185,12 +185,7 @@ namespace SoftFluent.AspNetIdentity
 
         public bool CanImplementQueryableUserStore
         {
-            get { return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && _aspNetIdentityProducer.MustImplementQueryableUserStore && CanImplementUserStore; }
-        }
-
-        public bool CanImplementGenericInterfaces
-        {
-            get { return !IdentityUser.IsStringId && _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2; }
+            get { return _aspNetIdentityProducer.MustImplementQueryableUserStore && CanImplementUserStore; }
         }
     }
 }

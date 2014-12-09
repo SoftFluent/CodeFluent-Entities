@@ -7,6 +7,7 @@ namespace SoftFluent.AspNetIdentity
         Role,
         UserRole,
         Claim,
-        Login
+        Login,
+        RoleClaim
     }
 }

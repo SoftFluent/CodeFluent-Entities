@@ -8,71 +8,179 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 // [%=Producer.GetSignature()%]
+[%
+//System.Diagnostics.Debugger.Launch();
+//System.Diagnostics.Debugger.Break();
+
+var IdentityRole = TemplateProducer.IdentityRole;
+
+Func<Method, string> CallMethod = method => 
+{
+    if(method == null)
+        throw new System.ArgumentNullException("method");
+
+    switch(method.MethodType)
+    {
+        case CodeFluent.Model.Code.MethodType.SetLoad:
+        case CodeFluent.Model.Code.MethodType.SetBodySnippet:
+        case CodeFluent.Model.Code.MethodType.SetSnippet:
+        case CodeFluent.Model.Code.MethodType.Count:
+        case CodeFluent.Model.Code.MethodType.Delete:
+            return method.Entity.Set.ClrFullTypeName + "." + method.Name;
+
+        default:
+            return method.Entity.ClrFullTypeName + "." + method.Name;        
+    }
+
+};
+
+Action<bool, string> WriteIf = (condition, str) => 
+{
+    if(condition)
+    {
+        Writer.Write(str);
+    }
+};
+
+Action<bool, string> WriteInterface = (condition, str) => 
+{
+    if(condition)
+    {
+        Writer.WriteLine(",");
+        Writer.Write("        ");
+        Writer.Write(str);
+    }
+};
+%]
+using System;
+using System.Linq;
+using System.Threading;
 
 namespace [%=TemplateProducer.Namespace%]
 {
-	public partial class RoleStore :
-		Microsoft.AspNet.Identity.IRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]>[% 
+    public partial class RoleStore :
+        Microsoft.AspNet.Identity.IRoleStore<[%=IdentityRole.Entity.ClrFullTypeName%]>[% 		
 
-        if(TemplateProducer.IdentityRole.MustImplementGenericInterface) { %],
-        Microsoft.AspNet.Identity.IRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%], [%=TemplateProducer.IdentityRole.KeyTypeName%]>[% }
+		WriteInterface(TemplateProducer.CanImplementQueryableRoleStore, string.Format("Microsoft.AspNet.Identity.IQueryableRoleStore<{0}>", IdentityRole.Entity.ClrFullTypeName));
 
-        if(TemplateProducer.CanImplementQueryableRoleStore) { %],
-        Microsoft.AspNet.Identity.IQueryableRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]>[% } 
+		if(TemplateProducer.CanImplementGenericInterfaces)
+		{
+			WriteInterface(TemplateProducer.CanImplementGenericInterfaces, string.Format("Microsoft.AspNet.Identity.IRoleStore<{0}, {1}>", IdentityRole.Entity.ClrFullTypeName, IdentityRole.KeyTypeName));
+			WriteInterface(TemplateProducer.CanImplementQueryableRoleStore, string.Format("Microsoft.AspNet.Identity.IQueryableRoleStore<{0}, {1}>", IdentityRole.Entity.ClrFullTypeName, IdentityRole.KeyTypeName));
+		}
+		%]
+    {
+        private bool _disposed = false;
 
-        if(TemplateProducer.CanImplementQueryableRoleStore && TemplateProducer.IdentityRole.MustImplementGenericInterface) { %],
-        Microsoft.AspNet.Identity.IQueryableRoleStore<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%], [%=TemplateProducer.IdentityRole.KeyTypeName%]>[% } %]        
-	{
-        public System.Threading.Tasks.Task CreateAsync([%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%] role)
+        public virtual System.Threading.Tasks.Task CreateAsync([%=IdentityRole.Entity.ClrFullTypeName%] role)
         {
-			if(role == null)
-				throw new System.ArgumentNullException("role");
+            return CreateAsync(role, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task CreateAsync([%=IdentityRole.Entity.ClrFullTypeName%] role, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (role == null)
+            {
+                throw new System.ArgumentNullException("role");
+            }
 
             return System.Threading.Tasks.Task.FromResult(role.Save());
         }
 
-        public System.Threading.Tasks.Task UpdateAsync([%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%] role)
+        public virtual System.Threading.Tasks.Task UpdateAsync([%=IdentityRole.Entity.ClrFullTypeName%] role)
         {
-			if(role == null)
-				throw new System.ArgumentNullException("role");
+            return UpdateAsync(role, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task UpdateAsync([%=IdentityRole.Entity.ClrFullTypeName%] role, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (role == null)
+            {
+                throw new System.ArgumentNullException("role");
+            }
 
             return System.Threading.Tasks.Task.FromResult(role.Save());
         }
 
-        public System.Threading.Tasks.Task DeleteAsync([%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%] role)
+        public virtual System.Threading.Tasks.Task DeleteAsync([%=IdentityRole.Entity.ClrFullTypeName%] role)
         {
-			if(role == null)
-				throw new System.ArgumentNullException("role");
+            return DeleteAsync(role, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task DeleteAsync([%=IdentityRole.Entity.ClrFullTypeName%] role, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (role == null)
+            {
+                throw new System.ArgumentNullException("role");
+            }
 
             return System.Threading.Tasks.Task.FromResult(role.Delete());
         }
 
-        public System.Threading.Tasks.Task<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]> FindByIdAsync(string roleId)
+        public virtual System.Threading.Tasks.Task<[%=IdentityRole.Entity.ClrFullTypeName%]> FindByIdAsync(string roleId)
         {
-            return System.Threading.Tasks.Task.FromResult([%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%].LoadByEntityKey(roleId));
-        }
-		[% if (TemplateProducer.IdentityRole.MustImplementGenericInterface) { %]
-        public System.Threading.Tasks.Task<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]> FindByIdAsync([%=TemplateProducer.IdentityRole.KeyTypeName%] roleId)
-        {
-            return System.Threading.Tasks.Task.FromResult([%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%].[%=TemplateProducer.IdentityRole.LoadByKeyMethodName%](roleId));
-        }
-		[% } %]
-        public System.Threading.Tasks.Task<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]> FindByNameAsync(string roleName)
-        {
-            return System.Threading.Tasks.Task.FromResult([%=TemplateProducer.IdentityRole.LoadByNameMethod.Entity.ClrFullTypeName%].[%=TemplateProducer.IdentityRole.LoadByNameMethod.Name%](roleName));
+            return FindByIdAsync(roleId, CancellationToken.None);
         }
 
-		[% if (TemplateProducer.CanImplementQueryableRoleStore) { %]
-		public System.Linq.IQueryable<[%=TemplateProducer.IdentityRole.Entity.ClrFullTypeName%]> Roles 
-		{ 
-			get
-			{
-				return System.Linq.Queryable.AsQueryable([%=TemplateProducer.IdentityRole.LoadAllMethod.Entity.Set.ClrFullTypeName%].[%=TemplateProducer.IdentityRole.LoadAllMethod.Name%]());
-			}
-		}
-		[% } %]		
-        public void Dispose()
+        public virtual System.Threading.Tasks.Task<[%=IdentityRole.Entity.ClrFullTypeName%]> FindByIdAsync(string roleId, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+
+            return System.Threading.Tasks.Task.FromResult([%=IdentityRole.Entity.ClrFullTypeName%].LoadByEntityKey(roleId));
         }
-	}
+        [% if (TemplateProducer.CanImplementGenericInterfaces) { %]
+        public virtual System.Threading.Tasks.Task<[%=IdentityRole.Entity.ClrFullTypeName%]> FindByIdAsync([%=IdentityRole.KeyTypeName%] roleId)
+        {
+            return FindByIdAsync(roleId, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=IdentityRole.Entity.ClrFullTypeName%]> FindByIdAsync([%=IdentityRole.KeyTypeName%] roleId, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+
+            return System.Threading.Tasks.Task.FromResult([%=IdentityRole.Entity.ClrFullTypeName%].[%=IdentityRole.LoadByKeyMethodName%](roleId));
+        }
+        [% } %]
+        public virtual System.Threading.Tasks.Task<[%=IdentityRole.Entity.ClrFullTypeName%]> FindByNameAsync(string roleName)
+        {
+            return FindByNameAsync(roleName, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=IdentityRole.Entity.ClrFullTypeName%]> FindByNameAsync(string roleName, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+
+            return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName));
+        }       
+        [% if (TemplateProducer.CanImplementQueryableRoleStore) { %]
+        public virtual System.Linq.IQueryable<[%=IdentityRole.Entity.ClrFullTypeName%]> Roles 
+        { 
+            get
+            {
+                return System.Linq.Queryable.AsQueryable([%=CallMethod(IdentityRole.LoadAllMethod)%]());
+            }
+        }
+        [% } %]
+        public virtual void Dispose()
+        {
+            _disposed = true;
+        }
+                
+        protected virtual void ThrowIfDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(GetType().Name);
+            }
+        }
+    }
 }

@@ -55,59 +55,70 @@ namespace SoftFluent.AspNetIdentity
         public bool Mandatory { get; set; }
 
 
-        public static IEnumerable<TypeProperty> UserProperties = new List<TypeProperty>()
+        public static readonly IEnumerable<TypeProperty> UserProperties = new List<TypeProperty>()
         {
             new TypeProperty("Id", PropertyType.UserKey, mandatory: true, nullable:false),
             new TypeProperty("UserName", PropertyType.UserName, "string", mandatory: true, nullable:false),
-            new TypeProperty("CreationDateUTC", PropertyType.CreationDate, "datetime", mandatory: false, nullable:false),
-            new TypeProperty("Email", PropertyType.Email, "string", UIType.EMail, mandatory: false, nullable:true),
-            new TypeProperty("EmailConfirmed", PropertyType.EmailConfirmed, "boolean", mandatory: false, nullable:false),
-            new TypeProperty("PhoneNumber",  PropertyType.PhoneNumber, "string", mandatory: false, nullable:true),
-            new TypeProperty("PhoneNumberConfirmed", PropertyType.PhoneNumberConfirmed, "boolean", mandatory: false, nullable:false),
-            new TypeProperty("Password", PropertyType.Password, "string", UIType.Password, mandatory: false, nullable:true),
-            new TypeProperty("LastPasswordChangeDate", PropertyType.LastPasswordChangeDate, "datetime", mandatory: false, nullable:true),
-            new TypeProperty("FailedPasswordAttemptCount", PropertyType.FailedPasswordAttemptCount, "int", mandatory: false, nullable:false),
-            new TypeProperty("FailedPasswordAttemptWindowStart", PropertyType.FailedPasswordAttemptWindowStart, "datetime", mandatory: false, nullable:true),
-            new TypeProperty("LockoutEnabled", PropertyType.LockoutEnabled, "boolean", mandatory: false, nullable:false),
-            new TypeProperty("LockoutEndDateUtc", PropertyType.LockoutEndDate, "datetime?", mandatory: false, nullable:true),
-            new TypeProperty("LastProfileUpdateDate", PropertyType.LastProfileUpdateDate, "datetime", mandatory: false, nullable:true),
-            new TypeProperty("SecurityStamp", PropertyType.SecurityStamp, "string", mandatory: false, nullable:false),
-            new TypeProperty("TwoFactorEnabled", PropertyType.TwoFactorEnabled, "boolean", mandatory: false, nullable:false),
-            new TypeProperty("Roles", PropertyType.Roles, "RoleCollection", mandatory: false, nullable:true),
-            new TypeProperty("Claims", PropertyType.Claims, "UserClaimCollection", mandatory: false, nullable:true),
-            new TypeProperty("Logins", PropertyType.Logins, "ExternalLoginCollection", mandatory: false, nullable:true),
+            new TypeProperty("CreationDateUTC", PropertyType.UserCreationDate, "datetime", mandatory: false, nullable:false),
+            new TypeProperty("Email", PropertyType.UserEmail, "string", UIType.EMail, mandatory: false, nullable:true),
+            new TypeProperty("EmailConfirmed", PropertyType.UserEmailConfirmed, "boolean", mandatory: false, nullable:false),
+            new TypeProperty("PhoneNumber",  PropertyType.UserPhoneNumber, "string", mandatory: false, nullable:true),
+            new TypeProperty("PhoneNumberConfirmed", PropertyType.UserPhoneNumberConfirmed, "boolean", mandatory: false, nullable:false),
+            new TypeProperty("Password", PropertyType.UserPassword, "string", UIType.Password, mandatory: false, nullable:true),
+            new TypeProperty("LastPasswordChangeDate", PropertyType.UserLastPasswordChangeDate, "datetime", mandatory: false, nullable:true),
+            new TypeProperty("FailedPasswordAttemptCount", PropertyType.UserFailedPasswordAttemptCount, "int", mandatory: false, nullable:false),
+            new TypeProperty("FailedPasswordAttemptWindowStart", PropertyType.UserFailedPasswordAttemptWindowStart, "datetime", mandatory: false, nullable:true),
+            new TypeProperty("LockoutEnabled", PropertyType.UserLockoutEnabled, "boolean", mandatory: false, nullable:false),
+            new TypeProperty("LockoutEndDateUtc", PropertyType.UserLockoutEndDate, "datetime?", mandatory: false, nullable:true),
+            new TypeProperty("LastProfileUpdateDate", PropertyType.UserLastProfileUpdateDate, "datetime", mandatory: false, nullable:true),
+            new TypeProperty("SecurityStamp", PropertyType.UserSecurityStamp, "string", mandatory: false, nullable:false),
+            new TypeProperty("TwoFactorEnabled", PropertyType.UserTwoFactorEnabled, "boolean", mandatory: false, nullable:false),
+            new TypeProperty("Roles", PropertyType.UserRoles, "RoleCollection", mandatory: false, nullable:true),
+            new TypeProperty("Claims", PropertyType.UserClaims, "UserClaimCollection", mandatory: false, nullable:true),
+            new TypeProperty("Logins", PropertyType.UserLogins, "UserLoginCollection", mandatory: false, nullable:true),
         };
 
-        public static IEnumerable<TypeProperty> RoleProperties = new List<TypeProperty>()
+        public static readonly IEnumerable<TypeProperty> RoleProperties = new List<TypeProperty>()
         {
             new TypeProperty("Id", PropertyType.RoleKey, mandatory: false, nullable:false),
             new TypeProperty("Name", PropertyType.RoleName, "string", mandatory: true, nullable:false),
-            new TypeProperty("Users", PropertyType.Users, "UserCollection", mandatory: true, nullable:true),
+            new TypeProperty("Users", PropertyType.RoleUsers, "UserCollection", mandatory: true, nullable:true),
+            new TypeProperty("Claims", PropertyType.RoleClaims, "RoleClaimCollection", mandatory: false, nullable:true),
         };
 
-        public static IEnumerable<TypeProperty> ExternalLoginProperties = new List<TypeProperty>()
+        public static readonly IEnumerable<TypeProperty> UserLoginProperties = new List<TypeProperty>()
         {
             new TypeProperty("Id", PropertyType.LoginKey, mandatory: true, nullable:false),
-            new TypeProperty("ProviderName", PropertyType.LoginProviderName,"string", mandatory: true, nullable:false),
-            new TypeProperty("ProviderKey", PropertyType.LoginProviderKey,"string", mandatory: true, nullable:false),
-            new TypeProperty("User", PropertyType.User, "User", mandatory: true, nullable:false),
+            new TypeProperty("ProviderName", PropertyType.LoginProviderName, "string", mandatory: true, nullable:false),
+            new TypeProperty("ProviderKey", PropertyType.LoginProviderKey, "string", mandatory: true, nullable:false),
+            new TypeProperty("ProviderDisplayName", PropertyType.LoginProviderDisplayName, "string", mandatory: false, nullable:false),
+            new TypeProperty("User", PropertyType.LoginUser, "User", mandatory: true, nullable:false),
         };
 
-        public static List<TypeProperty> ClaimsProperties = new List<TypeProperty>()
+        public static readonly List<TypeProperty> ClaimsProperties = new List<TypeProperty>()
         {
-            new TypeProperty("Id", PropertyType.ClaimsKey, mandatory: true, nullable:false),
-            new TypeProperty("Type", PropertyType.ClaimsType, "string", mandatory: true, nullable:false),
-            new TypeProperty("Value", PropertyType.ClaimsValue, "string", mandatory: true, nullable:true),
-            new TypeProperty("ValueType", PropertyType.ClaimsValueType, "string", mandatory: false, nullable:true),
-            new TypeProperty("Issuer", PropertyType.ClaimsIssuer, "string", mandatory: false, nullable:true),
-            new TypeProperty("OriginalIssuer", PropertyType.ClaimsOriginalIssuer, "string", mandatory: false, nullable:true),
-            new TypeProperty("User", PropertyType.User, "User", mandatory: true, nullable:false),
+            new TypeProperty("Id", PropertyType.ClaimKey, mandatory: true, nullable:false),
+            new TypeProperty("Type", PropertyType.ClaimType, "string", mandatory: true, nullable:false),
+            new TypeProperty("Value", PropertyType.ClaimValue, "string", mandatory: true, nullable:true),
+            new TypeProperty("ValueType", PropertyType.ClaimValueType, "string", mandatory: false, nullable:true),
+            new TypeProperty("Issuer", PropertyType.ClaimIssuer, "string", mandatory: false, nullable:true),
+            new TypeProperty("OriginalIssuer", PropertyType.ClaimOriginalIssuer, "string", mandatory: false, nullable:true),
+            new TypeProperty("User", PropertyType.ClaimUser, "User", mandatory: true, nullable:false),
         };
 
-        public static List<TypeProperty> UserRoleProperties = new List<TypeProperty>()
+        //public static List<TypeProperty> UserRoleProperties = new List<TypeProperty>()
+        //{
+        //    new TypeProperty("User", PropertyType.User, "User", mandatory: true, nullable:false),
+        //    new TypeProperty("Role", PropertyType.Role, "Role", mandatory: true, nullable:false),
+        //};
+
+        public static readonly List<TypeProperty> RoleClaimProperties = new List<TypeProperty>()
         {
-            new TypeProperty("User", PropertyType.User, "User", mandatory: true, nullable:false),
-            new TypeProperty("Role", PropertyType.Role, "Role", mandatory: true, nullable:false),
+            new TypeProperty("Id", PropertyType.RoleClaimKey, mandatory: true, nullable:false),
+            new TypeProperty("Type", PropertyType.RoleClaimClaimType, "string", mandatory: true, nullable:false),
+            new TypeProperty("Value", PropertyType.RoleClaimClaimValue, "string", mandatory: true, nullable:true),
+            new TypeProperty("ValueType", PropertyType.RoleClaimClaimValueType, "string", mandatory: false, nullable:true),
+            new TypeProperty("Role", PropertyType.RoleClaimRole, "Role", mandatory: true, nullable:false),
         };
     }
 }

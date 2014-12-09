@@ -14,23 +14,24 @@ namespace SoftFluent.AspNetIdentity
 
             KeyProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserKey);
             UserNameProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserName) ?? ProjectUtilities.FindNameProperty(entity);
-            CreationDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.CreationDate);
-            EmailProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.Email);
-            EmailConfirmedProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.EmailConfirmed);
-            PhoneNumberProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.PhoneNumber);
-            PhoneNumberConfirmedProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.PhoneNumberConfirmed);
-            PasswordProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.Password);
-            LastPasswordChangeDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LastPasswordChangeDate);
-            FailedPasswordAttemptCountProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.FailedPasswordAttemptCount);
-            FailedPasswordAttemptWindowStartProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.FailedPasswordAttemptWindowStart);
-            LockoutEnabledProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LockoutEnabled);
-            LockoutEndDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LockoutEndDate);
-            LastProfileUpdateDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LastProfileUpdateDate);
-            TwoFactorEnabledProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.TwoFactorEnabled);
-            SecurityStampProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.SecurityStamp);
-            RolesProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.Roles);
-            ClaimsProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.Claims);
-            LoginsProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.Logins);
+            NormalizedUserNameProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserNormalizedName) ?? UserNameProperty;
+            CreationDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserCreationDate);
+            EmailProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserEmail);
+            EmailConfirmedProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserEmailConfirmed);
+            PhoneNumberProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserPhoneNumber);
+            PhoneNumberConfirmedProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserPhoneNumberConfirmed);
+            PasswordProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserPassword);
+            LastPasswordChangeDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserLastPasswordChangeDate);
+            FailedPasswordAttemptCountProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserFailedPasswordAttemptCount);
+            FailedPasswordAttemptWindowStartProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserFailedPasswordAttemptWindowStart);
+            LockoutEnabledProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserLockoutEnabled);
+            LockoutEndDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserLockoutEndDate);
+            LastProfileUpdateDateProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserLastProfileUpdateDate);
+            TwoFactorEnabledProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserTwoFactorEnabled);
+            SecurityStampProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserSecurityStamp);
+            RolesProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserRoles);
+            ClaimsProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserClaims);
+            LoginsProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.UserLogins);
 
             LoadByKeyMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByKey);
             if (LoadByKeyMethod != null)
@@ -48,14 +49,15 @@ namespace SoftFluent.AspNetIdentity
 
             LoadByUserNameMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByUserName) ?? Entity.LoadByCollectionKeyMethod;
             LoadByEmailMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByEmail) ?? Entity.Methods.Find("LoadByEmail", StringComparison.OrdinalIgnoreCase) ?? Entity.LoadByCollectionKeyMethod;
-            LoadByProviderKeyMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByProviderKey);
-            LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAll) ?? Entity.LoadAllMethod;
+            LoadByUserLoginInfoMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByUserLoginInfo);
+            LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAllUsers) ?? Entity.LoadAllMethod;
         }
 
         public Entity Entity { get; set; }
 
         public Property KeyProperty { get; private set; }
         public Property UserNameProperty { get; private set; }
+        public Property NormalizedUserNameProperty { get; private set; }
         public Property CreationDateProperty { get; private set; }
         public Property EmailProperty { get; private set; }
         public Property EmailConfirmedProperty { get; private set; }
@@ -78,7 +80,7 @@ namespace SoftFluent.AspNetIdentity
         public string LoadByKeyMethodName { get; private set; }
         public Method LoadByUserNameMethod { get; private set; }
         public Method LoadByEmailMethod { get; private set; }
-        public Method LoadByProviderKeyMethod { get; private set; }
+        public Method LoadByUserLoginInfoMethod { get; private set; }
         public Method LoadAllMethod { get; private set; }
 
         public string KeyTypeName
@@ -92,9 +94,9 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        public bool MustImplementGenericInterface
+        public bool IsStringId
         {
-            get { return KeyProperty != null && KeyProperty.ClrFullTypeName != typeof(string).FullName; }
+            get { return KeyProperty == null || KeyProperty.ClrFullTypeName == typeof(string).FullName; }
         }
 
         public string KeyPropertyName

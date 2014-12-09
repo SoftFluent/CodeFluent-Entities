@@ -15,9 +15,10 @@ namespace SoftFluent.AspNetIdentity
             KeyProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LoginKey);
             ProviderKeyProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LoginProviderKey);
             ProviderNameProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LoginProviderName);
-            UserProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.User);
-            
-            DeleteByUserAndProviderKeyMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.DeleteLogin);
+            ProviderDisplayNameProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LoginProviderDisplayName);
+            UserProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.LoginUser);
+
+            DeleteByUserLoginInfoMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.DeleteLoginByUserLoginInfo);
         }
 
         public Entity Entity { get; set; }
@@ -25,8 +26,9 @@ namespace SoftFluent.AspNetIdentity
         public Property KeyProperty { get; private set; }
         public Property ProviderKeyProperty { get; private set; }
         public Property ProviderNameProperty { get; private set; }
+        public Property ProviderDisplayNameProperty { get; private set; }
         public Property UserProperty { get; private set; }
 
-        public Method DeleteByUserAndProviderKeyMethod { get; private set; }
+        public Method DeleteByUserLoginInfoMethod { get; private set; }
     }
 }

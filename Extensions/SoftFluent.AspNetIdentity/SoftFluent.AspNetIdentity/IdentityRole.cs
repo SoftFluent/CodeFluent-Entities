@@ -14,7 +14,8 @@ namespace SoftFluent.AspNetIdentity
 
             KeyProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.RoleKey);
             NameProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.RoleName) ?? ProjectUtilities.FindNameProperty(entity);
-            UsersProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.Users);
+            UsersProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.RoleUsers);
+            ClaimsProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.RoleClaims);
 
             LoadByKeyMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadRoleByKey);
             if (LoadByKeyMethod != null)
@@ -31,7 +32,7 @@ namespace SoftFluent.AspNetIdentity
             }
 
             LoadByNameMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadRoleByName) ?? Entity.LoadByCollectionKeyMethod;
-            LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAll) ?? Entity.LoadAllMethod;
+            LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAllRoles) ?? Entity.LoadAllMethod;
         }
 
         public Entity Entity { get; set; }
@@ -39,6 +40,7 @@ namespace SoftFluent.AspNetIdentity
         public Property KeyProperty { get; private set; }
         public Property NameProperty { get; private set; }
         public Property UsersProperty { get; private set; }
+        public Property ClaimsProperty { get; private set; }
 
         public Method LoadByKeyMethod { get; private set; }
         public string LoadByKeyMethodName { get; private set; }
@@ -56,9 +58,9 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        public bool MustImplementGenericInterface
+        public bool IsStringId
         {
-            get { return KeyProperty != null && KeyProperty.ClrFullTypeName != typeof(string).FullName; }
+            get { return KeyProperty == null || KeyProperty.ClrFullTypeName == typeof(string).FullName; }
         }
 
         public string KeyPropertyName

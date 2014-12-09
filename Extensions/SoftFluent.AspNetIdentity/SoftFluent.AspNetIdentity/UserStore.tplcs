@@ -47,124 +47,168 @@ Func<Method, string> CallMethod = method =>
     }
 
 };
+
+Action<bool, string> WriteIf = (condition, str) => 
+{
+    if(condition)
+    {
+        Writer.Write(str);
+    }
+};
+
+Action<bool, string> WriteInterface = (condition, str) => 
+{
+    if(condition)
+    {
+        Writer.WriteLine(",");
+        Writer.Write("        ");
+        Writer.Write(str);
+    }
+};
 %]
+using System;
+using System.Threading;
+
 namespace [%=TemplateProducer.Namespace%]
 {
     public partial class UserStore : 
         Microsoft.AspNet.Identity.IUserStore<[%=userTypeName%]>[% 
+        WriteInterface(TemplateProducer.CanImplementQueryableUserStore, string.Format("Microsoft.AspNet.Identity.IQueryableUserStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementPasswordStore, string.Format("Microsoft.AspNet.Identity.IUserPasswordStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementSecurityStampStore, string.Format("Microsoft.AspNet.Identity.IUserSecurityStampStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementRoleStore, string.Format("Microsoft.AspNet.Identity.IUserRoleStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementLoginStore, string.Format("Microsoft.AspNet.Identity.IUserLoginStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementLockoutStore, string.Format("Microsoft.AspNet.Identity.IUserLockoutStore<{0}, string>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementClaimsStore, string.Format("Microsoft.AspNet.Identity.IUserClaimStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementEmailStore, string.Format("Microsoft.AspNet.Identity.IUserEmailStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementPhoneNumberStore, string.Format("Microsoft.AspNet.Identity.IUserPhoneNumberStore<{0}>", userTypeName));
+        WriteInterface(TemplateProducer.CanImplementTwoFactorStore, string.Format("Microsoft.AspNet.Identity.IUserTwoFactorStore<{0}, string>", userTypeName));
 
-        if(TemplateProducer.CanImplementQueryableUserStore) { %],
-        Microsoft.AspNet.Identity.IQueryableUserStore<[%=userTypeName%]>[% } 
-
-        if(TemplateProducer.CanImplementPasswordStore) { %],
-        Microsoft.AspNet.Identity.IUserPasswordStore<[%=userTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementSecurityStampStore) { %],
-        Microsoft.AspNet.Identity.IUserSecurityStampStore<[%=userTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementRoleStore) { %],
-        Microsoft.AspNet.Identity.IUserRoleStore<[%=userTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementLoginStore) { %],
-        Microsoft.AspNet.Identity.IUserLoginStore<[%=userTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementLockoutStore) { %],
-        Microsoft.AspNet.Identity.IUserLockoutStore<[%=userTypeName%], string>[% }
-        
-        if(TemplateProducer.CanImplementClaimsStore) { %],
-        Microsoft.AspNet.Identity.IUserClaimStore<[%=userTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementEmailStore) { %],
-        Microsoft.AspNet.Identity.IUserEmailStore<[%=userTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementPhoneNumberStore) { %],
-        Microsoft.AspNet.Identity.IUserPhoneNumberStore<[%=userTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementTwoFactorStore) { %],
-        Microsoft.AspNet.Identity.IUserTwoFactorStore<[%=userTypeName%], string>[% }
-        
-        if (TemplateProducer.IdentityUser.MustImplementGenericInterface) { %],
-        Microsoft.AspNet.Identity.IUserStore<[%=userTypeName%], [%=userKeyTypeName%]>[% 
-
-        if(TemplateProducer.CanImplementQueryableUserStore) { %],
-        Microsoft.AspNet.Identity.IQueryableUserStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
-
-        if(TemplateProducer.CanImplementPasswordStore) { %],
-        Microsoft.AspNet.Identity.IUserPasswordStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementSecurityStampStore) { %],
-        Microsoft.AspNet.Identity.IUserSecurityStampStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementRoleStore) { %],
-        Microsoft.AspNet.Identity.IUserRoleStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementLoginStore) { %],
-        Microsoft.AspNet.Identity.IUserLoginStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
-        
-        if(TemplateProducer.CanImplementLockoutStore) { %],
-        Microsoft.AspNet.Identity.IUserLockoutStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementClaimsStore) { %],
-        Microsoft.AspNet.Identity.IUserClaimStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementEmailStore) { %],
-        Microsoft.AspNet.Identity.IUserEmailStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementPhoneNumberStore) { %],
-        Microsoft.AspNet.Identity.IUserPhoneNumberStore<[%=userTypeName%], [%=userKeyTypeName%]>[% }
-        
-        if(TemplateProducer.CanImplementTwoFactorStore) { %],
-        Microsoft.AspNet.Identity.IUserTwoFactorStore<[%=userTypeName%], [%=userKeyTypeName%]>[% } 
-        } %]
+        if (TemplateProducer.CanImplementGenericInterfaces)
+        {
+            WriteInterface(TemplateProducer.CanImplementGenericInterfaces, string.Format("Microsoft.AspNet.Identity.IUserStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementQueryableUserStore, string.Format("Microsoft.AspNet.Identity.IQueryableUserStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementPasswordStore, string.Format("Microsoft.AspNet.Identity.IUserPasswordStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementSecurityStampStore, string.Format("Microsoft.AspNet.Identity.IUserSecurityStampStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementRoleStore, string.Format("Microsoft.AspNet.Identity.IUserRoleStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementLoginStore, string.Format("Microsoft.AspNet.Identity.IUserLoginStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementLockoutStore, string.Format("Microsoft.AspNet.Identity.IUserLockoutStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementClaimsStore, string.Format("Microsoft.AspNet.Identity.IUserClaimStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementEmailStore, string.Format("Microsoft.AspNet.Identity.IUserEmailStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementPhoneNumberStore, string.Format("Microsoft.AspNet.Identity.IUserPhoneNumberStore<{0}, {1}>", userTypeName, userKeyTypeName));
+            WriteInterface(TemplateProducer.CanImplementTwoFactorStore, string.Format("Microsoft.AspNet.Identity.IUserTwoFactorStore<{0}, {1}>", userTypeName, userKeyTypeName));
+        }
+        %]
     {
-    
-        public System.Threading.Tasks.Task CreateAsync([%=userTypeName%] user)
+        private bool _disposed = false;
+
+        public virtual System.Threading.Tasks.Task CreateAsync([%=userTypeName%] user)
         {
+            return CreateAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task CreateAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             if (user == null) 
+            {
                 throw new System.ArgumentNullException("user");
+            }
             [% if (IdentityUser.CreationDateProperty != null) { %]
-			if(user.[%= IdentityUser.CreationDateProperty.Name %] == CodeFluent.Runtime.CodeFluentPersistence.DefaultDateTimeValue)
-			{
-				user.[%= IdentityUser.CreationDateProperty.Name %] = System.DateTime.UtcNow;
-			}
-			[% }%]
+            if(user.[%= IdentityUser.CreationDateProperty.Name %] == CodeFluent.Runtime.CodeFluentPersistence.DefaultDateTimeValue)
+            {
+                user.[%= IdentityUser.CreationDateProperty.Name %] = System.DateTime.UtcNow;
+            }
+            [% }%]
             return System.Threading.Tasks.Task.FromResult(user.Save());
         }
 
-        public System.Threading.Tasks.Task UpdateAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task UpdateAsync([%=userTypeName%] user)
         {
+            return UpdateAsync(user, CancellationToken.None); 
+        }
+
+        public virtual System.Threading.Tasks.Task UpdateAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             if (user == null) 
+            {
                 throw new System.ArgumentNullException("user");
+            }
 
             return System.Threading.Tasks.Task.FromResult(user.Save());
         }
 
-        public System.Threading.Tasks.Task DeleteAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task DeleteAsync([%=userTypeName%] user)
         {
+            return DeleteAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task DeleteAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             if (user == null) 
-            throw new System.ArgumentNullException("user");
+            {
+                throw new System.ArgumentNullException("user");
+            }
 
             return System.Threading.Tasks.Task.FromResult(user.Delete());
         }
 
-        public System.Threading.Tasks.Task<[%=userTypeName%]> FindByIdAsync(string userId)
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByIdAsync(string userId)
         {
+            return FindByIdAsync(userId, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             return System.Threading.Tasks.Task.FromResult([%=TemplateProducer.IdentityUser.Entity.ClrFullTypeName%].LoadByEntityKey(userId));
         }
-        [% if(TemplateProducer.IdentityUser.MustImplementGenericInterface) { %]
-        public System.Threading.Tasks.Task<[%=userTypeName%]> FindByIdAsync([%=userKeyTypeName%] userId)
+        [% if(TemplateProducer.CanImplementGenericInterfaces) { %]
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByIdAsync([%=userKeyTypeName%] userId)
         {
+            return FindByIdAsync(userId, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByIdAsync([%=userKeyTypeName%] userId, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             return System.Threading.Tasks.Task.FromResult([%=TemplateProducer.IdentityUser.Entity.ClrFullTypeName%].[%=TemplateProducer.IdentityUser.LoadByKeyMethodName%](userId));
         }
         [% } %]
-        public System.Threading.Tasks.Task<[%=userTypeName%]> FindByNameAsync(string userName)
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByNameAsync(string userName)
         {
+            return FindByNameAsync(userName, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByNameAsync(string userName, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityUser.LoadByUserNameMethod)%](userName));
         }
 [% if(TemplateProducer.CanImplementPasswordStore) { %]
 
-        public System.Threading.Tasks.Task SetPasswordHashAsync([%=userTypeName%] user, string passwordHash)
+        public virtual System.Threading.Tasks.Task SetPasswordHashAsync([%=userTypeName%] user, string passwordHash)
         {
+            return SetPasswordHashAsync(user, passwordHash, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetPasswordHashAsync([%=userTypeName%] user, string passwordHash, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             user.[%=IdentityUser.PasswordProperty.Name%] = passwordHash;
             [% if(IdentityUser.LastPasswordChangeDateProperty != null) { 
             %]user.[%=IdentityUser.LastPasswordChangeDateProperty.Name%] = System.DateTime.UtcNow;[% 
@@ -172,19 +216,55 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<string> GetPasswordHashAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<string> GetPasswordHashAsync([%=userTypeName%] user)
         {
+            return GetPasswordHashAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<string> GetPasswordHashAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.PasswordProperty.Name%]);
         }
 
-        public System.Threading.Tasks.Task<bool> HasPasswordAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<bool> HasPasswordAsync([%=userTypeName%] user)
         {
+            return HasPasswordAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<bool> HasPasswordAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.PasswordProperty.Name%] != null);
         }
 [% } if(TemplateProducer.CanImplementSecurityStampStore) { %]
 
-        public System.Threading.Tasks.Task SetSecurityStampAsync([%=userTypeName%] user, string stamp)
+        public virtual System.Threading.Tasks.Task SetSecurityStampAsync([%=userTypeName%] user, string stamp)
         {
+            return SetSecurityStampAsync(user, stamp, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetSecurityStampAsync([%=userTypeName%] user, string stamp, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [% if(IdentityUser.LastProfileUpdateDateProperty != null) { 
             %]user.[%=IdentityUser.LastProfileUpdateDateProperty.Name%] = System.DateTime.UtcNow;[% 
             } %]
@@ -192,14 +272,38 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<string> GetSecurityStampAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<string> GetSecurityStampAsync([%=userTypeName%] user)
         {
+            return GetSecurityStampAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<string> GetSecurityStampAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.SecurityStampProperty.Name%]);
         }        
 [% } if(TemplateProducer.CanImplementLockoutStore) { %]
 
-        public System.Threading.Tasks.Task<System.DateTimeOffset> GetLockoutEndDateAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<System.DateTimeOffset> GetLockoutEndDateAsync([%=userTypeName%] user)
         {
+            return GetLockoutEndDateAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<System.DateTimeOffset> GetLockoutEndDateAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [% if(IdentityUser.LockoutEndDateProperty.IsModelNullable) { %]
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.LockoutEndDateProperty.Name%].HasValue ? new System.DateTimeOffset(System.DateTime.SpecifyKind(user.[%=IdentityUser.LockoutEndDateProperty.Name%].Value, System.DateTimeKind.Utc)) : new System.DateTimeOffset());
             [% } else { %]
@@ -207,8 +311,20 @@ namespace [%=TemplateProducer.Namespace%]
             [% } %]
         }
 
-        public System.Threading.Tasks.Task SetLockoutEndDateAsync([%=userTypeName%] user, System.DateTimeOffset lockoutEnd)
+        public virtual System.Threading.Tasks.Task SetLockoutEndDateAsync([%=userTypeName%] user, System.DateTimeOffset lockoutEnd)
         {
+            return SetLockoutEndDateAsync(user, lockoutEnd, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetLockoutEndDateAsync([%=userTypeName%] user, System.DateTimeOffset lockoutEnd, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             if (lockoutEnd == System.DateTimeOffset.MinValue)
             {
                 user.[%=IdentityUser.LockoutEndDateProperty.Name%] = [%= IdentityUser.LockoutEndDateProperty.IsModelNullable ? "null" : "System.DateTime.MinValue" %];
@@ -221,8 +337,20 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<int> IncrementAccessFailedCountAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<int> IncrementAccessFailedCountAsync([%=userTypeName%] user)
         {
+            return IncrementAccessFailedCountAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<int> IncrementAccessFailedCountAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [% if(IdentityUser.FailedPasswordAttemptWindowStartProperty != null) { %]
             if(user.[%=IdentityUser.FailedPasswordAttemptCountProperty.Name%] <= 0)
             {
@@ -233,42 +361,126 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(++user.[%=IdentityUser.FailedPasswordAttemptCountProperty.Name%]);
         }
 
-        public System.Threading.Tasks.Task ResetAccessFailedCountAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task ResetAccessFailedCountAsync([%=userTypeName%] user)
         {
+            return ResetAccessFailedCountAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task ResetAccessFailedCountAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             user.[%=IdentityUser.FailedPasswordAttemptCountProperty.Name%] = 0;
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<int> GetAccessFailedCountAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<int> GetAccessFailedCountAsync([%=userTypeName%] user)
         {
+            return GetAccessFailedCountAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<int> GetAccessFailedCountAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.FailedPasswordAttemptCountProperty.Name%]);
         }
 
-        public System.Threading.Tasks.Task<bool> GetLockoutEnabledAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<bool> GetLockoutEnabledAsync([%=userTypeName%] user)
         {
+            return GetLockoutEnabledAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<bool> GetLockoutEnabledAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.LockoutEnabledProperty.Name%]);
         }
 
-        public System.Threading.Tasks.Task SetLockoutEnabledAsync([%=userTypeName%] user, bool enabled)
+        public virtual System.Threading.Tasks.Task SetLockoutEnabledAsync([%=userTypeName%] user, bool enabled)
         {
+            return SetLockoutEnabledAsync(user, enabled, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetLockoutEnabledAsync([%=userTypeName%] user, bool enabled, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             user.[%=IdentityUser.LockoutEnabledProperty.Name%] = true;
             return System.Threading.Tasks.Task.FromResult(0);
         }
 [% } if(TemplateProducer.CanImplementEmailStore) { %]
 
-        public System.Threading.Tasks.Task SetEmailAsync([%=userTypeName%] user, string email)
+        public virtual System.Threading.Tasks.Task SetEmailAsync([%=userTypeName%] user, string email)
         {
+            return SetEmailAsync(user, email, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetEmailAsync([%=userTypeName%] user, string email, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             user.[%=IdentityUser.EmailProperty.Name%] = email;
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<string> GetEmailAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<string> GetEmailAsync([%=userTypeName%] user)
         {
+            return GetEmailAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<string> GetEmailAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.EmailProperty.Name%]);
         }
 
-        public System.Threading.Tasks.Task<bool> GetEmailConfirmedAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<bool> GetEmailConfirmedAsync([%=userTypeName%] user)
         {
+            return GetEmailConfirmedAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<bool> GetEmailConfirmedAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [% if(IdentityUser.EmailConfirmedProperty != null) { %]
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.EmailConfirmedProperty.Name%]);
             [% } else { %]
@@ -276,16 +488,35 @@ namespace [%=TemplateProducer.Namespace%]
             [% } %]
         }
 
-        public System.Threading.Tasks.Task SetEmailConfirmedAsync([%=userTypeName%] user, bool confirmed)
+        public virtual System.Threading.Tasks.Task SetEmailConfirmedAsync([%=userTypeName%] user, bool confirmed)
         {
+            return SetEmailConfirmedAsync(user, confirmed, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetEmailConfirmedAsync([%=userTypeName%] user, bool confirmed, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [% if(IdentityUser.EmailConfirmedProperty != null) { %]
             user.[%=IdentityUser.EmailConfirmedProperty.Name%] = confirmed;
             [% } %]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<[%=userTypeName%]> FindByEmailAsync(string email)
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByEmailAsync(string email)
         {
+            return FindByEmailAsync(email, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindByEmailAsync(string email, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
             [% if(IdentityUser.LoadByEmailMethod == null) { %]
             throw new System.InvalidOperationException();
             [% } else { %]
@@ -294,19 +525,54 @@ namespace [%=TemplateProducer.Namespace%]
         }
 [% } if(TemplateProducer.CanImplementPhoneNumberStore) { %]
 
-        public System.Threading.Tasks.Task SetPhoneNumberAsync([%=userTypeName%] user, string phoneNumber)
+        public virtual System.Threading.Tasks.Task SetPhoneNumberAsync([%=userTypeName%] user, string phoneNumber)
         {
+            return SetPhoneNumberAsync(user, phoneNumber, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetPhoneNumberAsync([%=userTypeName%] user, string phoneNumber, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             user.[%=IdentityUser.PhoneNumberProperty.Name%] = phoneNumber;
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<string> GetPhoneNumberAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<string> GetPhoneNumberAsync([%=userTypeName%] user)
         {
+            return GetPhoneNumberAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<string> GetPhoneNumberAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.PhoneNumberProperty.Name%]);
         }
 
-        public System.Threading.Tasks.Task<bool> GetPhoneNumberConfirmedAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<bool> GetPhoneNumberConfirmedAsync([%=userTypeName%] user)
         {
+            return GetPhoneNumberConfirmedAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<bool> GetPhoneNumberConfirmedAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
             [% if(IdentityUser.PhoneNumberConfirmedProperty != null) { %]
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.PhoneNumberConfirmedProperty.Name%]);
             [% } else { %]
@@ -314,8 +580,19 @@ namespace [%=TemplateProducer.Namespace%]
             [% } %]
         }
 
-        public System.Threading.Tasks.Task SetPhoneNumberConfirmedAsync([%=userTypeName%] user, bool confirmed)
+        public virtual System.Threading.Tasks.Task SetPhoneNumberConfirmedAsync([%=userTypeName%] user, bool confirmed)
         {
+            return SetPhoneNumberConfirmedAsync(user, confirmed, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task SetPhoneNumberConfirmedAsync([%=userTypeName%] user, bool confirmed, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
             [% if(IdentityUser.PhoneNumberConfirmedProperty != null) { %]
             user.[%=IdentityUser.PhoneNumberConfirmedProperty.Name%] = confirmed;
             [% } %]
@@ -323,34 +600,86 @@ namespace [%=TemplateProducer.Namespace%]
         }
 [% } if(TemplateProducer.CanImplementTwoFactorStore) { %]
 
-        public System.Threading.Tasks.Task SetTwoFactorEnabledAsync([%=userTypeName%] user, bool enabled)
+        public virtual System.Threading.Tasks.Task SetTwoFactorEnabledAsync([%=userTypeName%] user, bool enabled)
         {
+            return SetTwoFactorEnabledAsync(user, enabled);
+        }
+
+        public virtual System.Threading.Tasks.Task SetTwoFactorEnabledAsync([%=userTypeName%] user, bool enabled, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             user.[%=IdentityUser.TwoFactorEnabledProperty.Name%] = enabled;
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<bool> GetTwoFactorEnabledAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<bool> GetTwoFactorEnabledAsync([%=userTypeName%] user)
         {
+            return GetTwoFactorEnabledAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<bool> GetTwoFactorEnabledAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.TwoFactorEnabledProperty.Name%]);
         }
 [% } if(TemplateProducer.CanImplementRoleStore) { %]
 
-        public System.Threading.Tasks.Task AddToRoleAsync([%=userTypeName%] user, string roleName)
+        public virtual System.Threading.Tasks.Task AddToRoleAsync([%=userTypeName%] user, string roleName)
         {
+            return AddToRoleAsync(user, roleName, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task AddToRoleAsync([%=userTypeName%] user, string roleName, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [%=roleTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
-                throw new System.ArgumentException(string.Format("role '{0}' not found", roleName), "roleName");
+            {
+                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+            }
 
             role.[%=IdentityRole.UsersProperty.Name%].Add(user);
             role.Save();
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task RemoveFromRoleAsync([%=userTypeName%] user, string roleName)
+        public virtual System.Threading.Tasks.Task RemoveFromRoleAsync([%=userTypeName%] user, string roleName)
         {
+            return RemoveFromRoleAsync(user, roleName, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task RemoveFromRoleAsync([%=userTypeName%] user, string roleName, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [%=roleTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
-                throw new System.ArgumentException(string.Format("role '{0}' not found", roleName), "roleName");
+            {
+                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+            }
 
             if (role.[%=IdentityRole.UsersProperty.Name%].Remove(user))
             {
@@ -360,8 +689,20 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task<System.Collections.Generic.IList<string>> GetRolesAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IList<string>> GetRolesAsync([%=userTypeName%] user)
         {
+            return GetRolesAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IList<string>> GetRolesAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             System.Collections.Generic.IList<string> result = new System.Collections.Generic.List<string>();
             foreach (Microsoft.AspNet.Identity.IRole role in user.[%=IdentityUser.RolesProperty.Name%])
             {
@@ -371,18 +712,48 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(result);
         }
 
-        public System.Threading.Tasks.Task<bool> IsInRoleAsync([%=userTypeName%] user, string roleName)
+        public virtual System.Threading.Tasks.Task<bool> IsInRoleAsync([%=userTypeName%] user, string roleName)
         {
+            return IsInRoleAsync(user, roleName);
+        }
+
+        public virtual System.Threading.Tasks.Task<bool> IsInRoleAsync([%=userTypeName%] user, string roleName, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [%=roleTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
-                throw new System.ArgumentException(string.Format("role '{0}' not found", roleName), "roleName");
+            {
+                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+            }
 
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.RolesProperty.Name%].Contains(role));
         }
 [% } if(TemplateProducer.CanImplementLoginStore) { %]
 
-        public System.Threading.Tasks.Task AddLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo)
+        public virtual System.Threading.Tasks.Task AddLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo)
         {
+            return AddLoginAsync(user, userLoginInfo, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task AddLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+            if (userLoginInfo == null)
+            {
+                throw new ArgumentNullException("userLoginInfo");
+            }
+
             [%=loginTypeName%] login = new [%=loginTypeName%]();
             login.[%=IdentityLogin.UserProperty.Name%] = user;
             login.[%=IdentityLogin.ProviderKeyProperty.Name%] = userLoginInfo.ProviderKey;
@@ -393,23 +764,51 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task RemoveLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo)
+        public virtual System.Threading.Tasks.Task RemoveLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo)
         {
-            [% if(IdentityLogin.DeleteByUserAndProviderKeyMethod != null) { %]
-            return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityLogin.DeleteByUserAndProviderKeyMethod)%](user, userLoginInfo.ProviderKey));
-            [% } else { %]
-            throw new System.InvalidOperationException();
-            [% } %]
+            return RemoveLoginAsync(user, userLoginInfo, CancellationToken.None);
         }
 
-        public System.Threading.Tasks.Task<System.Collections.Generic.IList<Microsoft.AspNet.Identity.UserLoginInfo>> GetLoginsAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task RemoveLoginAsync([%=userTypeName%] user, Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+            if (userLoginInfo == null)
+            {
+                throw new ArgumentNullException("userLoginInfo");
+            }
+
+            [% if (IdentityLogin.DeleteByUserLoginInfoMethod != null && IdentityLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 2) {
+            %]return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityLogin.DeleteByUserLoginInfoMethod)%](user, userLoginInfo.ProviderKey));[% 
+			} else if (IdentityLogin.DeleteByUserLoginInfoMethod != null && IdentityLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3) {
+			%]return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityLogin.DeleteByUserLoginInfoMethod)%](user, userLoginInfo.ProviderKey, userLoginInfo.LoginProvider));[% 
+            } else { %]throw new System.InvalidOperationException();[% } %]
+        }
+
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IList<Microsoft.AspNet.Identity.UserLoginInfo>> GetLoginsAsync([%=userTypeName%] user)
+        {
+            return GetLoginsAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IList<Microsoft.AspNet.Identity.UserLoginInfo>> GetLoginsAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             System.Collections.Generic.IList<Microsoft.AspNet.Identity.UserLoginInfo> result = new System.Collections.Generic.List<Microsoft.AspNet.Identity.UserLoginInfo>();
             [%=loginSetTypeName%] userLogins = user.[%=IdentityUser.LoginsProperty.Name%];
             foreach([%=loginTypeName%] userLogin in userLogins)
             {
                 [% if(IdentityLogin.ProviderNameProperty == null) { %]
-                Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo = new Microsoft.AspNet.Identity.UserLoginInfo("Not provided", userLogin.[%=IdentityLogin.ProviderKeyProperty.Name%]);
+                Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo = new Microsoft.AspNet.Identity.UserLoginInfo(null, userLogin.[%=IdentityLogin.ProviderKeyProperty.Name%]);
                 [% } else { %]
                 Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo = new Microsoft.AspNet.Identity.UserLoginInfo(userLogin.[%=IdentityLogin.ProviderNameProperty.Name%], userLogin.[%=IdentityLogin.ProviderKeyProperty.Name%]);
                 [% } %]
@@ -419,12 +818,19 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(result);
         }
 
-        public System.Threading.Tasks.Task<[%=userTypeName%]> FindAsync(Microsoft.AspNet.Identity.UserLoginInfo login)
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindAsync(Microsoft.AspNet.Identity.UserLoginInfo login)
         {
-            [% if(IdentityUser.LoadByProviderKeyMethod == null) { %]
+            return FindAsync(login, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<[%=userTypeName%]> FindAsync(Microsoft.AspNet.Identity.UserLoginInfo login, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            [% if(IdentityUser.LoadByUserLoginInfoMethod == null) { %]
             throw new System.InvalidOperationException();
             [% } else { %]
-            return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityUser.LoadByProviderKeyMethod)%](login.ProviderKey));
+            return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityUser.LoadByUserLoginInfoMethod)%](login.ProviderKey[%if(IdentityUser.LoadByUserLoginInfoMethod.Parameters.Count > 1) {%], login.LoginProvider[%}%]));
             [% } %]            
         }
 [% } if(TemplateProducer.CanImplementClaimsStore) { 
@@ -440,14 +846,14 @@ namespace [%=TemplateProducer.Namespace%]
         return result;
     };
 
-    Func<string> CallDeleteClaimMethod = () =>
+    Func<string> CallDeleteClaimsMethod = () =>
     {
-        if (IdentityClaim.DeleteClaimMethod == null)
+        if (IdentityClaim.DeleteClaimsMethod == null)
             return "throw new System.InvalidOperationException()";
 
-        string result = CallMethod(IdentityClaim.DeleteClaimMethod) + "(";
+        string result = CallMethod(IdentityClaim.DeleteClaimsMethod) + "(";
         bool firstParameter = true;
-        foreach (var parameter in IdentityClaim.DeleteClaimMethod.Parameters)
+        foreach (var parameter in IdentityClaim.DeleteClaimsMethod.Parameters)
         {
             string parameterText = null;
             if (parameter.ProjectProperty == IdentityClaim.UserProperty)
@@ -495,8 +901,20 @@ namespace [%=TemplateProducer.Namespace%]
     };
 %]
 
-        public System.Threading.Tasks.Task<System.Collections.Generic.IList<System.Security.Claims.Claim>> GetClaimsAsync([%=userTypeName%] user)
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IList<System.Security.Claims.Claim>> GetClaimsAsync([%=userTypeName%] user)
         {
+            return GetClaimsAsync(user, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IList<System.Security.Claims.Claim>> GetClaimsAsync([%=userTypeName%] user, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             System.Collections.Generic.IList<System.Security.Claims.Claim> result = new System.Collections.Generic.List<System.Security.Claims.Claim>();
             [%=claimSetTypeName%] userClaims = user.[%=IdentityUser.ClaimsProperty.Name%];
             foreach([%=claimTypeName%] userClaim in userClaims)
@@ -508,8 +926,20 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(result);
         }
 
-        public System.Threading.Tasks.Task AddClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim)
+        public virtual System.Threading.Tasks.Task AddClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim)
         {
+            return AddClaimAsync(user, claim);
+        }
+
+        public virtual System.Threading.Tasks.Task AddClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             [%=claimTypeName%] userClaim = new [%=claimTypeName%]();
             userClaim.[%=IdentityClaim.UserProperty.Name%] = user;
             userClaim.[%=IdentityClaim.TypeProperty.Name%] = claim.Type;
@@ -526,24 +956,45 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public System.Threading.Tasks.Task RemoveClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim)
+        public virtual System.Threading.Tasks.Task RemoveClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim)
         {
-            [%=CallDeleteClaimMethod()%];
+            return RemoveClaimAsync(user, claim, CancellationToken.None);
+        }
+
+        public virtual System.Threading.Tasks.Task RemoveClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            [%=CallDeleteClaimsMethod()%];
             return System.Threading.Tasks.Task.FromResult(0);
         }
 [% } if (TemplateProducer.CanImplementQueryableUserStore) { %]
 
-		public System.Linq.IQueryable<[%=userTypeName%]> Users 
-		{ 
-			get
-			{
-				return System.Linq.Queryable.AsQueryable([%=CallMethod(IdentityUser.LoadAllMethod)%]());
-			}
-		}
-		[% } %]
-		
+        public virtual System.Linq.IQueryable<[%=userTypeName%]> Users 
+        { 
+            get
+            {
+                return System.Linq.Queryable.AsQueryable([%=CallMethod(IdentityUser.LoadAllMethod)%]());
+            }
+        }
+        [% } %]
+        
         public virtual void Dispose()
         {
+            _disposed = true;
+        }
+                
+        protected virtual void ThrowIfDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(GetType().Name);
+            }
         }
     }
 }

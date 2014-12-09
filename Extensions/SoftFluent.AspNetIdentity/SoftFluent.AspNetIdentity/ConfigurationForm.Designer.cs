@@ -33,12 +33,14 @@ namespace SoftFluent.AspNetIdentity
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxNamespace = new System.Windows.Forms.ComboBox();
+            this.checkBoxRoleClaim = new System.Windows.Forms.CheckBox();
             this.checkBoxExternalLogins = new System.Windows.Forms.CheckBox();
             this.checkBoxClaims = new System.Windows.Forms.CheckBox();
             this.checkBoxRole = new System.Windows.Forms.CheckBox();
             this.checkBoxPhoneNumberUnique = new System.Windows.Forms.CheckBox();
+            this.textBoxRoleClaimEntityName = new System.Windows.Forms.TextBox();
             this.checkBoxEmailUnique = new System.Windows.Forms.CheckBox();
-            this.textBoxExternalLoginsEntityName = new System.Windows.Forms.TextBox();
+            this.textBoxUserLoginsEntityName = new System.Windows.Forms.TextBox();
             this.textBoxClaimsEntityName = new System.Windows.Forms.TextBox();
             this.textBoxRoleEntityName = new System.Windows.Forms.TextBox();
             this.textBoxUserEntityName = new System.Windows.Forms.TextBox();
@@ -49,7 +51,7 @@ namespace SoftFluent.AspNetIdentity
             // buttonOk
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOk.Location = new System.Drawing.Point(196, 326);
+            this.buttonOk.Location = new System.Drawing.Point(196, 374);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 23);
             this.buttonOk.TabIndex = 0;
@@ -61,7 +63,7 @@ namespace SoftFluent.AspNetIdentity
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(115, 326);
+            this.buttonCancel.Location = new System.Drawing.Point(115, 374);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 1;
@@ -75,19 +77,21 @@ namespace SoftFluent.AspNetIdentity
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.comboBoxNamespace);
+            this.groupBox1.Controls.Add(this.checkBoxRoleClaim);
             this.groupBox1.Controls.Add(this.checkBoxExternalLogins);
             this.groupBox1.Controls.Add(this.checkBoxClaims);
             this.groupBox1.Controls.Add(this.checkBoxRole);
             this.groupBox1.Controls.Add(this.checkBoxPhoneNumberUnique);
+            this.groupBox1.Controls.Add(this.textBoxRoleClaimEntityName);
             this.groupBox1.Controls.Add(this.checkBoxEmailUnique);
-            this.groupBox1.Controls.Add(this.textBoxExternalLoginsEntityName);
+            this.groupBox1.Controls.Add(this.textBoxUserLoginsEntityName);
             this.groupBox1.Controls.Add(this.textBoxClaimsEntityName);
             this.groupBox1.Controls.Add(this.textBoxRoleEntityName);
             this.groupBox1.Controls.Add(this.textBoxUserEntityName);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 303);
+            this.groupBox1.Size = new System.Drawing.Size(259, 351);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Entities options";
@@ -95,7 +99,7 @@ namespace SoftFluent.AspNetIdentity
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 257);
+            this.label2.Location = new System.Drawing.Point(6, 306);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 4;
@@ -104,11 +108,24 @@ namespace SoftFluent.AspNetIdentity
             // comboBoxNamespace
             // 
             this.comboBoxNamespace.FormattingEnabled = true;
-            this.comboBoxNamespace.Location = new System.Drawing.Point(6, 273);
+            this.comboBoxNamespace.Location = new System.Drawing.Point(6, 322);
             this.comboBoxNamespace.Name = "comboBoxNamespace";
             this.comboBoxNamespace.Size = new System.Drawing.Size(247, 21);
             this.comboBoxNamespace.TabIndex = 1;
-            this.comboBoxNamespace.TextChanged += new System.EventHandler(this.textBoxRoleEntityName_TextChanged);
+            this.comboBoxNamespace.TextChanged += new System.EventHandler(this.textBoxEntityName_TextChanged);
+            // 
+            // checkBoxRoleClaim
+            // 
+            this.checkBoxRoleClaim.AutoSize = true;
+            this.checkBoxRoleClaim.Checked = true;
+            this.checkBoxRoleClaim.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRoleClaim.Location = new System.Drawing.Point(6, 214);
+            this.checkBoxRoleClaim.Name = "checkBoxRoleClaim";
+            this.checkBoxRoleClaim.Size = new System.Drawing.Size(112, 17);
+            this.checkBoxRoleClaim.TabIndex = 3;
+            this.checkBoxRoleClaim.Text = "Role Claims entity:";
+            this.checkBoxRoleClaim.UseVisualStyleBackColor = true;
+            this.checkBoxRoleClaim.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxExternalLogins
             // 
@@ -121,7 +138,7 @@ namespace SoftFluent.AspNetIdentity
             this.checkBoxExternalLogins.TabIndex = 3;
             this.checkBoxExternalLogins.Text = "External logins entity:";
             this.checkBoxExternalLogins.UseVisualStyleBackColor = true;
-            this.checkBoxExternalLogins.CheckedChanged += new System.EventHandler(this.checkBoxRole_CheckedChanged);
+            this.checkBoxExternalLogins.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxClaims
             // 
@@ -134,7 +151,7 @@ namespace SoftFluent.AspNetIdentity
             this.checkBoxClaims.TabIndex = 3;
             this.checkBoxClaims.Text = "Claims entity:";
             this.checkBoxClaims.UseVisualStyleBackColor = true;
-            this.checkBoxClaims.CheckedChanged += new System.EventHandler(this.checkBoxRole_CheckedChanged);
+            this.checkBoxClaims.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxRole
             // 
@@ -147,38 +164,47 @@ namespace SoftFluent.AspNetIdentity
             this.checkBoxRole.TabIndex = 3;
             this.checkBoxRole.Text = "Role entity:";
             this.checkBoxRole.UseVisualStyleBackColor = true;
-            this.checkBoxRole.CheckedChanged += new System.EventHandler(this.checkBoxRole_CheckedChanged);
+            this.checkBoxRole.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBoxPhoneNumberUnique
             // 
             this.checkBoxPhoneNumberUnique.AutoSize = true;
-            this.checkBoxPhoneNumberUnique.Location = new System.Drawing.Point(6, 237);
+            this.checkBoxPhoneNumberUnique.Location = new System.Drawing.Point(6, 286);
             this.checkBoxPhoneNumberUnique.Name = "checkBoxPhoneNumberUnique";
             this.checkBoxPhoneNumberUnique.Size = new System.Drawing.Size(140, 17);
             this.checkBoxPhoneNumberUnique.TabIndex = 3;
             this.checkBoxPhoneNumberUnique.Text = "Is phone number unique";
             this.checkBoxPhoneNumberUnique.UseVisualStyleBackColor = true;
-            this.checkBoxPhoneNumberUnique.CheckedChanged += new System.EventHandler(this.checkBoxRole_CheckedChanged);
+            this.checkBoxPhoneNumberUnique.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // textBoxRoleClaimEntityName
+            // 
+            this.textBoxRoleClaimEntityName.Location = new System.Drawing.Point(6, 237);
+            this.textBoxRoleClaimEntityName.Name = "textBoxRoleClaimEntityName";
+            this.textBoxRoleClaimEntityName.Size = new System.Drawing.Size(247, 20);
+            this.textBoxRoleClaimEntityName.TabIndex = 1;
+            this.textBoxRoleClaimEntityName.Text = "RoleClaim";
+            this.textBoxRoleClaimEntityName.TextChanged += new System.EventHandler(this.textBoxEntityName_TextChanged);
             // 
             // checkBoxEmailUnique
             // 
             this.checkBoxEmailUnique.AutoSize = true;
-            this.checkBoxEmailUnique.Location = new System.Drawing.Point(6, 214);
+            this.checkBoxEmailUnique.Location = new System.Drawing.Point(6, 263);
             this.checkBoxEmailUnique.Name = "checkBoxEmailUnique";
             this.checkBoxEmailUnique.Size = new System.Drawing.Size(136, 17);
             this.checkBoxEmailUnique.TabIndex = 3;
             this.checkBoxEmailUnique.Text = "Is email address unique";
             this.checkBoxEmailUnique.UseVisualStyleBackColor = true;
-            this.checkBoxEmailUnique.CheckedChanged += new System.EventHandler(this.checkBoxRole_CheckedChanged);
+            this.checkBoxEmailUnique.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // textBoxExternalLoginsEntityName
+            // textBoxUserLoginsEntityName
             // 
-            this.textBoxExternalLoginsEntityName.Location = new System.Drawing.Point(6, 188);
-            this.textBoxExternalLoginsEntityName.Name = "textBoxExternalLoginsEntityName";
-            this.textBoxExternalLoginsEntityName.Size = new System.Drawing.Size(247, 20);
-            this.textBoxExternalLoginsEntityName.TabIndex = 1;
-            this.textBoxExternalLoginsEntityName.Text = "Login";
-            this.textBoxExternalLoginsEntityName.TextChanged += new System.EventHandler(this.textBoxRoleEntityName_TextChanged);
+            this.textBoxUserLoginsEntityName.Location = new System.Drawing.Point(6, 188);
+            this.textBoxUserLoginsEntityName.Name = "textBoxUserLoginsEntityName";
+            this.textBoxUserLoginsEntityName.Size = new System.Drawing.Size(247, 20);
+            this.textBoxUserLoginsEntityName.TabIndex = 1;
+            this.textBoxUserLoginsEntityName.Text = "UserLogin";
+            this.textBoxUserLoginsEntityName.TextChanged += new System.EventHandler(this.textBoxEntityName_TextChanged);
             // 
             // textBoxClaimsEntityName
             // 
@@ -187,7 +213,7 @@ namespace SoftFluent.AspNetIdentity
             this.textBoxClaimsEntityName.Size = new System.Drawing.Size(247, 20);
             this.textBoxClaimsEntityName.TabIndex = 1;
             this.textBoxClaimsEntityName.Text = "UserClaim";
-            this.textBoxClaimsEntityName.TextChanged += new System.EventHandler(this.textBoxRoleEntityName_TextChanged);
+            this.textBoxClaimsEntityName.TextChanged += new System.EventHandler(this.textBoxEntityName_TextChanged);
             // 
             // textBoxRoleEntityName
             // 
@@ -196,7 +222,7 @@ namespace SoftFluent.AspNetIdentity
             this.textBoxRoleEntityName.Size = new System.Drawing.Size(247, 20);
             this.textBoxRoleEntityName.TabIndex = 1;
             this.textBoxRoleEntityName.Text = "Role";
-            this.textBoxRoleEntityName.TextChanged += new System.EventHandler(this.textBoxRoleEntityName_TextChanged);
+            this.textBoxRoleEntityName.TextChanged += new System.EventHandler(this.textBoxEntityName_TextChanged);
             // 
             // textBoxUserEntityName
             // 
@@ -205,7 +231,7 @@ namespace SoftFluent.AspNetIdentity
             this.textBoxUserEntityName.Size = new System.Drawing.Size(247, 20);
             this.textBoxUserEntityName.TabIndex = 1;
             this.textBoxUserEntityName.Text = "User";
-            this.textBoxUserEntityName.TextChanged += new System.EventHandler(this.textBoxRoleEntityName_TextChanged);
+            this.textBoxUserEntityName.TextChanged += new System.EventHandler(this.textBoxEntityName_TextChanged);
             // 
             // label1
             // 
@@ -222,7 +248,7 @@ namespace SoftFluent.AspNetIdentity
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(283, 361);
+            this.ClientSize = new System.Drawing.Size(283, 409);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
@@ -243,7 +269,7 @@ namespace SoftFluent.AspNetIdentity
         private System.Windows.Forms.TextBox textBoxRoleEntityName;
         private System.Windows.Forms.TextBox textBoxUserEntityName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxExternalLoginsEntityName;
+        private System.Windows.Forms.TextBox textBoxUserLoginsEntityName;
         private System.Windows.Forms.CheckBox checkBoxClaims;
         private System.Windows.Forms.CheckBox checkBoxRole;
         private System.Windows.Forms.ComboBox comboBoxNamespace;
@@ -251,5 +277,7 @@ namespace SoftFluent.AspNetIdentity
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxEmailUnique;
         private System.Windows.Forms.CheckBox checkBoxPhoneNumberUnique;
+        private System.Windows.Forms.CheckBox checkBoxRoleClaim;
+        private System.Windows.Forms.TextBox textBoxRoleClaimEntityName;
     }
 }

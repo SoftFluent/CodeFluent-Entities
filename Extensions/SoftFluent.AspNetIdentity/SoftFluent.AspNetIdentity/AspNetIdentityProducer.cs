@@ -2,6 +2,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Xml;
 using CodeFluent.Model;
 using CodeFluent.Model.Common.Design;
@@ -13,13 +14,16 @@ namespace SoftFluent.AspNetIdentity
 {
     public class AspNetIdentityProducer : BaseProducer
     {
-        private CodeDomProducer _codeDomProducer;
+        //private CodeDomProducer _codeDomProducer;
         private IdentityUser _identityUser;
         private IdentityRole _identityRole;
         private IdentityLogin _identityLogin;
         private IdentityClaim _identityClaim;
+        private IdentityRoleClaim _identityRoleClaim;
         private UserStoreProducer _userStoreProducer;
+        private UserStore3Producer _userStore3Producer;
         private RoleStoreProducer _roleStoreProducer;
+        private RoleStore3Producer _roleStore3Producer;
 
         protected override string NamespaceUri
         {
@@ -35,11 +39,11 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return XmlUtilities.GetAttribute(Element, "implementQueryableUserStore", false);
+                return XmlUtilities.GetAttribute(Element, "implementQueryableUserStore", false, CultureInfo.InvariantCulture);
             }
             set
             {
-                XmlUtilities.SetAttribute(Element, "implementQueryableUserStore", value.ToString().ToLowerInvariant());
+                XmlUtilities.SetAttribute(Element, "implementQueryableUserStore", value.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -52,13 +56,99 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return XmlUtilities.GetAttribute(Element, "implementQueryableRoleStore", false);
+                return XmlUtilities.GetAttribute(Element, "implementQueryableRoleStore", false, CultureInfo.InvariantCulture);
             }
             set
             {
-                XmlUtilities.SetAttribute(Element, "implementQueryableRoleStore", value.ToString().ToLowerInvariant());
+                XmlUtilities.SetAttribute(Element, "implementQueryableRoleStore", value.ToString(CultureInfo.InvariantCulture));
             }
         }
+
+        private CodeDomProducer _inputProducer;
+        public virtual CodeDomProducer InputProducer
+        {
+            get
+            {
+                if (_inputProducer == null && Project != null)
+                {
+                    List<CodeDomProducer> codeDomProducers = new List<CodeDomProducer>();
+                    foreach (Producer producer in Project.Producers)
+                    {
+                        CodeDomProducer instance = producer.Instance as CodeDomProducer;
+                        if (instance == null)
+                            continue;
+
+                        codeDomProducers.Add(instance);
+                    }
+
+                    if (codeDomProducers.Count == 0)
+                        return null;
+
+                    string inputProducerName = this.InputProducerName;
+                    if (inputProducerName != null)
+                    {
+                        _inputProducer = codeDomProducers.Find(p => p.Producer.Name != null && string.Equals(p.Producer.Name, inputProducerName, StringComparison.OrdinalIgnoreCase));
+                        if (_inputProducer == null)
+                        {
+                            throw new Exception(string.Format("BOM Producer '{0}' does not exist.", inputProducerName));
+                        }
+                    }
+                    else
+                    {
+                        _inputProducer = codeDomProducers[0];
+                    }
+                }
+                return _inputProducer;
+            }
+        }
+
+        [Category("Source Production")]
+        [Description("Defines the CodeDom producer to use as the input. If null or empty, the first available producer will be used.")]
+        [DisplayName("Input Producer")]
+        [ModelLevel(ModelLevel.Normal)]
+        public virtual string InputProducerName
+        {
+            get
+            {
+                return ConvertUtilities.Nullify(XmlUtilities.GetAttribute<string>(this.Element, "inputProducerName", null), true);
+            }
+            set
+            {
+                XmlUtilities.SetAttribute(this.Element, "inputProducerName", ConvertUtilities.Nullify(value, true));
+            }
+        }
+
+        [DefaultValue(false)]
+        [Category("Source Production")]
+        [DisplayName("ASP.NET Identity Version")]
+        [ModelLevel(ModelLevel.Normal)]
+        public AspNetIdentityVersion TargetVersion
+        {
+            get
+            {
+                return XmlUtilities.GetAttribute(Element, "aspNetIdentityVersion", AspNetIdentityVersion.Version2);
+            }
+            set
+            {
+                XmlUtilities.SetAttribute(Element, "aspNetIdentityVersion", value.ToString());
+            }
+        }
+
+        //public Version TargetVersion
+        //{
+        //    get
+        //    {
+        //        switch (TargetVersion)
+        //        {
+        //            case AspNetIdentityVersion.Version1:
+        //                return new Version(1, 0);
+        //            case AspNetIdentityVersion.Version2:
+        //                return new Version(2, 0);
+        //            default:
+        //                throw new ArgumentOutOfRangeException();
+        //        }
+        //    }
+        //}
 
         public Version TargetFrameworkVersion
         {
@@ -131,16 +221,15 @@ namespace SoftFluent.AspNetIdentity
         {
             base.Initialize(project, producer);
 
-            _codeDomProducer = project.Producers.GetProducerInstance<CodeDomProducer>();
-            if (_codeDomProducer == null)
+            if (InputProducer == null)
                 return;
 
             if (string.IsNullOrWhiteSpace(EditorTargetDirectory))
             {
-                EditorTargetDirectory = _codeDomProducer.EditorTargetDirectory;
+                EditorTargetDirectory = InputProducer.EditorTargetDirectory;
             }
 
-            _codeDomProducer.CodeDomProduction += CodeDomProducer_CodeDomProduction;
+            InputProducer.CodeDomProduction += CodeDomProducer_CodeDomProduction;
 
 
             Entity userEntity = ProjectUtilities.FindByEntityType(project, EntityType.User);
@@ -167,19 +256,44 @@ namespace SoftFluent.AspNetIdentity
                 _identityClaim = new IdentityClaim(claimEntity);
             }
 
-            if (_identityUser != null)
+            Entity roleClaimEntity = ProjectUtilities.FindByEntityType(project, EntityType.RoleClaim);
+            if (claimEntity != null)
             {
-                _userStoreProducer = new UserStoreProducer(_codeDomProducer, this, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                _identityRoleClaim = new IdentityRoleClaim(roleClaimEntity);
             }
 
-            if (_identityRole != null)
+            if (TargetVersion == AspNetIdentityVersion.Version1 || TargetVersion == AspNetIdentityVersion.Version2)
             {
-                _roleStoreProducer = new RoleStoreProducer(_codeDomProducer, this, _identityRole);
+                if (_identityUser != null)
+                {
+                    _userStoreProducer = new UserStoreProducer(InputProducer, this, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                }
+
+                if (_identityRole != null)
+                {
+                    _roleStoreProducer = new RoleStoreProducer(InputProducer, this, _identityRole);
+                }
+            }
+            else if (TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                if (_identityUser != null)
+                {
+                    _userStore3Producer = new UserStore3Producer(InputProducer, this, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                }
+
+                if (_identityRole != null)
+                {
+                    _roleStore3Producer = new RoleStore3Producer(InputProducer, this, _identityRole, _identityRoleClaim);
+                }
             }
         }
 
         private void CodeDomProducer_CodeDomProduction(object sender, CodeDomProductionEventArgs e)
         {
+            if (TargetVersion != AspNetIdentityVersion.Version1 &&
+                TargetVersion != AspNetIdentityVersion.Version2)
+                return;
+
             if (e.EventType == CodeDomProductionEventType.EntityCommitting)
             {
                 CodeCompileUnit unit = e.Argument as CodeCompileUnit;
@@ -194,83 +308,32 @@ namespace SoftFluent.AspNetIdentity
                         if (type.GetAttributeValue("entityType", NamespaceUri, EntityType.None) == EntityType.User)
                         {
                             // Implements IUser<TKey> & IUser
-                            if (_identityUser.MustImplementGenericInterface)
+                            var supportGeneric = TargetVersion == AspNetIdentityVersion.Version2 && !_identityUser.IsStringId;
+                            if (supportGeneric)
                             {
-                                ImplementIUser(typeDeclaration, true);
+                                ImplementIUser(typeDeclaration, true, supportGeneric);
                             }
 
-                            ImplementIUser(typeDeclaration, false);
+                            ImplementIUser(typeDeclaration, false, supportGeneric);
                         }
 
                         else if (type.GetAttributeValue("entityType", NamespaceUri, EntityType.None) == EntityType.Role)
                         {
                             // Implements IRole<TKey> & IRole
-                            if (_identityRole.MustImplementGenericInterface)
+                            var supportGeneric = TargetVersion == AspNetIdentityVersion.Version2 && !_identityRole.IsStringId;
+                            if (supportGeneric)
                             {
-                                ImplementIRole(typeDeclaration, true);
+                                ImplementIRole(typeDeclaration, true, supportGeneric);
                             }
 
-                            ImplementIRole(typeDeclaration, false);
+                            ImplementIRole(typeDeclaration, false, supportGeneric);
                         }
-
-                        //if (type.GetAttributeValue("entityType", NamespaceUri, EntityType.None) == EntityType.Claim)
-                        //{
-                        //    // Add FromClaim, ToClaim method (implicit conversion), IEquatable<Claim>
-                        //    var fromClaimMethod = new CodeMemberMethod();
-                        //    fromClaimMethod.Name = "FromClaim";
-                        //    fromClaimMethod.Attributes = MemberAttributes.Public | MemberAttributes.Static;
-                        //    var claimParameter = new CodeParameterDeclarationExpression(typeof(System.Security.Claims.Claim), "claim");
-                        //    fromClaimMethod.Parameters.Add(claimParameter);
-                        //    fromClaimMethod.ReturnType = CodeDomUtilities.ReferenceFromDeclaration(typeDeclaration);
-
-                        //    fromClaimMethod.Statements.Add(CodeDomUtilities.CreateThrowIfNull(new CodeArgumentReferenceExpression("claim"), "claim"));
-                        //    fromClaimMethod.Statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.ReferenceFromDeclaration(typeDeclaration), "result", new CodeObjectCreateExpression(CodeDomUtilities.ReferenceFromDeclaration(typeDeclaration))));
-
-                        //    if (_identityClaim.TypeProperty != null)
-                        //    {
-                        //        fromClaimMethod.Statements.Add(new CodeAssignStatement(
-                        //            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("result"), _identityClaim.TypeProperty.Name),
-                        //            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type")));
-                        //    }
-
-                        //    if (_identityClaim.ValueProperty != null)
-                        //    {
-                        //        fromClaimMethod.Statements.Add(new CodeAssignStatement(
-                        //            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("result"), _identityClaim.ValueProperty.Name),
-                        //            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Value")));
-                        //    }
-
-                        //    if (_identityClaim.ValueTypeProperty != null)
-                        //    {
-                        //        fromClaimMethod.Statements.Add(new CodeAssignStatement(
-                        //            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("result"), _identityClaim.ValueTypeProperty.Name),
-                        //            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType")));
-                        //    }
-
-                        //    if (_identityClaim.IssuerProperty != null)
-                        //    {
-                        //        fromClaimMethod.Statements.Add(new CodeAssignStatement(
-                        //            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("result"), _identityClaim.IssuerProperty.Name),
-                        //            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer")));
-                        //    }
-
-                        //    if (_identityClaim.OriginalIssuerProperty != null)
-                        //    {
-                        //        fromClaimMethod.Statements.Add(new CodeAssignStatement(
-                        //            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("result"), _identityClaim.OriginalIssuerProperty.Name),
-                        //            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer")));
-                        //    }
-
-                        //    typeDeclaration.Members.Add(fromClaimMethod);
-                        //    fromClaimMethod.Statements.Add(new CodeMethodReturnStatement(new CodeVariableReferenceExpression("result")));
-
-                        //}
                     }
                 }
             }
         }
 
-        private void ImplementIRole(CodeTypeDeclaration typeDeclaration, bool generic)
+        private void ImplementIRole(CodeTypeDeclaration typeDeclaration, bool generic, bool supportGeneric)
         {
             string keyTypeName = generic ? _identityUser.KeyTypeName : typeof(string).FullName;
             var iroleCodeTypeReference = new CodeTypeReference("Microsoft.AspNet.Identity.IRole");
@@ -284,7 +347,7 @@ namespace SoftFluent.AspNetIdentity
             typeDeclaration.BaseTypes.Add(iroleCodeTypeReference);
 
             CodeMemberProperty idProperty = new CodeMemberProperty();
-            idProperty.PrivateImplementationType = iroleGenericCodeTypeReference;
+            idProperty.PrivateImplementationType = generic || supportGeneric ? iroleGenericCodeTypeReference : iroleCodeTypeReference;
             idProperty.Type = new CodeTypeReference(keyTypeName);
             idProperty.Name = "Id";
             idProperty.HasSet = false;
@@ -292,7 +355,7 @@ namespace SoftFluent.AspNetIdentity
             typeDeclaration.Members.Add(idProperty);
 
             CodeMemberProperty roleNameProperty = new CodeMemberProperty();
-            roleNameProperty.PrivateImplementationType = iroleGenericCodeTypeReference;
+            roleNameProperty.PrivateImplementationType = generic || supportGeneric ? iroleGenericCodeTypeReference : iroleCodeTypeReference;
             roleNameProperty.Type = new CodeTypeReference(typeof(string));
             roleNameProperty.Name = "Name";
             roleNameProperty.SetStatements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityRole.NameProperty.Name), new CodePropertySetValueReferenceExpression()));
@@ -300,7 +363,7 @@ namespace SoftFluent.AspNetIdentity
             typeDeclaration.Members.Add(roleNameProperty);
         }
 
-        private void ImplementIUser(CodeTypeDeclaration typeDeclaration, bool generic)
+        private void ImplementIUser(CodeTypeDeclaration typeDeclaration, bool generic, bool supportGeneric)
         {
             string keyTypeName = generic ? _identityUser.KeyTypeName : typeof(string).FullName;
             var iuserCodeTypeReference = new CodeTypeReference("Microsoft.AspNet.Identity.IUser");
@@ -314,7 +377,7 @@ namespace SoftFluent.AspNetIdentity
             typeDeclaration.BaseTypes.Add(iuserCodeTypeReference);
 
             CodeMemberProperty idProperty = new CodeMemberProperty();
-            idProperty.PrivateImplementationType = iuserGenericCodeTypeReference;
+            idProperty.PrivateImplementationType = generic || supportGeneric ? iuserGenericCodeTypeReference : iuserCodeTypeReference;
             idProperty.Type = new CodeTypeReference(keyTypeName);
             idProperty.Name = "Id";
             idProperty.HasSet = false;
@@ -322,7 +385,7 @@ namespace SoftFluent.AspNetIdentity
             typeDeclaration.Members.Add(idProperty);
 
             CodeMemberProperty userNameProperty = new CodeMemberProperty();
-            userNameProperty.PrivateImplementationType = iuserGenericCodeTypeReference;
+            userNameProperty.PrivateImplementationType = generic || supportGeneric ? iuserGenericCodeTypeReference : iuserCodeTypeReference;
             userNameProperty.Type = new CodeTypeReference(typeof(string));
             userNameProperty.Name = "UserName";
             userNameProperty.SetStatements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityUser.UserNameProperty.Name), new CodePropertySetValueReferenceExpression()));
@@ -332,7 +395,7 @@ namespace SoftFluent.AspNetIdentity
 
         public override void Produce()
         {
-            if (_codeDomProducer == null)
+            if (InputProducer == null)
                 throw new Exception("No CodeDom producer found.");
 
             if (_userStoreProducer != null && _userStoreProducer.CanImplementUserStore)
@@ -343,6 +406,16 @@ namespace SoftFluent.AspNetIdentity
             if (_roleStoreProducer != null && _roleStoreProducer.CanImplementRoleStore)
             {
                 _roleStoreProducer.Produce(true);
+            }
+
+            if (_roleStore3Producer != null && _roleStore3Producer.CanImplementRoleStore)
+            {
+                _roleStore3Producer.Produce(true);
+            }
+
+            if (_userStore3Producer != null && _userStore3Producer.CanImplementUserStore)
+            {
+                _userStore3Producer.Produce(true);
             }
         }
     }

@@ -8,13 +8,15 @@ using CodeFluent.Runtime.Utilities;
 
 namespace SoftFluent.AspNetIdentity
 {
-    public class RoleStoreProducer : SimpleTemplateProducer
+    public class RoleStore3Producer : SimpleTemplateProducer
     {
         private readonly AspNetIdentityProducer _aspNetIdentityProducer;
 
         public IdentityRole IdentityRole { get; }
-        
-        public RoleStoreProducer(CodeDomBaseProducer codeDomBaseProducer, AspNetIdentityProducer aspNetIdentityProducer, IdentityRole identityRole)
+
+        public IdentityRoleClaim IdentityRoleClaim { get; }
+
+        public RoleStore3Producer(CodeDomBaseProducer codeDomBaseProducer, AspNetIdentityProducer aspNetIdentityProducer, IdentityRole identityRole, IdentityRoleClaim identityRoleClaim)
             : base(codeDomBaseProducer)
         {
             if (aspNetIdentityProducer == null) throw new ArgumentNullException("aspNetIdentityProducer");
@@ -22,6 +24,7 @@ namespace SoftFluent.AspNetIdentity
 
             _aspNetIdentityProducer = aspNetIdentityProducer;
             IdentityRole = identityRole;
+            IdentityRoleClaim = identityRoleClaim;
         }
 
         protected override bool RaiseProducing(IDictionary dictionary)
@@ -64,7 +67,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                string path = ConvertUtilities.Nullify(XmlUtilities.GetAttribute(Producer.Element, ConvertUtilities.Camel(this.TargetName) + "TargetPath", (string)null), true);
+                string path = ConvertUtilities.Nullify(XmlUtilities.GetAttribute(Producer.Element, ConvertUtilities.Camel(TargetName) + "TargetPath", (string)null), true);
                 if (path == null)
                     return BaseType.GetFilePath(Producer.TargetBaseNamespace, TypeName, Namespace, Producer.FullTargetDirectory, null);
 
@@ -81,14 +84,17 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        public bool CanImplementQueryableRoleStore
+        public bool CanImplementRoleClaimStore
         {
-            get { return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && _aspNetIdentityProducer.MustImplementQueryableRoleStore && CanImplementRoleStore; }
+            get
+            {
+                return IdentityRole.ClaimsProperty != null && IdentityRoleClaim != null && IdentityRoleClaim.ValueProperty != null && IdentityRoleClaim.TypeProperty != null && CanImplementRoleStore;
+            }
         }
 
-        public bool CanImplementGenericInterfaces
+        public bool CanImplementQueryableRoleStore
         {
-            get { return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && !IdentityRole.IsStringId; }
+            get { return _aspNetIdentityProducer.MustImplementQueryableRoleStore && CanImplementRoleStore; }
         }
     }
 }

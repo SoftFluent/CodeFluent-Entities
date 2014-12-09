@@ -26,16 +26,16 @@ namespace SoftFluent.AspNetIdentity
 
         private void InitializeEntities()
         {
-
             Entity userEntity = ProjectUtilities.FindByEntityType(_project, EntityType.User);
             Entity claimEntity = ProjectUtilities.FindByEntityType(_project, EntityType.Claim);
             Entity loginEntity = ProjectUtilities.FindByEntityType(_project, EntityType.Login);
             Entity roleEntity = ProjectUtilities.FindByEntityType(_project, EntityType.Role);
             Entity userRoleEntity = ProjectUtilities.FindByEntityType(_project, EntityType.UserRole);
-            var entity = userEntity ?? claimEntity ?? loginEntity ?? roleEntity ?? userRoleEntity;
+            Entity roleClaimEntity = ProjectUtilities.FindByEntityType(_project, EntityType.RoleClaim);
+            var entity = userEntity ?? claimEntity ?? loginEntity ?? roleEntity ?? userRoleEntity ?? roleClaimEntity;
 
-            Property emailProperty = userEntity == null ? null : ProjectUtilities.FindByPropertyType(userEntity, PropertyType.Email);
-            Property phoneNumberProperty = userEntity == null ? null : ProjectUtilities.FindByPropertyType(userEntity, PropertyType.PhoneNumber);
+            Property emailProperty = userEntity == null ? null : ProjectUtilities.FindByPropertyType(userEntity, PropertyType.UserEmail);
+            Property phoneNumberProperty = userEntity == null ? null : ProjectUtilities.FindByPropertyType(userEntity, PropertyType.UserPhoneNumber);
 
             foreach (Namespace ns in _project.AllNamespaces)
             {
@@ -56,6 +56,7 @@ namespace SoftFluent.AspNetIdentity
             checkBoxClaims.Checked = claimEntity != null;
             checkBoxExternalLogins.Checked = loginEntity != null;
             checkBoxRole.Checked = roleEntity != null;
+            checkBoxRoleClaim.Checked = roleClaimEntity != null;
             //checkBoxUserRole.Checked = userRoleEntity != null;
             checkBoxEmailUnique.Checked = emailProperty != null && emailProperty.IsUnique;
             checkBoxPhoneNumberUnique.Checked = phoneNumberProperty != null && phoneNumberProperty.IsUnique;
@@ -64,8 +65,9 @@ namespace SoftFluent.AspNetIdentity
         void UpdateControls()
         {
             textBoxClaimsEntityName.Enabled = checkBoxClaims.Checked;
-            textBoxExternalLoginsEntityName.Enabled = checkBoxExternalLogins.Checked;
+            textBoxUserLoginsEntityName.Enabled = checkBoxExternalLogins.Checked;
             textBoxRoleEntityName.Enabled = checkBoxRole.Checked;
+            textBoxRoleClaimEntityName.Enabled = checkBoxRoleClaim.Checked;
             //textBoxUserRoleEntityName.Enabled = checkBoxUserRole.Checked;
             buttonOk.Enabled = IsValid();
         }
@@ -75,10 +77,13 @@ namespace SoftFluent.AspNetIdentity
             if (checkBoxClaims.Checked && string.IsNullOrWhiteSpace(textBoxClaimsEntityName.Text))
                 return false;
 
-            if (checkBoxExternalLogins.Checked && string.IsNullOrWhiteSpace(textBoxExternalLoginsEntityName.Text))
+            if (checkBoxExternalLogins.Checked && string.IsNullOrWhiteSpace(textBoxUserLoginsEntityName.Text))
                 return false;
 
             if (checkBoxRole.Checked && string.IsNullOrWhiteSpace(textBoxRoleEntityName.Text))
+                return false;
+
+            if (checkBoxRoleClaim.Checked && string.IsNullOrWhiteSpace(textBoxRoleClaimEntityName.Text))
                 return false;
 
             //if (checkBoxUserRole.Checked && string.IsNullOrWhiteSpace(textBoxUserRoleEntityName.Text))
@@ -93,12 +98,12 @@ namespace SoftFluent.AspNetIdentity
             return true;
         }
 
-        private void checkBoxRole_CheckedChanged(object sender, EventArgs e)
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             UpdateControls();
         }
 
-        private void textBoxRoleEntityName_TextChanged(object sender, EventArgs e)
+        private void textBoxEntityName_TextChanged(object sender, EventArgs e)
         {
             UpdateControls();
         }
@@ -110,6 +115,7 @@ namespace SoftFluent.AspNetIdentity
             Entity userRoleEntity = null;
             Entity loginsEntity = null;
             Entity claimsEntity = null;
+            Entity roleClaimEntity = null;
 
             if (checkBoxRole.Checked)
             {
@@ -120,23 +126,29 @@ namespace SoftFluent.AspNetIdentity
             //{
             //    userRoleEntity = CreateUserRoleEntity();
             //    AddRelation(userEntity, PropertyType.Roles, userRoleEntity, PropertyType.User, RelationType.ManyToOne);
-            //    AddRelation(roleEntity, PropertyType.Users, userRoleEntity, PropertyType.Role, RelationType.ManyToOne);
+            //    AddRelation(roleEntity, PropertyType.RoleUsers, userRoleEntity, PropertyType.Role, RelationType.ManyToOne);
             //}
             //else
             //{
-                AddRelation(userEntity, PropertyType.Roles, roleEntity, PropertyType.Users, RelationType.ManyToMany);
+            AddRelation(userEntity, PropertyType.UserRoles, roleEntity, PropertyType.RoleUsers, RelationType.ManyToMany);
             //}
 
             if (checkBoxClaims.Checked)
             {
-                claimsEntity = CreateClaimsEntity();
-                AddRelation(userEntity, PropertyType.Claims, claimsEntity, PropertyType.User, RelationType.ManyToOne);
+                claimsEntity = CreateUserClaimsEntity();
+                AddRelation(userEntity, PropertyType.UserClaims, claimsEntity, PropertyType.ClaimUser, RelationType.ManyToOne);
             }
 
             if (checkBoxExternalLogins.Checked)
             {
                 loginsEntity = CreateLoginsEntity();
-                AddRelation(userEntity, PropertyType.Logins, loginsEntity, PropertyType.User, RelationType.ManyToOne);
+                AddRelation(userEntity, PropertyType.UserLogins, loginsEntity, PropertyType.LoginUser, RelationType.ManyToOne);
+            }
+
+            if (checkBoxRoleClaim.Checked)
+            {
+                roleClaimEntity = CreateRoleClaimEntity();
+                AddRelation(roleEntity, PropertyType.RoleClaims, roleClaimEntity, PropertyType.RoleClaimRole, RelationType.ManyToOne);
             }
 
             CreateUserMethods(userEntity, loginsEntity);
@@ -146,6 +158,7 @@ namespace SoftFluent.AspNetIdentity
             SetCollectionMode(userRoleEntity);
             SetCollectionMode(loginsEntity);
             SetCollectionMode(claimsEntity);
+            SetCollectionMode(roleClaimEntity);
 
             this.Close();
         }
@@ -155,7 +168,7 @@ namespace SoftFluent.AspNetIdentity
             if (entity == null)
                 return;
 
-            int keyPropertyCount = entity.Properties.Count(_ => _.IsKey);
+            int keyPropertyCount = entity.KeyProperties.Count;
             if (keyPropertyCount > 1)
             {
                 entity.SetType = SetType.List;
@@ -223,11 +236,11 @@ namespace SoftFluent.AspNetIdentity
                 {
                     property.IsCollectionKey = true;
                 }
-                else if (typeProperty.IdentityPropertyType == PropertyType.Email)
+                else if (typeProperty.IdentityPropertyType == PropertyType.UserEmail)
                 {
                     property.EditorIsUnique = checkBoxEmailUnique.Checked;
                 }
-                else if (typeProperty.IdentityPropertyType == PropertyType.PhoneNumber)
+                else if (typeProperty.IdentityPropertyType == PropertyType.UserPhoneNumber)
                 {
                     property.EditorIsUnique = checkBoxPhoneNumberUnique.Checked;
                 }
@@ -240,23 +253,31 @@ namespace SoftFluent.AspNetIdentity
         {
             if (userEntity == null) throw new ArgumentNullException("userEntity");
 
-            // LoadUserByProviderKey
+            // LoadByUserLoginInfo
             if (loginEntity != null)
             {
-                var loginsProperty = ProjectUtilities.FindByPropertyType(userEntity, PropertyType.Logins);
+                var loginsProperty = ProjectUtilities.FindByPropertyType(userEntity, PropertyType.UserLogins);
                 var providerKeyProperty = ProjectUtilities.FindByPropertyType(loginEntity, PropertyType.LoginProviderKey);
+                var providerNameProperty = ProjectUtilities.FindByPropertyType(loginEntity, PropertyType.LoginProviderName);
                 if (loginsProperty != null && providerKeyProperty != null)
                 {
-                    Method loadByProviderKeyMethod = ProjectUtilities.FindByMethodType(userEntity, MethodType.LoadUserByProviderKey);
+                    Method loadByProviderKeyMethod = ProjectUtilities.FindByMethodType(userEntity, MethodType.LoadUserByUserLoginInfo);
                     if (loadByProviderKeyMethod == null)
                     {
                         loadByProviderKeyMethod = new Method();
-                        loadByProviderKeyMethod.Name = "LoadByProviderKey";
-                        loadByProviderKeyMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.LoadUserByProviderKey);
+                        loadByProviderKeyMethod.Name = "LoadByUserLoginInfo";
+                        loadByProviderKeyMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.LoadUserByUserLoginInfo);
                         userEntity.Methods.Add(loadByProviderKeyMethod);
 
                         Body body = new Body();
-                        body.Text = string.Format("LOADONE(string providerKey) WHERE {0}.{1} = @providerKey", loginsProperty.Name, providerKeyProperty.Name);
+                        if (providerNameProperty != null)
+                        {
+                            body.Text = string.Format("LOADONE(string providerKey, string providerName) WHERE {0}.{1} = @providerKey AND {0}.{2} = @providerName", loginsProperty.Name, providerKeyProperty.Name, providerNameProperty.Name);
+                        }
+                        else
+                        {
+                            body.Text = string.Format("LOADONE(string providerKey) WHERE {0}.{1} = @providerKey", loginsProperty.Name, providerKeyProperty.Name);
+                        }
 
                         loadByProviderKeyMethod.Bodies.Add(body);
                     }
@@ -264,7 +285,7 @@ namespace SoftFluent.AspNetIdentity
             }
 
             // LoadUserByEmail
-            var emailProperty = ProjectUtilities.FindByPropertyType(userEntity, PropertyType.Email);
+            var emailProperty = ProjectUtilities.FindByPropertyType(userEntity, PropertyType.UserEmail);
             if (emailProperty != null)
             {
                 Method loadByEmailMethod = ProjectUtilities.FindByMethodType(userEntity, MethodType.LoadUserByEmail);
@@ -320,7 +341,7 @@ namespace SoftFluent.AspNetIdentity
         //    return entity;
         //}
 
-        private Entity CreateClaimsEntity()
+        private Entity CreateUserClaimsEntity()
         {
             Entity entity = GetOrCreateEntity(EntityType.Claim, textBoxClaimsEntityName.Text, comboBoxNamespace.Text);
             foreach (var typeProperty in TypeProperty.ClaimsProperties)
@@ -330,24 +351,40 @@ namespace SoftFluent.AspNetIdentity
 
                 Property property = GetOrCreateProperty(entity, typeProperty);
 
-                if (typeProperty.IdentityPropertyType == PropertyType.ClaimsKey)
+                if (typeProperty.IdentityPropertyType == PropertyType.ClaimKey)
                 {
                     property.IsKey = true;
                 }
             }
 
-            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteClaim);
+            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteUserClaims);
             if (deleteMethod == null)
             {
                 deleteMethod = new Method();
-                deleteMethod.Name = "DeleteByTypeAndValue";
-                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteClaim);
+                deleteMethod.Name = "DeleteByClaim";
+                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteUserClaims);
                 entity.Methods.Add(deleteMethod);
 
                 Body body = new Body();
-                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimsType).Name;
-                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimsValue).Name;
+                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimType).Name;
+                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimValue).Name;
                 body.Text = string.Format("DELETE({0}, {1}) WHERE {0} = @{0} AND {1} = @{1}", typePropertyName, valuePropertyName);
+
+                deleteMethod.Bodies.Add(body);
+            }
+
+            Method loadMethod = ProjectUtilities.FindByMethodType(entity, MethodType.LoadUserClaims);
+            if (loadMethod == null)
+            {
+                deleteMethod = new Method();
+                deleteMethod.Name = "LoadByClaim";
+                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.LoadUserClaims);
+                entity.Methods.Add(deleteMethod);
+
+                Body body = new Body();
+                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimType).Name;
+                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimValue).Name;
+                body.Text = string.Format("LOAD({0}, {1}) WHERE {0} = @{0} AND {1} = @{1}", typePropertyName, valuePropertyName);
 
                 deleteMethod.Bodies.Add(body);
             }
@@ -357,36 +394,59 @@ namespace SoftFluent.AspNetIdentity
 
         private Entity CreateLoginsEntity()
         {
-            Entity entity = GetOrCreateEntity(EntityType.Login, textBoxExternalLoginsEntityName.Text, comboBoxNamespace.Text);
-            foreach (var typeProperty in TypeProperty.ExternalLoginProperties)
+            Entity entity = GetOrCreateEntity(EntityType.Login, textBoxUserLoginsEntityName.Text, comboBoxNamespace.Text);
+            foreach (var typeProperty in TypeProperty.UserLoginProperties)
             {
                 if (!MustGenerate(EntityType.Login, typeProperty))
                     continue;
 
                 Property property = GetOrCreateProperty(entity, typeProperty);
-                if (typeProperty.IdentityPropertyType == PropertyType.UserKey)
+
+                if (typeProperty.IdentityPropertyType == PropertyType.LoginProviderKey ||
+                    typeProperty.IdentityPropertyType == PropertyType.LoginProviderName ||
+                    typeProperty.IdentityPropertyType == PropertyType.LoginUser)
                 {
-                    property.IsKey = true;
+                    property.AddUniqueConstraintName("ASP.NET_Identity");
                 }
             }
 
-
-            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteClaim);
+            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteLoginByUserLoginInfo);
             if (deleteMethod == null)
             {
                 deleteMethod = new Method();
-                deleteMethod.Name = "DeleteByUserAndProviderKey";
-                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteLogin);
+                deleteMethod.Name = "DeleteByUserLoginInfo";
+                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteLoginByUserLoginInfo);
                 entity.Methods.Add(deleteMethod);
 
                 Body body = new Body();
-                string userPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.User).Name;
+                string userPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.LoginUser).Name;
                 string providerKeyPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.LoginProviderKey).Name;
-                body.Text = string.Format("DELETE({0}, {1}) WHERE {0} = @{0} AND {1} = @{1}", userPropertyName, providerKeyPropertyName);
+                string providerNamePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.LoginProviderName)?.Name;
+                if (providerNamePropertyName != null)
+                {
+                    body.Text = string.Format("DELETE({0}, {1}, {2}) WHERE {0} = @{0} AND {1} = @{1} AND {2} = @{2}", userPropertyName, providerKeyPropertyName, providerNamePropertyName);
+                }
+                else
+                {
+                    body.Text = string.Format("DELETE({0}, {1}) WHERE {0} = @{0} AND {1} = @{1}", userPropertyName, providerKeyPropertyName);
+                }
 
                 deleteMethod.Bodies.Add(body);
             }
 
+            return entity;
+        }
+
+        private Entity CreateRoleClaimEntity()
+        {
+            Entity entity = GetOrCreateEntity(EntityType.RoleClaim, textBoxRoleClaimEntityName.Text, comboBoxNamespace.Text);
+            foreach (var typeProperty in TypeProperty.RoleClaimProperties)
+            {
+                if (!MustGenerate(EntityType.RoleClaim, typeProperty))
+                    continue;
+
+                Property property = GetOrCreateProperty(entity, typeProperty);
+            }
 
             return entity;
         }
@@ -398,14 +458,23 @@ namespace SoftFluent.AspNetIdentity
                 case EntityType.User:
                     switch (property.IdentityPropertyType)
                     {
-                        case PropertyType.Roles:
+                        case PropertyType.UserRoles:
                             return checkBoxRole.Checked;
-                        case PropertyType.Claims:
+                        case PropertyType.UserClaims:
                             return checkBoxClaims.Checked;
-                        case PropertyType.Logins:
+                        case PropertyType.UserLogins:
                             return checkBoxExternalLogins.Checked;
                     }
                     break;
+
+                case EntityType.Role:
+                    switch (property.IdentityPropertyType)
+                    {
+                        case PropertyType.RoleClaims:
+                            return checkBoxRoleClaim.Checked;
+                    }
+                    break;
+
             }
 
             return true;
