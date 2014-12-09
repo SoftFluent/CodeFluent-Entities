@@ -29,7 +29,7 @@ Func<Method, string> CallMethod = method =>
             return method.Entity.Set.ClrFullTypeName + "." + method.Name;
 
         default:
-            return method.Entity.ClrFullTypeName + "." + method.Name;        
+            return method.Entity.ClrFullTypeName + "." + method.Name;
     }
 
 };

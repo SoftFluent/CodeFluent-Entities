@@ -72,6 +72,8 @@
     <Compile Include="IdentityRole.cs" />
     <Compile Include="IdentityUser.cs" />
     <Compile Include="MethodType.cs" />
+    <Compile Include="ProjectMessages.cs" />
+    <Compile Include="ProjectMessageType.cs" />
     <Compile Include="ProjectUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyType.cs" />

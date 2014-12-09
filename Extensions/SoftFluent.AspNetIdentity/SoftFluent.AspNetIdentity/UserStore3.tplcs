@@ -19,13 +19,13 @@ var IdentityRole = TemplateProducer.IdentityRole;
 
 string userTypeName = IdentityUser.Entity.ClrFullTypeName;
 
-string roleTypeName = IdentityRole != null ? IdentityRole.Entity.ClrFullTypeName : null; 
-string roleKeyTypeName = IdentityRole != null ? IdentityRole.KeyTypeName : null; 
+string roleTypeName = IdentityRole != null ? IdentityRole.Entity.ClrFullTypeName : null;
+string roleKeyTypeName = IdentityRole != null ? IdentityRole.KeyTypeName : null;
 
-string loginTypeName = IdentityLogin != null ? IdentityLogin.Entity.ClrFullTypeName : null; 
-string loginSetTypeName = IdentityLogin != null ? IdentityLogin.Entity.Set.ClrFullTypeName : null; 
-string claimTypeName = IdentityClaim != null ? IdentityClaim.Entity.ClrFullTypeName : null; 
-string claimSetTypeName = IdentityClaim != null ? IdentityClaim.Entity.Set.ClrFullTypeName : null; 
+string loginTypeName = IdentityLogin != null ? IdentityLogin.Entity.ClrFullTypeName : null;
+string loginSetTypeName = IdentityLogin != null ? IdentityLogin.Entity.Set.ClrFullTypeName : null;
+string claimTypeName = IdentityClaim != null ? IdentityClaim.Entity.ClrFullTypeName : null;
+string claimSetTypeName = IdentityClaim != null ? IdentityClaim.Entity.Set.ClrFullTypeName : null;
 
 Func<Method, string> CallMethod = method => 
 {
@@ -42,7 +42,7 @@ Func<Method, string> CallMethod = method =>
             return method.Entity.Set.ClrFullTypeName + "." + method.Name;
 
         default:
-            return method.Entity.ClrFullTypeName + "." + method.Name;        
+            return method.Entity.ClrFullTypeName + "." + method.Name;
     }
 };
 
@@ -69,6 +69,23 @@ Action<bool, string> WriteInterface = (condition, str) =>
         Writer.WriteLine(",");
         Writer.Write("        ");
         Writer.Write(str);
+    }
+};
+
+Func<string> WriteRoleNotFound = () =>
+{
+    if(TemplateProducer.ProjectMessages.RoleNotFoundMessage == null)
+    {
+        return "string.Format(\"Role '{0}' does not exist.\", roleName)";
+    }
+    else
+    {
+        string result = Project.DefaultNamespace + ".Resources.Manager.GetStringWithDefault(";
+        result += "\"" + TemplateProducer.ProjectMessages.RoleNotFoundMessage.Name + "\"";
+        result += ", ";
+        result += "\"" + TemplateProducer.ProjectMessages.RoleNotFoundMessage.Value + "\"";
+        result += ", new object[] { roleName })";
+        return result;
     }
 };
 %]
@@ -541,7 +558,7 @@ namespace [%=TemplateProducer.Namespace%]
             [%=IdentityRole.Entity.ClrFullTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
             {
-                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+                throw new System.ArgumentException([%=WriteRoleNotFound()%], "roleName");
             }
 
             role.[%=IdentityRole.UsersProperty.Name%].Add(user);
@@ -561,7 +578,7 @@ namespace [%=TemplateProducer.Namespace%]
             [%=IdentityRole.Entity.ClrFullTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
             {
-                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+                throw new System.ArgumentException([%=WriteRoleNotFound()%], "roleName");
             }
 
             if (role.[%=IdentityRole.UsersProperty.Name%].Remove(user))
@@ -602,7 +619,7 @@ namespace [%=TemplateProducer.Namespace%]
             [%=IdentityRole.Entity.ClrFullTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
             {
-                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+                throw new System.ArgumentException([%=WriteRoleNotFound()%], "roleName");
             }
 
             bool contains = user.[%=IdentityUser.RolesProperty.Name%].Contains(role);

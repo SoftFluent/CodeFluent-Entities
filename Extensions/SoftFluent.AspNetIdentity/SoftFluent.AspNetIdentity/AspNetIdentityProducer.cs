@@ -158,6 +158,38 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
+        [DefaultValue(false)]
+        [Category("Design")]
+        [DisplayName("Must Create Project Messages")]
+        [ModelLevel(ModelLevel.Normal)]
+        public bool MustCreateMessages
+        {
+            get
+            {
+                return XmlUtilities.GetAttribute(Element, "mustCreateMessages", false);
+            }
+            set
+            {
+                XmlUtilities.SetAttribute(Element, "mustCreateMessages", value.ToString());
+            }
+        }
+
+        [DefaultValue("")]
+        [Category("Design")]
+        [DisplayName("Project Messages Culture")]
+        [ModelLevel(ModelLevel.Normal)]
+        public string MessagesCulture
+        {
+            get
+            {
+                return XmlUtilities.GetAttribute(Element, "messagesCulture", "");
+            }
+            set
+            {
+                XmlUtilities.SetAttribute(Element, "messagesCulture", value);
+            }
+        }
+
         protected override void BuildMenus(IList<IDesignProducerMenu> menus)
         {
             base.BuildMenus(menus);
@@ -177,7 +209,7 @@ namespace SoftFluent.AspNetIdentity
             switch (index)
             {
                 case 0:
-                    var form = new ConfigurationForm(project);
+                    var form = new ConfigurationForm(this, project);
                     form.ShowDialog();
                     return true;
             }
@@ -262,11 +294,13 @@ namespace SoftFluent.AspNetIdentity
                 _identityRoleClaim = new IdentityRoleClaim(roleClaimEntity);
             }
 
+            ProjectMessages projectMessages = new ProjectMessages(project);
+
             if (TargetVersion == AspNetIdentityVersion.Version1 || TargetVersion == AspNetIdentityVersion.Version2)
             {
                 if (_identityUser != null)
                 {
-                    _userStoreProducer = new UserStoreProducer(InputProducer, this, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                    _userStoreProducer = new UserStoreProducer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityLogin, _identityClaim);
                 }
 
                 if (_identityRole != null)
@@ -278,7 +312,7 @@ namespace SoftFluent.AspNetIdentity
             {
                 if (_identityUser != null)
                 {
-                    _userStore3Producer = new UserStore3Producer(InputProducer, this, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                    _userStore3Producer = new UserStore3Producer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityLogin, _identityClaim);
                 }
 
                 if (_identityRole != null)

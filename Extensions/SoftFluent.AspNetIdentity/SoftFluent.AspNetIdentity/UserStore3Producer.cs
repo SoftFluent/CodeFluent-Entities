@@ -11,6 +11,7 @@ namespace SoftFluent.AspNetIdentity
     public class UserStore3Producer : SimpleTemplateProducer
     {
         private readonly AspNetIdentityProducer _aspNetIdentityProducer;
+        private readonly ProjectMessages _projectMessages;
         private readonly IdentityUser _identityUser;
         private readonly IdentityRole _identityRole;
         private readonly IdentityLogin _identityLogin;
@@ -19,6 +20,7 @@ namespace SoftFluent.AspNetIdentity
         public UserStore3Producer(
             CodeDomBaseProducer codeDomBaseProducer,
             AspNetIdentityProducer aspNetIdentityProducer,
+            ProjectMessages projectMessages,
             IdentityUser identityUser,
             IdentityRole identityRole,
             IdentityLogin identityLogin,
@@ -29,10 +31,16 @@ namespace SoftFluent.AspNetIdentity
             if (identityUser == null) throw new ArgumentNullException("identityUser");
 
             _aspNetIdentityProducer = aspNetIdentityProducer;
+            _projectMessages = projectMessages;
             _identityUser = identityUser;
             _identityRole = identityRole;
             _identityLogin = identityLogin;
             _identityClaim = identityClaim;
+        }
+
+        public ProjectMessages ProjectMessages
+        {
+            get { return _projectMessages; }
         }
 
         public IdentityLogin IdentityLogin

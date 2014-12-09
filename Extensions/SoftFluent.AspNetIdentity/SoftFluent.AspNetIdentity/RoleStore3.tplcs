@@ -59,9 +59,9 @@ namespace [%=TemplateProducer.Namespace%]
 {
     public partial class RoleStore :
         Microsoft.AspNet.Identity.IRoleStore<[%=IdentityRole.Entity.ClrFullTypeName%]>[% 
-		WriteInterface(TemplateProducer.CanImplementRoleClaimStore, string.Format("Microsoft.AspNet.Identity.IRoleClaimStore<{0}>", IdentityRole.Entity.ClrFullTypeName));
-		WriteInterface(TemplateProducer.CanImplementQueryableRoleStore, string.Format("Microsoft.AspNet.Identity.IQueryableRoleStore<{0}>", IdentityRole.Entity.ClrFullTypeName));
-		%]
+        WriteInterface(TemplateProducer.CanImplementRoleClaimStore, string.Format("Microsoft.AspNet.Identity.IRoleClaimStore<{0}>", IdentityRole.Entity.ClrFullTypeName));
+        WriteInterface(TemplateProducer.CanImplementQueryableRoleStore, string.Format("Microsoft.AspNet.Identity.IQueryableRoleStore<{0}>", IdentityRole.Entity.ClrFullTypeName));
+        %]
     {
         private bool _disposed = false;
 

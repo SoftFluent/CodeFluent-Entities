@@ -4,18 +4,22 @@ using System.Windows.Forms;
 using CodeFluent.Model;
 using CodeFluent.Model.Code;
 using CodeFluent.Runtime.UI;
+using CodeFluent.Runtime.Utilities;
+using Message = CodeFluent.Model.Message;
 
 namespace SoftFluent.AspNetIdentity
 {
     public partial class ConfigurationForm : Form
     {
+        private readonly AspNetIdentityProducer _aspNetIdentityProducer;
         private readonly Project _project;
 
-        public ConfigurationForm(Project project)
+        public ConfigurationForm(AspNetIdentityProducer aspNetIdentityProducer, Project project)
         {
             if (project == null)
                 throw new ArgumentNullException("project");
 
+            _aspNetIdentityProducer = aspNetIdentityProducer;
             _project = project;
 
             InitializeComponent();
@@ -112,7 +116,7 @@ namespace SoftFluent.AspNetIdentity
         {
             Entity userEntity = CreateUserEntity();
             Entity roleEntity = null;
-            Entity userRoleEntity = null;
+            //Entity userRoleEntity = null;
             Entity loginsEntity = null;
             Entity claimsEntity = null;
             Entity roleClaimEntity = null;
@@ -155,10 +159,28 @@ namespace SoftFluent.AspNetIdentity
 
             SetCollectionMode(userEntity);
             SetCollectionMode(roleEntity);
-            SetCollectionMode(userRoleEntity);
+            //SetCollectionMode(userRoleEntity);
             SetCollectionMode(loginsEntity);
             SetCollectionMode(claimsEntity);
             SetCollectionMode(roleClaimEntity);
+
+            if (_aspNetIdentityProducer.MustCreateMessages)
+            {
+                ProjectMessages messages = new ProjectMessages(_project);
+                if (messages.RoleNotFoundMessage == null)
+                {
+                    var message = new Message
+                    {
+                        EditorName = "RoleNotFound",
+                        Class = MessageClass._default.ToString(),
+                        CultureName = ConvertUtilities.ToCultureInfo(_aspNetIdentityProducer.MessagesCulture, _project.Culture).Name,
+                        Value = "Role '{0}' does not exist.",
+                        AddToRuntimeResourceFile = true
+                    };
+                    message.SetAttributeValue("", "messageType", Constants.NamespaceUri, ProjectMessageType.RoleNotFound);
+                    _project.Messages.Add(message);
+                }
+            }
 
             this.Close();
         }
