@@ -65,6 +65,23 @@ Action<bool, string> WriteInterface = (condition, str) =>
         Writer.Write(str);
     }
 };
+
+Func<string> WriteRoleNotFound = () =>
+{
+    if(TemplateProducer.ProjectMessages.RoleNotFoundMessage == null)
+    {
+        return "string.Format(\"Role '{0}' does not exist.\", roleName)";
+    }
+    else
+    {
+        string result = Project.DefaultNamespace + ".Resources.Manager.GetStringWithDefault(";
+        result += "\"" + TemplateProducer.ProjectMessages.RoleNotFoundMessage.Name + "\"";
+        result += ", ";
+        result += "\"" + TemplateProducer.ProjectMessages.RoleNotFoundMessage.Value + "\"";
+        result += ", new object[] { roleName })";
+        return result;
+    }
+};
 %]
 using System;
 using System.Threading;
@@ -653,7 +670,7 @@ namespace [%=TemplateProducer.Namespace%]
             [%=roleTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
             {
-                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+                throw new System.ArgumentException([%=WriteRoleNotFound()%], "roleName");
             }
 
             role.[%=IdentityRole.UsersProperty.Name%].Add(user);
@@ -678,7 +695,7 @@ namespace [%=TemplateProducer.Namespace%]
             [%=roleTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
             {
-                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+                throw new System.ArgumentException([%=WriteRoleNotFound()%], "roleName");
             }
 
             if (role.[%=IdentityRole.UsersProperty.Name%].Remove(user))
@@ -729,7 +746,7 @@ namespace [%=TemplateProducer.Namespace%]
             [%=roleTypeName%] role = [%=CallMethod(IdentityRole.LoadByNameMethod)%](roleName);
             if (role == null)
             {
-                throw new System.ArgumentException(string.Format("Role '{0}' does not exist.", roleName), "roleName");
+                throw new System.ArgumentException([%=WriteRoleNotFound()%], "roleName");
             }
 
             return System.Threading.Tasks.Task.FromResult(user.[%=IdentityUser.RolesProperty.Name%].Contains(role));
@@ -784,8 +801,8 @@ namespace [%=TemplateProducer.Namespace%]
 
             [% if (IdentityLogin.DeleteByUserLoginInfoMethod != null && IdentityLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 2) {
             %]return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityLogin.DeleteByUserLoginInfoMethod)%](user, userLoginInfo.ProviderKey));[% 
-			} else if (IdentityLogin.DeleteByUserLoginInfoMethod != null && IdentityLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3) {
-			%]return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityLogin.DeleteByUserLoginInfoMethod)%](user, userLoginInfo.ProviderKey, userLoginInfo.LoginProvider));[% 
+            } else if (IdentityLogin.DeleteByUserLoginInfoMethod != null && IdentityLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3) {
+            %]return System.Threading.Tasks.Task.FromResult([%=CallMethod(IdentityLogin.DeleteByUserLoginInfoMethod)%](user, userLoginInfo.ProviderKey, userLoginInfo.LoginProvider));[% 
             } else { %]throw new System.InvalidOperationException();[% } %]
         }
 
