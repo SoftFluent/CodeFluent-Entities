@@ -331,7 +331,7 @@ namespace SoftFluent.AspNetIdentity
             Entity entity = GetOrCreateEntity(EntityType.Role, textBoxRoleEntityName.Text, comboBoxNamespace.Text);
             foreach (var typeProperty in TypeProperty.RoleProperties)
             {
-                if (!MustGenerate(EntityType.User, typeProperty))
+                if (!MustGenerate(EntityType.Role, typeProperty))
                     continue;
 
                 Property property = GetOrCreateProperty(entity, typeProperty);
