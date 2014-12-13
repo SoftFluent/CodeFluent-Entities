@@ -14,8 +14,8 @@ namespace SoftFluent.AspNetIdentity
         private readonly ProjectMessages _projectMessages;
         private readonly IdentityUser _identityUser;
         private readonly IdentityRole _identityRole;
-        private readonly IdentityLogin _identityLogin;
-        private readonly IdentityClaim _identityClaim;
+        private readonly IdentityUserLogin _identityUserLogin;
+        private readonly IdentityUserClaim _identityUserClaim;
 
         public UserStoreProducer(
             CodeDomBaseProducer codeDomBaseProducer,
@@ -23,8 +23,8 @@ namespace SoftFluent.AspNetIdentity
             ProjectMessages projectMessages,
             IdentityUser identityUser,
             IdentityRole identityRole,
-            IdentityLogin identityLogin,
-            IdentityClaim identityClaim)
+            IdentityUserLogin identityUserLogin,
+            IdentityUserClaim identityUserClaim)
             : base(codeDomBaseProducer)
         {
             if (aspNetIdentityProducer == null) throw new ArgumentNullException("aspNetIdentityProducer");
@@ -34,8 +34,8 @@ namespace SoftFluent.AspNetIdentity
             _projectMessages = projectMessages;
             _identityUser = identityUser;
             _identityRole = identityRole;
-            _identityLogin = identityLogin;
-            _identityClaim = identityClaim;
+            _identityUserLogin = identityUserLogin;
+            _identityUserClaim = identityUserClaim;
         }
 
         public ProjectMessages ProjectMessages
@@ -43,14 +43,14 @@ namespace SoftFluent.AspNetIdentity
             get { return _projectMessages; }
         }
 
-        public IdentityLogin IdentityLogin
+        public IdentityUserLogin IdentityUserLogin
         {
-            get { return _identityLogin; }
+            get { return _identityUserLogin; }
         }
 
-        public IdentityClaim IdentityClaim
+        public IdentityUserClaim IdentityUserClaim
         {
-            get { return _identityClaim; }
+            get { return _identityUserClaim; }
         }
 
         public IdentityRole IdentityRole
@@ -179,7 +179,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return IdentityUser != null && IdentityUser.LoginsProperty != null && IdentityLogin != null && IdentityLogin.ProviderKeyProperty != null;
+                return IdentityUser != null && IdentityUser.LoginsProperty != null && IdentityUserLogin != null && IdentityUserLogin.ProviderKeyProperty != null;
             }
         }
 
@@ -187,7 +187,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return IdentityClaim != null && IdentityUser != null && IdentityUser.ClaimsProperty != null;
+                return IdentityUserClaim != null && IdentityUser != null && IdentityUser.ClaimsProperty != null;
             }
         }
 

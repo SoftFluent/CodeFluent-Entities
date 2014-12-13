@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace SoftFluent.AspNetIdentity
 {
     public enum MethodType
@@ -9,11 +11,21 @@ namespace SoftFluent.AspNetIdentity
         LoadUserByUserLoginInfo,
         LoadRoleByKey,
         LoadRoleByName,
-        LoadUserClaims,
-        DeleteUserClaims,
-        DeleteLoginByUserLoginInfo,
+        LoadUserClaimsByClaim,
+        DeleteUserClaimsByClaim,
+        DeleteUserLoginByUserLoginInfo,
         LoadAllRoles,
-        LoadClaimsByRole,
-        LoadAllUsers
+        LoadRoleClaimsByRole,
+        LoadAllUsers,
+
+        // Compatibility
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        LoadUserClaims = LoadUserClaimsByClaim,
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        DeleteUserClaims = DeleteUserClaimsByClaim,
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        DeleteLoginByUserLoginInfo = DeleteUserLoginByUserLoginInfo,
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        LoadClaimsByRole = LoadRoleClaimsByRole,
     }
 }

@@ -34,6 +34,18 @@ namespace SoftFluent.AspNetIdentity
                 }
             }
 
+            PropertyTypeCompatibility compatibility = (PropertyTypeCompatibility) propertyType;
+            foreach (var property in entity.Properties)
+            {
+                var value = property.GetAttributeValue("propertyType", Constants.NamespaceUri, PropertyTypeCompatibility.None);
+                if (value == compatibility ||
+                    (value == PropertyTypeCompatibility.User && propertyType == PropertyType.UserClaimUser) ||
+                    (value == PropertyTypeCompatibility.User && propertyType == PropertyType.UserLoginUser))
+                {
+                    return property;
+                }
+            }
+
             return null;
         }
 

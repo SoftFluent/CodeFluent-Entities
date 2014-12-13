@@ -60,32 +60,32 @@ namespace SoftFluent.AspNetIdentity
         //Role,
         //[Description("UserRole - User")]
         //User,
-        
-        [Description("Login - <Key>")]
-        LoginKey,
-        [Description("Login - ProviderKey")]
-        LoginProviderKey,
-        [Description("Login - ProviderName")]
-        LoginProviderName,
-        [Description("Login - ProviderDisplayName")]
-        LoginProviderDisplayName,
-        [Description("Login - User")]
-        LoginUser,
 
-        [Description("Claims - <Key>")]
-        ClaimKey,
-        [Description("Claims - Type")]
-        ClaimType,
-        [Description("Claims - Value")]
-        ClaimValue,
-        [Description("Claims - ValueType")]
-        ClaimValueType,
-        [Description("Claims - Issuer")]
-        ClaimIssuer,
-        [Description("Claims - OriginalIssuer")]
-        ClaimOriginalIssuer,
-        [Description("Claims - User")]
-        ClaimUser,
+        [Description("UserLogin - <Key>")]
+        UserLoginKey,
+        [Description("UserLogin - ProviderKey")]
+        UserLoginProviderKey,
+        [Description("UserLogin - ProviderName")]
+        UserLoginProviderName,
+        [Description("UserLogin - ProviderDisplayName")]
+        UserLoginProviderDisplayName,
+        [Description("UserLogin - User")]
+        UserLoginUser,
+
+        [Description("UserClaim - <Key>")]
+        UserClaimKey,
+        [Description("UserClaim - Type")]
+        UserClaimType,
+        [Description("UserClaim - Value")]
+        UserClaimValue,
+        [Description("UserClaim - ValueType")]
+        UserClaimValueType,
+        [Description("UserClaim - Issuer")]
+        UserClaimIssuer,
+        [Description("UserClaim - OriginalIssuer")]
+        UserClaimOriginalIssuer,
+        [Description("UserClaim - User")]
+        UserClaimUser,
 
         [Description("RoleClaim - <Key>")]
         RoleClaimKey,
@@ -101,5 +101,48 @@ namespace SoftFluent.AspNetIdentity
         RoleClaimClaimIssuer,
         [Description("RoleClaim - ClaimOriginalIssuer")]
         RoleClaimClaimOriginalIssuer
+    }
+
+    internal enum PropertyTypeCompatibility
+    {
+        None,
+
+        UserKey = PropertyType.UserKey,
+        UserName = PropertyType.UserName,
+        CreationDate = PropertyType.UserCreationDate,
+        Email = PropertyType.UserEmail,
+        EmailConfirmed = PropertyType.UserEmailConfirmed,
+        PhoneNumber = PropertyType.UserPhoneNumber,
+        PhoneNumberConfirmed = PropertyType.UserPhoneNumberConfirmed,
+        Password = PropertyType.UserPassword,
+        LastPasswordChangeDate = PropertyType.UserLastPasswordChangeDate,
+        FailedPasswordAttemptCount = PropertyType.UserFailedPasswordAttemptCount,
+        FailedPasswordAttemptWindowStart = PropertyType.UserFailedPasswordAttemptWindowStart,
+        LockoutEnabled = PropertyType.UserLockoutEnabled,
+        LockoutEndDate = PropertyType.UserLockoutEndDate,
+        LastProfileUpdateDate = PropertyType.UserLastProfileUpdateDate,
+        TwoFactorEnabled = PropertyType.UserTwoFactorEnabled,
+        SecurityStamp = PropertyType.UserSecurityStamp,
+        Roles = PropertyType.UserRoles,
+        Claims = PropertyType.UserClaims,
+        Logins = PropertyType.UserLogins,
+
+        RoleKey = PropertyType.RoleKey,
+        RoleName = PropertyType.RoleName,
+        Users,
+
+        Role,
+        User,
+
+        LoginKey = PropertyType.UserLoginKey,
+        LoginProviderKey = PropertyType.UserLoginProviderKey,
+        LoginProviderName = PropertyType.UserLoginProviderName,
+
+        ClaimsKey = PropertyType.UserClaimKey,
+        ClaimsType = PropertyType.UserClaimType,
+        ClaimsValue = PropertyType.UserClaimValue,
+        ClaimsValueType = PropertyType.UserClaimValueType,
+        ClaimsIssuer = PropertyType.UserClaimIssuer,
+        ClaimsOriginalIssuer = PropertyType.UserClaimOriginalIssuer,
     }
 }

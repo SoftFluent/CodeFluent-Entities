@@ -88,22 +88,22 @@ namespace SoftFluent.AspNetIdentity
 
         public static readonly IEnumerable<TypeProperty> UserLoginProperties = new List<TypeProperty>()
         {
-            new TypeProperty("Id", PropertyType.LoginKey, mandatory: true, nullable:false),
-            new TypeProperty("ProviderName", PropertyType.LoginProviderName, "string", mandatory: true, nullable:false),
-            new TypeProperty("ProviderKey", PropertyType.LoginProviderKey, "string", mandatory: true, nullable:false),
-            new TypeProperty("ProviderDisplayName", PropertyType.LoginProviderDisplayName, "string", mandatory: false, nullable:false),
-            new TypeProperty("User", PropertyType.LoginUser, "User", mandatory: true, nullable:false),
+            new TypeProperty("Id", PropertyType.UserLoginKey, mandatory: true, nullable:false),
+            new TypeProperty("ProviderName", PropertyType.UserLoginProviderName, "string", mandatory: true, nullable:false),
+            new TypeProperty("ProviderKey", PropertyType.UserLoginProviderKey, "string", mandatory: true, nullable:false),
+            new TypeProperty("ProviderDisplayName", PropertyType.UserLoginProviderDisplayName, "string", mandatory: false, nullable:false),
+            new TypeProperty("User", PropertyType.UserLoginUser, "User", mandatory: true, nullable:false),
         };
 
         public static readonly List<TypeProperty> ClaimsProperties = new List<TypeProperty>()
         {
-            new TypeProperty("Id", PropertyType.ClaimKey, mandatory: true, nullable:false),
-            new TypeProperty("Type", PropertyType.ClaimType, "string", mandatory: true, nullable:false),
-            new TypeProperty("Value", PropertyType.ClaimValue, "string", mandatory: true, nullable:true),
-            new TypeProperty("ValueType", PropertyType.ClaimValueType, "string", mandatory: false, nullable:true),
-            new TypeProperty("Issuer", PropertyType.ClaimIssuer, "string", mandatory: false, nullable:true),
-            new TypeProperty("OriginalIssuer", PropertyType.ClaimOriginalIssuer, "string", mandatory: false, nullable:true),
-            new TypeProperty("User", PropertyType.ClaimUser, "User", mandatory: true, nullable:false),
+            new TypeProperty("Id", PropertyType.UserClaimKey, mandatory: true, nullable:false),
+            new TypeProperty("Type", PropertyType.UserClaimType, "string", mandatory: true, nullable:false),
+            new TypeProperty("Value", PropertyType.UserClaimValue, "string", mandatory: true, nullable:true),
+            new TypeProperty("ValueType", PropertyType.UserClaimValueType, "string", mandatory: false, nullable:true),
+            new TypeProperty("Issuer", PropertyType.UserClaimIssuer, "string", mandatory: false, nullable:true),
+            new TypeProperty("OriginalIssuer", PropertyType.UserClaimOriginalIssuer, "string", mandatory: false, nullable:true),
+            new TypeProperty("User", PropertyType.UserClaimUser, "User", mandatory: true, nullable:false),
         };
 
         //public static List<TypeProperty> UserRoleProperties = new List<TypeProperty>()

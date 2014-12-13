@@ -121,9 +121,9 @@ namespace SoftFluent.AspNetIdentity
             this.checkBoxRoleClaim.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxRoleClaim.Location = new System.Drawing.Point(6, 214);
             this.checkBoxRoleClaim.Name = "checkBoxRoleClaim";
-            this.checkBoxRoleClaim.Size = new System.Drawing.Size(112, 17);
+            this.checkBoxRoleClaim.Size = new System.Drawing.Size(107, 17);
             this.checkBoxRoleClaim.TabIndex = 3;
-            this.checkBoxRoleClaim.Text = "Role Claims entity:";
+            this.checkBoxRoleClaim.Text = "Role Claim entity:";
             this.checkBoxRoleClaim.UseVisualStyleBackColor = true;
             this.checkBoxRoleClaim.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
@@ -134,9 +134,9 @@ namespace SoftFluent.AspNetIdentity
             this.checkBoxExternalLogins.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxExternalLogins.Location = new System.Drawing.Point(6, 165);
             this.checkBoxExternalLogins.Name = "checkBoxExternalLogins";
-            this.checkBoxExternalLogins.Size = new System.Drawing.Size(125, 17);
+            this.checkBoxExternalLogins.Size = new System.Drawing.Size(104, 17);
             this.checkBoxExternalLogins.TabIndex = 3;
-            this.checkBoxExternalLogins.Text = "External logins entity:";
+            this.checkBoxExternalLogins.Text = "User login entity:";
             this.checkBoxExternalLogins.UseVisualStyleBackColor = true;
             this.checkBoxExternalLogins.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
@@ -147,9 +147,9 @@ namespace SoftFluent.AspNetIdentity
             this.checkBoxClaims.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxClaims.Location = new System.Drawing.Point(6, 116);
             this.checkBoxClaims.Name = "checkBoxClaims";
-            this.checkBoxClaims.Size = new System.Drawing.Size(87, 17);
+            this.checkBoxClaims.Size = new System.Drawing.Size(107, 17);
             this.checkBoxClaims.TabIndex = 3;
-            this.checkBoxClaims.Text = "Claims entity:";
+            this.checkBoxClaims.Text = "User Claim entity:";
             this.checkBoxClaims.UseVisualStyleBackColor = true;
             this.checkBoxClaims.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 

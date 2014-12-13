@@ -66,8 +66,8 @@
     <Compile Include="AspNetIdentityProducer.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="EntityType.cs" />
-    <Compile Include="IdentityClaim.cs" />
-    <Compile Include="IdentityLogin.cs" />
+    <Compile Include="IdentityUserClaim.cs" />
+    <Compile Include="IdentityUserLogin.cs" />
     <Compile Include="IdentityRoleClaim.cs" />
     <Compile Include="IdentityRole.cs" />
     <Compile Include="IdentityUser.cs" />

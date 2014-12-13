@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace SoftFluent.AspNetIdentity
 {
     public enum EntityType
@@ -6,8 +8,14 @@ namespace SoftFluent.AspNetIdentity
         User,
         Role,
         UserRole,
-        Claim,
-        Login,
-        RoleClaim
+        UserClaim,
+        UserLogin,
+        RoleClaim,
+
+        // Compatibility
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        Claim = UserClaim,
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        Login = UserLogin
     }
 }

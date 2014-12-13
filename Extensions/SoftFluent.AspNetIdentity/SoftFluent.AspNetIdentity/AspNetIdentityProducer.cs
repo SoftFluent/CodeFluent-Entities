@@ -17,8 +17,8 @@ namespace SoftFluent.AspNetIdentity
         //private CodeDomProducer _codeDomProducer;
         private IdentityUser _identityUser;
         private IdentityRole _identityRole;
-        private IdentityLogin _identityLogin;
-        private IdentityClaim _identityClaim;
+        private IdentityUserLogin _identityUserLogin;
+        private IdentityUserClaim _identityUserClaim;
         private IdentityRoleClaim _identityRoleClaim;
         private UserStoreProducer _userStoreProducer;
         private UserStore3Producer _userStore3Producer;
@@ -276,20 +276,20 @@ namespace SoftFluent.AspNetIdentity
                 _identityRole = new IdentityRole(roleEntity);
             }
 
-            Entity loginEntity = ProjectUtilities.FindByEntityType(project, EntityType.Login);
+            Entity loginEntity = ProjectUtilities.FindByEntityType(project, EntityType.UserLogin);
             if (loginEntity != null)
             {
-                _identityLogin = new IdentityLogin(loginEntity);
+                _identityUserLogin = new IdentityUserLogin(loginEntity);
             }
 
-            Entity claimEntity = ProjectUtilities.FindByEntityType(project, EntityType.Claim);
+            Entity claimEntity = ProjectUtilities.FindByEntityType(project, EntityType.UserClaim);
             if (claimEntity != null)
             {
-                _identityClaim = new IdentityClaim(claimEntity);
+                _identityUserClaim = new IdentityUserClaim(claimEntity);
             }
 
             Entity roleClaimEntity = ProjectUtilities.FindByEntityType(project, EntityType.RoleClaim);
-            if (claimEntity != null)
+            if (roleClaimEntity != null)
             {
                 _identityRoleClaim = new IdentityRoleClaim(roleClaimEntity);
             }
@@ -300,7 +300,7 @@ namespace SoftFluent.AspNetIdentity
             {
                 if (_identityUser != null)
                 {
-                    _userStoreProducer = new UserStoreProducer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                    _userStoreProducer = new UserStoreProducer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
                 }
 
                 if (_identityRole != null)
@@ -312,7 +312,7 @@ namespace SoftFluent.AspNetIdentity
             {
                 if (_identityUser != null)
                 {
-                    _userStore3Producer = new UserStore3Producer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityLogin, _identityClaim);
+                    _userStore3Producer = new UserStore3Producer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
                 }
 
                 if (_identityRole != null)

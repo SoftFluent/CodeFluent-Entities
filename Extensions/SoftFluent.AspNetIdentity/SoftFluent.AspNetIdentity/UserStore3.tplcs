@@ -13,8 +13,8 @@
 //System.Diagnostics.Debugger.Break();
 
 var IdentityUser = TemplateProducer.IdentityUser;
-var IdentityClaim = TemplateProducer.IdentityClaim;
-var IdentityLogin = TemplateProducer.IdentityLogin;
+var IdentityUserClaim = TemplateProducer.IdentityUserClaim;
+var IdentityUserLogin = TemplateProducer.IdentityUserLogin;
 var IdentityRole = TemplateProducer.IdentityRole;
 
 string userTypeName = IdentityUser.Entity.ClrFullTypeName;
@@ -22,10 +22,10 @@ string userTypeName = IdentityUser.Entity.ClrFullTypeName;
 string roleTypeName = IdentityRole != null ? IdentityRole.Entity.ClrFullTypeName : null;
 string roleKeyTypeName = IdentityRole != null ? IdentityRole.KeyTypeName : null;
 
-string loginTypeName = IdentityLogin != null ? IdentityLogin.Entity.ClrFullTypeName : null;
-string loginSetTypeName = IdentityLogin != null ? IdentityLogin.Entity.Set.ClrFullTypeName : null;
-string claimTypeName = IdentityClaim != null ? IdentityClaim.Entity.ClrFullTypeName : null;
-string claimSetTypeName = IdentityClaim != null ? IdentityClaim.Entity.Set.ClrFullTypeName : null;
+string loginTypeName = IdentityUserLogin != null ? IdentityUserLogin.Entity.ClrFullTypeName : null;
+string loginSetTypeName = IdentityUserLogin != null ? IdentityUserLogin.Entity.Set.ClrFullTypeName : null;
+string claimTypeName = IdentityUserClaim != null ? IdentityUserClaim.Entity.ClrFullTypeName : null;
+string claimSetTypeName = IdentityUserClaim != null ? IdentityUserClaim.Entity.Set.ClrFullTypeName : null;
 
 Func<Method, string> CallMethod = method => 
 {
@@ -641,13 +641,13 @@ namespace [%=TemplateProducer.Namespace%]
                 throw new ArgumentNullException("userLoginInfo");
             }
 
-            [%=IdentityLogin.Entity.ClrFullTypeName%] login = new [%=IdentityLogin.Entity.ClrFullTypeName%]();
-            login.[%=IdentityLogin.UserProperty.Name%] = user;
-            login.[%=IdentityLogin.ProviderKeyProperty.Name%] = userLoginInfo.ProviderKey;
-            [% if(IdentityLogin.ProviderNameProperty != null) { %]
-            login.[%=IdentityLogin.ProviderNameProperty.Name%] = userLoginInfo.LoginProvider;[% } %]
-            [% if(IdentityLogin.ProviderDisplayNameProperty != null) { %]
-            login.[%=IdentityLogin.ProviderDisplayNameProperty.Name%] = userLoginInfo.ProviderDisplayName;[% } %]
+            [%=IdentityUserLogin.Entity.ClrFullTypeName%] login = new [%=IdentityUserLogin.Entity.ClrFullTypeName%]();
+            login.[%=IdentityUserLogin.UserProperty.Name%] = user;
+            login.[%=IdentityUserLogin.ProviderKeyProperty.Name%] = userLoginInfo.ProviderKey;
+            [% if(IdentityUserLogin.ProviderNameProperty != null) { %]
+            login.[%=IdentityUserLogin.ProviderNameProperty.Name%] = userLoginInfo.LoginProvider;[% } %]
+            [% if(IdentityUserLogin.ProviderDisplayNameProperty != null) { %]
+            login.[%=IdentityUserLogin.ProviderDisplayNameProperty.Name%] = userLoginInfo.ProviderDisplayName;[% } %]
             login.Save();
             return System.Threading.Tasks.Task.FromResult(0);
         }
@@ -661,7 +661,7 @@ namespace [%=TemplateProducer.Namespace%]
                 throw new ArgumentNullException("user");
             }
 
-            [%=CallMethod(IdentityLogin.DeleteByUserLoginInfoMethod)%](user, providerKey[% if(IdentityLogin.ProviderDisplayNameProperty != null && IdentityLogin.DeleteByUserLoginInfoMethod.Parameters.Count > 1) { %], loginProvider[% } %]);
+            [%=CallMethod(IdentityUserLogin.DeleteByUserLoginInfoMethod)%](user, providerKey[% if(IdentityUserLogin.ProviderDisplayNameProperty != null && IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count > 1) { %], loginProvider[% } %]);
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
@@ -675,10 +675,10 @@ namespace [%=TemplateProducer.Namespace%]
             }
 
             System.Collections.Generic.IList<Microsoft.AspNet.Identity.UserLoginInfo> result = new System.Collections.Generic.List<Microsoft.AspNet.Identity.UserLoginInfo>();
-            [%=IdentityLogin.Entity.Set.ClrFullTypeName%] userLogins = user.[%=IdentityUser.LoginsProperty.Name%];
-            foreach ([%=IdentityLogin.Entity.ClrFullTypeName%] userLogin in userLogins)
+            [%=IdentityUserLogin.Entity.Set.ClrFullTypeName%] userLogins = user.[%=IdentityUser.LoginsProperty.Name%];
+            foreach ([%=IdentityUserLogin.Entity.ClrFullTypeName%] userLogin in userLogins)
             {
-                Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo = new Microsoft.AspNet.Identity.UserLoginInfo([%if(IdentityLogin.ProviderNameProperty != null){%]userLogin.[%=IdentityLogin.ProviderNameProperty.Name%][%}else{%]null[%}%], userLogin.[%=IdentityLogin.ProviderKeyProperty.Name%], [%if(IdentityLogin.ProviderDisplayNameProperty != null){%]userLogin.[%=IdentityLogin.ProviderDisplayNameProperty.Name%][%} else { %]null[%}%]);
+                Microsoft.AspNet.Identity.UserLoginInfo userLoginInfo = new Microsoft.AspNet.Identity.UserLoginInfo([%if(IdentityUserLogin.ProviderNameProperty != null){%]userLogin.[%=IdentityUserLogin.ProviderNameProperty.Name%][%}else{%]null[%}%], userLogin.[%=IdentityUserLogin.ProviderKeyProperty.Name%], [%if(IdentityUserLogin.ProviderDisplayNameProperty != null){%]userLogin.[%=IdentityUserLogin.ProviderDisplayNameProperty.Name%][%} else { %]null[%}%]);
                 result.Add(userLoginInfo);
             }
 
@@ -706,8 +706,8 @@ namespace [%=TemplateProducer.Namespace%]
             }
 
             System.Collections.Generic.IList<System.Security.Claims.Claim> result = new System.Collections.Generic.List<System.Security.Claims.Claim>();
-            [%=IdentityClaim.Entity.Set.ClrFullTypeName%] userClaims = user.Claims;
-            foreach ([%=IdentityClaim.Entity.ClrFullTypeName%] userClaim in userClaims)
+            [%=IdentityUserClaim.Entity.Set.ClrFullTypeName%] userClaims = user.Claims;
+            foreach ([%=IdentityUserClaim.Entity.ClrFullTypeName%] userClaim in userClaims)
             {
                 System.Security.Claims.Claim claim = new System.Security.Claims.Claim(userClaim.Type, userClaim.Value, userClaim.ValueType, userClaim.Issuer, userClaim.OriginalIssuer);
                 result.Add(claim);
@@ -716,7 +716,7 @@ namespace [%=TemplateProducer.Namespace%]
             return System.Threading.Tasks.Task.FromResult(result);
         }
 
-        protected virtual void CopyClaimToUserClaim([%=userTypeName%] user, System.Security.Claims.Claim claim, [%=IdentityClaim.Entity.ClrFullTypeName%] userClaim)
+        protected virtual void CopyClaimToUserClaim([%=userTypeName%] user, System.Security.Claims.Claim claim, [%=IdentityUserClaim.Entity.ClrFullTypeName%] userClaim)
         {
             if(claim == null)
             {
@@ -727,15 +727,15 @@ namespace [%=TemplateProducer.Namespace%]
                 throw new ArgumentNullException("userClaim");
             }
 
-            userClaim.[%=IdentityClaim.UserProperty.Name%] = user;
-            userClaim.[%=IdentityClaim.TypeProperty.Name%] = claim.Type;
-            userClaim.[%=IdentityClaim.ValueProperty.Name%] = claim.Value;[%
-              if (IdentityClaim.ValueTypeProperty != null) { %]
-            userClaim.[%=IdentityClaim.ValueTypeProperty.Name%] = claim.ValueType;[% 
-            } if (IdentityClaim.IssuerProperty != null) { %]
-            userClaim.[%=IdentityClaim.IssuerProperty.Name%] = claim.Issuer;[% 
-            } if (IdentityClaim.OriginalIssuerProperty != null) { %]
-            userClaim.[%=IdentityClaim.OriginalIssuerProperty.Name%] = claim.OriginalIssuer;[% } %]
+            userClaim.[%=IdentityUserClaim.UserProperty.Name%] = user;
+            userClaim.[%=IdentityUserClaim.TypeProperty.Name%] = claim.Type;
+            userClaim.[%=IdentityUserClaim.ValueProperty.Name%] = claim.Value;[%
+              if (IdentityUserClaim.ValueTypeProperty != null) { %]
+            userClaim.[%=IdentityUserClaim.ValueTypeProperty.Name%] = claim.ValueType;[% 
+            } if (IdentityUserClaim.IssuerProperty != null) { %]
+            userClaim.[%=IdentityUserClaim.IssuerProperty.Name%] = claim.Issuer;[% 
+            } if (IdentityUserClaim.OriginalIssuerProperty != null) { %]
+            userClaim.[%=IdentityUserClaim.OriginalIssuerProperty.Name%] = claim.OriginalIssuer;[% } %]
         }
 
         public virtual System.Threading.Tasks.Task AddClaimsAsync([%=userTypeName%] user, System.Collections.Generic.IEnumerable<System.Security.Claims.Claim> claims, System.Threading.CancellationToken cancellationToken = new System.Threading.CancellationToken())
@@ -751,7 +751,7 @@ namespace [%=TemplateProducer.Namespace%]
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                [%=IdentityClaim.Entity.ClrFullTypeName%] userClaim = new [%=IdentityClaim.Entity.ClrFullTypeName%]();
+                [%=IdentityUserClaim.Entity.ClrFullTypeName%] userClaim = new [%=IdentityUserClaim.Entity.ClrFullTypeName%]();
                 CopyClaimToUserClaim(user, claim, userClaim);
                 userClaim.Save();
             }
@@ -775,9 +775,9 @@ namespace [%=TemplateProducer.Namespace%]
             {
                 throw new ArgumentNullException("newClaim");
             }
-            [% if(IdentityClaim.LoadClaimsMethod != null) { %]
-            [%=IdentityClaim.Entity.Set.ClrFullTypeName%] userClaims = [%=CallMethod(IdentityClaim.LoadClaimsMethod)%](claim.Type, claim.Value);
-            foreach ([%=IdentityClaim.Entity.ClrFullTypeName%] userClaim in userClaims)
+            [% if(IdentityUserClaim.LoadClaimsMethod != null) { %]
+            [%=IdentityUserClaim.Entity.Set.ClrFullTypeName%] userClaims = [%=CallMethod(IdentityUserClaim.LoadClaimsMethod)%](claim.Type, claim.Value);
+            foreach ([%=IdentityUserClaim.Entity.ClrFullTypeName%] userClaim in userClaims)
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
@@ -802,10 +802,10 @@ namespace [%=TemplateProducer.Namespace%]
             {
                 throw new ArgumentNullException("claims");
             }
-            [% if(IdentityClaim.DeleteClaimsMethod != null) { %]
+            [% if(IdentityUserClaim.DeleteClaimsMethod != null) { %]
             foreach(System.Security.Claims.Claim claim in claims)
             {
-                [%=CallMethod(IdentityClaim.DeleteClaimsMethod)%](claim.Type, claim.Value);
+                [%=CallMethod(IdentityUserClaim.DeleteClaimsMethod)%](claim.Type, claim.Value);
             }
             
             return System.Threading.Tasks.Task.FromResult(0);[% 

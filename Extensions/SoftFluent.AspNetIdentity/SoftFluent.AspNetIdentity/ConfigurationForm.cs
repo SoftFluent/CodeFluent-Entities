@@ -31,8 +31,8 @@ namespace SoftFluent.AspNetIdentity
         private void InitializeEntities()
         {
             Entity userEntity = ProjectUtilities.FindByEntityType(_project, EntityType.User);
-            Entity claimEntity = ProjectUtilities.FindByEntityType(_project, EntityType.Claim);
-            Entity loginEntity = ProjectUtilities.FindByEntityType(_project, EntityType.Login);
+            Entity claimEntity = ProjectUtilities.FindByEntityType(_project, EntityType.UserClaim);
+            Entity loginEntity = ProjectUtilities.FindByEntityType(_project, EntityType.UserLogin);
             Entity roleEntity = ProjectUtilities.FindByEntityType(_project, EntityType.Role);
             Entity userRoleEntity = ProjectUtilities.FindByEntityType(_project, EntityType.UserRole);
             Entity roleClaimEntity = ProjectUtilities.FindByEntityType(_project, EntityType.RoleClaim);
@@ -140,13 +140,13 @@ namespace SoftFluent.AspNetIdentity
             if (checkBoxClaims.Checked)
             {
                 claimsEntity = CreateUserClaimsEntity();
-                AddRelation(userEntity, PropertyType.UserClaims, claimsEntity, PropertyType.ClaimUser, RelationType.ManyToOne);
+                AddRelation(userEntity, PropertyType.UserClaims, claimsEntity, PropertyType.UserClaimUser, RelationType.ManyToOne);
             }
 
             if (checkBoxExternalLogins.Checked)
             {
                 loginsEntity = CreateLoginsEntity();
-                AddRelation(userEntity, PropertyType.UserLogins, loginsEntity, PropertyType.LoginUser, RelationType.ManyToOne);
+                AddRelation(userEntity, PropertyType.UserLogins, loginsEntity, PropertyType.UserLoginUser, RelationType.ManyToOne);
             }
 
             if (checkBoxRoleClaim.Checked)
@@ -279,8 +279,8 @@ namespace SoftFluent.AspNetIdentity
             if (loginEntity != null)
             {
                 var loginsProperty = ProjectUtilities.FindByPropertyType(userEntity, PropertyType.UserLogins);
-                var providerKeyProperty = ProjectUtilities.FindByPropertyType(loginEntity, PropertyType.LoginProviderKey);
-                var providerNameProperty = ProjectUtilities.FindByPropertyType(loginEntity, PropertyType.LoginProviderName);
+                var providerKeyProperty = ProjectUtilities.FindByPropertyType(loginEntity, PropertyType.UserLoginProviderKey);
+                var providerNameProperty = ProjectUtilities.FindByPropertyType(loginEntity, PropertyType.UserLoginProviderName);
                 if (loginsProperty != null && providerKeyProperty != null)
                 {
                     Method loadByProviderKeyMethod = ProjectUtilities.FindByMethodType(userEntity, MethodType.LoadUserByUserLoginInfo);
@@ -365,47 +365,47 @@ namespace SoftFluent.AspNetIdentity
 
         private Entity CreateUserClaimsEntity()
         {
-            Entity entity = GetOrCreateEntity(EntityType.Claim, textBoxClaimsEntityName.Text, comboBoxNamespace.Text);
+            Entity entity = GetOrCreateEntity(EntityType.UserClaim, textBoxClaimsEntityName.Text, comboBoxNamespace.Text);
             foreach (var typeProperty in TypeProperty.ClaimsProperties)
             {
-                if (!MustGenerate(EntityType.Claim, typeProperty))
+                if (!MustGenerate(EntityType.UserClaim, typeProperty))
                     continue;
 
                 Property property = GetOrCreateProperty(entity, typeProperty);
 
-                if (typeProperty.IdentityPropertyType == PropertyType.ClaimKey)
+                if (typeProperty.IdentityPropertyType == PropertyType.UserClaimKey)
                 {
                     property.IsKey = true;
                 }
             }
 
-            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteUserClaims);
+            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteUserClaimsByClaim);
             if (deleteMethod == null)
             {
                 deleteMethod = new Method();
                 deleteMethod.Name = "DeleteByClaim";
-                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteUserClaims);
+                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteUserClaimsByClaim);
                 entity.Methods.Add(deleteMethod);
 
                 Body body = new Body();
-                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimType).Name;
-                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimValue).Name;
+                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserClaimType).Name;
+                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserClaimValue).Name;
                 body.Text = string.Format("DELETE({0}, {1}) WHERE {0} = @{0} AND {1} = @{1}", typePropertyName, valuePropertyName);
 
                 deleteMethod.Bodies.Add(body);
             }
 
-            Method loadMethod = ProjectUtilities.FindByMethodType(entity, MethodType.LoadUserClaims);
+            Method loadMethod = ProjectUtilities.FindByMethodType(entity, MethodType.LoadUserClaimsByClaim);
             if (loadMethod == null)
             {
                 deleteMethod = new Method();
                 deleteMethod.Name = "LoadByClaim";
-                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.LoadUserClaims);
+                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.LoadUserClaimsByClaim);
                 entity.Methods.Add(deleteMethod);
 
                 Body body = new Body();
-                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimType).Name;
-                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.ClaimValue).Name;
+                string typePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserClaimType).Name;
+                string valuePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserClaimValue).Name;
                 body.Text = string.Format("LOAD({0}, {1}) WHERE {0} = @{0} AND {1} = @{1}", typePropertyName, valuePropertyName);
 
                 deleteMethod.Bodies.Add(body);
@@ -416,34 +416,34 @@ namespace SoftFluent.AspNetIdentity
 
         private Entity CreateLoginsEntity()
         {
-            Entity entity = GetOrCreateEntity(EntityType.Login, textBoxUserLoginsEntityName.Text, comboBoxNamespace.Text);
+            Entity entity = GetOrCreateEntity(EntityType.UserLogin, textBoxUserLoginsEntityName.Text, comboBoxNamespace.Text);
             foreach (var typeProperty in TypeProperty.UserLoginProperties)
             {
-                if (!MustGenerate(EntityType.Login, typeProperty))
+                if (!MustGenerate(EntityType.UserLogin, typeProperty))
                     continue;
 
                 Property property = GetOrCreateProperty(entity, typeProperty);
 
-                if (typeProperty.IdentityPropertyType == PropertyType.LoginProviderKey ||
-                    typeProperty.IdentityPropertyType == PropertyType.LoginProviderName ||
-                    typeProperty.IdentityPropertyType == PropertyType.LoginUser)
+                if (typeProperty.IdentityPropertyType == PropertyType.UserLoginProviderKey ||
+                    typeProperty.IdentityPropertyType == PropertyType.UserLoginProviderName ||
+                    typeProperty.IdentityPropertyType == PropertyType.UserLoginUser)
                 {
                     property.AddUniqueConstraintName("ASP.NET_Identity");
                 }
             }
 
-            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteLoginByUserLoginInfo);
+            Method deleteMethod = ProjectUtilities.FindByMethodType(entity, MethodType.DeleteUserLoginByUserLoginInfo);
             if (deleteMethod == null)
             {
                 deleteMethod = new Method();
                 deleteMethod.Name = "DeleteByUserLoginInfo";
-                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteLoginByUserLoginInfo);
+                deleteMethod.SetAttributeValue("", "methodType", Constants.NamespaceUri, MethodType.DeleteUserLoginByUserLoginInfo);
                 entity.Methods.Add(deleteMethod);
 
                 Body body = new Body();
-                string userPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.LoginUser).Name;
-                string providerKeyPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.LoginProviderKey).Name;
-                string providerNamePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.LoginProviderName)?.Name;
+                string userPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginUser).Name;
+                string providerKeyPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginProviderKey).Name;
+                string providerNamePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginProviderName)?.Name;
                 if (providerNamePropertyName != null)
                 {
                     body.Text = string.Format("DELETE({0}, {1}, {2}) WHERE {0} = @{0} AND {1} = @{1} AND {2} = @{2}", userPropertyName, providerKeyPropertyName, providerNamePropertyName);

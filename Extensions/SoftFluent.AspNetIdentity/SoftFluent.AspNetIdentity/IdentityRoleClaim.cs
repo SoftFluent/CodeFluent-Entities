@@ -21,7 +21,7 @@ namespace SoftFluent.AspNetIdentity
             IssuerProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.RoleClaimClaimOriginalIssuer);
             RoleProperty = ProjectUtilities.FindByPropertyType(Entity, PropertyType.RoleClaimRole);
 
-            LoadByRoleMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadClaimsByRole);
+            LoadByRoleMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadRoleClaimsByRole);
             if (LoadByRoleMethod == null && RoleProperty?.ProjectEntity != null)
             {
                 LoadByRoleMethod = entity.LoadMethods.FirstOrDefault(
