@@ -15,6 +15,8 @@ namespace Sample
         }
     }
 
+    // This PersistenceHook is not thread-safe.
+    // By default there is one instance of PersistenceHook by thread, so it's OK.
     public class SchemaPersistenceHook : BasePersistenceHook
     {
         private bool _processing = false;
