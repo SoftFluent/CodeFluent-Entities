@@ -369,7 +369,10 @@ namespace SoftFluent.AspNetIdentity
 
         private void ImplementIRole(CodeTypeDeclaration typeDeclaration, bool generic, bool supportGeneric)
         {
-            string keyTypeName = generic ? _identityUser.KeyTypeName : typeof(string).FullName;
+            if (_identityRole == null)
+                return;
+
+            string keyTypeName = generic ? _identityRole.KeyTypeName : typeof(string).FullName;
             var iroleCodeTypeReference = new CodeTypeReference("Microsoft.AspNet.Identity.IRole");
             var iroleGenericCodeTypeReference = new CodeTypeReference("Microsoft.AspNet.Identity.IRole");
             iroleGenericCodeTypeReference.TypeArguments.Add(keyTypeName);
@@ -399,6 +402,9 @@ namespace SoftFluent.AspNetIdentity
 
         private void ImplementIUser(CodeTypeDeclaration typeDeclaration, bool generic, bool supportGeneric)
         {
+            if (_identityUser == null)
+                return;
+
             string keyTypeName = generic ? _identityUser.KeyTypeName : typeof(string).FullName;
             var iuserCodeTypeReference = new CodeTypeReference("Microsoft.AspNet.Identity.IUser");
             var iuserGenericCodeTypeReference = new CodeTypeReference("Microsoft.AspNet.Identity.IUser");
