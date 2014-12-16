@@ -443,7 +443,8 @@ namespace SoftFluent.AspNetIdentity
                 Body body = new Body();
                 string userPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginUser).Name;
                 string providerKeyPropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginProviderKey).Name;
-                string providerNamePropertyName = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginProviderName)?.Name;
+                Property userLoginProviderNameProperty = ProjectUtilities.FindByPropertyType(entity, PropertyType.UserLoginProviderName);
+                string providerNamePropertyName = userLoginProviderNameProperty != null ? userLoginProviderNameProperty.Name : null;
                 if (providerNamePropertyName != null)
                 {
                     body.Text = string.Format("DELETE({0}, {1}, {2}) WHERE {0} = @{0} AND {1} = @{1} AND {2} = @{2}", userPropertyName, providerKeyPropertyName, providerNamePropertyName);

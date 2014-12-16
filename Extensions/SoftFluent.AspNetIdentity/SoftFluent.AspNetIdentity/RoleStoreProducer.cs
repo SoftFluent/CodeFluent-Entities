@@ -12,7 +12,7 @@ namespace SoftFluent.AspNetIdentity
     {
         private readonly AspNetIdentityProducer _aspNetIdentityProducer;
 
-        public IdentityRole IdentityRole { get; }
+        public IdentityRole IdentityRole { get; private set; }
         
         public RoleStoreProducer(CodeDomBaseProducer codeDomBaseProducer, AspNetIdentityProducer aspNetIdentityProducer, IdentityRole identityRole)
             : base(codeDomBaseProducer)
