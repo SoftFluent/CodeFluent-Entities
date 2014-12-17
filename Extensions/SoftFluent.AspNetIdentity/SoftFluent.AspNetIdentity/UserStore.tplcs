@@ -945,7 +945,7 @@ namespace [%=TemplateProducer.Namespace%]
 
         public virtual System.Threading.Tasks.Task AddClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim)
         {
-            return AddClaimAsync(user, claim);
+            return AddClaimAsync(user, claim, CancellationToken.None);
         }
 
         public virtual System.Threading.Tasks.Task AddClaimAsync([%=userTypeName%] user, System.Security.Claims.Claim claim, CancellationToken cancellationToken)
