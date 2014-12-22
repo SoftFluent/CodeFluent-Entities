@@ -19,6 +19,7 @@ namespace SoftFluent.AspNetIdentity
         LoadAllUsers,
 
         // Compatibility
+        // ReSharper disable UnusedMember.Global
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         LoadUserClaims = LoadUserClaimsByClaim,
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]

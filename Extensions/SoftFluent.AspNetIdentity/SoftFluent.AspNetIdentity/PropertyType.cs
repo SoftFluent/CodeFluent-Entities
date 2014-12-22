@@ -103,6 +103,7 @@ namespace SoftFluent.AspNetIdentity
         RoleClaimClaimOriginalIssuer
     }
 
+    // ReSharper disable UnusedMember.Global
     internal enum PropertyTypeCompatibility
     {
         None,

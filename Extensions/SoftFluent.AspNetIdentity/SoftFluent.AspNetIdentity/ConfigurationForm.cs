@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Windows.Forms;
 using CodeFluent.Model;
 using CodeFluent.Model.Code;
@@ -174,7 +173,7 @@ namespace SoftFluent.AspNetIdentity
                         EditorName = "RoleNotFound",
                         Class = MessageClass._default.ToString(),
                         CultureName = ConvertUtilities.ToCultureInfo(_aspNetIdentityProducer.MessagesCulture, _project.Culture).Name,
-                        Value = "Role '{0}' does not exist.",
+                        Value = IdentityRole.RoleNotFoundMessage,
                         AddToRuntimeResourceFile = true
                     };
                     message.SetAttributeValue("", "messageType", Constants.NamespaceUri, ProjectMessageType.RoleNotFound);
@@ -468,7 +467,7 @@ namespace SoftFluent.AspNetIdentity
                 if (!MustGenerate(EntityType.RoleClaim, typeProperty))
                     continue;
 
-                Property property = GetOrCreateProperty(entity, typeProperty);
+                GetOrCreateProperty(entity, typeProperty);
             }
 
             return entity;

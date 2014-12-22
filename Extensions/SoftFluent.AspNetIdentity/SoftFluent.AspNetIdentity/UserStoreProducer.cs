@@ -1,16 +1,16 @@
 using System;
-using System.Collections;
+using System.CodeDom;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using CodeFluent.Model;
-using CodeFluent.Model.Code;
-using CodeFluent.Model.Common.Templating;
 using CodeFluent.Producers.CodeDom;
-using CodeFluent.Runtime.Utilities;
 
 namespace SoftFluent.AspNetIdentity
 {
-    public class UserStoreProducer : SimpleTemplateProducer
+    public class UserStoreProducer : AspNetIdentityCodeUnitProducer
     {
-        private readonly AspNetIdentityProducer _aspNetIdentityProducer;
         private readonly ProjectMessages _projectMessages;
         private readonly IdentityUser _identityUser;
         private readonly IdentityRole _identityRole;
@@ -18,19 +18,15 @@ namespace SoftFluent.AspNetIdentity
         private readonly IdentityUserClaim _identityUserClaim;
 
         public UserStoreProducer(
-            CodeDomBaseProducer codeDomBaseProducer,
             AspNetIdentityProducer aspNetIdentityProducer,
+            CodeDomBaseProducer codeDomBaseProducer,
             ProjectMessages projectMessages,
             IdentityUser identityUser,
             IdentityRole identityRole,
             IdentityUserLogin identityUserLogin,
             IdentityUserClaim identityUserClaim)
-            : base(codeDomBaseProducer)
+            : base(aspNetIdentityProducer, codeDomBaseProducer)
         {
-            if (aspNetIdentityProducer == null) throw new ArgumentNullException("aspNetIdentityProducer");
-            if (identityUser == null) throw new ArgumentNullException("identityUser");
-
-            _aspNetIdentityProducer = aspNetIdentityProducer;
             _projectMessages = projectMessages;
             _identityUser = identityUser;
             _identityRole = identityRole;
@@ -63,52 +59,9 @@ namespace SoftFluent.AspNetIdentity
             get { return _identityUser; }
         }
 
-        protected override bool RaiseProducing(IDictionary dictionary)
-        {
-            return true;
-        }
-
-        protected override void RaiseProduced()
-        {
-        }
-
-        public override bool IsWebType
-        {
-            get { return true; }
-        }
-
-        protected override string DefaultNamespace
-        {
-            get { return Producer.Project.DefaultNamespace + Producer.WebNamespaceSuffix + ".Security"; }
-        }
-
         protected override string DefaultTypeName
         {
             get { return "UserStore"; }
-        }
-
-        protected override Template CreateTemplate()
-        {
-            var template = base.CreateTemplate();
-
-            template.AddReferenceDirective(typeof(CodeDomBaseProducer));
-            template.AddReferenceDirective(typeof(UserStoreProducer));
-            template.AddNamespaceDirective(typeof(Func<>));
-            template.AddNamespaceDirective(typeof(Method));
-
-            return template;
-        }
-
-        public override string TargetPath
-        {
-            get
-            {
-                string path = ConvertUtilities.Nullify(XmlUtilities.GetAttribute(Producer.Element, ConvertUtilities.Camel(this.TargetName) + "TargetPath", (string)null), true);
-                if (path == null)
-                    return BaseType.GetFilePath(Producer.TargetBaseNamespace, TypeName, Namespace, Producer.FullTargetDirectory, null);
-
-                return Producer.GetFullRelativeDirectoryPath(path);
-            }
         }
 
         public bool CanImplementUserStore
@@ -139,7 +92,7 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.LockoutEndDateProperty != null;
+                return IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.LockoutEndDateProperty != null;
             }
         }
 
@@ -147,15 +100,15 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.EmailProperty != null;
+                return IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.EmailProperty != null;
             }
         }
 
-        public bool CanImplementPhoneNumberStore
+        public bool CanImplementUserPhoneNumberStore
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.PhoneNumberProperty != null;
+                return IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.PhoneNumberProperty != null;
             }
         }
 
@@ -163,11 +116,11 @@ namespace SoftFluent.AspNetIdentity
         {
             get
             {
-                return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.TwoFactorEnabledProperty != null;
+                return IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityUser != null && IdentityUser.TwoFactorEnabledProperty != null;
             }
         }
 
-        public bool CanImplementRoleStore
+        public bool CanImplementUserRoleStore
         {
             get
             {
@@ -175,7 +128,7 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        public bool CanImplementLoginStore
+        public bool CanImplementUserLoginStore
         {
             get
             {
@@ -183,7 +136,7 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        public bool CanImplementClaimsStore
+        public bool CanImplementUserClaimsStore
         {
             get
             {
@@ -193,12 +146,1607 @@ namespace SoftFluent.AspNetIdentity
 
         public bool CanImplementQueryableUserStore
         {
-            get { return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && _aspNetIdentityProducer.MustImplementQueryableUserStore && CanImplementUserStore; }
+            get { return IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && IdentityProducer.MustImplementQueryableUserStore && CanImplementUserStore; }
         }
 
         public bool CanImplementGenericInterfaces
         {
-            get { return !IdentityUser.IsStringId && _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2; }
+            get { return !IdentityUser.IsStringId && IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2; }
+        }
+
+        private CodeTypeReference GetGenericInterfaceType(string interfaceFullTypeName, bool generic)
+        {
+            if (generic)
+                return GetGenericInterfaceType(interfaceFullTypeName, IdentityUser.KeyTypeName);
+
+            return GetGenericInterfaceType(interfaceFullTypeName, (string)null);
+        }
+
+        private CodeTypeReference GetGenericInterfaceType(string interfaceFullTypeName, Type genericType)
+        {
+            return GetGenericInterfaceType(interfaceFullTypeName, genericType.FullName);
+        }
+
+        private CodeTypeReference GetGenericInterfaceType(string interfaceFullTypeName, string genericType)
+        {
+            CodeTypeReference typeReference;
+            if (genericType != null)
+            {
+                typeReference = CodeDomUtilities.GetGenericType(interfaceFullTypeName, IdentityUser.ClrFullTypeName, genericType);
+            }
+            else
+            {
+                typeReference = CodeDomUtilities.GetGenericType(interfaceFullTypeName, IdentityUser.ClrFullTypeName);
+            }
+
+            CodeDomUtilities.SetInterface(typeReference);
+            return typeReference;
+        }
+
+        public override CodeCompileUnit CreateCodeCompileUnit()
+        {
+            if (!CanImplementUserStore)
+                return null;
+
+            var unit = new CodeCompileUnit();
+
+            var ns = new CodeNamespace(Namespace);
+            var type = new CodeTypeDeclaration(TypeName);
+            type.IsPartial = true;
+            CodeDomProducer.AddSignature(type);
+            Helpers.AddGeneratedCodeAttribute(type, CodeDomProducer.ProductionFlags);
+            ns.Types.Add(type);
+            unit.Namespaces.Add(ns);
+
+            ImplementUserStore(type);
+            ImplementUserPasswordStore(type);
+            ImplementUserSecurityStampStore(type);
+            ImplementUserLockoutStore(type);
+            ImplementUserPhoneNumberStore(type);
+            ImplementUserTwoFactorStore(type);
+            ImplementUserEmailStore(type);
+            ImplementUserRoleStore(type);
+            ImplementUserLoginStore(type);
+            ImplementUserClaimStore(type);
+            ImplementIQueryableUserStore(type);
+            ImplementIDisposableInterface(type);
+
+            FinalizeMethods(type);
+            return unit;
+        }
+
+        private void ImplementUserStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementUserStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", true));
+            }
+
+            CreateCreateUserMethod(type);
+            CreateUpdateUserMethod(type);
+            CreateDeleteUserMethod(type);
+            CreateFindByIdMethod(type);
+            CreateFindByIdGenericMethod(type);
+            CreateFindByNameMethod(type);
+        }
+
+        private void CreateCreateUserMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "CreateAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.CreationDateProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.CreationDateProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTime)), "UtcNow")));
+            }
+
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("user"), "Save"));
+            method.Statements.Add(CreateEmptyTaskResult());
+
+            type.Members.Add(method);
+        }
+
+        private void CreateUpdateUserMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "UpdateAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.LastProfileUpdateDateProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LastProfileUpdateDateProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTime)), "UtcNow")));
+            }
+
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("user"), "Save"));
+            method.Statements.Add(CreateEmptyTaskResult());
+
+            type.Members.Add(method);
+        }
+
+        private void CreateDeleteUserMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "DeleteAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("user"), "Delete"));
+            method.Statements.Add(CreateEmptyTaskResult());
+
+            type.Members.Add(method);
+        }
+
+        private void CreateFindByIdMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "FindByIdAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "userId"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+
+            method.Statements.Add(CreateTaskResult(new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(IdentityUser.ClrFullTypeName), "LoadByEntityKey", new CodeArgumentReferenceExpression("userId"))));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateFindByIdGenericMethod(CodeTypeDeclaration type)
+        {
+            if (!CanImplementGenericInterfaces)
+                return;
+
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "FindByIdAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.KeyTypeName, "userId"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", true));
+
+            if (IdentityUser.LoadByKeyMethod != null)
+            {
+                method.Statements.Add(
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.LoadByKeyMethod,
+                        new CodeArgumentReferenceExpression("userId"))));
+            }
+            else
+            {
+                method.Statements.Add(
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.Entity, IdentityUser.LoadByKeyMethodName,
+                        CreateStringFormatExpression(new CodeArgumentReferenceExpression("userId")))));
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateFindByNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "FindByNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "userName"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", true));
+            }
+
+            if (IdentityUser.LoadByUserNameMethod != null)
+            {
+                method.Statements.Add(
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.LoadByUserNameMethod,
+                        new CodeArgumentReferenceExpression("userName"))));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserPasswordStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementPasswordStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", true));
+            }
+
+            CreateHasPasswordMethod(type);
+            CreateGetPasswordHashMethod(type);
+            CreateSetPasswordHashMethod(type);
+        }
+
+        private void CreateHasPasswordMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "HasPasswordAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CreateTaskResult(CodeDomUtilities.CreateIfNotNull(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PasswordProperty.Name))));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateGetPasswordHashMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetPasswordHashAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PasswordProperty.Name)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetPasswordHashMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetPasswordHashAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "passwordHash"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPasswordStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(new CodeAssignStatement(
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PasswordProperty.Name),
+                new CodeArgumentReferenceExpression("passwordHash")));
+
+            if (IdentityUser.LastPasswordChangeDateProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LastPasswordChangeDateProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTime)), "UtcNow")));
+            }
+            
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserSecurityStampStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementSecurityStampStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserSecurityStampStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserSecurityStampStore", true));
+            }
+
+            CreateGetSecurityStampMethod(type);
+            CreateSetSecurityStampMethod(type);
+        }
+
+        private void CreateGetSecurityStampMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetSecurityStampAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserSecurityStampStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserSecurityStampStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.SecurityStampProperty.Name)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetSecurityStampMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetSecurityStampAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "stamp"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserSecurityStampStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserSecurityStampStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(new CodeAssignStatement(
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.SecurityStampProperty.Name),
+                new CodeArgumentReferenceExpression("stamp")));
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserLockoutStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementLockoutStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            CreateGetLockoutEndDateMethod(type);
+            CreateSetLockoutEndDateMethod(type);
+            CreateIncrementAccessFailedCountMethod(type);
+            CreateResetAccessFailedCountMethod(type);
+            CreateGetAccessFailedCountMethod(type);
+            CreateGetLockoutEnabledMethod(type);
+            CreateSetLockoutEnabledMethod(type);
+        }
+
+        private void CreateGetLockoutEndDateMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(DateTimeOffset));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetLockoutEndDateAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.LockoutEndDateProperty.ClrFullTypeName == typeof(DateTimeOffset).FullName)
+            {
+                if (IdentityUser.LockoutEndDateProperty.IsModelNullable)
+                {
+                    var conditionStatement = new CodeConditionStatement(CreateHasValueExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name)));
+                    conditionStatement.TrueStatements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name), "Value")));
+                    conditionStatement.FalseStatements.Add(CreateTaskResult(new CodeObjectCreateExpression(typeof(DateTimeOffset))));
+                    method.Statements.Add(conditionStatement);
+                }
+                else
+                {
+                    method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name)));
+                }
+            }
+            else if (IdentityUser.LockoutEndDateProperty.ClrFullTypeName == typeof(DateTime).FullName)
+            {
+                if (IdentityUser.LockoutEndDateProperty.IsModelNullable)
+                {
+                    var conditionStatement = new CodeConditionStatement(CreateHasValueExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name)));
+                    conditionStatement.TrueStatements.Add(CreateTaskResult(
+                        new CodeObjectCreateExpression(
+                            typeof(DateTimeOffset),
+                            new CodeMethodInvokeExpression(
+                                new CodeTypeReferenceExpression(typeof(DateTime)),
+                                "SpecifyKind",
+                                new CodePropertyReferenceExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name), "Value"),
+                                new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTimeKind)), "Utc")))));
+                    conditionStatement.FalseStatements.Add(CreateTaskResult(new CodeObjectCreateExpression(typeof(DateTimeOffset))));
+                    method.Statements.Add(conditionStatement);
+                }
+                else
+                {
+                    method.Statements.Add(CreateTaskResult(new CodeObjectCreateExpression(typeof(DateTimeOffset),
+                        new CodeMethodInvokeExpression(
+                            new CodeTypeReferenceExpression(typeof(DateTime)),
+                            "SpecifyKind",
+                            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name),
+                            new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTimeKind)), "Utc")))));
+                }
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetLockoutEndDateMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetLockoutEndDateAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(DateTimeOffset), "lockoutEnd"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.LockoutEndDateProperty.ClrFullTypeName == typeof(DateTimeOffset).FullName)
+            {
+                method.Statements.Add(new CodeAssignStatement(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name),
+                    new CodeArgumentReferenceExpression("lockoutEnd")));
+            }
+            else if (IdentityUser.LockoutEndDateProperty.ClrFullTypeName == typeof(DateTime).FullName)
+            {
+                method.Statements.Add(new CodeAssignStatement(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEndDateProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("lockoutEnd"), "UtcDateTime")));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateIncrementAccessFailedCountMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(int));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "IncrementAccessFailedCountAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.FailedPasswordAttemptCountProperty != null)
+            {
+                CodeConditionStatement lessZeroCondition = new CodeConditionStatement();
+                lessZeroCondition.Condition = new CodeBinaryOperatorExpression(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
+                    CodeBinaryOperatorType.LessThanOrEqual,
+                    new CodePrimitiveExpression(0));
+
+                lessZeroCondition.TrueStatements.Add(new CodeAssignStatement(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
+                    new CodePrimitiveExpression(1)));
+                
+                lessZeroCondition.FalseStatements.Add(new CodeAssignStatement(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
+                    new CodeBinaryOperatorExpression(
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
+                        CodeBinaryOperatorType.Add,
+                        new CodePrimitiveExpression(1))));
+                
+                method.Statements.Add(lessZeroCondition);
+
+                if (IdentityUser.FailedPasswordAttemptWindowStartProperty != null)
+                {
+                    var condition = new CodeConditionStatement(
+                        new CodeBinaryOperatorExpression(
+                            new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
+                            CodeBinaryOperatorType.ValueEquality,
+                            new CodePrimitiveExpression(1)));
+
+                    condition.TrueStatements.Add(new CodeAssignStatement(
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptWindowStartProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTime)), "UtcNow")));
+
+                    method.Statements.Add(condition);
+                }
+
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateResetAccessFailedCountMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "ResetAccessFailedCountAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.FailedPasswordAttemptCountProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
+                    new CodePrimitiveExpression(0)));
+
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateGetAccessFailedCountMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(int));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetAccessFailedCountAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.FailedPasswordAttemptCountProperty != null)
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateGetLockoutEnabledMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetLockoutEnabledAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.LockoutEnabledProperty != null)
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEnabledProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateTaskResult(new CodePrimitiveExpression(true)));
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetLockoutEnabledMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetLockoutEnabledAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(bool), "enabled"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLockoutStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.LockoutEnabledProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LockoutEnabledProperty.Name), new CodeArgumentReferenceExpression("enabled")));
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserPhoneNumberStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementUserPhoneNumberStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", true));
+            }
+
+            CreateGetPhoneNumberConfirmedMethod(type);
+            CreateSetPhoneNumberConfirmedMethod(type);
+            CreateGetPhoneNumberMethod(type);
+            CreateSetPhoneNumberMethod(type);
+        }
+
+        private void CreateGetPhoneNumberConfirmedMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetPhoneNumberConfirmedAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.PhoneNumberConfirmedProperty != null)
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PhoneNumberConfirmedProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateTaskResult(new CodePrimitiveExpression(true)));
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetPhoneNumberConfirmedMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetPhoneNumberConfirmedAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(bool), "confirmed"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.PhoneNumberConfirmedProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PhoneNumberConfirmedProperty.Name), new CodeArgumentReferenceExpression("confirmed")));
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateGetPhoneNumberMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetPhoneNumberAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PhoneNumberProperty.Name)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetPhoneNumberMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetPhoneNumberAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "phoneNumber"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserPhoneNumberStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(new CodeAssignStatement(
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.PhoneNumberProperty.Name),
+                new CodeArgumentReferenceExpression("phoneNumber")));
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserTwoFactorStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementTwoFactorStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserTwoFactorStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserTwoFactorStore", true));
+            }
+
+            CreateGetTwoFactorEnabledMethod(type);
+            CreateSetTwoFactorEnabledMethod(type);
+        }
+
+        private void CreateGetTwoFactorEnabledMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetTwoFactorEnabledAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserTwoFactorStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserTwoFactorStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.TwoFactorEnabledProperty != null)
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.TwoFactorEnabledProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateTaskResult(new CodePrimitiveExpression(false)));
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetTwoFactorEnabledMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetTwoFactorEnabledAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(bool), "enabled"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserTwoFactorStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserTwoFactorStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.TwoFactorEnabledProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.TwoFactorEnabledProperty.Name), new CodeArgumentReferenceExpression("enabled")));
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserEmailStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementEmailStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", true));
+            }
+
+            CreateGetEmailMethod(type);
+            CreateSetEmailMethod(type);
+            CreateGetEmailConfirmedMethod(type);
+            CreateSetEmailConfirmedMethod(type);
+            CreateFindByEmailMethod(type);
+        }
+
+        private void CreateGetEmailConfirmedMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetEmailConfirmedAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.EmailConfirmedProperty != null)
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.EmailConfirmedProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateTaskResult(new CodePrimitiveExpression(true)));
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetEmailConfirmedMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetEmailConfirmedAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(bool), "confirmed"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.EmailConfirmedProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.EmailConfirmedProperty.Name), new CodeArgumentReferenceExpression("confirmed")));
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateGetEmailMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetEmailAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.EmailProperty.Name)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetEmailMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetEmailAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "email"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(new CodeAssignStatement(
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.EmailProperty.Name),
+                new CodeArgumentReferenceExpression("email")));
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateFindByEmailMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "FindByEmailAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "email"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", typeof(string)));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserEmailStore", true));
+            }
+
+            if (IdentityUser.LoadByEmailMethod != null)
+            {
+                method.Statements.Add(
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.LoadByEmailMethod,
+                        new CodeArgumentReferenceExpression("email"))));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserRoleStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementUserRoleStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", true));
+            }
+
+            CreateAddToRoleMethod(type);
+            CreateRemoveToRoleMethod(type);
+            CreateGetRolesMethod(type);
+            CreateIsInRoleMethod(type);
+        }
+
+        private CodeExpression CreateRoleNotFoundMessage(CodeStatementCollection statements, Message message, CodeExpression roleName)
+        {
+            if (message == null)
+            {
+                return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(string)), "Format", new CodePrimitiveExpression(IdentityRole.RoleNotFoundMessage), roleName);
+            }
+            else
+            {
+                statements.Add(new CodeVariableDeclarationStatement(typeof(object).MakeArrayType(), "args",
+                    new CodeArrayCreateExpression(typeof(object).MakeArrayType(), 1)));
+
+                statements.Add(
+                    new CodeAssignStatement(
+                        new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("args"), new CodePrimitiveExpression(0)), roleName));
+
+                return new CodeMethodInvokeExpression(
+                    new CodeTypeReferenceExpression(message.Project.DefaultNamespace + ".Resources.Manager"),
+                    "GetStringWithDefault",
+                    new CodePrimitiveExpression(message.Name),
+                    new CodePrimitiveExpression(message.Value),
+                    new CodeVariableReferenceExpression("args"));
+            }
+        }
+
+        private void AddRoleLoadByRoleName(CodeMemberMethod method)
+        {
+            method.Statements.Add(new CodeVariableDeclarationStatement(IdentityRole.ClrFullTypeName, "role",
+                CreateMethodInvokeExpression(IdentityRole.LoadByNameMethod, new CodeArgumentReferenceExpression("roleName"))));
+            CodeConditionStatement ifRoleNull = new CodeConditionStatement(CodeDomUtilities.CreateIfNull(new CodeVariableReferenceExpression("role")));
+            ifRoleNull.TrueStatements.Add(new CodeThrowExceptionStatement(new CodeObjectCreateExpression(typeof(ArgumentException), CreateRoleNotFoundMessage(ifRoleNull.TrueStatements, ProjectMessages.RoleNotFoundMessage, new CodeArgumentReferenceExpression("roleName")))));
+            method.Statements.Add(ifRoleNull);
+        }
+
+        private void CreateAddToRoleMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "AddToRoleAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "roleName"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            AddRoleLoadByRoleName(method);
+
+            //role.Users.Add(user);
+            method.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.RolesProperty.Name), "Add",
+                    new CodeVariableReferenceExpression("role")));
+
+            // user.SaveRolesRelations();
+            method.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeArgumentReferenceExpression("user"),
+                    "Save" + IdentityUser.RolesProperty.Name + "Relations"));
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateRemoveToRoleMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "RemoveFromRoleAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "roleName"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            AddRoleLoadByRoleName(method);
+
+            //role.Users.Add(user);
+            method.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.RolesProperty.Name), "Remove",
+                    new CodeVariableReferenceExpression("role")));
+
+            // user.SaveRolesRelations();
+            method.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeArgumentReferenceExpression("user"),
+                    "Save" + IdentityUser.RolesProperty.Name + "Relations"));
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateGetRolesMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(string))));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetRolesAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(typeof(IList<>).MakeGenericType(typeof(string)), "roleNames", new CodeObjectCreateExpression(typeof(List<>).MakeGenericType(typeof(string)))));
+
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityRole.ClrFullTypeName), "enumerator");
+            enumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.RolesProperty.Name), "GetEnumerator");
+
+            var iteration = new CodeIterationStatement();
+            iteration.InitStatement = enumerator;
+            iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
+            iteration.IncrementStatement = new CodeSnippetStatement("");
+
+            iteration.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression("roleNames"), "Add",
+                    new CodePropertyReferenceExpression(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current"), IdentityRole.NameProperty.Name)));
+            method.Statements.Add(iteration);
+
+            method.Statements.Add(CreateTaskResult(new CodeVariableReferenceExpression("roleNames")));
+            type.Members.Add(method);
+        }
+
+        private void CreateIsInRoleMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(bool)));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "IsInRoleAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "roleName"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserRoleStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            AddRoleLoadByRoleName(method);
+
+            // return System.Threading.Tasks.Task.FromResult(user.Roles.Contains(role));
+            method.Statements.Add(new CodeVariableDeclarationStatement(typeof(bool), "result",
+                new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.RolesProperty.Name), "Contains",
+                    new CodeVariableReferenceExpression("role"))));
+
+            method.Statements.Add(CreateTaskResult(new CodeVariableReferenceExpression("result")));
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserLoginStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementUserLoginStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", true));
+            }
+
+            CreateAddLoginMethod(type);
+            CreateRemoveLoginMethod(type);
+            CreateGetLoginsMethod(type);
+            CreateFindByLoginMethod(type);
+        }
+
+        private void CreateAddLoginMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "AddLoginAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("userLoginInfo"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(IdentityUserLogin.ClrFullTypeName), "login", new CodeObjectCreateExpression(IdentityUserLogin.ClrFullTypeName)));
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("login"), IdentityUserLogin.UserProperty.Name),
+                new CodeArgumentReferenceExpression("user")));
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("login"), IdentityUserLogin.ProviderKeyProperty.Name),
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey")));
+            if (IdentityUserLogin.ProviderNameProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("login"), IdentityUserLogin.ProviderNameProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "LoginProvider")));
+            }
+
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("login"), "Save"));
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateRemoveLoginMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "RemoveLoginAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("userLoginInfo"));
+
+            if (IdentityUserLogin.DeleteByUserLoginInfoMethod == null)
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+            else if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 2)
+            {
+                method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
+                    new CodeArgumentReferenceExpression("user"),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey")));
+            }
+            else if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3)
+            {
+                method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
+                    new CodeArgumentReferenceExpression("user"),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey"),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "LoginProvider")));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateGetLoginsMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task<>), CodeDomUtilities.GetGenericType(typeof(IList<>), "Microsoft.AspNet.Identity.UserLoginInfo"));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetLoginsAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IList<>), "Microsoft.AspNet.Identity.UserLoginInfo"), "result", new CodeObjectCreateExpression(CodeDomUtilities.GetGenericType(typeof(List<>), "Microsoft.AspNet.Identity.UserLoginInfo"))));
+
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserLogin.ClrFullTypeName), "enumerator");
+            enumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LoginsProperty.Name), "GetEnumerator");
+
+            var iteration = new CodeIterationStatement();
+            iteration.InitStatement = enumerator;
+            iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
+            iteration.IncrementStatement = new CodeSnippetStatement("");
+            
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserLogin.ClrFullTypeName, "userLogin", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+            var createExpression = new CodeObjectCreateExpression("Microsoft.AspNet.Identity.UserLoginInfo");
+            if (IdentityUserLogin.ProviderNameProperty != null)
+            {
+                createExpression.Parameters.Add(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userLogin"), IdentityUserLogin.ProviderNameProperty.Name));
+            }
+            else
+            {
+                createExpression.Parameters.Add(new CodePrimitiveExpression(null));
+            }
+
+            createExpression.Parameters.Add(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userLogin"), IdentityUserLogin.ProviderKeyProperty.Name));
+            
+            iteration.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression("result"), "Add",
+                    createExpression));
+            method.Statements.Add(iteration);
+
+            method.Statements.Add(CreateTaskResult(new CodeVariableReferenceExpression("result")));
+            type.Members.Add(method);
+        }
+
+        private void CreateFindByLoginMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "FindAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", true));
+            }
+
+            if (IdentityUser.LoadByUserLoginInfoMethod != null)
+            {
+                var invokeExpression = CreateMethodInvokeExpression(IdentityUser.LoadByUserLoginInfoMethod,
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey"));
+
+                if (IdentityUser.LoadByUserLoginInfoMethod.Parameters.Count > 1)
+                {
+                    invokeExpression.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "LoginProvider"));
+                }
+
+                method.Statements.Add(
+                    CreateTaskResult(invokeExpression));
+            }
+            else
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void ImplementUserClaimStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementUserClaimsStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+            }
+
+            CreateAddClaimMethod(type);
+            CreateRemoveClaimMethod(type);
+            CreateGetClaimsMethod(type);
+        }
+
+        private void CreateAddClaimMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "AddClaimAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claim"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(IdentityUserClaim.ClrFullTypeName), "userClaim", new CodeObjectCreateExpression(IdentityUserClaim.ClrFullTypeName)));
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.UserProperty.Name),
+                new CodeArgumentReferenceExpression("user")));
+
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.TypeProperty.Name),
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type")));
+
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name),
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Value")));
+
+            if (IdentityUserClaim.IssuerProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.IssuerProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer")));
+            }
+            if (IdentityUserClaim.OriginalIssuerProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.OriginalIssuerProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer")));
+            }
+            if (IdentityUserClaim.ValueTypeProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueTypeProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType")));
+            }
+
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("userClaim"), "Save"));
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateRemoveClaimMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "RemoveClaimAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claim"));
+
+            if (IdentityUserClaim.DeleteClaimsMethod == null)
+            {
+                method.Statements.Add(CreateThrowInvalidOperationException());
+            }
+            else
+            {
+                CodeMethodInvokeExpression invokeMethod = CreateMethodInvokeExpression(IdentityUserClaim.DeleteClaimsMethod);
+                foreach (var parameter in IdentityUserClaim.DeleteClaimsMethod.Parameters)
+                {
+                    if (parameter.ProjectProperty == IdentityUserClaim.UserProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodeArgumentReferenceExpression("user"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.TypeProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.ValueProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Value"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.ValueTypeProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.IssuerProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.OriginalIssuerProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer"));
+                    }
+                    else
+                    {
+                        method.Statements.Add(CreateThrowInvalidOperationException());
+                        invokeMethod = null;
+                        break;
+                    }
+                }
+
+                if (invokeMethod != null)
+                {
+                    method.Statements.Add(invokeMethod);
+                }
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateGetClaimsMethod(CodeTypeDeclaration type)
+        {
+            // TODO use LoadClaims method if available
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(Claim))));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetClaimsAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(typeof(IList<>).MakeGenericType(typeof(Claim)), "result", new CodeObjectCreateExpression(typeof(List<>).MakeGenericType(typeof(Claim)))));
+
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserClaim.ClrFullTypeName), "enumerator");
+            enumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.ClaimsProperty.Name), "GetEnumerator");
+
+            var iteration = new CodeIterationStatement();
+            iteration.InitStatement = enumerator;
+            iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
+            iteration.IncrementStatement = new CodeSnippetStatement("");
+
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserClaim.ClrFullTypeName, "userClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+            var createExpression = new CodeObjectCreateExpression(typeof(Claim));
+            
+            if (IdentityUserClaim.OriginalIssuerProperty != null)
+            {
+                createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.OriginalIssuerProperty.Name));
+            }
+
+            if (IdentityUserClaim.IssuerProperty != null)
+            {
+                createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.IssuerProperty.Name));
+            }
+            else if (createExpression.Parameters.Count > 0)
+            {
+                createExpression.Parameters.Insert(0, createExpression.Parameters[0]); // OriginalIssuer
+            }
+
+            if (IdentityUserClaim.ValueTypeProperty != null)
+            {
+                createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueTypeProperty.Name));
+            }
+            else if (createExpression.Parameters.Count > 0)
+            {
+                createExpression.Parameters.Insert(0, new CodePrimitiveExpression(ClaimValueTypes.String));
+            }
+
+            createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name));
+            createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.TypeProperty.Name));
+            
+            iteration.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression("result"), "Add",
+                    createExpression));
+            method.Statements.Add(iteration);
+
+            method.Statements.Add(CreateTaskResult(new CodeVariableReferenceExpression("result")));
+            type.Members.Add(method);
+        }
+        private void ImplementIQueryableUserStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementQueryableUserStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", false));
+            if (CanImplementGenericInterfaces)
+            {
+                type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", true));
+            }
+
+            CreateUsersProperty(type);
+        }
+
+        private void CreateUsersProperty(CodeTypeDeclaration type)
+        {
+            // public virtual System.Linq.IQueryable<[%=IdentityRole.Entity.ClrFullTypeName%]> Roles 
+            // return System.Linq.Queryable.AsQueryable([%=CallMethod(IdentityRole.LoadAllMethod)%]());
+            CodeMemberProperty property = new CodeMemberProperty();
+            property.Type = CodeDomUtilities.GetGenericType(typeof(IQueryable), IdentityUser.ClrFullTypeName);
+            property.Attributes = MemberAttributes.Public;
+            property.Name = "Users";
+            property.HasSet = false;
+            property.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", false));
+            property.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", true));
+
+            if (IdentityRole.LoadAllMethod != null)
+            {
+                property.GetStatements.Add(
+                    new CodeMethodReturnStatement(
+                        new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(Queryable)), "AsQueryable",
+                            CreateMethodInvokeExpression(IdentityUser.LoadAllMethod))));
+            }
+            else
+            {
+                property.GetStatements.Add(CreateThrowInvalidOperationException());
+            }
+
+            type.Members.Add(property);
         }
     }
 }

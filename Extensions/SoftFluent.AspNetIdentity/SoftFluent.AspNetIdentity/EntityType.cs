@@ -13,6 +13,7 @@ namespace SoftFluent.AspNetIdentity
         RoleClaim,
 
         // Compatibility
+        // ReSharper disable UnusedMember.Global
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         Claim = UserClaim,
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]

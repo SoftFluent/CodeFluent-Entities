@@ -26,6 +26,16 @@ namespace SoftFluent.AspNetIdentity
 
         public Entity Entity { get; set; }
 
+        public string ClrFullTypeName
+        {
+            get
+            {
+                if (Entity == null)
+                    return null;
+                return Entity.ClrFullTypeName;
+            }
+        }
+
         public Property KeyProperty { get; private set; }
         public Property TypeProperty { get; private set; }
         public Property ValueProperty { get; private set; }
@@ -37,7 +47,7 @@ namespace SoftFluent.AspNetIdentity
         public Method DeleteClaimsMethod { get; private set; }
         public Method LoadClaimsMethod { get; private set; }
 
-     
+
 
     }
 }

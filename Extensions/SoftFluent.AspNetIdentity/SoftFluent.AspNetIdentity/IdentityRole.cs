@@ -6,6 +6,8 @@ namespace SoftFluent.AspNetIdentity
 {
     public class IdentityRole
     {
+        public const string RoleNotFoundMessage = "Role '{0}' does not exist.";
+
         public IdentityRole(Entity entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
@@ -24,6 +26,7 @@ namespace SoftFluent.AspNetIdentity
             }
             else if (KeyProperty != null && Entity.LoadByKeyMethod != null)
             {
+                LoadByKeyMethod = Entity.LoadByKeyMethod;
                 LoadByKeyMethodName = Entity.LoadByKeyMethod.Name;
             }
             else
@@ -71,6 +74,16 @@ namespace SoftFluent.AspNetIdentity
                     return KeyProperty.Name;
 
                 return "EntityKey";
+            }
+        }
+
+        public string ClrFullTypeName
+        {
+            get
+            {
+                if (Entity != null)
+                    return Entity.ClrFullTypeName;
+                return null;
             }
         }
     }

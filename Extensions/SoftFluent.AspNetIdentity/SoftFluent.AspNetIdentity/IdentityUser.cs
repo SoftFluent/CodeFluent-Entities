@@ -40,6 +40,7 @@ namespace SoftFluent.AspNetIdentity
             }
             else if (KeyProperty != null && Entity.LoadByKeyMethod != null)
             {
+                LoadByKeyMethod = Entity.LoadByKeyMethod;
                 LoadByKeyMethodName = Entity.LoadByKeyMethod.Name;
             }
             else
@@ -54,6 +55,16 @@ namespace SoftFluent.AspNetIdentity
         }
 
         public Entity Entity { get; set; }
+
+        public string ClrFullTypeName
+        {
+            get
+            {
+                if (Entity != null)
+                    return Entity.ClrFullTypeName;
+                return null;
+            }
+        }
 
         public Property KeyProperty { get; private set; }
         public Property UserNameProperty { get; private set; }
@@ -75,7 +86,6 @@ namespace SoftFluent.AspNetIdentity
         public Property RolesProperty { get; private set; }
         public Property ClaimsProperty { get; private set; }
         public Property LoginsProperty { get; private set; }
-
         public Method LoadByKeyMethod { get; private set; }
         public string LoadByKeyMethodName { get; private set; }
         public Method LoadByUserNameMethod { get; private set; }

@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="AspNetIdentityCodeUnitProducer.cs" />
     <Compile Include="AspNetIdentityVersion.cs" />
     <Compile Include="ConfigurationForm.cs">
       <SubType>Form</SubType>
@@ -77,10 +79,9 @@
     <Compile Include="ProjectUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyType.cs" />
-    <Compile Include="RoleStore3Producer.cs" />
     <Compile Include="RoleStoreProducer.cs" />
+    <Compile Include="SimpleCodeUnitProducer.cs" />
     <Compile Include="TypeProperty.cs" />
-    <Compile Include="UserStore3Producer.cs" />
     <Compile Include="UserStoreProducer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,18 +90,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserStore.tplcs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="RoleStore.tplcs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="custom.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="RoleStore3.tplcs" />
-    <EmbeddedResource Include="UserStore3.tplcs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

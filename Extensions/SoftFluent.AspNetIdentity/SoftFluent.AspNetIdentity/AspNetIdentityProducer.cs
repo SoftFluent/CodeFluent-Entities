@@ -3,15 +3,17 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Xml;
 using CodeFluent.Model;
+using CodeFluent.Model.Code;
 using CodeFluent.Model.Common.Design;
 using CodeFluent.Model.Design;
 using CodeFluent.Producers.CodeDom;
 using CodeFluent.Runtime.Utilities;
+using JetBrains.Annotations;
 
 namespace SoftFluent.AspNetIdentity
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class AspNetIdentityProducer : BaseProducer
     {
         //private CodeDomProducer _codeDomProducer;
@@ -21,9 +23,8 @@ namespace SoftFluent.AspNetIdentity
         private IdentityUserClaim _identityUserClaim;
         private IdentityRoleClaim _identityRoleClaim;
         private UserStoreProducer _userStoreProducer;
-        private UserStore3Producer _userStore3Producer;
         private RoleStoreProducer _roleStoreProducer;
-        private RoleStore3Producer _roleStore3Producer;
+        private CodeDomProducer _inputProducer;
 
         protected override string NamespaceUri
         {
@@ -64,7 +65,6 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        private CodeDomProducer _inputProducer;
         public virtual CodeDomProducer InputProducer
         {
             get
@@ -133,22 +133,6 @@ namespace SoftFluent.AspNetIdentity
                 XmlUtilities.SetAttribute(Element, "aspNetIdentityVersion", value.ToString());
             }
         }
-
-        //public Version TargetVersion
-        //{
-        //    get
-        //    {
-        //        switch (TargetVersion)
-        //        {
-        //            case AspNetIdentityVersion.Version1:
-        //                return new Version(1, 0);
-        //            case AspNetIdentityVersion.Version2:
-        //                return new Version(2, 0);
-        //            default:
-        //                throw new ArgumentOutOfRangeException();
-        //        }
-        //    }
-        //}
 
         public Version TargetFrameworkVersion
         {
@@ -300,25 +284,17 @@ namespace SoftFluent.AspNetIdentity
             {
                 if (_identityUser != null)
                 {
-                    _userStoreProducer = new UserStoreProducer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
+                    _userStoreProducer = new UserStoreProducer(this, InputProducer, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
                 }
 
                 if (_identityRole != null)
                 {
-                    _roleStoreProducer = new RoleStoreProducer(InputProducer, this, _identityRole);
+                    _roleStoreProducer = new RoleStoreProducer(this, InputProducer, _identityRole, _identityRoleClaim);
                 }
             }
             else if (TargetVersion == AspNetIdentityVersion.Version3)
             {
-                if (_identityUser != null)
-                {
-                    _userStore3Producer = new UserStore3Producer(InputProducer, this, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
-                }
-
-                if (_identityRole != null)
-                {
-                    _roleStore3Producer = new RoleStore3Producer(InputProducer, this, _identityRole, _identityRoleClaim);
-                }
+                throw new NotImplementedException();
             }
         }
 
@@ -381,23 +357,40 @@ namespace SoftFluent.AspNetIdentity
                 iroleCodeTypeReference.TypeArguments.Add(keyTypeName);
             }
 
+            CodeDomUtilities.SetInterface(iroleCodeTypeReference);
+            CodeDomUtilities.SetInterface(iroleGenericCodeTypeReference);
             typeDeclaration.BaseTypes.Add(iroleCodeTypeReference);
-
+            
             CodeMemberProperty idProperty = new CodeMemberProperty();
-            idProperty.PrivateImplementationType = generic || supportGeneric ? iroleGenericCodeTypeReference : iroleCodeTypeReference;
             idProperty.Type = new CodeTypeReference(keyTypeName);
             idProperty.Name = "Id";
             idProperty.HasSet = false;
             idProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), generic ? _identityRole.KeyPropertyName : "EntityKey")));
-            typeDeclaration.Members.Add(idProperty);
-
+            
             CodeMemberProperty roleNameProperty = new CodeMemberProperty();
-            roleNameProperty.PrivateImplementationType = generic || supportGeneric ? iroleGenericCodeTypeReference : iroleCodeTypeReference;
             roleNameProperty.Type = new CodeTypeReference(typeof(string));
             roleNameProperty.Name = "Name";
             roleNameProperty.SetStatements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityRole.NameProperty.Name), new CodePropertySetValueReferenceExpression()));
             roleNameProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityRole.NameProperty.Name)));
+            
+            if (generic || supportGeneric)
+            {
+                idProperty.PrivateImplementationType = GetPrivateImplementationGenericType(InputProducer.LanguageCode, "Microsoft.AspNet.Identity.IRole", keyTypeName);
+                idProperty.ImplementationTypes.Add(iroleGenericCodeTypeReference);
+                roleNameProperty.PrivateImplementationType = GetPrivateImplementationGenericType(InputProducer.LanguageCode, "Microsoft.AspNet.Identity.IRole", keyTypeName);
+                roleNameProperty.ImplementationTypes.Add(iroleGenericCodeTypeReference);
+            }
+            else
+            {
+                idProperty.PrivateImplementationType = iroleCodeTypeReference;
+                idProperty.ImplementationTypes.Add(iroleCodeTypeReference);
+                roleNameProperty.PrivateImplementationType = iroleCodeTypeReference;
+                roleNameProperty.ImplementationTypes.Add(iroleCodeTypeReference);
+            }
+
+            typeDeclaration.Members.Add(idProperty);
             typeDeclaration.Members.Add(roleNameProperty);
+
         }
 
         private void ImplementIUser(CodeTypeDeclaration typeDeclaration, bool generic, bool supportGeneric)
@@ -414,30 +407,83 @@ namespace SoftFluent.AspNetIdentity
                 iuserCodeTypeReference.TypeArguments.Add(keyTypeName);
             }
 
+            CodeDomUtilities.SetInterface(iuserCodeTypeReference);
+            CodeDomUtilities.SetInterface(iuserGenericCodeTypeReference);
             typeDeclaration.BaseTypes.Add(iuserCodeTypeReference);
 
             CodeMemberProperty idProperty = new CodeMemberProperty();
-            idProperty.PrivateImplementationType = generic || supportGeneric ? iuserGenericCodeTypeReference : iuserCodeTypeReference;
             idProperty.Type = new CodeTypeReference(keyTypeName);
             idProperty.Name = "Id";
             idProperty.HasSet = false;
             idProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), generic ? _identityUser.KeyPropertyName : "EntityKey")));
-            typeDeclaration.Members.Add(idProperty);
-
+            
             CodeMemberProperty userNameProperty = new CodeMemberProperty();
-            userNameProperty.PrivateImplementationType = generic || supportGeneric ? iuserGenericCodeTypeReference : iuserCodeTypeReference;
             userNameProperty.Type = new CodeTypeReference(typeof(string));
             userNameProperty.Name = "UserName";
             userNameProperty.SetStatements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityUser.UserNameProperty.Name), new CodePropertySetValueReferenceExpression()));
             userNameProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityUser.UserNameProperty.Name)));
+
+            if (generic || supportGeneric)
+            {
+                idProperty.PrivateImplementationType = GetPrivateImplementationGenericType(InputProducer.LanguageCode, "Microsoft.AspNet.Identity.IUser", keyTypeName);
+                idProperty.ImplementationTypes.Add(iuserGenericCodeTypeReference);
+                userNameProperty.PrivateImplementationType = GetPrivateImplementationGenericType(InputProducer.LanguageCode, "Microsoft.AspNet.Identity.IUser", keyTypeName);
+                userNameProperty.ImplementationTypes.Add(iuserGenericCodeTypeReference);
+            }
+            else
+            {
+                idProperty.PrivateImplementationType = iuserCodeTypeReference;
+                idProperty.ImplementationTypes.Add(iuserCodeTypeReference);
+                userNameProperty.PrivateImplementationType = iuserCodeTypeReference;
+                userNameProperty.ImplementationTypes.Add(iuserCodeTypeReference);
+            }
+
+            typeDeclaration.Members.Add(idProperty);
             typeDeclaration.Members.Add(userNameProperty);
+        }
+
+        private static CodeTypeReference GetPrivateImplementationGenericType(LanguageCode language, string typeName, params string[] arguments)
+        {
+            if (typeName == null) throw new ArgumentNullException("typeName");
+            if (arguments == null) throw new ArgumentNullException("arguments");
+            if (arguments.Length == 0) throw new ArgumentException(null, "arguments");
+
+            int indexOf = typeName.IndexOf('`');
+            if (indexOf < 0)
+            {
+                indexOf = typeName.Length;
+            }
+
+            if (language == LanguageCode.CSharp)
+            {
+                string str = typeName.Substring(0, indexOf) + "<";
+                for (int index = 0; index < arguments.Length; ++index)
+                {
+                    if (index > 0)
+                        str += ",";
+
+                    str += CodeDomUtilities.CreateCSharpEscapedIdentifier(arguments[index]);
+                }
+                return new CodeTypeReference(str + ">");
+            }
+
+            if (language == LanguageCode.VisualBasic)
+            {
+                string str1 = typeName.Substring(0, indexOf) + "(Of ";
+                for (int index = 0; index < arguments.Length; ++index)
+                {
+                    if (index > 0)
+                        str1 += ",";
+                    str1 += CodeDomUtilities.CreateVisualBasicEscapedIdentifier(arguments[index]);
+                }
+                return new CodeTypeReference((str1 + ")").Replace("(Of ", "_").Replace(")", "_"));
+            }
+
+            return CodeDomUtilities.GetGenericType(typeName, arguments);
         }
 
         public override void Produce()
         {
-            if (InputProducer == null)
-                throw new Exception("No CodeDom producer found.");
-
             if (_userStoreProducer != null && _userStoreProducer.CanImplementUserStore)
             {
                 _userStoreProducer.Produce(true);
@@ -446,16 +492,6 @@ namespace SoftFluent.AspNetIdentity
             if (_roleStoreProducer != null && _roleStoreProducer.CanImplementRoleStore)
             {
                 _roleStoreProducer.Produce(true);
-            }
-
-            if (_roleStore3Producer != null && _roleStore3Producer.CanImplementRoleStore)
-            {
-                _roleStore3Producer.Produce(true);
-            }
-
-            if (_userStore3Producer != null && _userStore3Producer.CanImplementUserStore)
-            {
-                _userStore3Producer.Produce(true);
             }
         }
     }
