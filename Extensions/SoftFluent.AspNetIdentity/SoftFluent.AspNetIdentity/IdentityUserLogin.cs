@@ -21,7 +21,7 @@ namespace SoftFluent.AspNetIdentity
             DeleteByUserLoginInfoMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.DeleteUserLoginByUserLoginInfo);
         }
 
-        public Entity Entity { get; set; }
+        public Entity Entity { get; private set; }
 
         public string ClrFullTypeName
         {

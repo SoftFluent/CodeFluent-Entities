@@ -280,21 +280,14 @@ namespace SoftFluent.AspNetIdentity
 
             ProjectMessages projectMessages = new ProjectMessages(project);
 
-            if (TargetVersion == AspNetIdentityVersion.Version1 || TargetVersion == AspNetIdentityVersion.Version2)
+            if (_identityUser != null)
             {
-                if (_identityUser != null)
-                {
-                    _userStoreProducer = new UserStoreProducer(this, InputProducer, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
-                }
-
-                if (_identityRole != null)
-                {
-                    _roleStoreProducer = new RoleStoreProducer(this, InputProducer, _identityRole, _identityRoleClaim);
-                }
+                _userStoreProducer = new UserStoreProducer(this, InputProducer, projectMessages, _identityUser, _identityRole, _identityUserLogin, _identityUserClaim);
             }
-            else if (TargetVersion == AspNetIdentityVersion.Version3)
+
+            if (_identityRole != null)
             {
-                throw new NotImplementedException();
+                _roleStoreProducer = new RoleStoreProducer(this, InputProducer, _identityRole, _identityRoleClaim);
             }
         }
 
@@ -360,19 +353,19 @@ namespace SoftFluent.AspNetIdentity
             CodeDomUtilities.SetInterface(iroleCodeTypeReference);
             CodeDomUtilities.SetInterface(iroleGenericCodeTypeReference);
             typeDeclaration.BaseTypes.Add(iroleCodeTypeReference);
-            
+
             CodeMemberProperty idProperty = new CodeMemberProperty();
             idProperty.Type = new CodeTypeReference(keyTypeName);
             idProperty.Name = "Id";
             idProperty.HasSet = false;
             idProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), generic ? _identityRole.KeyPropertyName : "EntityKey")));
-            
+
             CodeMemberProperty roleNameProperty = new CodeMemberProperty();
             roleNameProperty.Type = new CodeTypeReference(typeof(string));
             roleNameProperty.Name = "Name";
             roleNameProperty.SetStatements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityRole.NameProperty.Name), new CodePropertySetValueReferenceExpression()));
             roleNameProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), _identityRole.NameProperty.Name)));
-            
+
             if (generic || supportGeneric)
             {
                 idProperty.PrivateImplementationType = GetPrivateImplementationGenericType(InputProducer.LanguageCode, "Microsoft.AspNet.Identity.IRole", keyTypeName);
@@ -416,7 +409,7 @@ namespace SoftFluent.AspNetIdentity
             idProperty.Name = "Id";
             idProperty.HasSet = false;
             idProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), generic ? _identityUser.KeyPropertyName : "EntityKey")));
-            
+
             CodeMemberProperty userNameProperty = new CodeMemberProperty();
             userNameProperty.Type = new CodeTypeReference(typeof(string));
             userNameProperty.Name = "UserName";

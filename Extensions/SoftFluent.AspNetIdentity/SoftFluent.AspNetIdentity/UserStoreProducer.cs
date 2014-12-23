@@ -232,6 +232,15 @@ namespace SoftFluent.AspNetIdentity
             CreateFindByIdMethod(type);
             CreateFindByIdGenericMethod(type);
             CreateFindByNameMethod(type);
+
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                CreateGetUserIdMethod(type);
+                CreateGetUserNameMethod(type);
+                CreateSetUserNameMethod(type);
+                CreateGetNormalizedUserNameMethod(type);
+                CreateSetNormalizedUserNameMethod(type);
+            }
         }
 
         private void CreateCreateUserMethod(CodeTypeDeclaration type)
@@ -382,6 +391,103 @@ namespace SoftFluent.AspNetIdentity
             type.Members.Add(method);
         }
 
+        private void CreateGetUserIdMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetUserIdAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.StringKeyPropertyName)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateGetUserNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetUserNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.UserNameProperty.Name)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetUserNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetUserNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "userName"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.UserNameProperty.Name), new CodeArgumentReferenceExpression("userName")));
+            method.Statements.Add(CreateEmptyTaskResult());
+
+            type.Members.Add(method);
+        }
+
+        private void CreateGetNormalizedUserNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetNormalizedUserNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+
+            if (IdentityUser.NormalizedUserNameProperty != null)
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.NormalizedUserNameProperty.Name)));
+            }
+            else
+            {
+                method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.UserNameProperty.Name)));
+            }
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetNormalizedUserNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetNormalizedUserNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "userName"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            if (IdentityUser.NormalizedUserNameProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.NormalizedUserNameProperty.Name), new CodeArgumentReferenceExpression("userName")));
+            }
+            else
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.UserNameProperty.Name), new CodeArgumentReferenceExpression("userName")));
+            }
+
+            method.Statements.Add(CreateEmptyTaskResult());
+
+            type.Members.Add(method);
+        }
+
         private void ImplementUserPasswordStore(CodeTypeDeclaration type)
         {
             if (!CanImplementPasswordStore)
@@ -464,7 +570,7 @@ namespace SoftFluent.AspNetIdentity
                         new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LastPasswordChangeDateProperty.Name),
                         new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(DateTime)), "UtcNow")));
             }
-            
+
             method.Statements.Add(CreateEmptyTaskResult());
             type.Members.Add(method);
         }
@@ -676,14 +782,14 @@ namespace SoftFluent.AspNetIdentity
                 lessZeroCondition.TrueStatements.Add(new CodeAssignStatement(
                     new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
                     new CodePrimitiveExpression(1)));
-                
+
                 lessZeroCondition.FalseStatements.Add(new CodeAssignStatement(
                     new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
                     new CodeBinaryOperatorExpression(
                         new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.FailedPasswordAttemptCountProperty.Name),
                         CodeBinaryOperatorType.Add,
                         new CodePrimitiveExpression(1))));
-                
+
                 method.Statements.Add(lessZeroCondition);
 
                 if (IdentityUser.FailedPasswordAttemptWindowStartProperty != null)
@@ -1346,6 +1452,23 @@ namespace SoftFluent.AspNetIdentity
             CreateFindByLoginMethod(type);
         }
 
+        private CodeExpression GetLoginProviderKeyExpression()
+        {
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                return new CodeArgumentReferenceExpression("providerKey");
+            }
+            return new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey");
+        }
+        private CodeExpression GetLoginProviderNameExpression()
+        {
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                return new CodeArgumentReferenceExpression("loginProvider");
+            }
+            return new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "LoginProvider");
+        }
+
         private void CreateAddLoginMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
@@ -1376,6 +1499,8 @@ namespace SoftFluent.AspNetIdentity
             }
 
             method.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("login"), "Save"));
+            method.Statements.Add(new CodeMethodInvokeExpression(
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LoginsProperty.Name), "Add", new CodeVariableReferenceExpression("login")));
 
             method.Statements.Add(CreateEmptyTaskResult());
             type.Members.Add(method);
@@ -1388,7 +1513,15 @@ namespace SoftFluent.AspNetIdentity
             method.Attributes = MemberAttributes.Public;
             method.Name = "RemoveLoginAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "loginProvider"));
+                method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "providerKey"));
+            }
+            else
+            {
+                method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+            }
 
             method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
             if (CanImplementGenericInterfaces)
@@ -1397,28 +1530,90 @@ namespace SoftFluent.AspNetIdentity
             }
 
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
-            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("userLoginInfo"));
+            if (IdentityProducer.TargetVersion != AspNetIdentityVersion.Version3)
+            {
+                method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("userLoginInfo"));
+            }
 
-            if (IdentityUserLogin.DeleteByUserLoginInfoMethod == null)
+            bool useMethod = false;
+            if (IdentityUserLogin.DeleteByUserLoginInfoMethod != null)
             {
-                method.Statements.Add(CreateThrowInvalidOperationException());
+                if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 2)
+                {
+                    method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
+                        new CodeArgumentReferenceExpression("user"),
+                        GetLoginProviderKeyExpression()));
+                    useMethod = true;
+                }
+                else if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3)
+                {
+                    method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
+                        new CodeArgumentReferenceExpression("user"),
+                        GetLoginProviderKeyExpression(),
+                        GetLoginProviderNameExpression()));
+                    useMethod = true;
+                }
             }
-            else if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 2)
+
+            if (!useMethod)
             {
-                method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
-                    new CodeArgumentReferenceExpression("user"),
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey")));
-            }
-            else if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3)
-            {
-                method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
-                    new CodeArgumentReferenceExpression("user"),
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey"),
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "LoginProvider")));
-            }
-            else
-            {
-                method.Statements.Add(CreateThrowInvalidOperationException());
+                /*
+                List<UserLogin> toDelete = new List<UserLogin>();
+                foreach (var userLogin in user.Logins)
+                {
+                    if (userLogin.Equals(userLoginInfo))
+                    {
+                        toDelete.Add(userLogin);
+                    }
+                }*/
+                method.Statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IList<>), IdentityUserLogin.ClrFullTypeName), "toDelete", new CodeObjectCreateExpression(CodeDomUtilities.GetGenericType(typeof(List<>), IdentityUserLogin.ClrFullTypeName))));
+
+                var userLoginsEnumerator = CodeDomUtilities.GetUniqueVariable(method, CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserLogin.ClrFullTypeName), "enumerator");
+                userLoginsEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LoginsProperty.Name), "GetEnumerator");
+
+                var userLoginsIteration = new CodeIterationStatement();
+                userLoginsIteration.InitStatement = userLoginsEnumerator;
+                userLoginsIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(userLoginsEnumerator.Name), "MoveNext");
+                userLoginsIteration.IncrementStatement = new CodeSnippetStatement("");
+                method.Statements.Add(userLoginsIteration);
+
+                userLoginsIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserLogin.ClrFullTypeName, "userLogin", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(userLoginsEnumerator.Name), "Current")));
+                CodeConditionStatement loginEqual = new CodeConditionStatement();
+                userLoginsIteration.Statements.Add(loginEqual);
+                loginEqual.Condition = CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userLogin"), IdentityUserLogin.ProviderKeyProperty.Name),
+                            GetLoginProviderKeyExpression());
+
+                if (IdentityUserLogin.ProviderNameProperty != null && IdentityUserLogin.ProviderNameProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, true))
+                {
+                    loginEqual.Condition = new CodeBinaryOperatorExpression(loginEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                        CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userLogin"), IdentityUserLogin.ProviderNameProperty.Name),
+                            GetLoginProviderNameExpression()));
+                }
+
+                loginEqual.TrueStatements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("toDelete"), "Add", new CodeVariableReferenceExpression("userLogin")));
+
+                /*
+                foreach (var userLogin in toDelete)
+                {
+                    userLogin.Delete();
+                    user.Logins.Remove(userLogin);
+                }
+                */
+
+                var toDeleteEnumerator = CodeDomUtilities.GetUniqueVariable(method, CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserLogin.ClrFullTypeName), "enumerator");
+                toDeleteEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("toDelete"), "GetEnumerator");
+
+                var toDeleteIteration = new CodeIterationStatement();
+                toDeleteIteration.InitStatement = toDeleteEnumerator;
+                toDeleteIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(toDeleteEnumerator.Name), "MoveNext");
+                toDeleteIteration.IncrementStatement = new CodeSnippetStatement("");
+                method.Statements.Add(toDeleteIteration);
+
+                toDeleteIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserLogin.ClrFullTypeName, "userLogin", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(toDeleteEnumerator.Name), "Current")));
+                toDeleteIteration.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("userLogin"), "Delete"));
+                toDeleteIteration.Statements.Add(new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.LoginsProperty.Name), "Remove", new CodeVariableReferenceExpression("userLogin")));
             }
 
             method.Statements.Add(CreateEmptyTaskResult());
@@ -1450,8 +1645,10 @@ namespace SoftFluent.AspNetIdentity
             iteration.InitStatement = enumerator;
             iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
             iteration.IncrementStatement = new CodeSnippetStatement("");
-            
+
             iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserLogin.ClrFullTypeName, "userLogin", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+            // V1 & V2: public UserLoginInfo(string loginProvider, string providerKey)
+            // V3:      public UserLoginInfo(string loginProvider, string providerKey, string displayName)
             var createExpression = new CodeObjectCreateExpression("Microsoft.AspNet.Identity.UserLoginInfo");
             if (IdentityUserLogin.ProviderNameProperty != null)
             {
@@ -1463,7 +1660,19 @@ namespace SoftFluent.AspNetIdentity
             }
 
             createExpression.Parameters.Add(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userLogin"), IdentityUserLogin.ProviderKeyProperty.Name));
-            
+
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                if (IdentityUserLogin.ProviderDisplayNameProperty != null)
+                {
+                    createExpression.Parameters.Add(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userLogin"), IdentityUserLogin.ProviderDisplayNameProperty.Name));
+                }
+                else
+                {
+                    createExpression.Parameters.Add(new CodePrimitiveExpression(null));
+                }
+            }
+
             iteration.Statements.Add(
                 new CodeMethodInvokeExpression(
                     new CodeVariableReferenceExpression("result"), "Add",
@@ -1479,8 +1688,19 @@ namespace SoftFluent.AspNetIdentity
             CodeMemberMethod method = new CodeMemberMethod();
             method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
-            method.Name = "FindAsync";
-            method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                method.Name = "FindByLoginAsync";
+                method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "loginProvider"));
+                method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "providerKey"));
+            }
+            else
+            {
+                method.Name = "FindAsync";
+                method.Parameters.Add(new CodeParameterDeclarationExpression("Microsoft.AspNet.Identity.UserLoginInfo", "userLoginInfo"));
+            }
+
+
             method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserLoginStore", false));
             if (CanImplementGenericInterfaces)
             {
@@ -1489,16 +1709,14 @@ namespace SoftFluent.AspNetIdentity
 
             if (IdentityUser.LoadByUserLoginInfoMethod != null)
             {
-                var invokeExpression = CreateMethodInvokeExpression(IdentityUser.LoadByUserLoginInfoMethod,
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "ProviderKey"));
-
+                var invokeExpression = CreateMethodInvokeExpression(IdentityUser.LoadByUserLoginInfoMethod);
+                invokeExpression.Parameters.Add(GetLoginProviderKeyExpression());
                 if (IdentityUser.LoadByUserLoginInfoMethod.Parameters.Count > 1)
                 {
-                    invokeExpression.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("userLoginInfo"), "LoginProvider"));
+                    invokeExpression.Parameters.Add(GetLoginProviderNameExpression());
                 }
 
-                method.Statements.Add(
-                    CreateTaskResult(invokeExpression));
+                method.Statements.Add(CreateTaskResult(invokeExpression));
             }
             else
             {
@@ -1520,8 +1738,41 @@ namespace SoftFluent.AspNetIdentity
             }
 
             CreateAddClaimMethod(type);
+            CreateAddClaimsMethod(type);
             CreateRemoveClaimMethod(type);
+            CreateRemoveClaimsMethod(type);
+            CreateReplaceClaimMethod(type); 
             CreateGetClaimsMethod(type);
+        }
+
+        private void AddSetAndSaveUserClaimFromClaim(CodeStatementCollection statements, CodeExpression userClaim, Func<string, CodeExpression> getClaimProperty)
+        {
+            statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(userClaim, IdentityUserClaim.UserProperty.Name), new CodeArgumentReferenceExpression("user")));
+
+            statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(userClaim, IdentityUserClaim.TypeProperty.Name), getClaimProperty("Type")));
+            statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(userClaim, IdentityUserClaim.ValueProperty.Name), getClaimProperty("Value")));
+
+            if (IdentityUserClaim.IssuerProperty != null)
+            {
+                statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(userClaim, IdentityUserClaim.IssuerProperty.Name), getClaimProperty("Issuer")));
+            }
+            if (IdentityUserClaim.OriginalIssuerProperty != null)
+            {
+                statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(userClaim, IdentityUserClaim.OriginalIssuerProperty.Name), getClaimProperty("OriginalIssuer")));
+            }
+            if (IdentityUserClaim.ValueTypeProperty != null)
+            {
+                statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(userClaim, IdentityUserClaim.ValueTypeProperty.Name), getClaimProperty("ValueType")));
+            }
+
+            statements.Add(new CodeMethodInvokeExpression(userClaim, "Save"));
+        }
+
+        private void AddCreateUserClaimFromClaim(CodeStatementCollection statements, Func<string, CodeExpression> getClaimProperty)
+        {
+            statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(IdentityUserClaim.ClrFullTypeName), "userClaim", new CodeObjectCreateExpression(IdentityUserClaim.ClrFullTypeName)));
+            AddSetAndSaveUserClaimFromClaim(statements, new CodeVariableReferenceExpression("userClaim"), getClaimProperty);
+            statements.Add(new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.ClaimsProperty.Name), "Add", new CodeVariableReferenceExpression("userClaim")));
         }
 
         private void CreateAddClaimMethod(CodeTypeDeclaration type)
@@ -1533,45 +1784,188 @@ namespace SoftFluent.AspNetIdentity
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
 
-            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
-            if (CanImplementGenericInterfaces)
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version1 || IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2)
             {
-                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+                if (CanImplementGenericInterfaces)
+                {
+                    method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+                }
             }
 
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claim"));
 
-            method.Statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(IdentityUserClaim.ClrFullTypeName), "userClaim", new CodeObjectCreateExpression(IdentityUserClaim.ClrFullTypeName)));
-            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.UserProperty.Name),
-                new CodeArgumentReferenceExpression("user")));
 
-            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.TypeProperty.Name),
-                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type")));
-
-            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name),
-                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Value")));
-
-            if (IdentityUserClaim.IssuerProperty != null)
-            {
-                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.IssuerProperty.Name),
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer")));
-            }
-            if (IdentityUserClaim.OriginalIssuerProperty != null)
-            {
-                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.OriginalIssuerProperty.Name),
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer")));
-            }
-            if (IdentityUserClaim.ValueTypeProperty != null)
-            {
-                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueTypeProperty.Name),
-                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType")));
-            }
-
-            method.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("userClaim"), "Save"));
-
+            Func<string, CodeExpression> claimProperty = propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), propertyName);
+            AddCreateUserClaimFromClaim(method.Statements, claimProperty);
             method.Statements.Add(CreateEmptyTaskResult());
             type.Members.Add(method);
+        }
+
+        private void CreateAddClaimsMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "AddClaimsAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(CodeDomUtilities.GetGenericType(typeof(IEnumerable<>), typeof(Claim)), "claims"));
+
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claims"));
+
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), typeof(Claim)), "enumerator");
+            enumerator.InitExpression = new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("claims"), "GetEnumerator");
+
+            var iteration = new CodeIterationStatement();
+            iteration.InitStatement = enumerator;
+            iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
+            iteration.IncrementStatement = new CodeSnippetStatement("");
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(typeof(Claim), "claim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+            method.Statements.Add(iteration);
+
+            Func<string, CodeExpression> claimProperty = propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), propertyName);
+            AddCreateUserClaimFromClaim(iteration.Statements, claimProperty);
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void AddRemoveUserClaimFromClaim(CodeMemberMethod method, CodeStatementCollection statements, Func<string, CodeExpression> getClaimProperty)
+        {
+            bool useMethod = false;
+            if (IdentityUserClaim.DeleteClaimsMethod != null)
+            {
+                CodeMethodInvokeExpression invokeMethod = CreateMethodInvokeExpression(IdentityUserClaim.DeleteClaimsMethod);
+                foreach (var parameter in IdentityUserClaim.DeleteClaimsMethod.Parameters)
+                {
+                    if (parameter.ProjectProperty == IdentityUserClaim.UserProperty)
+                    {
+                        invokeMethod.Parameters.Add(new CodeArgumentReferenceExpression("user"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.TypeProperty)
+                    {
+                        invokeMethod.Parameters.Add(getClaimProperty("Type"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.ValueProperty)
+                    {
+                        invokeMethod.Parameters.Add(getClaimProperty("Value"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.ValueTypeProperty)
+                    {
+                        invokeMethod.Parameters.Add(getClaimProperty("ValueType"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.IssuerProperty)
+                    {
+                        invokeMethod.Parameters.Add(getClaimProperty("Issuer"));
+                    }
+                    else if (parameter.ProjectProperty == IdentityUserClaim.OriginalIssuerProperty)
+                    {
+                        invokeMethod.Parameters.Add(getClaimProperty("OriginalIssuer"));
+                    }
+                    else
+                    {
+                        invokeMethod = null;
+                        break;
+                    }
+                }
+
+                if (invokeMethod != null)
+                {
+                    statements.Add(invokeMethod);
+                    useMethod = true;
+                }
+            }
+
+            if (!useMethod)
+            {
+                /*
+                List<UserClaim> toDelete = new List<UserClaim>();
+                foreach (var userClaim in user.Claims)
+                {
+                    if (userClaim.Equals(claim))
+                    {
+                        toDelete.Add(userClaim);
+                    }
+                }*/
+                statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IList<>), IdentityUserClaim.ClrFullTypeName), "toDelete", new CodeObjectCreateExpression(CodeDomUtilities.GetGenericType(typeof(List<>), IdentityUserClaim.ClrFullTypeName))));
+
+                var userClaimsEnumerator = CodeDomUtilities.GetUniqueVariable(method, CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserClaim.ClrFullTypeName), "enumerator");
+                userClaimsEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.ClaimsProperty.Name), "GetEnumerator");
+
+                var userClaimsIteration = new CodeIterationStatement();
+                userClaimsIteration.InitStatement = userClaimsEnumerator;
+                userClaimsIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(userClaimsEnumerator.Name), "MoveNext");
+                userClaimsIteration.IncrementStatement = new CodeSnippetStatement("");
+                statements.Add(userClaimsIteration);
+
+                userClaimsIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserClaim.ClrFullTypeName, "userClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(userClaimsEnumerator.Name), "Current")));
+
+                CodeConditionStatement claimsEqual = new CodeConditionStatement();
+                userClaimsIteration.Statements.Add(claimsEqual);
+                claimsEqual.Condition = CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.TypeProperty.Name),
+                        getClaimProperty("Type"));
+
+                if (IdentityUserClaim.ValueProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, true))
+                {
+                    claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd, CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name),
+                        getClaimProperty("Value")));
+                }
+
+                if (IdentityUserClaim.ValueTypeProperty != null && IdentityUserClaim.ValueTypeProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+                {
+                    claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                        CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueTypeProperty.Name),
+                            getClaimProperty("ValueType")));
+                }
+
+                if (IdentityUserClaim.IssuerProperty != null && IdentityUserClaim.IssuerProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+                {
+                    claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                        CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.IssuerProperty.Name),
+                            getClaimProperty("Issuer")));
+                }
+
+                if (IdentityUserClaim.OriginalIssuerProperty != null && IdentityUserClaim.OriginalIssuerProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+                {
+                    claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                        CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                            new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.OriginalIssuerProperty.Name),
+                            getClaimProperty("OriginalIssuer")));
+                }
+
+                claimsEqual.TrueStatements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("toDelete"), "Add", new CodeVariableReferenceExpression("userClaim")));
+
+                /*
+                foreach (var userClaim in toDelete)
+                {
+                    userClaim.Delete();
+                    user.Claims.Remove(userClaim);
+                }
+                */
+
+                var toDeleteEnumerator = CodeDomUtilities.GetUniqueVariable(method, CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserClaim.ClrFullTypeName), "enumerator");
+                toDeleteEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("toDelete"), "GetEnumerator");
+
+                var toDeleteIteration = new CodeIterationStatement();
+                toDeleteIteration.InitStatement = toDeleteEnumerator;
+                toDeleteIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(toDeleteEnumerator.Name), "MoveNext");
+                toDeleteIteration.IncrementStatement = new CodeSnippetStatement("");
+                statements.Add(toDeleteIteration);
+
+                toDeleteIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserClaim.ClrFullTypeName, "userClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(toDeleteEnumerator.Name), "Current")));
+                toDeleteIteration.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("userClaim"), "Delete"));
+                toDeleteIteration.Statements.Add(new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.ClaimsProperty.Name), "Remove", new CodeVariableReferenceExpression("userClaim")));
+            }
         }
 
         private void CreateRemoveClaimMethod(CodeTypeDeclaration type)
@@ -1583,69 +1977,133 @@ namespace SoftFluent.AspNetIdentity
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
 
-            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
-            if (CanImplementGenericInterfaces)
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version1 || IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2)
             {
-                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+                if (CanImplementGenericInterfaces)
+                {
+                    method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", true));
+                }
             }
 
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claim"));
+            AddRemoveUserClaimFromClaim(method, method.Statements, propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), propertyName));
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
 
-            if (IdentityUserClaim.DeleteClaimsMethod == null)
-            {
-                method.Statements.Add(CreateThrowInvalidOperationException());
-            }
-            else
-            {
-                CodeMethodInvokeExpression invokeMethod = CreateMethodInvokeExpression(IdentityUserClaim.DeleteClaimsMethod);
-                foreach (var parameter in IdentityUserClaim.DeleteClaimsMethod.Parameters)
-                {
-                    if (parameter.ProjectProperty == IdentityUserClaim.UserProperty)
-                    {
-                        invokeMethod.Parameters.Add(new CodeArgumentReferenceExpression("user"));
-                    }
-                    else if (parameter.ProjectProperty == IdentityUserClaim.TypeProperty)
-                    {
-                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type"));
-                    }
-                    else if (parameter.ProjectProperty == IdentityUserClaim.ValueProperty)
-                    {
-                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Value"));
-                    }
-                    else if (parameter.ProjectProperty == IdentityUserClaim.ValueTypeProperty)
-                    {
-                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType"));
-                    }
-                    else if (parameter.ProjectProperty == IdentityUserClaim.IssuerProperty)
-                    {
-                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer"));
-                    }
-                    else if (parameter.ProjectProperty == IdentityUserClaim.OriginalIssuerProperty)
-                    {
-                        invokeMethod.Parameters.Add(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer"));
-                    }
-                    else
-                    {
-                        method.Statements.Add(CreateThrowInvalidOperationException());
-                        invokeMethod = null;
-                        break;
-                    }
-                }
+        private void CreateRemoveClaimsMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "RemoveClaimsAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(CodeDomUtilities.GetGenericType(typeof(IEnumerable<>), typeof(Claim)), "claims"));
 
-                if (invokeMethod != null)
-                {
-                    method.Statements.Add(invokeMethod);
-                }
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
             }
 
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claims"));
+
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), typeof(Claim)), "claimEnumerator");
+            enumerator.InitExpression = new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("claims"), "GetEnumerator");
+
+            var iteration = new CodeIterationStatement();
+            iteration.InitStatement = enumerator;
+            iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("claimEnumerator"), "MoveNext");
+            iteration.IncrementStatement = new CodeSnippetStatement("");
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(typeof(Claim), "claim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("claimEnumerator"), "Current")));
+            method.Statements.Add(iteration);
+
+            AddRemoveUserClaimFromClaim(method, iteration.Statements, propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), propertyName));
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateReplaceClaimMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "ReplaceClaimAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "oldClaim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "newClaim"));
+            
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IUserClaimStore", false));
+            }
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("oldClaim"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("newClaim"));
+
+            var userClaimsEnumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserClaim.ClrFullTypeName), "enumerator");
+            userClaimsEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.ClaimsProperty.Name), "GetEnumerator");
+
+            var userClaimsIteration = new CodeIterationStatement();
+            userClaimsIteration.InitStatement = userClaimsEnumerator;
+            userClaimsIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
+            userClaimsIteration.IncrementStatement = new CodeSnippetStatement("");
+            method.Statements.Add(userClaimsIteration);
+
+            userClaimsIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserClaim.ClrFullTypeName, "userClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+
+            CodeConditionStatement claimsEqual = new CodeConditionStatement();
+            userClaimsIteration.Statements.Add(claimsEqual);
+            claimsEqual.Condition = CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                    new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.TypeProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("oldClaim"), "Type"));
+
+            if (IdentityUserClaim.ValueProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, true))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd, CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                    new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("oldClaim"), "Value")));
+            }
+
+            if (IdentityUserClaim.ValueTypeProperty != null && IdentityUserClaim.ValueTypeProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueTypeProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("oldClaim"), "ValueType")));
+            }
+
+            if (IdentityUserClaim.IssuerProperty != null && IdentityUserClaim.IssuerProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.IssuerProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("oldClaim"), "Issuer")));
+            }
+
+            if (IdentityUserClaim.OriginalIssuerProperty != null && IdentityUserClaim.OriginalIssuerProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.OriginalIssuerProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("oldClaim"), "OriginalIssuer")));
+            }
+
+            // Replace userClaim properties & Save
+            AddSetAndSaveUserClaimFromClaim(
+                claimsEqual.TrueStatements, 
+                new CodeVariableReferenceExpression("userClaim"), 
+                propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("newClaim"), propertyName));
+            
             method.Statements.Add(CreateEmptyTaskResult());
             type.Members.Add(method);
         }
 
         private void CreateGetClaimsMethod(CodeTypeDeclaration type)
         {
-            // TODO use LoadClaims method if available
             CodeMemberMethod method = new CodeMemberMethod();
             method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(Claim))));
             method.Attributes = MemberAttributes.Public;
@@ -1672,7 +2130,7 @@ namespace SoftFluent.AspNetIdentity
 
             iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserClaim.ClrFullTypeName, "userClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
             var createExpression = new CodeObjectCreateExpression(typeof(Claim));
-            
+
             if (IdentityUserClaim.OriginalIssuerProperty != null)
             {
                 createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.OriginalIssuerProperty.Name));
@@ -1698,7 +2156,7 @@ namespace SoftFluent.AspNetIdentity
 
             createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name));
             createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.TypeProperty.Name));
-            
+
             iteration.Statements.Add(
                 new CodeMethodInvokeExpression(
                     new CodeVariableReferenceExpression("result"), "Add",
@@ -1708,6 +2166,7 @@ namespace SoftFluent.AspNetIdentity
             method.Statements.Add(CreateTaskResult(new CodeVariableReferenceExpression("result")));
             type.Members.Add(method);
         }
+
         private void ImplementIQueryableUserStore(CodeTypeDeclaration type)
         {
             if (!CanImplementQueryableUserStore)
@@ -1724,8 +2183,6 @@ namespace SoftFluent.AspNetIdentity
 
         private void CreateUsersProperty(CodeTypeDeclaration type)
         {
-            // public virtual System.Linq.IQueryable<[%=IdentityRole.Entity.ClrFullTypeName%]> Roles 
-            // return System.Linq.Queryable.AsQueryable([%=CallMethod(IdentityRole.LoadAllMethod)%]());
             CodeMemberProperty property = new CodeMemberProperty();
             property.Type = CodeDomUtilities.GetGenericType(typeof(IQueryable), IdentityUser.ClrFullTypeName);
             property.Attributes = MemberAttributes.Public;

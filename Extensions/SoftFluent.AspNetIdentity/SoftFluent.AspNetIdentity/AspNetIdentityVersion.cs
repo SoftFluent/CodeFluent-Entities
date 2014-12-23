@@ -11,8 +11,7 @@ namespace SoftFluent.AspNetIdentity
         Version1,
         [Description("ASP.NET Identity 2")]
         Version2,
-        [Browsable(false)]
-        [Description("ASP.NET Identity 3 (Preview)")]
+        [Description("ASP.NET Identity 3 (alpha)")]
         Version3,
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using CodeFluent.Model;
 using CodeFluent.Model.Code;
+using CodeFluent.Runtime.Model;
 
 namespace SoftFluent.AspNetIdentity
 {
@@ -38,12 +39,23 @@ namespace SoftFluent.AspNetIdentity
             LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAllRoles) ?? Entity.LoadAllMethod;
         }
 
-        public Entity Entity { get; set; }
+        public Entity Entity { get; private set; }
 
         public Property KeyProperty { get; private set; }
         public Property NameProperty { get; private set; }
         public Property UsersProperty { get; private set; }
         public Property ClaimsProperty { get; private set; }
+
+        public string StringKeyPropertyName
+        {
+            get
+            {
+                if (KeyProperty != null && KeyProperty.ClrFullTypeName == typeof (string).FullName)
+                    return KeyProperty.Name;
+
+                return ViewPropertyDescriptor.EntityKey;
+            }
+        }
 
         public Method LoadByKeyMethod { get; private set; }
         public string LoadByKeyMethodName { get; private set; }
@@ -73,7 +85,7 @@ namespace SoftFluent.AspNetIdentity
                 if (KeyProperty != null)
                     return KeyProperty.Name;
 
-                return "EntityKey";
+                return ViewPropertyDescriptor.EntityKey;
             }
         }
 

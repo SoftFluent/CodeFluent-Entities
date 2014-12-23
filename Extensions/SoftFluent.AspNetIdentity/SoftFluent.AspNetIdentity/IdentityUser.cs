@@ -1,6 +1,7 @@
 using System;
 using CodeFluent.Model;
 using CodeFluent.Model.Code;
+using CodeFluent.Runtime.Model;
 
 namespace SoftFluent.AspNetIdentity
 {
@@ -49,12 +50,12 @@ namespace SoftFluent.AspNetIdentity
             }
 
             LoadByUserNameMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByUserName) ?? Entity.LoadByCollectionKeyMethod;
-            LoadByEmailMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByEmail) ?? Entity.Methods.Find("LoadByEmail", StringComparison.OrdinalIgnoreCase) ?? Entity.LoadByCollectionKeyMethod;
+            LoadByEmailMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByEmail) ?? Entity.Methods.Find("LoadByEmail", StringComparison.OrdinalIgnoreCase) ?? (EmailProperty != null && EmailProperty.IsCollectionKey ? Entity.LoadByCollectionKeyMethod : null);
             LoadByUserLoginInfoMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByUserLoginInfo);
             LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAllUsers) ?? Entity.LoadAllMethod;
         }
 
-        public Entity Entity { get; set; }
+        public Entity Entity { get; private set; }
 
         public string ClrFullTypeName
         {
@@ -63,6 +64,17 @@ namespace SoftFluent.AspNetIdentity
                 if (Entity != null)
                     return Entity.ClrFullTypeName;
                 return null;
+            }
+        }
+
+        public string StringKeyPropertyName
+        {
+            get
+            {
+                if (KeyProperty != null && KeyProperty.ClrFullTypeName == typeof(string).FullName)
+                    return KeyProperty.Name;
+
+                return ViewPropertyDescriptor.EntityKey;
             }
         }
 
@@ -116,7 +128,7 @@ namespace SoftFluent.AspNetIdentity
                 if (KeyProperty != null)
                     return KeyProperty.Name;
 
-                return "EntityKey";
+                return ViewPropertyDescriptor.EntityKey;
             }
         }
     }

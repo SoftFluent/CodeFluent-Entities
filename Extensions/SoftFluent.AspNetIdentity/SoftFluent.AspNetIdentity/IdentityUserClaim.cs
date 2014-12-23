@@ -24,7 +24,7 @@ namespace SoftFluent.AspNetIdentity
             LoadClaimsMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserClaimsByClaim);
         }
 
-        public Entity Entity { get; set; }
+        public Entity Entity { get; private set; }
 
         public string ClrFullTypeName
         {

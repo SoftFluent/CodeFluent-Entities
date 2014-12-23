@@ -29,7 +29,7 @@ namespace SoftFluent.AspNetIdentity
 
         public abstract bool IsWebType { get; }
 
-        public CodeDomBaseProducer CodeDomProducer { get; }
+        public CodeDomBaseProducer CodeDomProducer { get; private set; }
 
         public virtual string ResourceManagerTypeName
         {

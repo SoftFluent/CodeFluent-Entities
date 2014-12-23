@@ -31,7 +31,17 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        public Entity Entity { get; set; }
+        public Entity Entity { get; private set; }
+
+        public string ClrFullTypeName
+        {
+            get
+            {
+                if (Entity == null)
+                    return null;
+                return Entity.ClrFullTypeName;
+            }
+        }
 
         public Property KeyProperty { get; private set; }
         public Property ValueProperty { get; private set; }

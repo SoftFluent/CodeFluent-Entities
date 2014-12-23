@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using CodeFluent.Model;
@@ -101,6 +102,15 @@ namespace SoftFluent.AspNetIdentity
             return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(string)), "Format", new CodePrimitiveExpression("\"{0}\""), expression);
         }
 
+        protected CodeExpression CreateStringEqualsExpression(StringComparison stringComparison, CodeExpression left, CodeExpression right)
+        {
+            if (left == null) throw new ArgumentNullException("left");
+            if (right == null) throw new ArgumentNullException("right");
+
+            return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(string)), "Equals", left, right,
+                new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(typeof(StringComparison)), stringComparison.ToString()));
+        }
+
         protected CodeStatement CreateThrowInvalidOperationException()
         {
             return new CodeThrowExceptionStatement(new CodeObjectCreateExpression(typeof(InvalidOperationException)));
@@ -111,7 +121,6 @@ namespace SoftFluent.AspNetIdentity
             if (nullable == null) throw new ArgumentNullException("nullable");
 
             return new CodePropertyReferenceExpression(nullable, "HasValue");
-            //return new CodeBinaryOperatorExpression(new CodePropertyReferenceExpression(nullable, "HasValue"), CodeBinaryOperatorType.ValueEquality, new CodePrimitiveExpression(true));
         }
 
         protected CodeStatement CreateEmptyTaskResult()
@@ -167,7 +176,6 @@ namespace SoftFluent.AspNetIdentity
 
         protected void FinalizeMethods(CodeTypeDeclaration type)
         {
-            // Create overloads with CancellationToken when possible
             foreach (CodeMemberMethod method in type.Members.OfType<CodeMemberMethod>().ToList())
             {
                 if (method.ReturnType == null)
@@ -179,38 +187,63 @@ namespace SoftFluent.AspNetIdentity
                 if (method.Parameters.Cast<CodeParameterDeclarationExpression>().Any(p => p.Type.BaseType == typeof(CancellationToken).FullName))
                     continue;
 
-                CodeMemberMethod newMethod = new CodeMemberMethod();
-                newMethod.Name = method.Name;
-                newMethod.Attributes = method.Attributes;
-                newMethod.ReturnType = method.ReturnType;
-
-                foreach (CodeParameterDeclarationExpression parameter in method.Parameters)
+                if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version1 || IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2)
                 {
-                    newMethod.Parameters.Add(parameter);
+                    // Create overloads with CancellationToken
+                    CodeMemberMethod newMethod = new CodeMemberMethod();
+                    newMethod.Name = method.Name;
+                    newMethod.Attributes = method.Attributes;
+                    newMethod.ReturnType = method.ReturnType;
+
+                    foreach (CodeParameterDeclarationExpression parameter in method.Parameters)
+                    {
+                        newMethod.Parameters.Add(parameter);
+                    }
+
+                    newMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(CancellationToken), "cancellationToken"));
+
+                    newMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("cancellationToken"), "ThrowIfCancellationRequested"));
+                    newMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), "ThrowIfDisposed"));
+                    foreach (CodeStatement statement in method.Statements)
+                    {
+                        newMethod.Statements.Add(statement);
+                    }
+
+                    // replace existing method
+                    method.Statements.Clear();
+                    List<CodeExpression> parameters = new List<CodeExpression>();
+                    foreach (CodeParameterDeclarationExpression parameter in method.Parameters)
+                    {
+                        parameters.Add(new CodeArgumentReferenceExpression(parameter.Name));
+                    }
+
+                    parameters.Add(new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(CancellationToken)), "None"));
+
+                    method.Statements.Add(new CodeMethodReturnStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), newMethod.Name, parameters.ToArray())));
+
+                    type.Members.Insert(type.Members.IndexOf(method) + 1, newMethod);
                 }
-
-                newMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(CancellationToken), "cancellationToken"));
-
-                newMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("cancellationToken"), "ThrowIfCancellationRequested"));
-                newMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), "ThrowIfDisposed"));
-                foreach (CodeStatement statement in method.Statements)
+                else if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
                 {
-                    newMethod.Statements.Add(statement);
+                    // Add optional CancellationToken parameter
+                    if (CodeDomProducer.LanguageCode == LanguageCode.VisualBasic)
+                    {
+                        // HACK to use optional parameters
+                        var parameter = new CodeParameterDeclarationExpression(typeof(CancellationToken).FullName + " = Nothing", "Optional cancellationToken");
+                        parameter.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(OptionalAttribute))));
+                        method.Parameters.Add(parameter);
+                    }
+                    else
+                    {
+                        var parameter = new CodeParameterDeclarationExpression(typeof(CancellationToken), "cancellationToken");
+                        parameter.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(OptionalAttribute))));
+                        method.Parameters.Add(parameter);
+                    }
+                    
+
+                    method.Statements.Insert(0, new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("cancellationToken"), "ThrowIfCancellationRequested")));
+                    method.Statements.Insert(1, new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), "ThrowIfDisposed")));
                 }
-
-                // replace existing method
-                method.Statements.Clear();
-                List<CodeExpression> parameters = new List<CodeExpression>();
-                foreach (CodeParameterDeclarationExpression parameter in method.Parameters)
-                {
-                    parameters.Add(new CodeArgumentReferenceExpression(parameter.Name));
-                }
-
-                parameters.Add(new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(CancellationToken)), "None"));
-
-                method.Statements.Add(new CodeMethodReturnStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), newMethod.Name, parameters.ToArray())));
-
-                type.Members.Insert(type.Members.IndexOf(method) + 1, newMethod);
             }
         }
     }

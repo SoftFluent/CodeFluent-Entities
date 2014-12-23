@@ -1,6 +1,8 @@
 using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CodeFluent.Producers.CodeDom;
 
@@ -9,7 +11,7 @@ namespace SoftFluent.AspNetIdentity
     public class RoleStoreProducer : AspNetIdentityCodeUnitProducer
     {
         private readonly AspNetIdentityProducer _aspNetIdentityProducer;
-        
+
         public RoleStoreProducer(AspNetIdentityProducer aspNetIdentityProducer, CodeDomBaseProducer codeDomBaseProducer, IdentityRole identityRole, IdentityRoleClaim identityRoleClaim)
             : base(aspNetIdentityProducer, codeDomBaseProducer)
         {
@@ -42,6 +44,10 @@ namespace SoftFluent.AspNetIdentity
         {
             get { return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version2 && _aspNetIdentityProducer.MustImplementQueryableRoleStore && CanImplementRoleStore; }
         }
+        public bool CanImplementRoleClaimStore
+        {
+            get { return _aspNetIdentityProducer.TargetVersion == AspNetIdentityVersion.Version3 && IdentityRoleClaim != null && CanImplementRoleStore; }
+        }
 
         public bool CanImplementGenericInterfaces
         {
@@ -64,6 +70,7 @@ namespace SoftFluent.AspNetIdentity
             unit.Namespaces.Add(ns);
 
             ImplementIRoleStore(type);
+            ImplementIRoleClaimStore(type);
             ImplementIQueryableRoleStore(type);
             ImplementIDisposableInterface(type);
             FinalizeMethods(type);
@@ -112,6 +119,13 @@ namespace SoftFluent.AspNetIdentity
             CreateFindByIdMethod(type);
             CreateFindByIdGenericMethod(type);
             CreateFindByNameMethod(type);
+
+            if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
+            {
+                CreateGetRoleIdMethod(type);
+                CreateGetRoleNameMethod(type);
+                CreateSetRoleNameMethod(type);
+            }
         }
 
         private void CreateCreateRoleMethod(CodeTypeDeclaration type)
@@ -243,6 +257,276 @@ namespace SoftFluent.AspNetIdentity
                 method.Statements.Add(CreateThrowInvalidOperationException());
             }
 
+            type.Members.Add(method);
+        }
+
+        private void CreateGetRoleIdMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetRoleIdAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.StringKeyPropertyName)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateGetRoleNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetRoleNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
+
+            method.Statements.Add(CreateTaskResult(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.NameProperty.Name)));
+
+            type.Members.Add(method);
+        }
+
+        private void CreateSetRoleNameMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "SetRoleNameAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "roleName"));
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
+
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.NameProperty.Name), new CodeArgumentReferenceExpression("roleName")));
+            method.Statements.Add(CreateEmptyTaskResult());
+
+            type.Members.Add(method);
+        }
+
+        private void ImplementIRoleClaimStore(CodeTypeDeclaration type)
+        {
+            if (!CanImplementRoleClaimStore)
+                return;
+
+            type.BaseTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleClaimStore", false));
+
+            CreateAddClaimMethod(type);
+            CreateRemoveClaimMethod(type);
+            CreateGetClaimsMethod(type);
+        }
+
+        private void CreateAddClaimMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "AddClaimAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleClaimStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claim"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(new CodeTypeReference(IdentityRoleClaim.ClrFullTypeName), "roleClaim", new CodeObjectCreateExpression(IdentityRoleClaim.ClrFullTypeName)));
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.RoleProperty.Name),
+                new CodeArgumentReferenceExpression("role")));
+
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.TypeProperty.Name),
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type")));
+
+            method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.ValueProperty.Name),
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Value")));
+
+            if (IdentityRoleClaim.IssuerProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.IssuerProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer")));
+            }
+            if (IdentityRoleClaim.OriginalIssuerProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.OriginalIssuerProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer")));
+            }
+            if (IdentityRoleClaim.ValueTypeProperty != null)
+            {
+                method.Statements.Add(new CodeAssignStatement(new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.ValueTypeProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType")));
+            }
+
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("roleClaim"), "Save"));
+            method.Statements.Add(new CodeMethodInvokeExpression(
+                new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.ClaimsProperty.Name), "Add", new CodeVariableReferenceExpression("roleClaim")));
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateRemoveClaimMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "RemoveClaimAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleClaimStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claim"));
+
+            /*
+            List<RoleClaim> toDelete = new List<RoleClaim>();
+            foreach (var roleClaim in role.Claims)
+            {
+                if (roleClaim.Equals(claim))
+                {
+                    toDelete.Add(roleClaim);
+                }
+            }*/
+            method.Statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IList<>), IdentityRoleClaim.ClrFullTypeName), "toDelete", new CodeObjectCreateExpression(CodeDomUtilities.GetGenericType(typeof(List<>), IdentityRoleClaim.ClrFullTypeName))));
+
+            var roleClaimsEnumerator = CodeDomUtilities.GetUniqueVariable(method, CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityRoleClaim.ClrFullTypeName), "enumerator");
+            roleClaimsEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.ClaimsProperty.Name), "GetEnumerator");
+
+            var roleClaimsIteration = new CodeIterationStatement();
+            roleClaimsIteration.InitStatement = roleClaimsEnumerator;
+            roleClaimsIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(roleClaimsEnumerator.Name), "MoveNext");
+            roleClaimsIteration.IncrementStatement = new CodeSnippetStatement("");
+            method.Statements.Add(roleClaimsIteration);
+
+            roleClaimsIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityRoleClaim.ClrFullTypeName, "roleClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(roleClaimsEnumerator.Name), "Current")));
+            CodeConditionStatement claimsEqual = new CodeConditionStatement();
+            roleClaimsIteration.Statements.Add(claimsEqual);
+            claimsEqual.Condition = CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                    new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.TypeProperty.Name),
+                    new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type"));
+
+            if (IdentityRoleClaim.ValueProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, true))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.TypeProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Type")));
+            }
+
+            if (IdentityRoleClaim.ValueTypeProperty != null && IdentityRoleClaim.ValueTypeProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.ValueTypeProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "ValueType")));
+            }
+
+            if (IdentityRoleClaim.IssuerProperty != null && IdentityRoleClaim.IssuerProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.IssuerProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "Issuer")));
+            }
+
+            if (IdentityRoleClaim.OriginalIssuerProperty != null && IdentityRoleClaim.OriginalIssuerProperty.GetAttributeValue("isComparer", Constants.NamespaceUri, false))
+            {
+                claimsEqual.Condition = new CodeBinaryOperatorExpression(claimsEqual.Condition, CodeBinaryOperatorType.BooleanAnd,
+                    CreateStringEqualsExpression(StringComparison.OrdinalIgnoreCase,
+                        new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.OriginalIssuerProperty.Name),
+                        new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), "OriginalIssuer")));
+            }
+
+            claimsEqual.TrueStatements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("toDelete"), "Add", new CodeVariableReferenceExpression("roleClaim")));
+
+            /*
+            foreach (var roleClaim in toDelete)
+            {
+                roleClaim.Delete();
+                role.Claims.Remove(roleClaim);
+            }
+            */
+
+            var toDeleteEnumerator = CodeDomUtilities.GetUniqueVariable(method, CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityRoleClaim.ClrFullTypeName), "enumerator");
+            toDeleteEnumerator.InitExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("toDelete"), "GetEnumerator");
+
+            var toDeleteIteration = new CodeIterationStatement();
+            toDeleteIteration.InitStatement = toDeleteEnumerator;
+            toDeleteIteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(toDeleteEnumerator.Name), "MoveNext");
+            toDeleteIteration.IncrementStatement = new CodeSnippetStatement("");
+            method.Statements.Add(toDeleteIteration);
+
+            toDeleteIteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityRoleClaim.ClrFullTypeName, "roleClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(toDeleteEnumerator.Name), "Current")));
+            toDeleteIteration.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("roleClaim"), "Delete"));
+            toDeleteIteration.Statements.Add(new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.ClaimsProperty.Name), "Remove", new CodeVariableReferenceExpression("roleClaim")));
+
+            method.Statements.Add(CreateEmptyTaskResult());
+            type.Members.Add(method);
+        }
+
+        private void CreateGetClaimsMethod(CodeTypeDeclaration type)
+        {
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(Claim))));
+            method.Attributes = MemberAttributes.Public;
+            method.Name = "GetClaimsAsync";
+            method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
+
+            method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleClaimStore", false));
+
+            method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
+
+            method.Statements.Add(new CodeVariableDeclarationStatement(typeof(IList<>).MakeGenericType(typeof(Claim)), "result", new CodeObjectCreateExpression(typeof(List<>).MakeGenericType(typeof(Claim)))));
+
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityRoleClaim.ClrFullTypeName), "enumerator");
+            enumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.ClaimsProperty.Name), "GetEnumerator");
+
+            var iteration = new CodeIterationStatement();
+            iteration.InitStatement = enumerator;
+            iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
+            iteration.IncrementStatement = new CodeSnippetStatement("");
+
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityRoleClaim.ClrFullTypeName, "roleClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+            var createExpression = new CodeObjectCreateExpression(typeof(Claim));
+
+            if (IdentityRoleClaim.OriginalIssuerProperty != null)
+            {
+                createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.OriginalIssuerProperty.Name));
+            }
+
+            if (IdentityRoleClaim.IssuerProperty != null)
+            {
+                createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.IssuerProperty.Name));
+            }
+            else if (createExpression.Parameters.Count > 0)
+            {
+                createExpression.Parameters.Insert(0, createExpression.Parameters[0]); // OriginalIssuer
+            }
+
+            if (IdentityRoleClaim.ValueTypeProperty != null)
+            {
+                createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.ValueTypeProperty.Name));
+            }
+            else if (createExpression.Parameters.Count > 0)
+            {
+                createExpression.Parameters.Insert(0, new CodePrimitiveExpression(ClaimValueTypes.String));
+            }
+
+            createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.ValueProperty.Name));
+            createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.TypeProperty.Name));
+
+            iteration.Statements.Add(
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression("result"), "Add",
+                    createExpression));
+            method.Statements.Add(iteration);
+
+            method.Statements.Add(CreateTaskResult(new CodeVariableReferenceExpression("result")));
             type.Members.Add(method);
         }
 
