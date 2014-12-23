@@ -2,10 +2,10 @@ http://www.softfluent.com/Forums/codefluent-entities-(fr)/readrecordonsave
 
     <cf:entity name="Order" namespace="SoftFluent.Samples.ReadOnSave">
       <cf:property name="Id" key="true" typeName="int" />
-      <cf:property name="CreationTime" ca:expression="_trackCreationTime" xmlns:ca="http://www.softfluent.com/aspects/samples/read-on-save" xmlns:cf="http://www.softfluent.com/codefluent/2005/1"  p ersistent="false" readOnSave="true" readOnLoad="true" typeName="datetime" persistenceName="CreationTime" />
+      <cf:property name="CreationTime" ca:expression="_trackCreationTime" xmlns:ca="http://www.softfluent.com/aspects/samples/read-on-save" xmlns:cf="http://www.softfluent.com/codefluent/2005/1"  persistent="false" readOnSave="true" readOnLoad="true" typeName="datetime" persistenceName="CreationTime" />
     </cf:entity>
 
-The aspect modify the save stored procedure (UPDATE and INSERT statement) to select column with ReadOnSave="true"
+The aspect changes the save stored procedure (`UPDATE` and `INSERT` statements) to select column with `ReadOnSave="true"`
 
     UPDATE [Order] SET
      [Order].[_trackLastWriteUser] = @_trackLastWriteUser,
@@ -48,3 +48,11 @@ The aspect modify the save stored procedure (UPDATE and INSERT statement) to sel
                     _trackCreationTime AS 'CreationTime' -- Added by the aspect
         FROM [Order]
         WHERE ([Order].[Order_Id] = @Order_Id)
+        
+You can also set a custom select expression for a property
+
+    <cf:property name="CreationTime" readOnSave="true" ca:expression="_trackCreationTime" />
+    
+Will be translated to
+
+    SELECT _trackCreationTime AS 'CreationTime' 
