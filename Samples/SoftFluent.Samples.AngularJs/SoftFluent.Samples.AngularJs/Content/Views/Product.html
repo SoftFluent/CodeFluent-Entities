@@ -1,0 +1,26 @@
+﻿<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row" >
+                <div class="col-sm-6 col-md-4" ng-repeat="product in products">
+                    <div class="thumbnail">
+                        <a href="#Product/{{product.id}}"> <img src="http://placehold.it/350x260" alt="..."></a>
+                        <div class="caption">
+                            <h3>{{product.name}}</h3>
+                            <!--<p>{{product.description}}</p>
+                                <ul class="list-inline">
+                                    <li ng-repeat="i in getNumber(product.Star) track by $index">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    </li>
+                                </ul>-->
+                            <p>
+                                <button class="btn btn-primary" ng-click="cart.insertProduct(product)">Add to cart</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

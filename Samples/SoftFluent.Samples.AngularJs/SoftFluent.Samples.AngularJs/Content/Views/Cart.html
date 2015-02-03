@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="table table-condensed table-hover table-striped" ng-show="cart.count() > 0">
+            <tr ng-repeat="ProductInCart in ProductsInCart track by $index">
+                <td>
+                    <a href="#Cart" class="btn btn-success" role="button" ng-click="cart.deleteProduct(ProductInCart)">Delete</a>
+                </td>
+                <td>
+                    {{ProductInCart.name}}
+                </td>
+                <td>
+                    {{ProductInCart.price | currency}}
+                </td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <p>Price : {{TotalCart | currency}}</p>
+                        <a href="#Order" class="btn btn-success" role="button">Valid cart</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div ng-show="cart.count() === 0" class="alert alert-warning" role="alert">
+            No content in cart.
+        </div>
+    </div>
+</div>

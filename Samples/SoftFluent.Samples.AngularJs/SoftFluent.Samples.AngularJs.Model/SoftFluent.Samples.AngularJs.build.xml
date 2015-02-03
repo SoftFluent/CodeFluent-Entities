@@ -1,0 +1,560 @@
+<build startDate="2015-02-03T11:18:10.5094+01:00" commandLine="&quot;C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe&quot; &quot;C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\SoftFluent.Samples.AngularJs.cfp&quot; /Log:&quot;C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\SoftFluent.Samples.AngularJs.build.xml&quot; /Results:&quot;C:\Users\lle.SFINTERNAL\AppData\Local\Temp\SoftFluent.Samples.AngularJs.cfp.oop&quot; /DoNotCreateReportsOnException /DoNotShowReportsOnException /NoFlashOnError " machineName="SF105" osVersion="Microsoft Windows NT 6.2.9200.0" currentDirectory="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model" user="SFINTERNAL\lle" clrVersion="4.0.30319.0" licenseUsage="Build Expirable [Date:13/03/2015 00:00:00][Licensee:lle@softfluent.com (SoftFluent)][Maximum Entities:999999]" processorCount="8" workingSet="23887872 bytes" bitness="32bits" wow64="True" optionsFlags="None" parentProcess="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe" endDate="2015-02-03T11:18:14.7295+01:00" totalElapsedTime="00:00:04.2210537" numberOfEntities="3" numberOfEnumerations="0" numberOfRelations="4">
+  <assemblies>
+    <assembly fullName="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll" location="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CodeFluent.Build4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Build4.exe" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Build4.exe" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CodeFluent.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CodeFluent.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CodeFluent.Model.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Model.Common.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Model.Common.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Data/v4.0_4.0.0.0__b77a5c561934e089/System.Data.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CodeFluent.Producers.CodeDom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.CodeDom.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.CodeDom.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="SoftFluent.License, Version=1.0.0.0, Culture=neutral, PublicKeyToken=330d9b6ea5e30055" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/SoftFluent.License.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\SoftFluent.License.dll" buildVersion="1.0.0.0" fileVersion="3.0.0.0" productVersion="1.0.0.0" />
+    <assembly fullName="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Management/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Management.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CodeFluent.Producers.SqlServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.SqlServer.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.SqlServer.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="CodeFluent.Runtime.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Database.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Database.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CodeFluent.Producers.ServiceModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Producers.ServiceModel.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Producers.ServiceModel.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Runtime.Serialization/v4.0_4.0.0.0__b77a5c561934e089/System.Runtime.Serialization.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Serialization\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Serialization.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel\v4.0_4.0.0.0__b77a5c561934e089\System.ServiceModel.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.Transactions/v4.0_4.0.0.0__b77a5c561934e089/System.Transactions.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.Transactions\v4.0_4.0.0.0__b77a5c561934e089\System.Transactions.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_32/System.EnterpriseServices/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.EnterpriseServices.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_32\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll" buildVersion="4.0.30319.33440" fileVersion="4.0.30319.33440 built by: FX45W81RTMREL" productVersion="4.0.30319.33440" />
+    <assembly fullName="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Numerics/v4.0_4.0.0.0__b77a5c561934e089/System.Numerics.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Numerics\v4.0_4.0.0.0__b77a5c561934e089\System.Numerics.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="System.DirectoryServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.DirectoryServices/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.DirectoryServices.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.DirectoryServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.DirectoryServices.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CodeFluent.Runtime.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" codeBase="file:///C:/Program Files (x86)/SoftFluent/CodeFluent/Modeler/CodeFluent.Runtime.Web.DLL" location="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll" buildVersion="1.0.61214.0786" fileVersion="1.0.61214.0786" productVersion="1.0.61214.0786" />
+    <assembly fullName="System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Web.Services/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.Services.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.Services\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CF_13943053603161733174.tpl, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/lle.SFINTERNAL/AppData/Local/Temp/CFTemplating.Temp4.0.30319.0/70786/CF_13943053603161733174.tpl.dll" location="C:\Users\lle.SFINTERNAL\AppData\Local\Temp\CFTemplating.Temp4.0.30319.0\70786\CF_13943053603161733174.tpl.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+    <assembly fullName="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" codeBase="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/WindowsBase/v4.0_4.0.0.0__31bf3856ad364e35/WindowsBase.dll" location="C:\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll" buildVersion="4.0.30319.0" fileVersion="4.5.27.0 built by: FX453PREVIEWREL" productVersion="4.5.27.0" />
+    <assembly fullName="CF_25311015811463814236.tplcs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" codeBase="file:///C:/Users/lle.SFINTERNAL/AppData/Local/Temp/CFTemplating.Temp4.0.30319.0/70786/CF_25311015811463814236.tplcs.dll" location="C:\Users\lle.SFINTERNAL\AppData\Local\Temp\CFTemplating.Temp4.0.30319.0\70786\CF_25311015811463814236.tplcs.dll" fileVersion="0.0.0.0" productVersion="0.0.0.0" />
+  </assemblies>
+  <variables>
+    <variable name="CF_TEMPLATES_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Templates" />
+    <variable name="CF_BUILD_NUMBER" value="70786" />
+    <variable name="CF_DEFAULT_PERSISTENCE_SERVER" value="SF105" />
+    <variable name="CF_PATTERNS_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler\Patterns" />
+    <variable name="CF_CURRENT_PATH" value="C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler" />
+    <variable name="CF_BUILD_CONFIGURATION" value="RELEASE" />
+  </variables>
+  <generatedFiles>
+    <producer name="SQL Server" generatedFilesCount="8" />
+    <producer name="Template" generatedFilesCount="4" />
+    <producer name="Business Object Model (BOM)" generatedFilesCount="16">
+      <subProducer name="ServiceProducer" generatedFilesCount="0" />
+    </producer>
+  </generatedFiles>
+  <project>
+    <imports>
+      <cf:import path="Default.Surface.cfp" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" />
+      <cf:import path="Template\[Template]WebApi.tpl" overwrite="false" notModel="true" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" />
+    </imports>
+    <parts>
+      <part filePath="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\SoftFluent.Samples.AngularJs.cfp" isRootModel="true" relativePath="SoftFluent.Samples.AngularJs.cfp" />
+      <part filePath="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\Default.Surface.cfp" relativePath="Default.Surface.cfp" />
+      <part filePath="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\Template\[Template]WebApi.tpl" relativePath="Template\[Template]WebApi.tpl" />
+    </parts>
+  </project>
+  <producer name="SQL Server">
+    <event type="ProducerStart" elapsedTime="00:00:00.0005276">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowSelectDistinct" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AppendSchemaToProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="CommandTimeout" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="ConnectionString" value="Application Name=SoftFluent.Samples.AngularJs;server=SF105;database=SoftFluent_Samples_AngularJs;Integrated Security=true" />
+    <event type="ParameterValue" name="CurrentCulture" value="fr-FR" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="CurrentUICulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="DecimalPrecision" value="28" valueType="System.Int32" />
+    <event type="ParameterValue" name="DecimalScale" value="13" valueType="System.Int32" />
+    <event type="ParameterValue" name="DefaultUnicodeInstancePrefix" value="N" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence" />
+    <event type="ParameterValue" name="IdentityIncrement" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentitySeed" value="1" valueType="System.Int32" />
+    <event type="ParameterValue" name="IdentityTempColumnName" value="_cf_id_temp" />
+    <event type="ParameterValue" name="InstanceProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MaxColumnSize" value="2147483647" valueType="System.Int32" />
+    <event type="ParameterValue" name="MaximumColumnsPerConstraint" value="16" valueType="System.Int32" />
+    <event type="ParameterValue" name="MustCreateBackups" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCreateDiffs" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDropUnusedColumns" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceColumnAlter" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceViews" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceSchemas" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSaveBlobInstances" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipCrossStoreRelations" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateDatabase" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateProcedures" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateRuntime" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUpdateSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustForceUpdateViews" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLocalTransactions" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyBlobChunkMode" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProcedureProductionCulture" value="en-US" valueType="System.Globalization.CultureInfo" />
+    <event type="ParameterValue" name="ProductionFlags" value="None" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionOptionsFlags" value="None" valueType="CodeFluent.Model.ProductionOptionsFlags" />
+    <event type="ParameterValue" name="SaveUserName" value="SYSTEM_USER" />
+    <event type="ParameterValue" name="StoreName" />
+    <event type="ParameterValue" name="TargetVersion" value="Default" valueType="CodeFluent.Producers.SqlServer.TargetVersion" />
+    <event type="FileCopy" elapsedTime="00:00:00.0354163">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_runtime.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_runtime.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0023473">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1962</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0008773">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_runtime.sql</path>
+    </event>
+    <event type="ParameterValue" name="SqlServerVersion" value="11.0.2218.0" />
+    <event type="Warning" elapsedTime="00:00:00.0845706">
+      <message>Producer 'targetVersion' attribute is set to 'Default' but target database is 'Sql2012'. You may want to change the 'targetVersion' configuration attribute.</message>
+      <source>SQL Server</source>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.9973340">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_tables.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_tables.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011411">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_tables.sql</path>
+      <fileType>TablesScript</fileType>
+      <size>7399</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000463">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_tables.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0190742">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_views.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_views.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0011062">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>1647</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000478">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_views.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.1732079">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_table_diffs.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_table_diffs.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0032688">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_table_diffs.sql</path>
+      <fileType>TablesDiffsScript</fileType>
+      <size>4165</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000665">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_table_diffs.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0692114">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_procedures.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_procedures.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0040294">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>21137</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000680">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_procedures.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0460621">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_drop.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_drop.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0020440">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>1419</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000501">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_drop.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0068272">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_add.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_add.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0013308">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>961</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000505">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_add.sql</path>
+    </event>
+    <event type="FileCopy" elapsedTime="00:00:00.0559803">
+      <target>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_instances.sql</target>
+      <source>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_instances.sql.tmp</source>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0009940">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>1566</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0000501">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_instances.sql</path>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0016216">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_runtime.sql</path>
+      <fileType>RuntimeScript</fileType>
+      <size>1962</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.2321549">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_drop.sql</path>
+      <fileType>RelationsDropScript</fileType>
+      <size>1419</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0330196">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_table_diffs.sql</path>
+      <fileType>TablesDiffScript</fileType>
+      <size>4165</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0883541">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_views.sql</path>
+      <fileType>ViewsScript</fileType>
+      <size>1647</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0188438">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_relations_add.sql</path>
+      <fileType>RelationsAddScript</fileType>
+      <size>961</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.0059328">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_procedures.sql</path>
+      <fileType>ProceduresScript</fileType>
+      <size>21137</size>
+    </event>
+    <event type="FileExecute" elapsedTime="00:00:00.1391072">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Persistence\SoftFluent.Samples.AngularJs_instances.sql</path>
+      <fileType>InstancesScript</fileType>
+      <size>1566</size>
+    </event>
+  </producer>
+  <producer name="Template">
+    <event type="ProducerStart" elapsedTime="00:00:00.0179482">
+      <name>Template</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="Default, Overwrite" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="SoftFluent.Samples.AngularJs" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AssemblyCompileDefaultFileExcludeFilter" value="AssemblyInfo.cs, assemblyversion.cs" />
+    <event type="ParameterValue" name="CodeDomProviderOptions" />
+    <event type="ParameterValue" name="FileExtension" value=".cs" />
+    <event type="ParameterValue" name="LanguageCode" value="CSharp" valueType="CodeFluent.Model.Code.LanguageCode" />
+    <event type="ParameterValue" name="MustAddDebugInfo" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCompile" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDelaySign" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustIncludeDebugInformation" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustTreatWarningAsErrors" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="WarningLevel" value="-1" valueType="System.Int32" />
+    <event type="ParameterValue" name="TargetProductionOptions" value="Default" valueType="CodeFluent.Producers.CodeDom.TargetProductionOptions" />
+    <event type="ParameterValue" name="VisualStudioProjectPath" />
+    <event type="ParameterValue" name="CheckSourceDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="FullSourceDirectory" value="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\Template" />
+    <event type="FileTemplateRun" elapsedTime="00:00:00.3317425">
+      <templatePath>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\Template\[Template]WebApi.tpl</templatePath>
+    </event>
+    <event type="FileSkip" elapsedTime="00:00:00.0255472">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\CustomerController.cs</path>
+      <exists>True</exists>
+      <lastWriteTimeUtc>20/11/2014 16:56:18</lastWriteTimeUtc>
+      <lastGenerationTimeUtc>20/11/2014 15:24:55</lastGenerationTimeUtc>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0001870">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\CustomerController.cs</path>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.0011506">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\OrderController.cs</path>
+      <templatePath>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\Template\[Template]WebApi.tpl</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0032866">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\OrderController.cs</path>
+    </event>
+    <event type="FileTemplateGenerate" elapsedTime="00:00:00.0006245">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\ProductController.cs</path>
+      <templatePath>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Model\Template\[Template]WebApi.tpl</templatePath>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0048300">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\ProductController.cs</path>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0003307">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs\Controllers\ApiControllers\WebApi.tpl</path>
+    </event>
+  </producer>
+  <producer name="Business Object Model (BOM)">
+    <event type="ProducerStart" elapsedTime="00:00:00.0011122">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ParameterValue" name="AllowExternalCode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AllowSnippets" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ApplicationName" value="default" />
+    <event type="ParameterValue" name="DumpPath" />
+    <event type="ParameterValue" name="FileCopyFilter" value="*.scc, _cf_md.config" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM" />
+    <event type="ParameterValue" name="IsTargetRelativeToModelDirectory" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ModelProducerName" />
+    <event type="ParameterValue" name="MustCopyModelFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustSkipFileCopyOnError" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="OutputEncoding" value="utf-8" />
+    <event type="ParameterValue" name="OutputEncodingEmitIdentifier" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ProductionFlags" value="Default, Overwrite" valueType="CodeFluent.Model.ProductionFlags" />
+    <event type="ParameterValue" name="ProductionVerbosity" value="0" valueType="System.Int32" />
+    <event type="ParameterValue" name="SkipExtensions" value="[^\.]*.scc,_cf_md.config" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="SkipDirectoryExtensions" valueType="System.Collections.ArrayList" />
+    <event type="ParameterValue" name="TargetFramework" value="4.5" />
+    <event type="ParameterValue" name="TargetBaseNamespace" value="SoftFluent.Samples.AngularJs" />
+    <event type="ParameterValue" name="TemplateOptions" value="Default" valueType="CodeFluent.Model.Common.Templating.TemplateOptions" />
+    <event type="ParameterValue" name="UseEmptyApplication" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="AssemblyCompileDefaultFileExcludeFilter" value="AssemblyInfo.cs, assemblyversion.cs" />
+    <event type="ParameterValue" name="CodeDomProviderOptions" />
+    <event type="ParameterValue" name="FileExtension" value=".cs" />
+    <event type="ParameterValue" name="LanguageCode" value="CSharp" valueType="CodeFluent.Model.Code.LanguageCode" />
+    <event type="ParameterValue" name="MustAddDebugInfo" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustCompile" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustDelaySign" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustIncludeDebugInformation" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustTreatWarningAsErrors" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="WarningLevel" value="-1" valueType="System.Int32" />
+    <event type="ParameterValue" name="TargetProductionOptions" value="Default" valueType="CodeFluent.Producers.CodeDom.TargetProductionOptions" />
+    <event type="ParameterValue" name="VisualStudioProjectPath" />
+    <event type="ParameterValue" name="IsAssemblyClsCompliant" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDebuggerDisplayAttribute" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddDictionaryMethods" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeDesignAttributes" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAddRuntimeResourceCheck" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustAppendSchema" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustEmbedModelInRuntimeResource" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceResourcesFiles" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebBasicAuthenticationModule" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebHandler" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebMembershipUser" value="False" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebProfileProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebRoleProvider" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceBitsServer" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustProduceWebTypes" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="MustUseLegacyStringArrayMode" value="True" valueType="System.Boolean" />
+    <event type="ParameterValue" name="ResourceFileFormat" value="ResX" valueType="CodeFluent.Producers.CodeDom.ResourceFileFormat" />
+    <event type="ParameterValue" name="RuntimePrefix" value="_cf_rt" />
+    <event type="ParameterValue" name="RuntimeResourceBaseName" value="SoftFluent.Samples.AngularJs.BOM.SoftFluent.Samples.AngularJs" />
+    <event type="ParameterValue" name="FullTargetDirectory" value="C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM" />
+    <event type="SubProducerProduce" elapsedTime="00:00:00.2790340">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.Customer</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.1087497">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.CustomerCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0312196">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.Order</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0097509">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.OrderCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0250903">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.ReferenceData.Product</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0064999">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.ReferenceData.ProductCollection</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="SubProducerProduce" elapsedTime="00:00:00.0185488">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <unit>SoftFluent.Samples.AngularJs.Resources.Manager, SoftFluent.Samples.AngularJs.Resources.ValueValidationFailureHandler, SoftFluent.Samples.AngularJs.Constants</unit>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0019736">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\_cf_rt.cs</path>
+      <fileType>RuntimeCode</fileType>
+      <size>8719</size>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0042130">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\_cf_rt.cs</path>
+      <size>8719</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0190487">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\_cf_rt.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0044426">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.ResX</path>
+      <fileType>Embedded resource for Invariant Language (Invariant Country) culture</fileType>
+      <size>5911</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0048593">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.ResX</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.2514086">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Customer.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.AngularJs.Customer'</fileType>
+      <size>38741</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0063239">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Customer.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0090704">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\CustomerCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.AngularJs.CustomerCollection'</fileType>
+      <size>39837</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0061054">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\CustomerCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0072572">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Order.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.AngularJs.Order'</fileType>
+      <size>44116</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0056252">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Order.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0100622">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\OrderCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.AngularJs.OrderCollection'</fileType>
+      <size>57149</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0015502">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\OrderCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0079741">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\Product.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.AngularJs.ReferenceData.Product'</fileType>
+      <size>43957</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0264956">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\Product.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0077339">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\ProductCollection.cs</path>
+      <fileType>BaseTypeFile for 'SoftFluent.Samples.AngularJs.ReferenceData.ProductCollection'</fileType>
+      <size>50342</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0062445">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\ProductCollection.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0131949">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Web\HttpHandler.cs</path>
+      <size>1583</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0142263">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Web\HttpHandler.cs</path>
+    </event>
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.MembershipProviderProducer: No directoryUser entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.RoleProviderProducer: No directoryRole entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.ProfileProviderProducer: No directoryUser entity. Skip production." />
+    <event type="Information" message="CodeFluent.Producers.CodeDom.UI.Web.BasicAuthenticationModuleProducer: No directoryUser entity. Skip production." />
+    <event type="FileWrite" elapsedTime="00:00:00.0371000">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Web\BitsServer.cs</path>
+      <fileType>CodeFluent.Producers.CodeDom.UI.Web.BitsServerProducer</fileType>
+      <size>4159</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0014346">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Web\BitsServer.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0188073">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\ICustomerService.cs</path>
+      <fileType>Interface</fileType>
+      <size>5556</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0218693">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\ICustomerService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0044719">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\IOrderService.cs</path>
+      <fileType>Interface</fileType>
+      <size>7470</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0011286">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\IOrderService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0050919">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\Services\IProductService.cs</path>
+      <fileType>Interface</fileType>
+      <size>6719</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0113900">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\Services\IProductService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0043449">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\CustomerService.cs</path>
+      <fileType>Interface</fileType>
+      <size>6437</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0010218">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\CustomerService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0164953">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\OrderService.cs</path>
+      <fileType>Interface</fileType>
+      <size>8362</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0012932">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\Services\OrderService.cs</path>
+    </event>
+    <event type="FileWrite" elapsedTime="00:00:00.0056507">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\Services\ProductService.cs</path>
+      <fileType>Interface</fileType>
+      <size>7929</size>
+    </event>
+    <event type="AddToGeneratedFiles" elapsedTime="00:00:00.0015125">
+      <path>C:\DEV\GitHub\CodeFluent-Entities\Samples\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.BOM\ReferenceData\Services\ProductService.cs</path>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0081292">
+      <name>SQL Server</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0001186">
+      <name>Template</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="ProducerTerminate" elapsedTime="00:00:00.0003972">
+      <name>Business Object Model (BOM)</name>
+      <instance>CodeFluent.Model.Producer</instance>
+    </event>
+    <event type="SubProducerTerminate" elapsedTime="00:00:00.0003067">
+      <name>CodeFluent.Producers.ServiceModel.ServiceProducer</name>
+      <instance>CodeFluent.Model.SubProducer</instance>
+    </event>
+  </producer>
+</build>

@@ -1,0 +1,61 @@
+﻿<div>
+    <form class="form-horizontal" name="customerForm" ng-submit="order.submit(customerForm.$valid)"
+          novalidate>
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Customer</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="FirstName">FirstName</label>
+                <div class="col-md-4">
+                    <input id="FirstName" name="FirstName" type="text" placeholder="FirstName" class="form-control input-md" required ng-model="user.firstName">
+                    <div ng-messages="customerForm.FirstName.$error">
+                        <span class="help-block errors" ng-message="required">Required!</span>                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="LastName">LastName</label>
+                <div class="col-md-4">
+                    <input id="LastName" name="LastName" type="text" placeholder="LastName" class="form-control input-md" required ng-model="user.lastName">
+                    <div ng-messages="customerForm.LastName.$error">
+                        <span class="help-block errors" ng-message="required">Required!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="DateOfBirth">Date of birth</label>
+                <div class="col-md-4">
+                    <input id="DateOfBirth" name="DateOfBirth" type="text" data-provide="datepicker" data-date-autoclose="true" placeholder="DateOfBirth" class="form-control input-md datepicker" ng-model="user.dateOfBirth">
+                    <div ng-messages="customerForm.DateOfBirth.$error">
+                        <span class="help-block errors" ng-message="required">Required!</span>
+                        <span class="help-block errors" ng-message="required">Not a valid date !</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="PassportNumber">Passport number</label>
+                <div class="col-md-4">
+                    <input id="PassportNumber" name="PassportNumber" type="text" placeholder="Passport number" class="form-control input-md" ng-model="user.passportNumber">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="SaveButton"></label>
+                <div class="col-md-4">
+                    <button id="SaveButton" name="SaveButton" class="btn btn-primary" ng-click="order.save(user, ProductsInCart)">Save</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

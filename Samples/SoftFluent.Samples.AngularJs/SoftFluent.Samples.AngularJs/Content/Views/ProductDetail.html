@@ -1,0 +1,10 @@
+﻿<div class="row ">
+    <div class="col-md-12">
+        <h2>{{currentProduct.name}}</h2>
+        <hr />
+        <img src="http://placehold.it/900x300" class="text-center" />
+        <p>{{currentProduct.description}}</p>
+        <p>{{currentProduct.price | currency}}</p>
+        <a href="#Product/{{currentProduct.id}}" class="btn btn-primary" role="button" ng-click="cart.insertProduct(currentProduct)">Add to cart</a>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ADF7DBD6-D4BF-401C-AC85-748E940A5599}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoftFluent.Samples.AngularJs.BOM</RootNamespace>
+    <AssemblyName>SoftFluent.Samples.AngularJs.BOM</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Serialization\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel\v4.0_4.0.0.0__b77a5c561934e089\System.ServiceModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel.Web\v4.0_4.0.0.0__31bf3856ad364e35\System.ServiceModel.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customer.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CustomerCollection.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Order.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="OrderCollection.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceData\Product.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ReferenceData\ProductCollection.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ReferenceData\Services\IProductService.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ReferenceData\Services\ProductService.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\CustomerService.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\ICustomerService.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\IOrderService.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Services\OrderService.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\BitsServer.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+    <Compile Include="_cf_rt.cs">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SoftFluent.Samples.AngularJs.Proxy.ResX">
+      <CodeFluentProducer>84c9489772c9715ca7fc203e1ddbc2f8</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoftFluent.Samples.AngularJs.ResX">
+      <CodeFluentProducer>782b1241c5cc8ebafbb8b7f29e4dd78e</CodeFluentProducer>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Order.partial.cs" />
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_runtime.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_tables.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_views.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_table_diffs.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_procedures.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_relations_drop.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_relations_add.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Persistence\SoftFluent.Samples.AngularJs_instances.sql">
+      <CodeFluentProducer>523d4bd551da4b89ebfe586ae884b4bb</CodeFluentProducer>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

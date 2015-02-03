@@ -1,0 +1,59 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.AngularJs" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cftp="http://www.softfluent.com/codefluent/producers.template/2007/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:import path="Template\[Template]WebApi.tpl" overwrite="false" notModel="true" />
+  <cf:entity name="Customer" namespace="SoftFluent.Samples.AngularJs" categoryPath="/SoftFluent.Samples.AngularJs">
+    <cf:property name="Id" key="true" />
+    <cf:property name="FirstName" />
+    <cf:property name="LastName" />
+    <cf:property name="DateOfBirth" typeName="datetime" />
+    <cf:property name="PassportNumber" />
+    <cf:property name="Orders" typeName="{0}.OrderCollection" relationPropertyName="Customer" />
+  </cf:entity>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.AngularJs.BOM\Persistence" cfx:targetProject="..\SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.BOM.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+  <cf:producer name="Template" typeName="CodeFluent.Producers.CodeDom.TemplateProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" sourceDirectory="Template" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.AngularJs\Controllers\ApiControllers" cfx:targetProject="..\SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Web.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.AngularJs.BOM" cfx:targetProject="..\SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.BOM.csproj" cfx:targetProjectLayout="Update" addRuntimeDesignAttributes="False" runtimeResourceBaseName="SoftFluent.Samples.AngularJs.BOM.SoftFluent.Samples.AngularJs">
+      <subProducer typeName="CodeFluent.Producers.ServiceModel.ServiceProducer, CodeFluent.Producers.ServiceModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec" compileWithVisualStudio="true" compile="false" jsonOptions="EnableJson" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.AngularJs.BOM" silverlightTargetVersion="Unspecified" produceProxy="False" addRuntimeDesignAttributes="False" cfx:targetProject="..\SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.BOM.csproj" cfx:targetProjectLayout="Update" />
+    </cf:configuration>
+  </cf:producer>
+  <cf:entity name="Product" namespace="SoftFluent.Samples.AngularJs.ReferenceData" categoryPath="/SoftFluent.Samples.AngularJs">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Name" />
+    <cf:property name="Price" typeName="float" />
+    <cf:property name="Star" typeName="int" />
+    <cf:property name="Description" />
+    <cf:property name="Orders" typeName="{0}.OrderCollection" relationPropertyName="Products" />
+    <cf:instance>
+      <cf:instanceValue name="Id">fe75feb1-2f9c-4271-a8d6-8fcad285b02f</cf:instanceValue>
+      <cf:instanceValue name="Name">Silver cover</cf:instanceValue>
+      <cf:instanceValue name="Price">20</cf:instanceValue>
+      <cf:instanceValue name="Star">3</cf:instanceValue>
+      <cf:instanceValue name="Description">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="1">
+      <cf:instanceValue name="Id">13108f62-11f7-40ab-9887-c845cc6018bb</cf:instanceValue>
+      <cf:instanceValue name="Name">Bronze cover</cf:instanceValue>
+      <cf:instanceValue name="Price">50</cf:instanceValue>
+      <cf:instanceValue name="Star">1</cf:instanceValue>
+      <cf:instanceValue name="Description">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="2">
+      <cf:instanceValue name="Id">b640c6dc-50a7-4068-abf7-95bff59b4308</cf:instanceValue>
+      <cf:instanceValue name="Name">Platinum cover</cf:instanceValue>
+      <cf:instanceValue name="Price">120</cf:instanceValue>
+      <cf:instanceValue name="Star">4</cf:instanceValue>
+      <cf:instanceValue name="Description">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</cf:instanceValue>
+    </cf:instance>
+  </cf:entity>
+  <cf:entity name="Order" namespace="SoftFluent.Samples.AngularJs" categoryPath="/SoftFluent.Samples.AngularJs">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Customer" typeName="{0}.Customer" relationPropertyName="Orders" serializationMode="Default" />
+    <cf:property name="Products" typeName="{0}.ReferenceData.ProductCollection" relationPropertyName="Orders" serializationMode="Default" />
+    <cf:property name="Date" typeName="datetime" />
+    <cf:rule typeName="OnBeforeSave" />
+  </cf:entity>
+</cf:project>

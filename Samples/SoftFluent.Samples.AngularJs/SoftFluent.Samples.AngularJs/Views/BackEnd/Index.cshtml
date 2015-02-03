@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<legend>Orders</legend>
+<div class="col-md-12" ng-controller="OrderController as orderController">
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+            <td>Id</td>
+            <td>FistName</td>
+            <td>LastName</td>
+            <td>Date</td>
+            <td>Number of product</td>
+            <td>Price</td>
+        </thead>
+        <tr ng-repeat="order in orders">
+            <td>{{order.id}}</td>
+            <td>{{order.customer.firstName}}</td>
+            <td>{{order.customer.lastName}}</td>
+            <td>{{order.date | date}}</td>
+            <td>{{order.products.length}}</td>
+            <td>{{orderController.getTotalPrice(order.products)}}</td>
+        </tr>
+    </table>
+</div>

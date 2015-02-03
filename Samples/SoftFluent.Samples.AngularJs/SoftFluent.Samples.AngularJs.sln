@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AngularJs.Web", "SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Web.csproj", "{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}"
+EndProject
+Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.AngularJs.Model", "SoftFluent.Samples.AngularJs.Model\SoftFluent.Samples.AngularJs.Model.cfxproj", "{C4897909-9E8B-476A-BE1E-9F448D5E129B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AngularJs.BOM", "SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.BOM.csproj", "{ADF7DBD6-D4BF-401C-AC85-748E940A5599}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Release|.NET.ActiveCfg = Release|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Debug|.NET.ActiveCfg = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Debug|.NET.Build.0 = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Debug|Any CPU.ActiveCfg = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Debug|Mixed Platforms.ActiveCfg = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Debug|Mixed Platforms.Build.0 = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Release|.NET.ActiveCfg = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Release|.NET.Build.0 = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Release|Any CPU.ActiveCfg = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Release|Mixed Platforms.ActiveCfg = Release|.NET
+		{C4897909-9E8B-476A-BE1E-9F448D5E129B}.Release|Mixed Platforms.Build.0 = Release|.NET
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Release|.NET.ActiveCfg = Release|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ADF7DBD6-D4BF-401C-AC85-748E940A5599}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
