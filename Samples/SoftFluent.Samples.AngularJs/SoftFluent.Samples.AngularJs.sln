@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AngularJs.Web", "SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.Web.csproj", "{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AngularJs.Web", "SoftFluent.Samples.AngularJs.Web\SoftFluent.Samples.AngularJs.Web.csproj", "{C3F0EB85-D0ED-47F6-BE52-CB586E6EFE71}"
 EndProject
 Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.AngularJs.Model", "SoftFluent.Samples.AngularJs.Model\SoftFluent.Samples.AngularJs.Model.cfxproj", "{C4897909-9E8B-476A-BE1E-9F448D5E129B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AngularJs.BOM", "SoftFluent.Samples.AngularJs.BOM\SoftFluent.Samples.AngularJs.BOM.csproj", "{ADF7DBD6-D4BF-401C-AC85-748E940A5599}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.AngularJs", "SoftFluent.Samples.AngularJs\SoftFluent.Samples.AngularJs.csproj", "{ADF7DBD6-D4BF-401C-AC85-748E940A5599}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
