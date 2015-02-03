@@ -287,6 +287,10 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             TableRefColumn refColumn = new TableRefColumn(parameter.Column);
             switch (op)
             {
+                case FilterFunctions.None:
+                    result = new ProcedureExpressionStatement(parent, ProcedureOperationType.Equals, new ProcedureExpressionStatement(parent, 1), new ProcedureExpressionStatement(parent, 1));
+                    break;
+
                 case FilterFunctions.Equals:
                     result = new ProcedureExpressionStatement(parent, ProcedureOperationType.Equals, refColumn, parameter);
                     break;
@@ -390,7 +394,8 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
         private ProcedureExpressionStatement CreateEnumerationEqualsStatement(ProcedureStatement parent, Parameter enumParameter, EnumerationValue enumValue)
         {
-            if (FilterFunctionsEnumeration.IsFlags)
+            bool isZero = ConvertUtilities.ChangeType<int>(enumValue) == 0;
+            if (!isZero && FilterFunctionsEnumeration.IsFlags)
             {
                 // Sample: (@FilterFunctions & FilterFunctions.Equals) = FilterFunctions.Equals
                 return new ProcedureExpressionStatement(
@@ -444,7 +449,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
         private bool IsSupported(FilterFunctions op, Procedure procedure, Parameter parameter)
         {
             if (op == FilterFunctions.None)
-                return false;
+                return true;
 
             var fullTextFunctions = new[] { 
                 FilterFunctions.FullTextContains, 
@@ -470,7 +475,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
                     return false;
             }
 
-            if (op == FilterFunctions.StartsWith || op == FilterFunctions.EndsWith || op == FilterFunctions.Contains || op == FilterFunctions.NotContains)
+            if (likeFunctions.Contains(op))
             {
                 if (!IsLikeCompatible(parameter.DbType))
                     return false;
