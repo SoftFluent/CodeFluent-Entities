@@ -35,8 +35,8 @@ This producer allows to generate an ASP.NET Identity implementation. It will hel
 *Note: While CodeFluent Entities does not provide an `IQueryable` data source such as some ORM, stores can implement `IQueryableRoleStore` and `IQueryableUserStore`. The implementation is very limited and simply calls `LoadAll` method.*
 
 ## How to install
-1. Copy "CodeFluent.Producers.AspNetIdentity.dll" to "C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler"
-2. Integration in the grapgical Modeler - Copy (or Merge) "custom.config" to "%APPDATA%\CodeFluent.Modeler.Design"
+1. Copy "SoftFluent.AspNetIdentity.dll" to "C:\Program Files (x86)\SoftFluent\CodeFluent\Modeler"
+2. Integration in the graphical Modeler - Copy (or Merge) "custom.config" to "%APPDATA%\CodeFluent.Modeler.Design"
 
 ## How to use it:
 1. Create a CodeFluent Entities project
