@@ -1,0 +1,982 @@
+﻿<cf:project defaultNamespace="SoftFluent.Json.NET" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" defaultKeyPropertyTypeName="int" defaultMaxLength="50" createDefaultMethodForms="true" createDefaultApplication="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:pattern typeName="SoftFluent.Json.NET.Aspects.SoftFluent.Samples.Aspects.JsonNetSerializableAspect, SoftFluent.Json.NET.Aspects" step="End" />
+  <Customer namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Name collectionKey="true" />
+    <Address maxLength="255" />
+    <City />
+    <ZipCode />
+    <Country />
+    <Phone />
+    <Fax />
+    <WebSite />
+    <Language typeName="{0}.Language" />
+    <CustomerType typeName="{0}.CustomerType" />
+    <cf:instance>
+      <Id>1</Id>
+      <Name>D-SQL</Name>
+      <Address>67 Boulevard Charles de Gaulle</Address>
+      <City>Colombes</City>
+      <ZipCode>92700</ZipCode>
+      <Country>France</Country>
+      <Phone>01 57 60 20 45</Phone>
+      <Fax>01 46 66 26 23</Fax>
+      <WebSite>www.d-sql.com</WebSite>
+      <Language>1</Language>
+      <CustomerType>2</CustomerType>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Name>Pro Components</Name>
+      <Address>Balanstrasse 45</Address>
+      <City>Munich</City>
+      <ZipCode>81541</ZipCode>
+      <Country>Germany</Country>
+      <Phone>49-89-8780687-50</Phone>
+      <Fax>49-89-8780687-55</Fax>
+      <WebSite>www.procomponents.com</WebSite>
+      <Language>1</Language>
+      <CustomerType>2</CustomerType>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Name>Perfume and Luxury</Name>
+      <Address>67 avenue Montaigne</Address>
+      <City>Paris</City>
+      <ZipCode>75008</ZipCode>
+      <Country>France</Country>
+      <Phone>01 44 13 22 45</Phone>
+      <Fax />
+      <WebSite>www.perfumeandluxury.com</WebSite>
+      <Language>0</Language>
+      <CustomerType>0</CustomerType>
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Name>S-Clothes</Name>
+      <Address>50 Rue du Cherche-Midi</Address>
+      <City>Paris</City>
+      <ZipCode>75006</ZipCode>
+      <Country>France</Country>
+      <Phone>09 79 20 10 34</Phone>
+      <Fax />
+      <WebSite>www.s-clothes.com</WebSite>
+      <Language>1</Language>
+      <CustomerType>2</CustomerType>
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Name>Pc-Sol Corporation</Name>
+      <Address>One Way Street</Address>
+      <City>Redmond</City>
+      <ZipCode>WA 98052-7329</ZipCode>
+      <Country>USA</Country>
+      <Phone>425 882-8076</Phone>
+      <Fax>425 706-7312</Fax>
+      <WebSite>www.pcsolutioncorp.com</WebSite>
+      <Language>0</Language>
+      <CustomerType>3</CustomerType>
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Name>SoftDia</Name>
+      <Address>2321 San Tomas Expressway</Address>
+      <City>Santa Clara</City>
+      <ZipCode>CA.95050</ZipCode>
+      <Country>USA</Country>
+      <Phone>408 486-2034</Phone>
+      <Fax>408 486-2235</Fax>
+      <WebSite>www.SoftDia.com</WebSite>
+      <Language>1</Language>
+      <CustomerType>0</CustomerType>
+    </cf:instance>
+  </Customer>
+  <Campaign namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Name collectionKey="true" />
+    <State typeName="{0}.CampaignStateType" />
+    <Customer typeName="{0}.Customer" />
+    <Products cascadeDelete="After" typeName="{0}.ProductCollection" />
+    <ProductListString computed="true" />
+    <Price typeName="currency" />
+    <PriceAllTaxIncluded typeName="currency" />
+    <DiscountRate typeName="decimal" />
+    <ConceptionDate typeName="datetime" />
+    <AddressedDate typeName="datetime" />
+    <PropositionDate typeName="datetime" />
+    <ConfirmationDate typeName="datetime" />
+    <cf:method name="LoadByPrice" body="load(Price) WHERE Price=@Price" />
+    <cf:method name="LoadByState" body="load(State) WHERE State=@State" />
+    <cf:method name="LoadByCustomer" body="load(Customer) WHERE Customer=@Customer" />
+    <cf:method name="LoadByYear" body="load(int year) WHERE [DATEPART(yyyy, Campaign_PropositionDate)]=@year" checkLevel="None" />
+    <cf:method name="LoadByCustomerAndYear" body="load(Customer, int year) WHERE Customer=@Customer AND [DATEPART(yyyy, Campaign_PropositionDate)]=@year" checkLevel="None" />
+    <cf:method name="LoadByConceptionDate" body="load(ConceptionDate) WHERE ConceptionDate=@ConceptionDate" />
+    <cf:method name="LoadByAddressedDate" body="load(AddressedDate) WHERE AddressedDate=@AddressedDate" />
+    <cf:method name="LoadByPropositionDate" body="load(PropositionDate) WHERE PropositionDate=@PropositionDate" />
+    <cf:method name="LoadByConfirmationDate" body="load(ConfirmationDate) WHERE ConfirmationDate=@ConfirmationDate" />
+    <cf:snippet name="OnGetProductListStringCS" language="CSharp"><![CDATA[
+    public void OnGetProductListString()
+        {
+            bool firstProduct = true;
+            _productListString = string.Empty;
+            foreach (Product product in this.Products)
+            {
+                if (!firstProduct)
+                {
+                    _productListString += ", ";
+                }
+                _productListString += product.Advertisement;
+                firstProduct = false;
+            }
+        }
+]]></cf:snippet>
+    <cf:snippet name="OnGetProductListStringVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetProductListString()
+            Dim firstProduct As Boolean = True
+            _productListString = String.Empty
+            For Each product As Product In Me.Products
+                If Not firstProduct
+                    _productListString += ", "
+				End If
+                _productListString += product.Advertisement
+                firstProduct = False
+			Next
+		End Sub
+]]></cf:snippet>
+    <cf:instance>
+      <Id>1</Id>
+      <Name>D-SQL Campaign</Name>
+      <State>1</State>
+      <Customer>1</Customer>
+      <Products />
+      <ProductListString />
+      <Price>12500</Price>
+      <PriceAllTaxIncluded>15000</PriceAllTaxIncluded>
+      <DiscountRate>5</DiscountRate>
+      <ConceptionDate>31/05/2010</ConceptionDate>
+      <AddressedDate />
+      <PropositionDate />
+      <ConfirmationDate />
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Name>Pro Components Campaign</Name>
+      <State>1</State>
+      <Customer>2</Customer>
+      <Products />
+      <ProductListString />
+      <Price>12500</Price>
+      <PriceAllTaxIncluded>15000</PriceAllTaxIncluded>
+      <DiscountRate>15</DiscountRate>
+      <ConceptionDate>31/05/2010</ConceptionDate>
+      <AddressedDate />
+      <PropositionDate />
+      <ConfirmationDate />
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Name>Perfume and Luxury Campaign</Name>
+      <State>3</State>
+      <Customer>3</Customer>
+      <Products />
+      <ProductListString />
+      <Price>12500</Price>
+      <PriceAllTaxIncluded>15000</PriceAllTaxIncluded>
+      <DiscountRate>5</DiscountRate>
+      <ConceptionDate>31/05/2010</ConceptionDate>
+      <AddressedDate />
+      <PropositionDate />
+      <ConfirmationDate />
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Name>S-Clothes Campaign</Name>
+      <State>2</State>
+      <Customer>4</Customer>
+      <Products />
+      <ProductListString />
+      <Price>12500</Price>
+      <PriceAllTaxIncluded>15000</PriceAllTaxIncluded>
+      <DiscountRate>7</DiscountRate>
+      <ConceptionDate>31/05/2010</ConceptionDate>
+      <AddressedDate />
+      <PropositionDate />
+      <ConfirmationDate />
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Name>Pc-Sol Corporation Campaign</Name>
+      <State>3</State>
+      <Customer>5</Customer>
+      <Products />
+      <ProductListString />
+      <Price>12500</Price>
+      <PriceAllTaxIncluded>15000</PriceAllTaxIncluded>
+      <DiscountRate>12</DiscountRate>
+      <ConceptionDate>31/05/2010</ConceptionDate>
+      <AddressedDate />
+      <PropositionDate />
+      <ConfirmationDate />
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Name>SoftDia Campaign</Name>
+      <State>4</State>
+      <Customer>6</Customer>
+      <Products />
+      <ProductListString />
+      <Price>12500</Price>
+      <PriceAllTaxIncluded>15000</PriceAllTaxIncluded>
+      <DiscountRate>5</DiscountRate>
+      <ConceptionDate>31/05/2010</ConceptionDate>
+      <AddressedDate />
+      <PropositionDate />
+      <ConfirmationDate />
+    </cf:instance>
+  </Campaign>
+  <Product namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Advertisement />
+    <Campaign typeName="{0}.Campaign" />
+    <Support typeName="{0}.Support" />
+    <Publications typeName="{0}.PublicationCollection" />
+    <PublicationListString computed="true" />
+    <Space typeName="{0}.Space" />
+    <ProductState typeName="{0}.ProductStateType" />
+    <TechnicalCost typeName="currency" />
+    <TVA typeName="float" />
+    <TechnicalCostAllTaxIncluded typeName="currency" />
+    <TotalPrice typeName="currency" />
+    <TotalPriceAllTaxIncluded typeName="currency" />
+    <cf:method name="LoadByAdvertisement" body="load(Advertisement) WHERE Advertisement=@Advertisement" />
+    <cf:method name="LoadBySpace" body="load(Space) WHERE Space=@Space" />
+    <cf:method name="LoadByTechnicalCost" body="load(TechnicalCost) WHERE TechnicalCost=@TechnicalCost" />
+    <cf:method name="LoadByCampaignAndPublishingDate" body="load(Campaign campaign, DateTime fromDate, DateTime toDate) &#xD;&#xA;               WHERE Campaign = @campaign AND &#xD;&#xA;                     Publications.PublishingDate &gt;= @fromDate AND &#xD;&#xA;                     Publications.PublishingDate &lt;= @toDate" />
+    <cf:snippet name="OnGetPublicationListStringCS" language="CSharp"><![CDATA[
+    private void OnGetPublicationListString()
+        {
+            bool onFirstPublication = true;
+            _publicationListString = string.Empty;
+            foreach (Publication publication in this.Publications)
+            {
+                if (!onFirstPublication)
+                {
+                    _publicationListString += ", ";
+                }
+                _publicationListString += publication.Reference;
+                onFirstPublication = false;
+            }
+        }
+]]></cf:snippet>
+    <cf:snippet name="OnGetPublicationListStringVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetPublicationListString()
+            Dim onFirstPublication As Boolean = True
+            _publicationListString = string.Empty
+            For Each publication As Publication In Me.Publications
+                If Not onFirstPublication
+                    _publicationListString += ", "
+				End If
+                _publicationListString += publication.Reference
+                onFirstPublication = False
+			Next
+		End Sub
+]]></cf:snippet>
+    <cf:instance>
+      <Id>1</Id>
+      <Advertisement>First page right hand of SoftFluent Magazine</Advertisement>
+      <Campaign>1</Campaign>
+      <Support>1</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id></Publications>
+      <PublicationListString />
+      <Space>1</Space>
+      <ProductState>0</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Advertisement>Full page standard of SoftFluent Magazine</Advertisement>
+      <Campaign>1</Campaign>
+      <Support>1</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>4</Id></Publications>
+      <PublicationListString />
+      <Space>2</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Advertisement>Half page of SoftFluent Magazine</Advertisement>
+      <Campaign>1</Campaign>
+      <Support>1</Support>
+      <Publications><Id>1</Id><Id>3</Id></Publications>
+      <PublicationListString />
+      <Space>3</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Advertisement>First page right hand of Mode Feminine Magazine</Advertisement>
+      <Campaign>4</Campaign>
+      <Support>2</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>1</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Advertisement>Full page standard of Mode Feminine Magazine</Advertisement>
+      <Campaign>3</Campaign>
+      <Support>2</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>2</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Advertisement>First page right hand of CompArt Magazine</Advertisement>
+      <Campaign>5</Campaign>
+      <Support>5</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>1</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>7</Id>
+      <Advertisement>First page right hand of Computer Reviews Magazine</Advertisement>
+      <Campaign>6</Campaign>
+      <Support>6</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>1</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>8</Id>
+      <Advertisement>Half page right hand of Computer Reviews Magazine</Advertisement>
+      <Campaign>2</Campaign>
+      <Support>6</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>1</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>9</Id>
+      <Advertisement>Inside Back Cover of Computer Reviews Magazine</Advertisement>
+      <Campaign>2</Campaign>
+      <Support>6</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>8</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+    <cf:instance>
+      <Id>10</Id>
+      <Advertisement>Inside front cover of CompArt Magazine</Advertisement>
+      <Campaign>6</Campaign>
+      <Support>5</Support>
+      <Publications><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id></Publications>
+      <PublicationListString />
+      <Space>6</Space>
+      <ProductState>1</ProductState>
+      <TechnicalCost>120</TechnicalCost>
+      <TVA>19,5</TVA>
+      <TechnicalCostAllTaxIncluded>150</TechnicalCostAllTaxIncluded>
+      <TotalPrice>12500</TotalPrice>
+      <TotalPriceAllTaxIncluded>15000</TotalPriceAllTaxIncluded>
+    </cf:instance>
+  </Product>
+  <Space namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Name collectionKey="true" />
+    <Description maxLength="255" />
+    <Width typeName="float" />
+    <Height typeName="float" />
+    <TVA typeName="float" />
+    <Price typeName="currency" />
+    <Support typeName="{0}.SupportCollection" />
+    <cf:instance>
+      <Id>1</Id>
+      <Name>Full page (First pages, Right hand)</Name>
+      <Description>The first page's right hand of the magazine.</Description>
+      <Width>21</Width>
+      <Height>29,7</Height>
+      <TVA>15</TVA>
+      <Price>5000</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Name>Full standard page</Name>
+      <Description>Standard page of the magazine</Description>
+      <Width>21</Width>
+      <Height>29,7</Height>
+      <TVA>15</TVA>
+      <Price>3000</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Name>Half page (First pages, Right hand)</Name>
+      <Description>The first half page's page right hand of the magazine.</Description>
+      <Width>21</Width>
+      <Height>14</Height>
+      <TVA>15</TVA>
+      <Price>1500</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Name>Half standard page</Name>
+      <Description>Standard half page of the magazine.</Description>
+      <Width>21</Width>
+      <Height>14</Height>
+      <TVA>15</TVA>
+      <Price>1300</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Name>Quarter standard page</Name>
+      <Description>Standard quarter page of the magazine.</Description>
+      <Width>10,5</Width>
+      <Height>14</Height>
+      <TVA>15</TVA>
+      <Price>800</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Name>Inside Front Cover</Name>
+      <Description>Inside Front Cover</Description>
+      <Width>21</Width>
+      <Height>29.7</Height>
+      <TVA>15</TVA>
+      <Price>1000</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>7</Id>
+      <Name>Inside Back Cover</Name>
+      <Description>Inside Back Cover</Description>
+      <Width>21</Width>
+      <Height>29.7</Height>
+      <TVA>15</TVA>
+      <Price>1200</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>8</Id>
+      <Name>Back Cover</Name>
+      <Description>Back Cover</Description>
+      <Width>21</Width>
+      <Height>29.7</Height>
+      <TVA>15</TVA>
+      <Price>4000</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>9</Id>
+      <Name>General rotation: 1 week</Name>
+      <Description>A logo in the rotative banner on the endpaper</Description>
+      <Width>728</Width>
+      <Height>90</Height>
+      <TVA>15</TVA>
+      <Price>300</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>10</Id>
+      <Name>Skyscraper</Name>
+      <Description>Vertical banner ad on a page.</Description>
+      <Width>60</Width>
+      <Height>468</Height>
+      <TVA>15</TVA>
+      <Price>500</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>11</Id>
+      <Name>Button</Name>
+      <Description>Button on a web page.</Description>
+      <Width>100</Width>
+      <Height>23</Height>
+      <TVA>15</TVA>
+      <Price>200</Price>
+    </cf:instance>
+    <cf:instance>
+      <Id>12</Id>
+      <Name>Sponsoring Newsletter</Name>
+      <Description>Ad banner in the newsletter.</Description>
+      <Width>468</Width>
+      <Height>60</Height>
+      <TVA>15</TVA>
+      <Price>500</Price>
+    </cf:instance>
+  </Space>
+  <Support namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Name collectionKey="true" />
+    <Spaces cascadeDelete="After" typeName="{0}.SpaceCollection" />
+    <SpaceListString computed="true" />
+    <cf:snippet name="OnGetSpaceListStringCS" language="CSharp"><![CDATA[
+    private void OnGetSpaceListString()
+        {
+            bool onFirstSpace = true;
+            _spaceListString = string.Empty;
+            foreach (Space space in this.Spaces)
+            {
+                if (!onFirstSpace)
+                {
+                    _spaceListString += ", ";
+                }
+                _spaceListString += space.Name;
+                onFirstSpace = false;
+            }
+        }
+]]></cf:snippet>
+    <cf:snippet name="OnGetSpaceListStringVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetSpaceListString()
+            Dim onFirstSpace As Boolean = True
+            _spaceListString = String.Empty
+            For Each space as Space In Me.Spaces
+                If Not onFirstSpace
+                    _spaceListString += ", "
+				End If
+                _spaceListString += space.Name
+                onFirstSpace = False
+			Next
+		End Sub
+]]></cf:snippet>
+    <cf:instance>
+      <Id>1</Id>
+      <Name>SoftFluent Magazine</Name>
+      <Spaces><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id><Id>6</Id><Id>7</Id><Id>8</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Name>Mode Feminine Magazine</Name>
+      <Spaces><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id><Id>6</Id><Id>7</Id><Id>8</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Name>Computer Reviews Magazine</Name>
+      <Spaces><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id><Id>6</Id><Id>7</Id><Id>8</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Name>PC For Everyone Magazine</Name>
+      <Spaces><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id><Id>6</Id><Id>7</Id><Id>8</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Name>CompArt Magazine</Name>
+      <Spaces><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id><Id>6</Id><Id>7</Id><Id>8</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Name>Micro Comp Magazine</Name>
+      <Spaces><Id>1</Id><Id>2</Id><Id>3</Id><Id>4</Id><Id>5</Id><Id>6</Id><Id>7</Id><Id>8</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>7</Id>
+      <Name>Mode Feminine Website</Name>
+      <Spaces><Id>9</Id><Id>10</Id><Id>11</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>8</Id>
+      <Name>Computer Reviews Website</Name>
+      <Spaces><Id>9</Id><Id>10</Id><Id>11</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>9</Id>
+      <Name>PC For Everyone Website</Name>
+      <Spaces><Id>9</Id><Id>10</Id><Id>11</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>10</Id>
+      <Name>CompArt Website</Name>
+      <Spaces><Id>9</Id><Id>10</Id><Id>11</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>11</Id>
+      <Name>Micro Comp Website</Name>
+      <Spaces><Id>9</Id><Id>10</Id><Id>11</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>12</Id>
+      <Name>Mode Feminine Newsletter</Name>
+      <Spaces><Id>12</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>13</Id>
+      <Name>Computer Reviews Newsletter</Name>
+      <Spaces><Id>12</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>14</Id>
+      <Name>PC For Everyone Newsletter</Name>
+      <Spaces><Id>12</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>15</Id>
+      <Name>CompArt Newsletter</Name>
+      <Spaces><Id>12</Id></Spaces>
+    </cf:instance>
+    <cf:instance>
+      <Id>16</Id>
+      <Name>Micro Comp Newsletter</Name>
+      <Spaces><Id>12</Id></Spaces>
+    </cf:instance>
+  </Support>
+  <Publication namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Support typeName="{0}.Support" uniqueConstraintNames="C1" />
+    <Reference uniqueConstraintNames="C1" />
+    <Stock cascadeDelete="After" typeName="{0}.StockItemCollection" />
+    <Products typeName="{0}.ProductCollection" />
+    <AvailableSpaceListString computed="true" />
+    <UsedSpaceListString computed="true" />
+    <UnavailableSpaceListString computed="true" />
+    <PublishingDate typeName="datetime">
+      <cf:message cultureName="en-US">Publishing date</cf:message>
+      <cf:message cultureName="fr-FR">Date de bouclage</cf:message>
+    </PublishingDate>
+    <cf:method name="LoadBySupport" body="load(Support) WHERE Support=@Support" />
+    <cf:method name="LoadBySupportAndToCome" body="load(Support) WHERE Support=@Support AND PublishingDate &gt;= [GETDATE()]" checkLevel="None" />
+    <cf:method name="LoadBySupportAndReference" body="loadone(Support, Reference) WHERE Support=@Support AND Reference=@Reference" />
+    <cf:snippet name="OnGetAvailableSpaceListStringCS" language="CSharp"><![CDATA[
+    private void OnGetAvailableSpaceListString()
+        {
+            bool onFirstStockItem = true;
+            _availableSpaceListString = string.Empty;
+            foreach (StockItem stockItem in this.Stock)
+            {
+                if (stockItem.AvailableQuantity == 0)
+                    continue;
+            
+                if (!onFirstStockItem)
+                {
+                    _availableSpaceListString += ", ";
+                }
+                _availableSpaceListString += stockItem.Space.Name + " (" + stockItem.AvailableQuantity + ")";
+                onFirstStockItem = false;
+            }
+        }
+]]></cf:snippet>
+    <cf:snippet name="OnGetAvailableSpaceListStringVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetAvailableSpaceListString()
+            Dim onFirstStockItem As Boolean = True
+            _availableSpaceListString = String.Empty
+            For Each stockItem As StockItem In Me.Stock
+                If stockItem.AvailableQuantity = 0 Then
+					Continue For
+				End If
+            
+                If Not onFirstStockItem Then
+                    _availableSpaceListString += ", "
+				End If
+                _availableSpaceListString += stockItem.Space.Name + " (" + stockItem.AvailableQuantity + ")"
+                onFirstStockItem = false
+            Next
+        End Sub
+]]></cf:snippet>
+    <cf:snippet name="OnGetUsedSpaceListStringCS" language="CSharp"><![CDATA[
+    private void OnGetUsedSpaceListString()
+        {
+            bool onFirstStockItem = true;
+            _usedSpaceListString = string.Empty;
+            foreach (StockItem stockItem in this.Stock)
+            {
+                if (stockItem.AvailableQuantity == stockItem.Quantity)
+                    continue;
+            
+                if (!onFirstStockItem)
+                {
+                    _usedSpaceListString += ", ";
+                }
+                int usedQuantity = stockItem.Quantity - stockItem.AvailableQuantity;
+                _usedSpaceListString += stockItem.Space.Name + " (" + usedQuantity + ")";
+                onFirstStockItem = false;
+            }
+        }
+]]></cf:snippet>
+    <cf:snippet name="OnGetUsedSpaceListStringVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetUsedSpaceListString()
+            Dim onFirstStockItem As Boolean = true
+            _usedSpaceListString = String.Empty
+            For Each stockItem As StockItem In Me.Stock
+                If stockItem.AvailableQuantity = stockItem.Quantity Then
+					Continue For
+				End If
+            
+                If Not onFirstStockItem Then
+                    _usedSpaceListString += ", "
+				End If
+                Dim usedQuantity As Integer = stockItem.Quantity - stockItem.AvailableQuantity
+                _usedSpaceListString += stockItem.Space.Name + " (" + usedQuantity + ")"
+                onFirstStockItem = False
+            Next
+        End Sub
+]]></cf:snippet>
+    <cf:snippet name="OnGetUnavailableSpaceListStringCS" language="CSharp"><![CDATA[
+    private void OnGetUnavailableSpaceListString()
+        {
+            bool onFirstStockItem = true;
+            _unavailableSpaceListString = string.Empty;
+            foreach (StockItem stockItem in this.Stock)
+            {
+                if (stockItem.AvailableQuantity != 0)
+                    continue;
+            
+                if (!onFirstStockItem)
+                {
+                    _unavailableSpaceListString += ", ";
+                }
+                _unavailableSpaceListString += stockItem.Space.Name + " (" + stockItem.AvailableQuantity + ")";
+                onFirstStockItem = false;
+            }
+        }
+]]></cf:snippet>
+    <cf:snippet name="OnGetUnavailableSpaceListStringVB" language="VisualBasic"><![CDATA[
+    Private Sub OnGetUnavailableSpaceListString()
+            Dim onFirstStockItem As Boolean = true
+            _unavailableSpaceListString = String.Empty
+            For Each stockItem As StockItem In Me.Stock
+                If stockItem.AvailableQuantity <> 0 Then
+					Continue For
+				End If
+            
+                If Not onFirstStockItem
+                    _unavailableSpaceListString += ", "
+				End If
+                _unavailableSpaceListString += stockItem.Space.Name + " (" + stockItem.AvailableQuantity + ")"
+                onFirstStockItem = false
+            Next
+        End Sub
+]]></cf:snippet>
+    <cf:instance>
+      <Id>1</Id>
+      <Support>1</Support>
+      <Reference>453001</Reference>
+      <Stock />
+      <Products><Id>1</Id><Id>2</Id></Products>
+      <AvailableSpaceListString />
+      <UsedSpaceListString />
+      <UnavailableSpaceListString>CCC</UnavailableSpaceListString>
+      <PublishingDate>31/05/2010</PublishingDate>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Support>2</Support>
+      <Reference>79843</Reference>
+      <Stock />
+      <Products><Id>3</Id><Id>4</Id></Products>
+      <AvailableSpaceListString />
+      <UsedSpaceListString />
+      <UnavailableSpaceListString>CCC</UnavailableSpaceListString>
+      <PublishingDate>31/05/2010</PublishingDate>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Support>3</Support>
+      <Reference>12KMV34</Reference>
+      <Stock />
+      <Products><Id>3</Id><Id>4</Id></Products>
+      <AvailableSpaceListString />
+      <UsedSpaceListString />
+      <UnavailableSpaceListString />
+      <PublishingDate>31/05/2010</PublishingDate>
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Support>4</Support>
+      <Reference>1DRG09</Reference>
+      <Stock />
+      <Products><Id>3</Id><Id>4</Id></Products>
+      <AvailableSpaceListString />
+      <UsedSpaceListString />
+      <UnavailableSpaceListString />
+      <PublishingDate>31/05/2010</PublishingDate>
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Support>2</Support>
+      <Reference>KML098</Reference>
+      <Stock />
+      <Products><Id>3</Id><Id>4</Id></Products>
+      <AvailableSpaceListString />
+      <UsedSpaceListString>BBB</UsedSpaceListString>
+      <UnavailableSpaceListString>CCC</UnavailableSpaceListString>
+      <PublishingDate>31/05/2010</PublishingDate>
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Support>2</Support>
+      <Reference>56740</Reference>
+      <Stock />
+      <Products><Id>3</Id><Id>4</Id></Products>
+      <AvailableSpaceListString />
+      <UsedSpaceListString />
+      <UnavailableSpaceListString />
+      <PublishingDate>31/05/2010</PublishingDate>
+    </cf:instance>
+  </Publication>
+  <StockItem namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Id />
+    <Publication typeName="{0}.Publication" uniqueConstraintNames="C1" />
+    <Space typeName="{0}.Space" uniqueConstraintNames="C1" />
+    <Quantity typeName="int" />
+    <AvailableQuantity typeName="int" />
+    <cf:method name="LoadBySpace" body="load(Space) WHERE Space=@Space" />
+    <cf:method name="LoadByPublicationAndSpace" body="loadone(Publication, Space) WHERE Publication=@Publication AND Space=@Space" />
+    <cf:instance>
+      <Id>1</Id>
+      <Publication>1</Publication>
+      <Space>1</Space>
+      <Quantity>4</Quantity>
+      <AvailableQuantity>3</AvailableQuantity>
+    </cf:instance>
+    <cf:instance>
+      <Id>2</Id>
+      <Publication>2</Publication>
+      <Space>2</Space>
+      <Quantity>5</Quantity>
+      <AvailableQuantity>3</AvailableQuantity>
+    </cf:instance>
+    <cf:instance>
+      <Id>3</Id>
+      <Publication>3</Publication>
+      <Space>3</Space>
+      <Quantity>6</Quantity>
+      <AvailableQuantity>3</AvailableQuantity>
+    </cf:instance>
+    <cf:instance>
+      <Id>4</Id>
+      <Publication>4</Publication>
+      <Space>4</Space>
+      <Quantity>4</Quantity>
+      <AvailableQuantity>3</AvailableQuantity>
+    </cf:instance>
+    <cf:instance>
+      <Id>5</Id>
+      <Publication>5</Publication>
+      <Space>5</Space>
+      <Quantity>6</Quantity>
+      <AvailableQuantity>3</AvailableQuantity>
+    </cf:instance>
+    <cf:instance>
+      <Id>6</Id>
+      <Publication>6</Publication>
+      <Space>6</Space>
+      <Quantity>3</Quantity>
+      <AvailableQuantity>3</AvailableQuantity>
+    </cf:instance>
+  </StockItem>
+  <CampaignStateTypeEnum namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Conceived>
+      <cf:message cultureName="en-US">Conceived</cf:message>
+      <cf:message cultureName="fr-FR">Conceived</cf:message>
+    </Conceived>
+    <Addressed>
+      <cf:message cultureName="en-US">Addressed</cf:message>
+      <cf:message cultureName="fr-FR">Addressed</cf:message>
+    </Addressed>
+    <Proposed>
+      <cf:message cultureName="en-US">Proposed</cf:message>
+      <cf:message cultureName="fr-FR">Proposed</cf:message>
+    </Proposed>
+    <Invoiced>
+      <cf:message cultureName="en-US">Invoiced</cf:message>
+      <cf:message cultureName="fr-FR">Invoiced</cf:message>
+    </Invoiced>
+    <Confirmed>
+      <cf:message cultureName="en-US">Confirmed</cf:message>
+      <cf:message cultureName="fr-FR">Confirmed</cf:message>
+    </Confirmed>
+  </CampaignStateTypeEnum>
+  <ProductStateTypeEnum namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <ToCome>
+      <cf:message cultureName="en-US">To come</cf:message>
+      <cf:message cultureName="fr-FR">To come</cf:message>
+    </ToCome>
+    <ToRealize>
+      <cf:message cultureName="en-US">To realize</cf:message>
+      <cf:message cultureName="fr-FR">To realize</cf:message>
+    </ToRealize>
+    <Validated>
+      <cf:message cultureName="en-US">Validated</cf:message>
+      <cf:message cultureName="fr-FR">Validated</cf:message>
+    </Validated>
+  </ProductStateTypeEnum>
+  <LanguageEnum namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <French>
+      <cf:message cultureName="en-US">French</cf:message>
+      <cf:message cultureName="fr-FR">French</cf:message>
+    </French>
+    <English>
+      <cf:message cultureName="en-US">English</cf:message>
+      <cf:message cultureName="fr-FR">English</cf:message>
+    </English>
+  </LanguageEnum>
+  <CustomerTypeEnum namespace="SoftFluent.Json.NET" categoryPath="/SoftFluent.Json.NET">
+    <Client>
+      <cf:message cultureName="en-US">Client</cf:message>
+      <cf:message cultureName="fr-FR">Client</cf:message>
+    </Client>
+    <Prospect>
+      <cf:message cultureName="en-US">Prospect</cf:message>
+      <cf:message cultureName="fr-FR">Prospect</cf:message>
+    </Prospect>
+    <Agency>
+      <cf:message cultureName="en-US">Agency</cf:message>
+      <cf:message cultureName="fr-FR">Agency</cf:message>
+    </Agency>
+    <Other>
+      <cf:message cultureName="en-US">Other</cf:message>
+      <cf:message cultureName="fr-FR">Other</cf:message>
+    </Other>
+    <cf:message cultureName="fr-FR">Type</cf:message>
+  </CustomerTypeEnum>
+  <cf:reference name="SoftFluent.Json.NET.Aspects" path="..\SoftFluent.Json.NET.Aspects\bin\Debug\SoftFluent.Json.NET.Aspects.dll" />
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Json.NET" cfx:targetProject="..\SoftFluent.Json.NET\SoftFluent.Json.NET.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+</cf:project>

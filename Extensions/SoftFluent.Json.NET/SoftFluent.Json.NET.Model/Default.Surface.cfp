@@ -1,0 +1,17 @@
+﻿<cf:project defaultNamespace="Default" partType="Surface" xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+  <cf:surface name="Default">
+    <cf:selector name="_all" expression="//*" />
+    <shape _type="Namespace" _key="SoftFluent.Json.NET" Position="20,20" ZIndex="5" />
+    <shape _type="Enumeration" _key="SoftFluent.Json.NET.CampaignStateType" Position="10,28" />
+    <shape _type="Enumeration" _key="SoftFluent.Json.NET.ProductStateType" Position="496.426666666667,28" />
+    <shape _type="Enumeration" _key="SoftFluent.Json.NET.Language" Position="970.796666666667,28" />
+    <shape _type="Enumeration" _key="SoftFluent.Json.NET.CustomerType" Position="1432.39666666667,28" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.Campaign" Position="10,285.583333333333" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.Customer" Position="428.42,285.583333333333" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.Product" Position="867.08,285.583333333333" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.Publication" Position="1314.48333333333,285.583333333333" ZIndex="1" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.Space" Position="10,763.166666666667" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.StockItem" Position="514.635555555556,763.166666666667" />
+    <shape _type="Entity" _key="SoftFluent.Json.NET.Support" Position="1043.54111111111,763.166666666667" />
+  </cf:surface>
+</cf:project>

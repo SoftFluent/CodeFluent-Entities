@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6076293F-FED6-4D93-B7C3-BFE7BC9207D9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoftFluent.Json.NET</RootNamespace>
+    <AssemblyName>SoftFluent.Json.NET</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\WindowsBase\v4.0_4.0.0.0__31bf3856ad364e35\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Campaign.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CampaignCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CampaignStateType.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CustomerCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CustomerType.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Language.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Product.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ProductCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="ProductStateType.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="PublicationCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Space.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="SpaceCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="StockItem.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="StockItemCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Support.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="SupportCollection.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\BitsServer.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+    <Compile Include="_cf_rt.cs">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SoftFluent.Json.NET.en-US.ResX">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoftFluent.Json.NET.fr-FR.ResX">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoftFluent.Json.NET.ResX">
+      <CodeFluentProducer>8afc20b96277e87d616f8eb4aea5807f</CodeFluentProducer>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
