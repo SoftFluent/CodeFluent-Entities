@@ -33,7 +33,7 @@ namespace SoftFluent.Json.NET.Aspects
     </cf:message>
     <cf:descriptor name=""enabled"" targets=""Entity, Property"" defaultValue=""true"" displayName=""Create JsonAttribute"" typeName=""boolean"" description="""" category=""Json.NET Serializable"" />
     <cf:descriptor name=""enabledForNonModelProperties"" targets=""Entity"" defaultValue=""true"" displayName=""Create JsonAttribute for non-model properties"" typeName=""boolean"" description="""" category=""Json.NET Serializable"" />
-    <cf:descriptor name=""optMode"" targets=""Entity"" defaultValue=""OptIn"" displayName=""Member Serialization"" typeName=""enum:OptIn,OptOut,Fields"" description=""Specifies the member serialization options for the JsonSerializer"" category=""Json.NET Serializable"" />
+    <cf:descriptor name=""optMode"" targets=""Entity"" defaultValue=""OptIn"" displayName=""Member Serialization"" editorTypeName=""enum:OptIn,OptOut,Fields"" description=""Specifies the member serialization options for the JsonSerializer"" category=""Json.NET Serializable"" />
     <cf:descriptor name=""includeInSerialization"" targets=""Property"" defaultValue=""true"" displayName=""Include in Serialization"" typeName=""boolean"" description="""" category=""Json.NET Serializable"" />
   </cf:pattern>
 </cf:project>
