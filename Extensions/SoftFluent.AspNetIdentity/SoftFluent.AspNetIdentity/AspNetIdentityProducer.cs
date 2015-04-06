@@ -240,7 +240,7 @@ namespace SoftFluent.AspNetIdentity
             if (InputProducer == null)
                 return;
 
-            if (string.IsNullOrWhiteSpace(EditorTargetDirectory))
+            if (Utilities.IsNullOrWhiteSpace(EditorTargetDirectory))
             {
                 EditorTargetDirectory = InputProducer.EditorTargetDirectory;
             }

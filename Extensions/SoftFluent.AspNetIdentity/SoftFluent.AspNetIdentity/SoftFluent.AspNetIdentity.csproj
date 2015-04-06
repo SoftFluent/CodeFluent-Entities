@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SoftFluent.AspNetIdentity</RootNamespace>
     <AssemblyName>SoftFluent.AspNetIdentity</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -83,6 +83,7 @@
     <Compile Include="SimpleCodeUnitProducer.cs" />
     <Compile Include="TypeProperty.cs" />
     <Compile Include="UserStoreProducer.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConfigurationForm.resx">

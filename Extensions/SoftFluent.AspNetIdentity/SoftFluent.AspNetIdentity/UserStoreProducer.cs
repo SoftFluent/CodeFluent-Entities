@@ -2,8 +2,6 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using CodeFluent.Model;
 using CodeFluent.Producers.CodeDom;
 
@@ -246,7 +244,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateCreateUserMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "CreateAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -275,7 +273,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateUpdateUserMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "UpdateAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -304,7 +302,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateDeleteUserMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "DeleteAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -325,7 +323,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateFindByIdMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityUser.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByIdAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "userId"));
@@ -342,7 +340,7 @@ namespace SoftFluent.AspNetIdentity
                 return;
 
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityUser.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByIdAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.KeyTypeName, "userId"));
@@ -367,7 +365,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateFindByNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityUser.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "userName"));
@@ -394,7 +392,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetUserIdMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetUserIdAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -409,7 +407,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetUserNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetUserNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -425,7 +423,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetUserNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetUserNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -443,7 +441,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetNormalizedUserNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetNormalizedUserNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -466,7 +464,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetNormalizedUserNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetNormalizedUserNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -507,7 +505,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateHasPasswordMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(bool).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "HasPasswordAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -527,7 +525,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetPasswordHashMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetPasswordHashAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -547,7 +545,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetPasswordHashMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetPasswordHashAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -593,7 +591,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetSecurityStampMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetSecurityStampAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -613,7 +611,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetSecurityStampMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetSecurityStampAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -656,7 +654,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetLockoutEndDateMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(DateTimeOffset));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(DateTimeOffset).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetLockoutEndDateAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -720,7 +718,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetLockoutEndDateMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetLockoutEndDateAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -758,7 +756,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateIncrementAccessFailedCountMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(int));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(int).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "IncrementAccessFailedCountAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -820,7 +818,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateResetAccessFailedCountMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "ResetAccessFailedCountAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -852,7 +850,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetAccessFailedCountMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(int));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(int).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetAccessFailedCountAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -880,7 +878,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetLockoutEnabledMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(bool).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetLockoutEnabledAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -908,7 +906,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetLockoutEnabledMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetLockoutEnabledAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -951,7 +949,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetPhoneNumberConfirmedMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(bool).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetPhoneNumberConfirmedAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -979,7 +977,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetPhoneNumberConfirmedMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetPhoneNumberConfirmedAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1005,7 +1003,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetPhoneNumberMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetPhoneNumberAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1025,7 +1023,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetPhoneNumberMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetPhoneNumberAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1063,7 +1061,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetTwoFactorEnabledMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(bool).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetTwoFactorEnabledAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1091,7 +1089,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetTwoFactorEnabledMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetTwoFactorEnabledAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1135,7 +1133,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetEmailConfirmedMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(bool));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(bool).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetEmailConfirmedAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1163,7 +1161,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetEmailConfirmedMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetEmailConfirmedAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1189,7 +1187,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetEmailMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetEmailAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1209,7 +1207,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetEmailMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetEmailAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1232,7 +1230,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateFindByEmailMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityUser.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByEmailAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "email"));
@@ -1309,7 +1307,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateAddToRoleMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "AddToRoleAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1342,7 +1340,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateRemoveToRoleMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "RemoveFromRoleAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1375,7 +1373,9 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetRolesMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(string))));
+            CodeTypeReference returnType = CreateTaskTypeReference();
+            returnType.TypeArguments.Add(CodeDomUtilities.GetGenericType(typeof(IList<>), typeof(string)));
+            method.ReturnType = returnType;
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetRolesAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1411,7 +1411,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateIsInRoleMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(bool)));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(bool).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "IsInRoleAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1472,7 +1472,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateAddLoginMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "AddLoginAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1509,7 +1509,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateRemoveLoginMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "RemoveLoginAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1623,7 +1623,9 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetLoginsMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task<>), CodeDomUtilities.GetGenericType(typeof(IList<>), "Microsoft.AspNet.Identity.UserLoginInfo"));
+            CodeTypeReference returnType = CreateTaskTypeReference();
+            returnType.TypeArguments.Add(CodeDomUtilities.GetGenericType(typeof(IList<>), "Microsoft.AspNet.Identity.UserLoginInfo"));
+            method.ReturnType = returnType;
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetLoginsAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -1686,7 +1688,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateFindByLoginMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityUser.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityUser.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
             {
@@ -1778,11 +1780,11 @@ namespace SoftFluent.AspNetIdentity
         private void CreateAddClaimMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "AddClaimAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(ClaimFullTypeName, "claim"));
 
             if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version1 || IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2)
             {
@@ -1806,11 +1808,11 @@ namespace SoftFluent.AspNetIdentity
         private void CreateAddClaimsMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "AddClaimsAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(CodeDomUtilities.GetGenericType(typeof(IEnumerable<>), typeof(Claim)), "claims"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(CodeDomUtilities.GetGenericType(typeof(IEnumerable<>), ClaimFullTypeName), "claims"));
 
             if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
             {
@@ -1820,14 +1822,14 @@ namespace SoftFluent.AspNetIdentity
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claims"));
 
-            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), typeof(Claim)), "enumerator");
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), ClaimFullTypeName), "enumerator");
             enumerator.InitExpression = new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("claims"), "GetEnumerator");
 
             var iteration = new CodeIterationStatement();
             iteration.InitStatement = enumerator;
             iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("enumerator"), "MoveNext");
             iteration.IncrementStatement = new CodeSnippetStatement("");
-            iteration.Statements.Add(new CodeVariableDeclarationStatement(typeof(Claim), "claim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(ClaimFullTypeName, "claim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
             method.Statements.Add(iteration);
 
             Func<string, CodeExpression> claimProperty = propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), propertyName);
@@ -1971,11 +1973,11 @@ namespace SoftFluent.AspNetIdentity
         private void CreateRemoveClaimMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "RemoveClaimAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(ClaimFullTypeName, "claim"));
 
             if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version1 || IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2)
             {
@@ -1996,11 +1998,11 @@ namespace SoftFluent.AspNetIdentity
         private void CreateRemoveClaimsMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "RemoveClaimsAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(CodeDomUtilities.GetGenericType(typeof(IEnumerable<>), typeof(Claim)), "claims"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(CodeDomUtilities.GetGenericType(typeof(IEnumerable<>), ClaimFullTypeName), "claims"));
 
             if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
             {
@@ -2010,14 +2012,14 @@ namespace SoftFluent.AspNetIdentity
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("claims"));
 
-            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), typeof(Claim)), "claimEnumerator");
+            var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), ClaimFullTypeName), "claimEnumerator");
             enumerator.InitExpression = new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("claims"), "GetEnumerator");
 
             var iteration = new CodeIterationStatement();
             iteration.InitStatement = enumerator;
             iteration.TestExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("claimEnumerator"), "MoveNext");
             iteration.IncrementStatement = new CodeSnippetStatement("");
-            iteration.Statements.Add(new CodeVariableDeclarationStatement(typeof(Claim), "claim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("claimEnumerator"), "Current")));
+            iteration.Statements.Add(new CodeVariableDeclarationStatement(ClaimFullTypeName, "claim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("claimEnumerator"), "Current")));
             method.Statements.Add(iteration);
 
             AddRemoveUserClaimFromClaim(method, iteration.Statements, propertyName => new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("claim"), propertyName));
@@ -2028,12 +2030,12 @@ namespace SoftFluent.AspNetIdentity
         private void CreateReplaceClaimMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "ReplaceClaimAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "oldClaim"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "newClaim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(ClaimFullTypeName, "oldClaim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(ClaimFullTypeName, "newClaim"));
             
             if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version3)
             {
@@ -2105,7 +2107,9 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetClaimsMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(Claim))));
+            var returnType = CreateTaskTypeReference();
+            returnType.TypeArguments.Add(CodeDomUtilities.GetGenericType(typeof(IList<>), ClaimFullTypeName));
+            method.ReturnType = returnType;
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetClaimsAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityUser.ClrFullTypeName, "user"));
@@ -2118,7 +2122,7 @@ namespace SoftFluent.AspNetIdentity
 
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
 
-            method.Statements.Add(new CodeVariableDeclarationStatement(typeof(IList<>).MakeGenericType(typeof(Claim)), "result", new CodeObjectCreateExpression(typeof(List<>).MakeGenericType(typeof(Claim)))));
+            method.Statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IList<>), ClaimFullTypeName), "result", new CodeObjectCreateExpression(CodeDomUtilities.GetGenericType(typeof(List<>), ClaimFullTypeName))));
 
             var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityUserClaim.ClrFullTypeName), "enumerator");
             enumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.ClaimsProperty.Name), "GetEnumerator");
@@ -2129,7 +2133,7 @@ namespace SoftFluent.AspNetIdentity
             iteration.IncrementStatement = new CodeSnippetStatement("");
 
             iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityUserClaim.ClrFullTypeName, "userClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
-            var createExpression = new CodeObjectCreateExpression(typeof(Claim));
+            var createExpression = new CodeObjectCreateExpression(ClaimFullTypeName);
 
             if (IdentityUserClaim.OriginalIssuerProperty != null)
             {
@@ -2151,7 +2155,7 @@ namespace SoftFluent.AspNetIdentity
             }
             else if (createExpression.Parameters.Count > 0)
             {
-                createExpression.Parameters.Insert(0, new CodePrimitiveExpression(ClaimValueTypes.String));
+                createExpression.Parameters.Insert(0, new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(ClaimValueTypesFullTypeName), "String"));
             }
 
             createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("userClaim"), IdentityUserClaim.ValueProperty.Name));

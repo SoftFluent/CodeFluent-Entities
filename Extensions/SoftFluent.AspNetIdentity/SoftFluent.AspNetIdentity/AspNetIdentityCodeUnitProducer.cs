@@ -4,8 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 using CodeFluent.Model;
 using CodeFluent.Model.Code;
 using CodeFluent.Producers.CodeDom;
@@ -15,6 +13,10 @@ namespace SoftFluent.AspNetIdentity
 {
     public abstract class AspNetIdentityCodeUnitProducer : SimpleCodeUnitProducer
     {
+        protected const string TaskFullTypeName = "System.Threading.Tasks.Task";
+        protected const string CancellationTokenFullTypeName = "System.Threading.CancellationToken";
+        protected const string ClaimFullTypeName = "System.Security.Claims.Claim";
+        protected const string ClaimValueTypesFullTypeName = "System.Security.Claims.ClaimValueTypes";
         private readonly AspNetIdentityProducer _identityProducer;
 
         protected AspNetIdentityCodeUnitProducer(AspNetIdentityProducer identityProducer, CodeDomBaseProducer codeDomBaseProducer) : base(codeDomBaseProducer)
@@ -123,16 +125,26 @@ namespace SoftFluent.AspNetIdentity
             return new CodePropertyReferenceExpression(nullable, "HasValue");
         }
 
+        protected CodeTypeReference CreateTaskTypeReference()
+        {
+            return new CodeTypeReference(TaskFullTypeName);
+        }
+
+        protected CodeTypeReferenceExpression CreateTaskTypeReferenceExpression()
+        {
+            return new CodeTypeReferenceExpression(CreateTaskTypeReference());
+        }
+
         protected CodeStatement CreateEmptyTaskResult()
         {
             return new CodeMethodReturnStatement(new CodeMethodInvokeExpression(
-                new CodeTypeReferenceExpression(typeof(Task)), "FromResult", new CodePrimitiveExpression(0)));
+                CreateTaskTypeReferenceExpression(), "FromResult", new CodePrimitiveExpression(0)));
         }
 
         protected CodeStatement CreateTaskResult(CodeExpression expression)
         {
             return new CodeMethodReturnStatement(new CodeMethodInvokeExpression(
-                new CodeTypeReferenceExpression(typeof(Task)), "FromResult", expression));
+                CreateTaskTypeReferenceExpression(), "FromResult", expression));
         }
 
         protected void ImplementIDisposableInterface(CodeTypeDeclaration type)
@@ -181,10 +193,10 @@ namespace SoftFluent.AspNetIdentity
                 if (method.ReturnType == null)
                     continue;
 
-                if (method.ReturnType.BaseType != typeof(Task).FullName && !method.ReturnType.BaseType.StartsWith(typeof(Task).FullName + "`"))
+                if (method.ReturnType.BaseType != TaskFullTypeName && !method.ReturnType.BaseType.StartsWith(TaskFullTypeName + "`"))
                     continue;
 
-                if (method.Parameters.Cast<CodeParameterDeclarationExpression>().Any(p => p.Type.BaseType == typeof(CancellationToken).FullName))
+                if (method.Parameters.Cast<CodeParameterDeclarationExpression>().Any(p => p.Type.BaseType == CancellationTokenFullTypeName))
                     continue;
 
                 if (IdentityProducer.TargetVersion == AspNetIdentityVersion.Version1 || IdentityProducer.TargetVersion == AspNetIdentityVersion.Version2)
@@ -200,7 +212,7 @@ namespace SoftFluent.AspNetIdentity
                         newMethod.Parameters.Add(parameter);
                     }
 
-                    newMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(CancellationToken), "cancellationToken"));
+                    newMethod.Parameters.Add(new CodeParameterDeclarationExpression(CancellationTokenFullTypeName, "cancellationToken"));
 
                     newMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("cancellationToken"), "ThrowIfCancellationRequested"));
                     newMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), "ThrowIfDisposed"));
@@ -217,7 +229,7 @@ namespace SoftFluent.AspNetIdentity
                         parameters.Add(new CodeArgumentReferenceExpression(parameter.Name));
                     }
 
-                    parameters.Add(new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(typeof(CancellationToken)), "None"));
+                    parameters.Add(new CodePropertyReferenceExpression(new CodeTypeReferenceExpression(CancellationTokenFullTypeName), "None"));
 
                     method.Statements.Add(new CodeMethodReturnStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), newMethod.Name, parameters.ToArray())));
 
@@ -229,13 +241,13 @@ namespace SoftFluent.AspNetIdentity
                     if (CodeDomProducer.LanguageCode == LanguageCode.VisualBasic)
                     {
                         // HACK to use optional parameters
-                        var parameter = new CodeParameterDeclarationExpression(typeof(CancellationToken).FullName + " = Nothing", "Optional cancellationToken");
+                        var parameter = new CodeParameterDeclarationExpression(CancellationTokenFullTypeName + " = Nothing", "Optional cancellationToken");
                         parameter.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(OptionalAttribute))));
                         method.Parameters.Add(parameter);
                     }
                     else
                     {
-                        var parameter = new CodeParameterDeclarationExpression(typeof(CancellationToken), "cancellationToken");
+                        var parameter = new CodeParameterDeclarationExpression(CancellationTokenFullTypeName, "cancellationToken");
                         parameter.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(OptionalAttribute))));
                         method.Parameters.Add(parameter);
                     }

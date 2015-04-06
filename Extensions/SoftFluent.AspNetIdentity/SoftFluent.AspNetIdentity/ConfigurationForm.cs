@@ -77,25 +77,25 @@ namespace SoftFluent.AspNetIdentity
 
         bool IsValid()
         {
-            if (checkBoxClaims.Checked && string.IsNullOrWhiteSpace(textBoxClaimsEntityName.Text))
+            if (checkBoxClaims.Checked && Utilities.IsNullOrWhiteSpace(textBoxClaimsEntityName.Text))
                 return false;
 
-            if (checkBoxExternalLogins.Checked && string.IsNullOrWhiteSpace(textBoxUserLoginsEntityName.Text))
+            if (checkBoxExternalLogins.Checked && Utilities.IsNullOrWhiteSpace(textBoxUserLoginsEntityName.Text))
                 return false;
 
-            if (checkBoxRole.Checked && string.IsNullOrWhiteSpace(textBoxRoleEntityName.Text))
+            if (checkBoxRole.Checked && Utilities.IsNullOrWhiteSpace(textBoxRoleEntityName.Text))
                 return false;
 
-            if (checkBoxRoleClaim.Checked && string.IsNullOrWhiteSpace(textBoxRoleClaimEntityName.Text))
+            if (checkBoxRoleClaim.Checked && Utilities.IsNullOrWhiteSpace(textBoxRoleClaimEntityName.Text))
                 return false;
 
             //if (checkBoxUserRole.Checked && string.IsNullOrWhiteSpace(textBoxUserRoleEntityName.Text))
             //    return false;
 
-            if (string.IsNullOrWhiteSpace(textBoxUserEntityName.Text))
+            if (Utilities.IsNullOrWhiteSpace(textBoxUserEntityName.Text))
                 return false;
 
-            if (string.IsNullOrWhiteSpace(comboBoxNamespace.Text))
+            if (Utilities.IsNullOrWhiteSpace(comboBoxNamespace.Text))
                 return false;
 
             return true;

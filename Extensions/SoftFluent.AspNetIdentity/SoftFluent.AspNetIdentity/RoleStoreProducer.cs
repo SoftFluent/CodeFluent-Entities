@@ -2,8 +2,6 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using CodeFluent.Producers.CodeDom;
 
 namespace SoftFluent.AspNetIdentity
@@ -131,7 +129,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateCreateRoleMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "CreateAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -152,7 +150,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateUpdateRoleMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "UpdateAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -173,7 +171,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateDeleteRoleMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "DeleteAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -194,7 +192,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateFindByIdMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityRole.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityRole.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByIdAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "roleId"));
@@ -211,7 +209,7 @@ namespace SoftFluent.AspNetIdentity
                 return;
 
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityRole.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityRole.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByIdAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.KeyTypeName, "roleId"));
@@ -236,7 +234,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateFindByNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), IdentityRole.ClrFullTypeName);
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, IdentityRole.ClrFullTypeName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "FindByNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string), "roleName"));
@@ -263,7 +261,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetRoleIdMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetRoleIdAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -278,7 +276,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetRoleNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = CodeDomUtilities.GetGenericType(typeof(Task), typeof(string));
+            method.ReturnType = CodeDomUtilities.GetGenericType(TaskFullTypeName, typeof(string).FullName);
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetRoleNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -294,7 +292,7 @@ namespace SoftFluent.AspNetIdentity
         private void CreateSetRoleNameMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "SetRoleNameAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -324,11 +322,11 @@ namespace SoftFluent.AspNetIdentity
         private void CreateAddClaimMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "AddClaimAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(ClaimFullTypeName, "claim"));
 
             method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleClaimStore", false));
 
@@ -372,11 +370,11 @@ namespace SoftFluent.AspNetIdentity
         private void CreateRemoveClaimMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task));
+            method.ReturnType = CreateTaskTypeReference();
             method.Attributes = MemberAttributes.Public;
             method.Name = "RemoveClaimAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
-            method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(Claim), "claim"));
+            method.Parameters.Add(new CodeParameterDeclarationExpression(ClaimFullTypeName, "claim"));
 
             method.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IRoleClaimStore", false));
 
@@ -472,7 +470,9 @@ namespace SoftFluent.AspNetIdentity
         private void CreateGetClaimsMethod(CodeTypeDeclaration type)
         {
             CodeMemberMethod method = new CodeMemberMethod();
-            method.ReturnType = new CodeTypeReference(typeof(Task<>).MakeGenericType(typeof(IList<>).MakeGenericType(typeof(Claim))));
+            CodeTypeReference returnType = CreateTaskTypeReference();
+            returnType.TypeArguments.Add(CodeDomUtilities.GetGenericType(typeof(IList<>), ClaimFullTypeName));
+            method.ReturnType = returnType;
             method.Attributes = MemberAttributes.Public;
             method.Name = "GetClaimsAsync";
             method.Parameters.Add(new CodeParameterDeclarationExpression(IdentityRole.ClrFullTypeName, "role"));
@@ -481,7 +481,7 @@ namespace SoftFluent.AspNetIdentity
 
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("role"));
 
-            method.Statements.Add(new CodeVariableDeclarationStatement(typeof(IList<>).MakeGenericType(typeof(Claim)), "result", new CodeObjectCreateExpression(typeof(List<>).MakeGenericType(typeof(Claim)))));
+            method.Statements.Add(new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IList<>), ClaimFullTypeName), "result", new CodeObjectCreateExpression(CodeDomUtilities.GetGenericType(typeof(List<>), ClaimFullTypeName))));
 
             var enumerator = new CodeVariableDeclarationStatement(CodeDomUtilities.GetGenericType(typeof(IEnumerator<>), IdentityRoleClaim.ClrFullTypeName), "enumerator");
             enumerator.InitExpression = new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(new CodeArgumentReferenceExpression("role"), IdentityRole.ClaimsProperty.Name), "GetEnumerator");
@@ -492,7 +492,7 @@ namespace SoftFluent.AspNetIdentity
             iteration.IncrementStatement = new CodeSnippetStatement("");
 
             iteration.Statements.Add(new CodeVariableDeclarationStatement(IdentityRoleClaim.ClrFullTypeName, "roleClaim", new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("enumerator"), "Current")));
-            var createExpression = new CodeObjectCreateExpression(typeof(Claim));
+            var createExpression = new CodeObjectCreateExpression(ClaimFullTypeName);
 
             if (IdentityRoleClaim.OriginalIssuerProperty != null)
             {
@@ -514,7 +514,7 @@ namespace SoftFluent.AspNetIdentity
             }
             else if (createExpression.Parameters.Count > 0)
             {
-                createExpression.Parameters.Insert(0, new CodePrimitiveExpression(ClaimValueTypes.String));
+                createExpression.Parameters.Insert(0, new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(ClaimValueTypesFullTypeName), "String"));
             }
 
             createExpression.Parameters.Insert(0, new CodePropertyReferenceExpression(new CodeVariableReferenceExpression("roleClaim"), IdentityRoleClaim.ValueProperty.Name));
