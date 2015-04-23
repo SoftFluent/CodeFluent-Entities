@@ -26,7 +26,7 @@ namespace SoftFluent.AspNetIdentity
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            foreach (var property in entity.Properties)
+            foreach (var property in entity.AllProperties)
             {
                 if (property.GetAttributeValue("propertyType", Constants.NamespaceUri, PropertyType.None) == propertyType)
                 {
@@ -35,7 +35,7 @@ namespace SoftFluent.AspNetIdentity
             }
 
             PropertyTypeCompatibility compatibility = (PropertyTypeCompatibility) propertyType;
-            foreach (var property in entity.Properties)
+            foreach (var property in entity.AllProperties)
             {
                 var value = property.GetAttributeValue("propertyType", Constants.NamespaceUri, PropertyTypeCompatibility.None);
                 if (value == compatibility ||
@@ -68,7 +68,7 @@ namespace SoftFluent.AspNetIdentity
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            var properties = entity.Properties.Where(_ => _.ClrFullTypeName == typeof(string).FullName).ToList();
+            var properties = entity.AllProperties.Where(_ => _.ClrFullTypeName == typeof(string).FullName).ToList();
 
             return properties.FirstOrDefault(_ => _.IsCollectionKey) ??
                    properties.FirstOrDefault(_ => _.IsUnique) ??
