@@ -218,7 +218,7 @@ namespace SoftFluent.AspNetIdentity
             if (IdentityRole.LoadByKeyMethod != null)
             {
                 method.Statements.Add(
-                    CreateTaskResult(CreateMethodInvokeExpression(IdentityRole.LoadByKeyMethod,
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityRole.Entity, IdentityRole.LoadByKeyMethod,
                         new CodeArgumentReferenceExpression("roleId"))));
             }
             else
@@ -247,7 +247,7 @@ namespace SoftFluent.AspNetIdentity
             if (IdentityRole.LoadByNameMethod != null)
             {
                 method.Statements.Add(
-                    CreateTaskResult(CreateMethodInvokeExpression(IdentityRole.LoadByNameMethod,
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityRole.Entity, IdentityRole.LoadByNameMethod,
                         new CodeArgumentReferenceExpression("roleName"))));
             }
             else
@@ -559,7 +559,7 @@ namespace SoftFluent.AspNetIdentity
                 property.GetStatements.Add(
                     new CodeMethodReturnStatement(
                         new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(Queryable)), "AsQueryable",
-                            CreateMethodInvokeExpression(IdentityRole.LoadAllMethod))));
+                            CreateMethodInvokeExpression(IdentityRole.Entity, IdentityRole.LoadAllMethod))));
             }
             else
             {

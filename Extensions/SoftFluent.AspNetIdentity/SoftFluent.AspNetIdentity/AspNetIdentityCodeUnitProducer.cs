@@ -63,9 +63,14 @@ namespace SoftFluent.AspNetIdentity
             }
         }
 
-        protected CodeMethodInvokeExpression CreateMethodInvokeExpression(Method method, params CodeExpression[] parameters)
+        protected CodeMethodInvokeExpression CreateMethodInvokeExpression(Entity entity, Method method, params CodeExpression[] parameters)
         {
             if (method == null) throw new ArgumentNullException("method");
+
+            if (entity == null)
+            {
+                entity = method.Entity;
+            }
 
             switch (method.MethodType)
             {
@@ -74,10 +79,10 @@ namespace SoftFluent.AspNetIdentity
                 case CodeFluent.Model.Code.MethodType.SetSnippet:
                 case CodeFluent.Model.Code.MethodType.Count:
                 case CodeFluent.Model.Code.MethodType.Delete:
-                    return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(method.Entity.Set.ClrFullTypeName), method.Name, parameters);
+                    return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(entity.Set.ClrFullTypeName), method.Name, parameters);
 
                 default:
-                    return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(method.Entity.ClrFullTypeName), method.Name, parameters);
+                    return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(entity.ClrFullTypeName), method.Name, parameters);
             }
         }
 

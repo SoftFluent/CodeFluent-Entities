@@ -311,25 +311,37 @@ namespace SoftFluent.AspNetIdentity
                         if (type.GetAttributeValue("entityType", NamespaceUri, EntityType.None) == EntityType.User)
                         {
                             // Implements IUser<TKey> & IUser
-                            var supportGeneric = TargetVersion == AspNetIdentityVersion.Version2 && !_identityUser.IsStringId;
-                            if (supportGeneric)
+                            if (TargetVersion == AspNetIdentityVersion.Version1)
                             {
-                                ImplementIUser(typeDeclaration, true, supportGeneric);
+                                ImplementIUser(typeDeclaration, false, false);
                             }
+                            else if (TargetVersion == AspNetIdentityVersion.Version2)
+                            {
+                                if (!_identityUser.IsStringId)
+                                {
+                                    ImplementIUser(typeDeclaration, true, true);
+                                }
 
-                            ImplementIUser(typeDeclaration, false, supportGeneric);
+                                ImplementIUser(typeDeclaration, false, true);
+                            }
                         }
 
                         else if (type.GetAttributeValue("entityType", NamespaceUri, EntityType.None) == EntityType.Role)
                         {
                             // Implements IRole<TKey> & IRole
-                            var supportGeneric = TargetVersion == AspNetIdentityVersion.Version2 && !_identityRole.IsStringId;
-                            if (supportGeneric)
+                            if (TargetVersion == AspNetIdentityVersion.Version1)
                             {
-                                ImplementIRole(typeDeclaration, true, supportGeneric);
+                                ImplementIRole(typeDeclaration, false, false);
                             }
+                            else if (TargetVersion == AspNetIdentityVersion.Version2)
+                            {
+                                if (!_identityRole.IsStringId)
+                                {
+                                    ImplementIRole(typeDeclaration, true, true);
+                                }
 
-                            ImplementIRole(typeDeclaration, false, supportGeneric);
+                                ImplementIRole(typeDeclaration, false, true);
+                            }
                         }
                     }
                 }

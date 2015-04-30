@@ -349,7 +349,7 @@ namespace SoftFluent.AspNetIdentity
             if (IdentityUser.LoadByKeyMethod != null)
             {
                 method.Statements.Add(
-                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.LoadByKeyMethod,
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.Entity, IdentityUser.LoadByKeyMethod,
                         new CodeArgumentReferenceExpression("userId"))));
             }
             else
@@ -378,7 +378,7 @@ namespace SoftFluent.AspNetIdentity
             if (IdentityUser.LoadByUserNameMethod != null)
             {
                 method.Statements.Add(
-                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.LoadByUserNameMethod,
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.Entity, IdentityUser.LoadByUserNameMethod,
                         new CodeArgumentReferenceExpression("userName"))));
             }
             else
@@ -1243,7 +1243,7 @@ namespace SoftFluent.AspNetIdentity
             if (IdentityUser.LoadByEmailMethod != null)
             {
                 method.Statements.Add(
-                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.LoadByEmailMethod,
+                    CreateTaskResult(CreateMethodInvokeExpression(IdentityUser.Entity, IdentityUser.LoadByEmailMethod,
                         new CodeArgumentReferenceExpression("email"))));
             }
             else
@@ -1298,7 +1298,7 @@ namespace SoftFluent.AspNetIdentity
         private void AddRoleLoadByRoleName(CodeMemberMethod method)
         {
             method.Statements.Add(new CodeVariableDeclarationStatement(IdentityRole.ClrFullTypeName, "role",
-                CreateMethodInvokeExpression(IdentityRole.LoadByNameMethod, new CodeArgumentReferenceExpression("roleName"))));
+                CreateMethodInvokeExpression(IdentityRole.Entity, IdentityRole.LoadByNameMethod, new CodeArgumentReferenceExpression("roleName"))));
             CodeConditionStatement ifRoleNull = new CodeConditionStatement(CodeDomUtilities.CreateIfNull(new CodeVariableReferenceExpression("role")));
             ifRoleNull.TrueStatements.Add(new CodeThrowExceptionStatement(new CodeObjectCreateExpression(typeof(ArgumentException), CreateRoleNotFoundMessage(ifRoleNull.TrueStatements, ProjectMessages.RoleNotFoundMessage, new CodeArgumentReferenceExpression("roleName")))));
             method.Statements.Add(ifRoleNull);
@@ -1540,14 +1540,14 @@ namespace SoftFluent.AspNetIdentity
             {
                 if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 2)
                 {
-                    method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
+                    method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.Entity, IdentityUserLogin.DeleteByUserLoginInfoMethod,
                         new CodeArgumentReferenceExpression("user"),
                         GetLoginProviderKeyExpression()));
                     useMethod = true;
                 }
                 else if (IdentityUserLogin.DeleteByUserLoginInfoMethod.Parameters.Count == 3)
                 {
-                    method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.DeleteByUserLoginInfoMethod,
+                    method.Statements.Add(CreateMethodInvokeExpression(IdentityUserLogin.Entity, IdentityUserLogin.DeleteByUserLoginInfoMethod,
                         new CodeArgumentReferenceExpression("user"),
                         GetLoginProviderKeyExpression(),
                         GetLoginProviderNameExpression()));
@@ -1711,7 +1711,7 @@ namespace SoftFluent.AspNetIdentity
 
             if (IdentityUser.LoadByUserLoginInfoMethod != null)
             {
-                var invokeExpression = CreateMethodInvokeExpression(IdentityUser.LoadByUserLoginInfoMethod);
+                var invokeExpression = CreateMethodInvokeExpression(IdentityUser.Entity, IdentityUser.LoadByUserLoginInfoMethod);
                 invokeExpression.Parameters.Add(GetLoginProviderKeyExpression());
                 if (IdentityUser.LoadByUserLoginInfoMethod.Parameters.Count > 1)
                 {
@@ -1843,7 +1843,7 @@ namespace SoftFluent.AspNetIdentity
             bool useMethod = false;
             if (IdentityUserClaim.DeleteClaimsMethod != null)
             {
-                CodeMethodInvokeExpression invokeMethod = CreateMethodInvokeExpression(IdentityUserClaim.DeleteClaimsMethod);
+                CodeMethodInvokeExpression invokeMethod = CreateMethodInvokeExpression(IdentityUserClaim.Entity, IdentityUserClaim.DeleteClaimsMethod);
                 foreach (var parameter in IdentityUserClaim.DeleteClaimsMethod.Parameters)
                 {
                     if (parameter.ProjectProperty == IdentityUserClaim.UserProperty)
@@ -2193,14 +2193,17 @@ namespace SoftFluent.AspNetIdentity
             property.Name = "Users";
             property.HasSet = false;
             property.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", false));
-            property.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", true));
+            if (CanImplementGenericInterfaces)
+            {
+                property.ImplementationTypes.Add(GetGenericInterfaceType("Microsoft.AspNet.Identity.IQueryableUserStore", true));
+            }
 
             if (IdentityRole.LoadAllMethod != null)
             {
                 property.GetStatements.Add(
                     new CodeMethodReturnStatement(
                         new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(Queryable)), "AsQueryable",
-                            CreateMethodInvokeExpression(IdentityUser.LoadAllMethod))));
+                            CreateMethodInvokeExpression(IdentityUser.Entity, IdentityUser.LoadAllMethod))));
             }
             else
             {
