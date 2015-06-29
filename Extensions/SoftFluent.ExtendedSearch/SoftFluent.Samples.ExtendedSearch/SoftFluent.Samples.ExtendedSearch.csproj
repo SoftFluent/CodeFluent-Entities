@@ -68,6 +68,10 @@
     <Compile Include="CustomerCollection.cs">
       <CodeFluentProducer>67aedfd8c09a86d9a15b5d00ddde967f</CodeFluentProducer>
     </Compile>
+    <Compile Include="CustomerView.cs">
+      <SubType>Code</SubType>
+      <CodeFluentProducer>67aedfd8c09a86d9a15b5d00ddde967f</CodeFluentProducer>
+    </Compile>
     <Compile Include="FilterFunctions.cs">
       <CodeFluentProducer>67aedfd8c09a86d9a15b5d00ddde967f</CodeFluentProducer>
     </Compile>

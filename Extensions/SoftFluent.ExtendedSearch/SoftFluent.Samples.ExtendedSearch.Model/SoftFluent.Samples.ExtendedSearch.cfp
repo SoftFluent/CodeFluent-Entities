@@ -17,7 +17,7 @@
       <cf:instanceValue name="FullName">Jane Doe</cf:instanceValue>
       <cf:instanceValue name="DateOfBirth">02/04/1988 00:00:00</cf:instanceValue>
     </cf:instance>
-    <cf:view name="CustomerView">
+    <cf:view autoLightweight="true" name="CustomerView">
       <cf:viewProperty name="FullName" />
       <cf:viewProperty name="DateOfBirth" />
     </cf:view>

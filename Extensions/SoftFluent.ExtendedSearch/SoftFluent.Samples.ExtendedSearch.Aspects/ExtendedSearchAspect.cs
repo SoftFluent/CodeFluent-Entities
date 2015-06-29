@@ -25,9 +25,9 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
         static ExtendedSearchAspect()
         {
-            var values = ConvertUtilities.EnumEnumerateValues<FilterFunctions>();
+            IEnumerable<FilterFunctions> values = ConvertUtilities.EnumEnumerateValues<FilterFunctions>();
             string filterFunctionEditorTypeName = "enum:";
-            foreach (var value in values)
+            foreach (FilterFunctions value in values)
             {
                 filterFunctionEditorTypeName += string.Format("{0}={1},", value, (int)value);
             }
@@ -164,15 +164,15 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             // Add arguments Search method
             //    SEARCH(FirstName, LastName) 
             // => SEARCH(FirstName, FirstNameFilterFunction, LastName, LastNameFilterFunction)
-            foreach (var entity in Project.Entities)
+            foreach (Entity entity in Project.Entities)
             {
-                foreach (var method in entity.Methods)
+                foreach (Method method in entity.Methods)
                 {
                     if (!IsEnabled(method))
                         continue;
 
                     int newParameterCount = 0;
-                    foreach (var parameter in method.Parameters.Clone())
+                    foreach (MethodParameter parameter in method.Parameters.Clone())
                     {
                         if (!IsEnabled(parameter))
                             continue;
@@ -230,7 +230,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             if (parameter == null) throw new ArgumentNullException("parameter");
 
             Column column = null;
-            var tables = GatherTables(procedureStatement);
+            IEnumerable<Table> tables = GatherTables(procedureStatement);
             if (parameter.Column != null)
             {
                 foreach (Table table in tables)
@@ -252,7 +252,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
             if (column == null)
             {
-                var tableRefs = GatherTableRefs(procedureStatement);
+                IEnumerable<TableRef> tableRefs = GatherTableRefs(procedureStatement);
                 foreach (TableRef tableRef in tableRefs)
                 {
                     if (tableRef.Table.IsEquivalent(parameter.Column.Table))
@@ -267,21 +267,21 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
         private void UpdateProcedures()
         {
-            foreach (var procedure in Project.Database.Procedures)
+            foreach (Procedure procedure in Project.Database.Procedures)
             {
                 ProcedureSelectStatement selectStatement = null;
-                foreach (var enumParameter in procedure.Parameters)
+                foreach (Parameter enumParameter in procedure.Parameters)
                 {
                     // Find the original parameter
-                    var methodParameter = enumParameter.MethodParameter;
+                    MethodParameter methodParameter = enumParameter.MethodParameter;
                     if (methodParameter == null)
                         continue;
 
-                    var originalMethodParameter = methodParameter.GetData(NamespaceUri + ":parameter", (MethodParameter)null);
+                    MethodParameter originalMethodParameter = methodParameter.GetData(NamespaceUri + ":parameter", (MethodParameter)null);
                     if (originalMethodParameter == null)
                         continue;
 
-                    var valueParameter = procedure.Parameters.FirstOrDefault(_ => _.MethodParameter == originalMethodParameter);
+                    Parameter valueParameter = procedure.Parameters.FirstOrDefault(_ => _.MethodParameter == originalMethodParameter);
                     if (valueParameter == null || valueParameter.Column == null)
                         continue;
 
@@ -295,7 +295,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
                     }
 
                     ProcedureExpressionStatement whereStatement = null;
-                    foreach (var enumValue in FilterFunctionsEnumeration.Values)
+                    foreach (EnumerationValue enumValue in FilterFunctionsEnumeration.Values)
                     {
                         FilterFunctions op = GetFilterFunction(enumValue);
                         if (!IsSupported(op, procedure, valueParameter))
@@ -306,7 +306,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
                         if (testValueStatement == null)
                             continue;
 
-                        var paramWhereStatement = new ProcedureExpressionStatement(
+                        ProcedureExpressionStatement paramWhereStatement = new ProcedureExpressionStatement(
                             selectStatement,
                             ProcedureOperationType.And,
                             testEnumValueStatement,
@@ -324,28 +324,30 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
                     // Declare the statement as a search expression
                     // Search expression is used by SEARCH method to identify dynamic parts of the body
-                    whereStatement.Visit<ProcedureStatement>(statement =>
+                    if (whereStatement != null)
                     {
-                        ProcedureExpressionStatement s = statement as ProcedureExpressionStatement;
-                        if (s != null)
+                        whereStatement.Visit<ProcedureStatement>(statement =>
                         {
-                            procedure.MarkSearchExpression(s, valueParameter);
-                            if (!s.IsLiteral)
+                            ProcedureExpressionStatement s = statement as ProcedureExpressionStatement;
+                            if (s != null)
                             {
-                                s.SearchExpressionParameter = valueParameter;
+                                procedure.MarkSearchExpression(s, valueParameter);
+                                if (!s.IsLiteral)
+                                {
+                                    s.SearchExpressionParameter = valueParameter;
+                                }
                             }
-                        }
-                    });
+                        });
 
-                    selectStatement.AddExpressionToWhere(whereStatement, ProcedureOperationType.And);
-
+                        selectStatement.AddExpressionToWhere(whereStatement, ProcedureOperationType.And);
+                    }
                 }
             }
         }
 
         private FilterFunctions GetFilterFunction(EnumerationValue enumValue)
         {
-            var op = enumValue.GetAttributeValue("filterFunction", NamespaceUri, FilterFunctions.None);
+            FilterFunctions op = enumValue.GetAttributeValue("filterFunction", NamespaceUri, FilterFunctions.None);
             if (op == FilterFunctions.None)
             {
                 op = ConvertUtilities.ChangeType(enumValue.Name, FilterFunctions.None);
@@ -357,7 +359,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
         private ProcedureExpressionStatement CreateParameterTestStatement(ProcedureStatement parent, Parameter parameter, FilterFunctions op)
         {
             ProcedureExpressionStatement result = null;
-            var refColumn = FindMatchingColumn(parent, parameter);
+            TableRefColumn refColumn = FindMatchingColumn(parent, parameter);
             switch (op)
             {
                 case FilterFunctions.None:
@@ -461,7 +463,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             return new ProcedureExpressionStatement(
                 parent,
                 ProcedureOperationType.Add,
-                CreateConcatStatement(parent, "%", parameter),
+                CreateConcatStatement(parent, prefix, parameter),
                 new ProcedureExpressionStatement(parent, suffix));
         }
 
@@ -524,21 +526,21 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             if (op == FilterFunctions.None)
                 return true;
 
-            var fullTextFunctions = new[] { 
+            FilterFunctions[] fullTextFunctions = new[] { 
                 FilterFunctions.FullTextContains, 
                 FilterFunctions.NotFullTextContains,
                 FilterFunctions.FreeText,
                 FilterFunctions.NotFreeText
             };
 
-            var likeFunctions = new[] { 
+            FilterFunctions[] likeFunctions = new[] { 
                 FilterFunctions.StartsWith, 
                 FilterFunctions.EndsWith,
                 FilterFunctions.Contains,
                 FilterFunctions.NotContains
             };
 
-            var parameterFunctions = GetFilterFunctions(parameter);
+            FilterFunctions parameterFunctions = GetFilterFunctions(parameter);
             if ((parameterFunctions & op) != op)
                 return false;
 
@@ -559,7 +561,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
         private Enumeration FindOrCreateFilterFunctionsEnumeration()
         {
-            foreach (var enumeration in Project.Enumerations)
+            foreach (Enumeration enumeration in Project.Enumerations)
             {
                 if (enumeration.GetAttributeValue("isFilterFunctionsEnumeration", NamespaceUri, false))
                 {
@@ -604,7 +606,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             if (method == null)
                 return DefaultParameterNameFormat;
 
-            var defaultValue = GetMethodParameterNameFormat(method.Entity);
+            string defaultValue = GetMethodParameterNameFormat(method.Entity);
             return method.GetAttributeValue("defaultParameterNameFormat", NamespaceUri, defaultValue);
 
         }
@@ -614,7 +616,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             if (entity == null)
                 return DefaultParameterNameFormat;
 
-            var defaultValue = GetMethodParameterNameFormat(entity.Project);
+            string defaultValue = GetMethodParameterNameFormat(entity.Project);
             return entity.GetAttributeValue("defaultParameterNameFormat", NamespaceUri, defaultValue);
         }
 
@@ -692,14 +694,6 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
             FilterFunctions defaultValue = GetDefaultFilterFunctions(method.Entity);
             return method.GetAttributeValue("defaultFilterFunctions", NamespaceUri, defaultValue);
-        }
-
-        private FilterFunctions GetDefaultFilterFunctions(Procedure procedure)
-        {
-            if (procedure == null)
-                return DefaultFilterFunctions;
-
-            return GetDefaultFilterFunctions(procedure.Method);
         }
 
         private FilterFunctions GetFilterFunctions(MethodParameter parameter)
