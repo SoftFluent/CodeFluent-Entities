@@ -1,12 +1,12 @@
-<cf:project defaultNamespace="SoftFluent.Samples.ExtendedSearch" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:es="http://www.softfluent.com/samples/aspects/extendedsearch/" xmlns:exse="http://www.softfluent.com/samples/aspects/extendedsearch/" defaultEntityTrackingModes="None" defaultConcurrencyMode="None" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+﻿<cf:project defaultNamespace="SoftFluent.Samples.ExtendedSearch" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:es="http://www.softfluent.com/samples/aspects/extendedsearch/" xmlns:exse="http://www.softfluent.com/samples/aspects/extendedsearch/" defaultEntityTrackingModes="None" defaultConcurrencyMode="None" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
   <cf:import path="Default.Surface.cfp" />
   <cf:pattern typeName="SoftFluent.Samples.ExtendedSearch.Aspects.ExtendedSearchAspect, SoftFluent.Samples.ExtendedSearch.Aspects" step="Start" />
   <cf:reference name="SoftFluent.Samples.ExtendedSearch.Aspects.dll" path="..\SoftFluent.Samples.ExtendedSearch.Aspects\bin\Debug\SoftFluent.Samples.ExtendedSearch.Aspects.dll" />
-  <cf:entity name="Customer" exse:defaultFilterFunctions="All" namespace="SoftFluent.Samples.ExtendedSearch" categoryPath="/SoftFluent.Samples.ExtendedSearch">
+  <cf:entity name="Customer" namespace="SoftFluent.Samples.ExtendedSearch" categoryPath="/SoftFluent.Samples.ExtendedSearch">
     <cf:property name="Id" key="true" typeName="int" />
     <cf:property name="FullName" entityDisplay="true" />
     <cf:property name="DateOfBirth" typeName="datetime" />
-    <cf:method name="Search" body="SEARCH(FullName, DateOfBirth)" exse:enabled="true" exse:defaultFilterFunctions="All" autoStartsWith="true" />
+    <cf:method name="Search" body="SEARCH(FullName, DateOfBirth)" exse:enabled="true" autoStartsWith="true" />
     <cf:instance>
       <cf:instanceValue name="Id">1</cf:instanceValue>
       <cf:instanceValue name="FullName">John Doe</cf:instanceValue>
@@ -17,6 +17,11 @@
       <cf:instanceValue name="FullName">Jane Doe</cf:instanceValue>
       <cf:instanceValue name="DateOfBirth">02/04/1988 00:00:00</cf:instanceValue>
     </cf:instance>
+    <cf:view name="CustomerView">
+      <cf:viewProperty name="FullName" />
+      <cf:viewProperty name="DateOfBirth" />
+    </cf:view>
+    <cf:method name="SearchFromView" body="SEARCH(FullName, DateOfBirth) FROM CustomerView" exse:enabled="true" />
   </cf:entity>
   <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
     <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.ExtendedSearch" cfx:targetProject="..\SoftFluent.Samples.ExtendedSearch\SoftFluent.Samples.ExtendedSearch.csproj" cfx:targetProjectLayout="Update" />

@@ -1,14 +1,15 @@
-using System.Data;
 using CodeFluent.Model;
 using CodeFluent.Model.Code;
 using CodeFluent.Model.Persistence;
+using CodeFluent.Runtime.Utilities;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Xml;
-using CodeFluent.Runtime.Utilities;
 using Nullable = CodeFluent.Model.Code.Nullable;
-using System.Diagnostics;
+using View = CodeFluent.Model.Persistence.View;
 
 namespace SoftFluent.Samples.ExtendedSearch.Aspects
 {
@@ -192,6 +193,78 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
             }
         }
 
+        private IEnumerable<Table> GatherTables(ProcedureStatement procedureStatement)
+        {
+            HashSet<Table> dict = new HashSet<Table>();
+            procedureStatement.Visit(delegate(ProcedureStatement current)
+            {
+                ProcedureWithJoinsStatement joins = current as ProcedureWithJoinsStatement;
+                if (joins != null)
+                {
+                    foreach (Table table in joins.Tables)
+                    {
+                        dict.Add(table);
+                    }
+                }
+            });
+            return dict;
+        }
+
+        private IEnumerable<TableRef> GatherTableRefs(ProcedureStatement procedureStatement)
+        {
+            HashSet<TableRef> dict = new HashSet<TableRef>();
+            procedureStatement.Visit(delegate(ProcedureStatement current)
+            {
+                ProcedureJoinStatement js = current as ProcedureJoinStatement;
+                if (js != null)
+                {
+                    dict.Add(js.TableRef);
+                }
+            });
+            return dict;
+        }
+
+        private TableRefColumn FindMatchingColumn(ProcedureStatement procedureStatement, Parameter parameter)
+        {
+            if (procedureStatement == null) throw new ArgumentNullException("procedureStatement");
+            if (parameter == null) throw new ArgumentNullException("parameter");
+
+            Column column = null;
+            var tables = GatherTables(procedureStatement);
+            if (parameter.Column != null)
+            {
+                foreach (Table table in tables)
+                {
+                    View view = table as View;
+                    if (view != null)
+                    {
+                        column = view.GetMatchingColumn(parameter.Column);
+                    }
+                    else if (parameter.Column.Table.IsEquivalent(table))
+                    {
+                        column = parameter.Column;
+                    }
+
+                    if (column != null)
+                        break;
+                }
+            }
+
+            if (column == null)
+            {
+                var tableRefs = GatherTableRefs(procedureStatement);
+                foreach (TableRef tableRef in tableRefs)
+                {
+                    if (tableRef.Table.IsEquivalent(parameter.Column.Table))
+                    {
+                        return new TableRefColumn(parameter.Column, tableRef);
+                    }
+                }
+            }
+
+            return new TableRefColumn(column ?? parameter.Column);
+        }
+
         private void UpdateProcedures()
         {
             foreach (var procedure in Project.Database.Procedures)
@@ -284,7 +357,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
         private ProcedureExpressionStatement CreateParameterTestStatement(ProcedureStatement parent, Parameter parameter, FilterFunctions op)
         {
             ProcedureExpressionStatement result = null;
-            TableRefColumn refColumn = new TableRefColumn(parameter.Column);
+            var refColumn = FindMatchingColumn(parent, parameter);
             switch (op)
             {
                 case FilterFunctions.None:
@@ -394,7 +467,7 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
 
         private ProcedureExpressionStatement CreateEnumerationEqualsStatement(ProcedureStatement parent, Parameter enumParameter, EnumerationValue enumValue)
         {
-            bool isZero = ConvertUtilities.ChangeType<int>(enumValue) == 0;
+            bool isZero = ConvertUtilities.ChangeType<int>(enumValue.TypedValue) == 0;
             if (!isZero && FilterFunctionsEnumeration.IsFlags)
             {
                 // Sample: (@FilterFunctions & FilterFunctions.Equals) = FilterFunctions.Equals
