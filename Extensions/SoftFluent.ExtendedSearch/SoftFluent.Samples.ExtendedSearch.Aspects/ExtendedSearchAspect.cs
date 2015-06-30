@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Xml;
 using Nullable = CodeFluent.Model.Code.Nullable;
@@ -585,6 +586,21 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
                 EnumerationValue enumerationValue = new EnumerationValue();
                 enumerationValue.Name = value.ToString();
                 enumerationValue.SetAttributeValue(PreferredPrefix, "filterFunction", NamespaceUri, value);
+
+                List<string> enumNames = ConvertUtilities.SplitEnumNames(value).ToList();
+                if (enumNames.Count() > 1)
+                {
+                    if (!e.IsFlags)
+                        continue;
+
+                    enumerationValue.Value = ConvertUtilities.Concatenate(enumNames, " | ");
+                }
+                else
+                {
+                    enumerationValue.Value = ((int)value).ToString(CultureInfo.InvariantCulture);
+                }
+
+                enumerationValue.Value = ((int)value).ToString(CultureInfo.InvariantCulture);
                 e.Values.Add(enumerationValue);
             }
 

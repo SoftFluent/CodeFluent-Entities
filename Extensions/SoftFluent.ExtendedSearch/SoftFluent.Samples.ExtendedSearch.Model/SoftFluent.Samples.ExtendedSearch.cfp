@@ -6,7 +6,11 @@
     <cf:property name="Id" key="true" typeName="int" />
     <cf:property name="FullName" entityDisplay="true" />
     <cf:property name="DateOfBirth" typeName="datetime" />
-    <cf:method name="Search" body="SEARCH(FullName, DateOfBirth)" exse:enabled="true" autoStartsWith="true" />
+    <cf:view autoLightweight="true" name="CustomerView">
+      <cf:viewProperty name="FullName" />
+      <cf:viewProperty name="DateOfBirth" />
+    </cf:view>
+    <cf:method name="Search" body="SEARCH(FullName, DateOfBirth)" exse:enabled="true" exse:defaultFilterFunctions="All" autoStartsWith="true" />
     <cf:instance>
       <cf:instanceValue name="Id">1</cf:instanceValue>
       <cf:instanceValue name="FullName">John Doe</cf:instanceValue>
@@ -17,10 +21,6 @@
       <cf:instanceValue name="FullName">Jane Doe</cf:instanceValue>
       <cf:instanceValue name="DateOfBirth">02/04/1988 00:00:00</cf:instanceValue>
     </cf:instance>
-    <cf:view autoLightweight="true" name="CustomerView">
-      <cf:viewProperty name="FullName" />
-      <cf:viewProperty name="DateOfBirth" />
-    </cf:view>
     <cf:method name="SearchFromView" body="SEARCH(FullName, DateOfBirth) FROM CustomerView" exse:enabled="true" />
   </cf:entity>
   <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">

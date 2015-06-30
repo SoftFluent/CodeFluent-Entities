@@ -23,7 +23,8 @@ namespace SoftFluent.Samples.ExtendedSearch.Aspects
         NotFullTextContains =       0x0800,
         FreeText =                  0x1000,
         NotFreeText =               0x2000,
-        AllExceptFullText =         All ^ FullTextContains ^ NotFullTextContains ^ FreeText ^ NotFreeText,
+
+        AllExceptFullText =         0x03FF,
         All =                       0x3FFF
     }
 }
