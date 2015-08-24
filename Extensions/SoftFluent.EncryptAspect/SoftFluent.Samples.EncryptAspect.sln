@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.EncryptAspect", "SoftFluent.Samples.EncryptAspect\SoftFluent.Samples.EncryptAspect.csproj", "{5DA931DD-F6A4-4050-A877-F2E7840263AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftFluent.Samples.EncryptAspect.Aspects", "SoftFluent.Samples.EncryptAspect.Aspects\SoftFluent.Samples.EncryptAspect.Aspects.csproj", "{BB6B34A5-31D5-41FA-8414-C2966CA8B234}"
+EndProject
+Project("{00000005-0004-0000-0000-000000C0DEF1}") = "SoftFluent.Samples.EncryptAspect.Model", "SoftFluent.Samples.EncryptAspect.Model\SoftFluent.Samples.EncryptAspect.Model.cfxproj", "{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Release|.NET.ActiveCfg = Release|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5DA931DD-F6A4-4050-A877-F2E7840263AD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Release|.NET.ActiveCfg = Release|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BB6B34A5-31D5-41FA-8414-C2966CA8B234}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Debug|.NET.ActiveCfg = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Debug|.NET.Build.0 = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Debug|Any CPU.ActiveCfg = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Debug|Mixed Platforms.ActiveCfg = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Debug|Mixed Platforms.Build.0 = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Release|.NET.ActiveCfg = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Release|.NET.Build.0 = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Release|Any CPU.ActiveCfg = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Release|Mixed Platforms.ActiveCfg = Release|.NET
+		{BB76AF82-E293-4EEB-8676-DAEAC1D69EDD}.Release|Mixed Platforms.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+﻿<cf:project defaultNamespace="SoftFluent.Samples.EncryptAspect" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:ea="http://www.softfluent.com/aspects/samples/encrypt" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" createDefaultMethodForms="true" createDefaultApplication="false" createDefaultHints="false">
+  <cf:import path="Default.Surface.cfp" />
+  <cf:pattern typeName="CodeFluent.Aspects.Encrypt.EncryptAspect, SoftFluent.Samples.EncryptAspect.Aspects" step="Start" />
+  <cf:entity name="Customer" namespace="SoftFluent.Samples.EncryptAspect">
+    <cf:property name="Id" key="true" />
+    <cf:property name="Name" />
+    <cf:property name="CardNumber" ea:encrypt="true" />
+    <cf:method name="LoadByCardNumber" body="LOAD(CardNumber) WHERE CardNumber = @CardNumber" />
+  </cf:entity>
+  <cf:reference name="SoftFluent.Samples.EncryptAspect.Aspects" path="..\SoftFluent.Samples.EncryptAspect.Aspects\bin\Debug\SoftFluent.Samples.EncryptAspect.Aspects.dll" />
+  <cf:producer name="Business Object Model (BOM)" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom">
+    <cf:configuration compileWithVisualStudio="true" compile="false" codeDomProviderTypeName="CSharp" targetDirectory="..\SoftFluent.Samples.EncryptAspect" cfx:targetProject="..\SoftFluent.Samples.EncryptAspect\SoftFluent.Samples.EncryptAspect.csproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:producer name="SQL Server" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration produceViews="true" targetDirectory="..\SoftFluent.Samples.EncryptAspect\SQL" cfx:targetProject="..\SoftFluent.Samples.EncryptAspect\SoftFluent.Samples.EncryptAspect.csproj" cfx:targetProjectLayout="Update, DontRemove" />
+  </cf:producer>
+</cf:project>

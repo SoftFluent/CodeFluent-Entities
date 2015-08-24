@@ -15,7 +15,7 @@ namespace CodeFluent.Aspects.Encrypt
         public static readonly XmlDocument Descriptor;
         public const string Namespace = "http://www.softfluent.com/aspects/samples/encrypt";
 
-        private const string PassPhraseToken = "PassPhrase";
+        private const string PassPhraseParameterName = "PassPhrase";
 
         static EncryptAspect()
         {
@@ -69,7 +69,7 @@ namespace CodeFluent.Aspects.Encrypt
                 if (e.Step != ImportStep.Categories)
                     return;
 
-                foreach (var procedure in Project.Database.Procedures.Where(procedure => procedure.Parameters[PassPhraseToken] != null))
+                foreach (var procedure in Project.Database.Procedures.Where(procedure => procedure.Parameters[PassPhraseParameterName] != null))
                 {
                     UpdateProcedure(procedure);
                 }
@@ -92,13 +92,13 @@ namespace CodeFluent.Aspects.Encrypt
             property.DbType = System.Data.DbType.Binary;
             property.MaxLength = 8000;
 
-            if (property.Entity.AmbientParameters[PassPhraseToken] != null)
+            if (property.Entity.AmbientParameters[PassPhraseParameterName] != null)
                 return;
 
             // create one pass phrase ambient parameter for each entity that has at least one crypt property
             var passPhraseParameter = new MethodParameter
             {
-                Name = PassPhraseToken,
+                Name = PassPhraseParameterName,
                 ClrFullTypeName = "string",
                 Nullable = CodeFluent.Model.Code.Nullable.False,
                 Options = MethodParameterOptions.Ambient |
@@ -117,7 +117,7 @@ namespace CodeFluent.Aspects.Encrypt
 
         private static void UpdateProcedure(Procedure procedure)
         {
-            procedure.Parameters[PassPhraseToken].DefaultValue = null; // passphrase must be provided
+            procedure.Parameters[PassPhraseParameterName].DefaultValue = null; // passphrase must be provided
 
             if (procedure.ProcedureType == ProcedureType.SaveEntity)
             {
@@ -128,7 +128,7 @@ namespace CodeFluent.Aspects.Encrypt
                         return;
 
                     string parameterName = statement.RightExpression.Parameter.Name;
-                    statement.RightExpression.Literal = ProcedureExpressionStatement.CreateLiteral(string.Format("ENCRYPTBYPASSPHRASE(@{0}, @{1})", PassPhraseToken, parameterName));
+                    statement.RightExpression.Literal = ProcedureExpressionStatement.CreateLiteral(string.Format("ENCRYPTBYPASSPHRASE(@{0}, @{1})", PassPhraseParameterName, parameterName));
                     statement.RightExpression.Parameter = null;
 
                     // Column is of type varbinary but parameter must be of type string
@@ -143,17 +143,23 @@ namespace CodeFluent.Aspects.Encrypt
 
             procedure.Body.Visit<ProcedureStatement>(s =>
             {
-                var statement = s as ProcedureSetStatement;
-                if (statement == null || statement.LeftExpression == null || !MustEncrypt(statement.LeftExpression.RefColumn))
-                    return;
+                var procedureExpressionStatement = s as ProcedureExpressionStatement;
+                if (procedureExpressionStatement != null)
+                {
+                    if (procedureExpressionStatement.LeftExpression == null || !MustEncrypt(procedureExpressionStatement.LeftExpression.RefColumn))
+                        return;
 
-                statement.As = new ProcedureExpressionStatement(statement, ProcedureExpressionStatement.CreateLiteral(statement.LeftExpression.RefColumn.Column.Name));
-                statement.LeftExpression.Literal = ProcedureExpressionStatement.CreateLiteral(string.Format("CONVERT(nvarchar, DECRYPTBYPASSPHRASE(@{0}, {1}))", PassPhraseToken, statement.LeftExpression.RefColumn.Column.Name));
-                statement.LeftExpression.RefColumn = null;
+                    var procedureSetStatement = procedureExpressionStatement as ProcedureSetStatement;
+                    if (procedureSetStatement != null)
+                    {
+                        procedureSetStatement.As = new ProcedureExpressionStatement(procedureSetStatement, ProcedureExpressionStatement.CreateLiteral(procedureSetStatement.LeftExpression.RefColumn.Column.Name));    
+                    }
+                    
+                    procedureExpressionStatement.LeftExpression.Literal = ProcedureExpressionStatement.CreateLiteral(string.Format("CONVERT(nvarchar, DECRYPTBYPASSPHRASE(@{0}, {1}))", PassPhraseParameterName, procedureExpressionStatement.LeftExpression.RefColumn.Column.Name));
+                    procedureExpressionStatement.LeftExpression.RefColumn = null;
+                }
             });
         }
-
-
 
         private static bool MustEncrypt(TableRefColumn refColumn)
         {
