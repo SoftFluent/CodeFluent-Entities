@@ -314,7 +314,7 @@ namespace SoftFluent.AspNetIdentity
             }
 
             method.Statements.Add(CodeDomUtilities.CreateParameterThrowIfNull("user"));
-            method.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("user"), "Delete"));
+            method.Statements.Add(new CodeMethodInvokeExpression(new CodeArgumentReferenceExpression("user"), IdentityUser.DeleteMethodName));
             method.Statements.Add(CreateEmptyTaskResult());
 
             type.Members.Add(method);

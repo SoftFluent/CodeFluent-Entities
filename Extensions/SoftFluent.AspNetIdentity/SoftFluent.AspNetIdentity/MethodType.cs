@@ -17,6 +17,7 @@ namespace SoftFluent.AspNetIdentity
         LoadAllRoles,
         LoadRoleClaimsByRole,
         LoadAllUsers,
+        DeleteUser,
 
         // Compatibility
         // ReSharper disable UnusedMember.Global
@@ -28,5 +29,6 @@ namespace SoftFluent.AspNetIdentity
         DeleteLoginByUserLoginInfo = DeleteUserLoginByUserLoginInfo,
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         LoadClaimsByRole = LoadRoleClaimsByRole,
+
     }
 }

@@ -53,6 +53,8 @@ namespace SoftFluent.AspNetIdentity
             LoadByEmailMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByEmail) ?? Entity.Methods.Find("LoadByEmail", StringComparison.OrdinalIgnoreCase) ?? (EmailProperty != null && EmailProperty.IsCollectionKey ? Entity.LoadByCollectionKeyMethod : null);
             LoadByUserLoginInfoMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadUserByUserLoginInfo);
             LoadAllMethod = ProjectUtilities.FindByMethodType(Entity, MethodType.LoadAllUsers) ?? Entity.LoadAllMethod;
+
+            DeleteMethodName = ProjectUtilities.FindByMethodType(Entity, MethodType.DeleteUser)?.Name ?? Entity.GetAttributeValue("deleteMethodName", Constants.NamespaceUri, (string)null) ??  "Delete";
         }
 
         public Entity Entity { get; private set; }
@@ -98,6 +100,7 @@ namespace SoftFluent.AspNetIdentity
         public Property RolesProperty { get; private set; }
         public Property ClaimsProperty { get; private set; }
         public Property LoginsProperty { get; private set; }
+        public string DeleteMethodName { get; private set; }
         public Method LoadByKeyMethod { get; private set; }
         public string LoadByKeyMethodName { get; private set; }
         public Method LoadByUserNameMethod { get; private set; }
