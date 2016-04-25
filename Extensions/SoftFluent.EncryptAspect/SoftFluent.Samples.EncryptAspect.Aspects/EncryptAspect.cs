@@ -155,7 +155,7 @@ namespace CodeFluent.Aspects.Encrypt
                         procedureSetStatement.As = new ProcedureExpressionStatement(procedureSetStatement, ProcedureExpressionStatement.CreateLiteral(procedureSetStatement.LeftExpression.RefColumn.Column.Name));    
                     }
                     
-                    procedureExpressionStatement.LeftExpression.Literal = ProcedureExpressionStatement.CreateLiteral(string.Format("CONVERT(nvarchar, DECRYPTBYPASSPHRASE(@{0}, {1}))", PassPhraseParameterName, procedureExpressionStatement.LeftExpression.RefColumn.Column.Name));
+                    procedureExpressionStatement.LeftExpression.Literal = ProcedureExpressionStatement.CreateLiteral(string.Format("CONVERT(nvarchar(max), DECRYPTBYPASSPHRASE(@{0}, {1}))", PassPhraseParameterName, procedureExpressionStatement.LeftExpression.RefColumn.Column.Name));
                     procedureExpressionStatement.LeftExpression.RefColumn = null;
                 }
             });
